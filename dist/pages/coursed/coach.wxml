@@ -12,6 +12,14 @@
   </view>
   <view class="time">
     <view class="timename">选择时间</view>
+    <view class="times">
+      <view class="time1">
+        <view class="block"  wx:for="{{date}}" wx:for-item="item" wx:for-index="idx" data-index="{{idx}}" bindtap="getDate">
+          <view class="{{currentIndex === idx ? 'hover date' : 'date'}}">{{item.date}}</view>
+          <view class="week">{{item.isWeek ? item.week : item.month}}</view>
+        </view>
+      </view>
+    </view>
   </view>
 
 

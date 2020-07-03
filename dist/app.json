@@ -1,1 +1,73 @@
-{"pages":["pages/coursed/coursed","pages/home/home","pages/user/user","pages/coursed/coach","pages/coursed/member","pages/coursed/card","pages/done","pages/addRecord","pages/createTest","pages/addressBook","pages/textDetails","pages/list","pages/editAddress","pages/productDetail","pages/car","pages/user","pages/payMoney","pages/upload","pages/login","pages/order","pages/sign","pages/gitSample","pages/sampleDetail","pages/form","pages/meMaple","pages/webview","pages/webview1","pages/webview2","pages/webview3","pages/zhonghua"],"window":{"backgroundColor":"#fefefe","navigationBarBackgroundColor":"#fefefe","navigationBarTitleText":"首页","navigationBarTextStyle":"black","navigationStyle":"custom"},"tabBar":{"color":"#5e5e5e","selectedColor":"#e82511","backgroundColor":"#343434","borderStyle":"black","list":[{"pagePath":"pages/home/home","text":"首页","iconPath":"images/home.png","selectedIconPath":"images/home_select.png"},{"pagePath":"pages/coursed/coursed","text":"课程","iconPath":"images/course.png","selectedIconPath":"images/course_select.png"},{"pagePath":"pages/user/user","text":"我的","iconPath":"images/user.png","selectedIconPath":"images/user_selet.png"}]},"permission":{"scope.userLocation":{"desc":"您的位置信息将用于寻找附近的检测点"}}}
+{
+  "pages": [
+    "pages/home/home",
+    "pages/coursed/coursed",
+    "pages/user/user",
+    "pages/coursed/coach",
+    "pages/coursed/member",
+    "pages/coursed/card",
+    "pages/done",
+    "pages/addRecord",
+    "pages/createTest",
+    "pages/addressBook",
+    "pages/textDetails",
+    "pages/list",
+    "pages/editAddress",
+    "pages/productDetail",
+    "pages/car",
+    "pages/user",
+    "pages/payMoney",
+    "pages/upload",
+    "pages/login",
+    "pages/order",
+    "pages/sign",
+    "pages/gitSample",
+    "pages/sampleDetail",
+    "pages/form",
+    "pages/meMaple",
+    "pages/webview",
+    "pages/webview1",
+    "pages/webview2",
+    "pages/webview3",
+    "pages/zhonghua"
+  ],
+  "window": {
+    "backgroundColor": "#fefefe",
+    "navigationBarBackgroundColor": "#fefefe",
+    "navigationBarTitleText": "首页",
+    "navigationBarTextStyle": "black",
+    "navigationStyle": "custom"
+  },
+  "tabBar": {
+    "color": "#5e5e5e",
+    "selectedColor": "#e82511",
+    "backgroundColor": "#343434",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/home/home",
+        "text": "首页",
+        "iconPath": "images/home.png",
+        "selectedIconPath": "images/home_select.png"
+      },
+      {
+        "pagePath": "pages/coursed/coursed",
+        "text": "课程",
+        "iconPath": "images/course.png",
+        "selectedIconPath": "images/course_select.png"
+      },
+      {
+        "pagePath": "pages/user/user",
+        "text": "我的",
+        "iconPath": "images/user.png",
+        "selectedIconPath": "images/user_selet.png"
+      }
+    ]
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "您的位置信息将用于寻找附近的检测点"
+    }
+  },
+  "sitemapLocation": "sitemap60.json"
+}

@@ -4,8 +4,8 @@
         OneFit运动训练中心
       </view>
     <view bindtap="tabs" class="tab">
-      <view class="{{tab==1 ? 'active':''}}">精品团课</view>
-      <view class="{{tab==2 ? 'active':''}}">私教预约</view>
+      <view style="border-radius:10rpx 0 0 10rpx" class="{{tab==1 ? 'active':''}}">精品团课</view>
+      <view style="border-radius:0 10rpx 10rpx 0" class="{{tab==2 ? 'active':''}}">私教预约</view>
     </view>
 
     <view class="times">

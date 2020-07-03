@@ -1,6 +1,9 @@
 page {
   background: #333534;
 }
+.hua {
+  width: 100%;
+}
 .title {
   background: #333436;
   width: 100%;
@@ -11,16 +14,17 @@ page {
   font-size: 30rpx;
   font-weight: bolder;
 }
-swiper,
-.swiper-item {
-  width: 100%;
-  height: 285rpx;
-}
 .banner {
   width: 100%;
   height: 285rpx;
 }
-.banner image {
+.banner swiper,
+.banner .swiper-item {
+  width: 100%;
+  height: 285rpx;
+}
+.banner swiper image,
+.banner .swiper-item image {
   width: 100%;
   height: 285rpx;
 }
@@ -36,4 +40,268 @@ swiper,
 .box .item image {
   width: 100%;
   height: 320rpx;
+}
+.store {
+  width: 100%;
+}
+.store .storeBanner {
+  width: 100%;
+  height: 320rpx;
+}
+.store .storeBanner image {
+  width: 100%;
+  height: 320rpx;
+}
+.store .store-lei {
+  width: 710rpx;
+  margin-top: 30rpx;
+  margin-left: 20rpx;
+}
+.store .store-lei .store-one,
+.store .store-lei .store-two {
+  margin-bottom: 30rpx;
+  border-radius: 10rpx;
+  background: #010101;
+  width: 690rpx;
+  padding: 15rpx 10rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.store .store-lei .store-one .s-left,
+.store .store-lei .store-two .s-left {
+  width: 560rpx;
+}
+.store .store-lei .store-one .s-left .s-top,
+.store .store-lei .store-two .s-left .s-top {
+  font-size: 26rpx;
+  color: #fff;
+}
+.store .store-lei .store-one .s-left .s-bot,
+.store .store-lei .store-two .s-left .s-bot {
+  font-size: 24rpx;
+  color: #fff;
+}
+.store .store-lei .store-one .s-right,
+.store .store-lei .store-two .s-right {
+  border-radius: 10rpx;
+  margin-right: 10rpx;
+  width: 110rpx;
+  height: 50rpx;
+  background: #e82511;
+  font-size: 24rpx;
+  color: #fff;
+  text-align: center;
+  line-height: 50rpx;
+}
+.store .people {
+  width: 710rpx;
+  margin-left: 20rpx;
+  margin-top: 10rpx;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.store .people .s-item {
+  width: 160rpx;
+  background: #262626;
+  margin-right: 20rpx;
+  border-radius: 10rpx;
+  padding: 10rpx 10rpx 20rpx 10rpx;
+}
+.store .people .s-item .s-img {
+  width: 160rpx;
+  height: 160rpx;
+  border-radius: 50%;
+}
+.store .people .s-item .s-img image {
+  width: 160rpx;
+  height: 160rpx;
+  border-radius: 50%;
+}
+.store .people .s-item .s-name {
+  margin-top: 10rpx;
+  text-align: center;
+  font-size: 24rpx;
+  color: #fff;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.store .people .s-item .s-jj {
+  margin-top: 10rpx;
+  text-align: center;
+  font-size: 25rpx;
+  color: #fff;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.store .adress {
+  width: 710rpx;
+  margin-left: 20rpx;
+  margin-top: 30rpx;
+}
+.store .adress .top {
+  width: 690rpx;
+  border-radius: 10rpx  10rpx  0px  0px;
+  padding: 0 10rpx;
+  height: 80rpx;
+  display: flex;
+  align-items: center;
+  background: #010101;
+}
+.store .adress .top image {
+  width: 40rpx;
+  height: 40rpx;
+}
+.store .adress .top text {
+  font-size: 28rpx;
+  margin-left: 20rpx;
+  color: #fff;
+}
+.store .adress .bot {
+  width: 690rpx;
+  padding: 0 10rpx;
+  border-radius: 0px  0px  10rpx  10rpx;
+  height: 110rpx;
+  background: #262626;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.store .adress .bot view {
+  font-size: 24rpx;
+  color: #fff;
+}
+.store .adress .bot .red {
+  color: #bb4f43;
+  font-size: 24rpx;
+  margin-left: 20rpx;
+}
+.store .discount {
+  width: 710rpx;
+  margin-left: 20rpx;
+  margin-top: 30rpx;
+}
+.store .discount .top {
+  width: 690rpx;
+  border-radius: 10rpx  10rpx  0px  0px;
+  padding: 0 10rpx;
+  height: 80rpx;
+  display: flex;
+  align-items: center;
+  background: #010101;
+}
+.store .discount .top image {
+  width: 40rpx;
+  height: 40rpx;
+}
+.store .discount .top text {
+  font-size: 28rpx;
+  margin-left: 20rpx;
+  color: #fff;
+}
+.store .discount .bot {
+  width: 690rpx;
+  padding: 0 10rpx;
+  border-radius: 0px  0px  10rpx  10rpx;
+  height: 110rpx;
+  background: #262626;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.store .discount .bot .bot-left {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.store .discount .bot .bot-left image {
+  width: 120rpx;
+  height: 70rpx;
+}
+.store .discount .bot .bot-left text {
+  margin-left: 10rpx;
+  color: #fff;
+  font-size: 26rpx;
+}
+.store .discount .bot .bot-right .new-price {
+  font-size: 26rpx;
+  color: #fff;
+}
+.store .discount .bot .bot-right .old-price {
+  font-size: 26rpx;
+  color: #7e7e7e;
+}
+.store .member {
+  width: 710rpx;
+  margin-left: 20rpx;
+  margin-top: 30rpx;
+  margin-bottom: 60rpx;
+}
+.store .member .top {
+  width: 690rpx;
+  border-radius: 10rpx  10rpx  0px  0px;
+  padding: 0 10rpx;
+  height: 80rpx;
+  display: flex;
+  align-items: center;
+  background: #010101;
+}
+.store .member .top image {
+  width: 40rpx;
+  height: 40rpx;
+}
+.store .member .top text {
+  font-size: 28rpx;
+  margin-left: 20rpx;
+  color: #fff;
+}
+.store .member .bot {
+  width: 690rpx;
+  padding: 0 10rpx;
+  border-radius: 0px  0px  10rpx  10rpx;
+  border-bottom: 1rpx solid #242424;
+  height: 110rpx;
+  background: #262626;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.store .member .bot .bot-left {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.store .member .bot .bot-left image {
+  width: 120rpx;
+  height: 70rpx;
+}
+.store .member .bot .bot-left text {
+  margin-left: 10rpx;
+  color: #fff;
+  font-size: 26rpx;
+}
+.store .member .bot .bot-right .new-price {
+  font-size: 26rpx;
+  color: #fff;
+}
+.store .member .bot .bot-right .old-price {
+  font-size: 26rpx;
+  color: #7e7e7e;
+}
+.store .member .last {
+  width: 690rpx;
+  padding: 0 10rpx;
+  border-radius: 0px  0px  10rpx  10rpx;
+  height: 110rpx;
+  background: #262626;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #7e7e7e;
+  font-size: 28rpx;
 }

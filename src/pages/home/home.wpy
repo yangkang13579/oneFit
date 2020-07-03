@@ -1,6 +1,12 @@
 <style lang="less">
 page {
   background: #333534;
+  // height: 100%;
+}
+.hua {
+  width: 100%;
+  // height: 100vh;
+  // // padding-bottom: 100rpx;
 }
 .title {
   background: #333436;
@@ -12,126 +18,575 @@ page {
   font-size: 30rpx;
   font-weight: bolder;
 }
-swiper,
-.swiper-item {
-  width: 100%;
-  height: 285rpx;
-}
+
 .banner {
   width: 100%;
   height: 285rpx;
-  image {
+  swiper,
+  .swiper-item {
     width: 100%;
     height: 285rpx;
+    image {
+      width: 100%;
+      height: 285rpx;
+    }
   }
 }
-.box{
+.box {
   width: 730rpx;
   margin: 20rpx 0 0 10rpx;
-  .item{
+  .item {
     width: 100%;
     height: 320rpx;
     margin-bottom: 15rpx;
-    image{
+    image {
       width: 100%;
       height: 320rpx;
     }
   }
 }
+.store {
+  width: 100%;
+
+  .storeBanner {
+    width: 100%;
+    height: 320rpx;
+    image {
+      width: 100%;
+      height: 320rpx;
+    }
+  }
+  .store-lei {
+    width: 710rpx;
+    margin-top: 30rpx;
+    margin-left: 20rpx;
+    .store-one,
+    .store-two {
+      margin-bottom: 30rpx;
+      border-radius: 10rpx;
+      background: #010101;
+      width: 690rpx;
+      padding: 15rpx 10rpx;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      .s-left {
+        width: 560rpx;
+        .s-top {
+          font-size: 26rpx;
+          color: #fff;
+        }
+        .s-bot {
+          font-size: 24rpx;
+          color: #fff;
+        }
+      }
+      .s-right {
+        border-radius: 10rpx;
+        margin-right: 10rpx;
+        width: 110rpx;
+        height: 50rpx;
+        background: #e82511;
+        font-size: 24rpx;
+        color: #fff;
+        text-align: center;
+        line-height: 50rpx;
+      }
+    }
+  }
+  .people {
+    width: 710rpx;
+    margin-left: 20rpx;
+    margin-top: 10rpx;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    .s-item {
+      width: 160rpx;
+      background: #262626;
+      margin-right: 20rpx;
+      border-radius: 10rpx;
+      padding: 10rpx 10rpx 20rpx 10rpx;
+      .s-img {
+        width: 160rpx;
+        height: 160rpx;
+        border-radius: 50%;
+        image {
+          width: 160rpx;
+          height: 160rpx;
+          border-radius: 50%;
+        }
+      }
+      .s-name {
+        margin-top: 10rpx;
+        width: 100%;
+        text-align: center;
+        font-size: 24rpx;
+        color: #fff;
+        width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      .s-jj {
+        margin-top: 10rpx;
+        width: 100%;
+        text-align: center;
+        font-size: 25rpx;
+        color: #fff;
+        width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+    }
+  }
+  .adress{
+    width: 710rpx;
+    margin-left: 20rpx;
+    margin-top: 30rpx;
+    .top{
+      width: 690rpx;
+      border-radius:10rpx  10rpx  0px  0px;
+      padding: 0 10rpx;
+      height: 80rpx;
+      display: flex;
+      align-items: center;
+      background: #010101;
+      image{
+        width: 40rpx;
+        height: 40rpx;
+      }
+      text{
+        font-size: 28rpx;
+        margin-left: 20rpx;
+        color: #fff;
+      }
+
+    }
+    .bot{
+      width: 690rpx;
+      padding: 0 10rpx;
+      border-radius:0px  0px  10rpx  10rpx;
+      height: 110rpx;
+      background: #262626;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      view{
+        font-size: 24rpx;
+        color: #fff;
+      }
+      .red{
+        color: #bb4f43;
+        font-size: 24rpx;
+        margin-left: 20rpx;
+      }
+    }
+  }
+  .discount{
+    width: 710rpx;
+    margin-left: 20rpx;
+    margin-top: 30rpx;
+    .top{
+      width: 690rpx;
+      border-radius:10rpx  10rpx  0px  0px;
+      padding: 0 10rpx;
+      height: 80rpx;
+      display: flex;
+      align-items: center;
+      background: #010101;
+      image{
+        width: 40rpx;
+        height: 40rpx;
+      }
+      text{
+        font-size: 28rpx;
+        margin-left: 20rpx;
+        color: #fff;
+      }
+
+    }
+    .bot{
+      width: 690rpx;
+      padding: 0 10rpx;
+      border-radius:0px  0px  10rpx  10rpx;
+      height: 110rpx;
+      background: #262626;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      .bot-left{
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        image{
+          width: 120rpx;
+          height: 70rpx;
+        }
+        text{
+          margin-left: 10rpx;
+          color: #fff;
+          font-size: 26rpx;
+        }
+      }
+     .bot-right{
+       .new-price{
+         font-size: 26rpx;
+         color: #fff;
+       }
+       .old-price{
+          font-size: 26rpx;
+          color: #7e7e7e;
+       }
+     }
+    }
+  }
+  .member{
+    width: 710rpx;
+    margin-left: 20rpx;
+    margin-top: 30rpx;
+    margin-bottom: 60rpx;
+    .top{
+      width: 690rpx;
+      border-radius:10rpx  10rpx  0px  0px;
+      padding: 0 10rpx;
+      height: 80rpx;
+      display: flex;
+      align-items: center;
+      background: #010101;
+      image{
+        width: 40rpx;
+        height: 40rpx;
+      }
+      text{
+        font-size: 28rpx;
+        margin-left: 20rpx;
+        color: #fff;
+      }
+
+    }
+    .bot{
+      width: 690rpx;
+      padding: 0 10rpx;
+      border-radius:0px  0px  10rpx  10rpx;
+      border-bottom: 1rpx solid #242424;
+      height: 110rpx;
+      background: #262626;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      .bot-left{
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        image{
+          width: 120rpx;
+          height: 70rpx;
+        }
+        text{
+          margin-left: 10rpx;
+          color: #fff;
+          font-size: 26rpx;
+        }
+      }
+     .bot-right{
+       .new-price{
+         font-size: 26rpx;
+         color: #fff;
+       }
+       .old-price{
+          font-size: 26rpx;
+          color: #7e7e7e;
+       }
+     }
+    }
+    .last{
+      width: 690rpx;
+      padding: 0 10rpx;
+      border-radius:0px  0px  10rpx  10rpx;
+      height: 110rpx;
+      background: #262626;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #7e7e7e;
+      font-size: 28rpx;
+    }
+  }
+
+}
 </style>
 
 <template lang="wxml">
-  <view class="title">
-      OneFit运动训练中心
-  </view>
-  <view class="banner">
-    <swiper
-      indicator-dots="{{indicatorDots}}"
-      autoplay="{{autoplay}}"
-      interval="{{interval}}"
-      duration="{{duration}}"
-    >
-      <block wx:for="{{imgUrls}}" wx:key="">
-        <swiper-item>
-          <image src="{{item}}" class="slide-image" width="355" height="150" />
-        </swiper-item>
-      </block>
-    </swiper>
-  </view>
-  <view class="box">
-    <block wx:for="{{boxImg}}" wx:key="{{index}}">
-      <view class="item">
-        <image src="{{item}}"></image>
+  <swiper class="hua" vertical="true" style="height: {{clientHeight?clientHeight+'px':'auto'}}">
+    <swiper-item>
+      <scroll-view scroll-y="{{true}}" style="height: {{clientHeight?clientHeight+'px':'auto'}}">
+      <view class="title">
+          OneFit运动训练中心
       </view>
+      <view class="banner">
+        <swiper
+          indicator-dots="{{indicatorDots}}"
+          autoplay="{{autoplay}}"
+          interval="{{interval}}"
+          duration="{{duration}}"
+        >
+          <block wx:for="{{imgUrls}}" wx:key="">
+            <swiper-item>
+              <image src="{{item}}" class="slide-image" width="355" height="150" />
+            </swiper-item>
+          </block>
+        </swiper>
+      </view>
+      <view class="box">
+        <block wx:for="{{boxImg}}" wx:key="{{index}}">
+          <view class="item">
+            <image src="{{item}}"></image>
+          </view>
 
-    </block>
-    
+        </block>
+        
 
-  </view>
+      </view>
+      </scroll-view>
+    </swiper-item>  
+    <swiper-item>
+      <scroll-view scroll-y="{{true}}" style="height: {{clientHeight?clientHeight+'px':'auto'}}">
+         <view class="store">
+           <view class="storeBanner">
+              <image src="../../images/17.jpg"></image>
+           </view>
+           <view class="store-lei">
+             <view class="store-one">
+               <view class="s-left">
+                 <view class="s-top">课程</view>
+                 <view class="s-bot">多种多样的课程设计,让你享受更多运动乐趣</view>
+               </view>
+               <view @tap="goto" class="s-right">约课</view>
+             </view>
+             <view class="store-two">
+                <view class="s-left">
+                 <view class="s-top">私教</view>
+                 <view class="s-bot">为您私人订制1v1训练计划</view>
+               </view>
+               <view @tap="goto" class="s-right">查看</view>
+             </view>
+           </view>
+
+            <view class="people">
+              <view class="s-item">
+                <view class="s-img">
+                  <image src="../../images/11.jpg"></image>
+                </view>
+                <view class="s-name">黄丹路</view>
+                <view class="s-jj">擅长：产后恢复</view>
+              </view>
+
+               <view class="s-item">
+                <view class="s-img">
+                  <image src="../../images/11.jpg"></image>
+                </view>
+                <view class="s-name">黄丹路</view>
+                <view class="s-jj">擅长：产后恢复</view>
+              </view>
+
+               <view class="s-item">
+                <view class="s-img">
+                  <image src="../../images/11.jpg"></image>
+                </view>
+                <view class="s-name">黄丹路</view>
+                <view class="s-jj">擅长：产后恢复</view>
+              </view>
+            </view>
+
+            <view class="adress">
+              <view class="top">
+                <image src="../../images/adress.png"></image>
+                <text>场馆地址</text>
+              </view>
+              <view class="bot">
+                <view>四川成都市武侯区</view>
+                <view class="red">查看地图</view>
+              </view>
+            </view>
+
+            <view class="adress">
+              <view class="top">
+                <image src="../../images/iphone.png"></image>
+                <text>场馆电话</text>
+              </view>
+              <view class="bot">
+                <view>02135351800</view>
+                <view class="red">点击拨号</view>
+              </view>
+            </view>
+
+             <view class="adress">
+              <view class="top">
+                <image src="../../images/iphone.png"></image>
+                <text>场馆介绍</text>
+              </view>
+              <view class="bot">
+                <view>ONEFIT杨浦店</view>
+              </view>
+            </view>
+
+
+             <view class="discount">
+              <view class="top">
+                <image src="../../images/zhekou.png"></image>
+                <text>新人折扣</text>
+              </view>
+              <view class="bot">
+                <view class="bot-left">
+                  <image src="../../images/18.jpg"></image>
+                  <text>私教入门(5课次)</text>
+                </view>
+                <view class="bot-right">
+                  <view class="new-price">
+                    新人价：￥1580.00
+                  </view>
+                  <view class="old-price">
+                    原价：￥3000.00
+                  </view>
+                </view>
+              </view>
+            </view>
+
+             <view class="member">
+              <view class="top">
+                <image src="../../images/calb.png"></image>
+                <text>会员卡</text>
+              </view>
+              <view class="bot">
+                <view class="bot-left">
+                  <image src="../../images/18.jpg"></image>
+                  <text>私教入门(5课次)</text>
+                </view>
+                <view class="bot-right">
+                  <view class="new-price">
+                    新人价：￥1580.00
+                  </view>
+                  <view class="old-price">
+                    原价：￥3000.00
+                  </view>
+                </view>
+              </view>
+              <view class="bot">
+                <view class="bot-left">
+                  <image src="../../images/18.jpg"></image>
+                  <text>私教入门(5课次)</text>
+                </view>
+                <view class="bot-right">
+                  <view class="new-price">
+                    新人价：￥1580.00
+                  </view>
+                  <view class="old-price">
+                    原价：￥3000.00
+                  </view>
+                </view>
+              </view>
+              <view class="bot">
+                <view class="bot-left">
+                  <image src="../../images/18.jpg"></image>
+                  <text>私教入门(5课次)</text>
+                </view>
+                <view class="bot-right">
+                  <view class="new-price">
+                    新人价：￥1580.00
+                  </view>
+                  <view class="old-price">
+                    原价：￥3000.00
+                  </view>
+                </view>
+              </view>
+              
+               <view @tap="more" class="last">
+                 查看全部>>
+              </view>
+
+            </view>
+
+
+         </view>
+       </scroll-view>
+    </swiper-item>
+    </swiper>
+
 </template>
 
 <script>
 /* global wx */
-import wepy from 'wepy';
-import PageMixin from '../../mixins/page';
+import wepy from "wepy";
+import PageMixin from "../../mixins/page";
 export default class Home extends wepy.page {
   // mixins = [PageMixin];
   config = {
-      navigationBarTitleText: 'OneFit运动训练中心',
-      navigationBarBackgroundColor: '#000'
+    navigationBarTitleText: "OneFit运动训练中心",
+    navigationBarBackgroundColor: "#000"
   };
   components = {};
   data = {
-      imgUrls: ['../../images/1.jpg', '../../images/2.jpg', '../../images/3.jpg'],
-      boxImg: [
-          '../../images/4.jpg',
-          '../../images/5.jpg',
-          '../../images/9.jpg',
-          '../../images/7.jpg',
-          '../../images/8.jpg'
-      ],
-      loadUser: true,
-      indicatorDots: true,
-      vertical: false,
-      autoplay: false,
-      interval: 2000,
-      duration: 500
+    imgUrls: ["../../images/1.jpg", "../../images/2.jpg", "../../images/3.jpg"],
+    boxImg: [
+      "../../images/4.jpg",
+      "../../images/5.jpg",
+      "../../images/9.jpg",
+      "../../images/7.jpg",
+      "../../images/8.jpg"
+    ],
+    loadUser: true,
+    indicatorDots: true,
+    vertical: false,
+    autoplay: false,
+    interval: 2000,
+    duration: 500,
+    clientHeight: ""
   };
-  methods = {};
+  methods = {
+    more(){
+      wx.switchTab({
+         url: '/pages/coursed/coursed'
+       });
+    },
+    goto(){
+      wx.switchTab({
+         url: '/pages/coursed/coursed'
+       });
+    }
+  };
 
   onReachBottom() {}
 
   whenAppReadyShow() {
-      this.fetchDataPromise('user/userInfo.json', {})
-          .then(data => {
-              const userInfo = data;
-              this.$apply();
-              wx.setStorage({
-                  key: 'userInfo',
-                  data: JSON.stringify(userInfo)
-              });
-          })
-          .catch(function(error) {});
-      wx.hideTabBar();
-      // console.log('this.currentIndex', this.currentIndex)
-      // this.tabFunSecah(this.currentIndex)
-      this.initData();
-      this.init();
-      this.$apply();
-      this.it();
+    console.log("9999999");
+
+    //   this.$apply();
+  }
+  onLoad() {
+    console.log("88888888");
   }
   onShow() {
-      // wx.hideTabBar()
+    var that = this;
+    wx.getSystemInfo({
+      success: function(res) {
+        console.log("res", res);
+        that.clientHeight = res.windowHeight;
+        that.$apply();
+        console.log("this.clientHeight", that.clientHeight);
+      }
+    });
   }
   onShareAppMessage(res) {}
   regionchange(e) {
-      console.log(e.type);
+    console.log(e.type);
   }
   markertap(e) {
-      console.log(e.markerId);
+    console.log(e.markerId);
   }
   controltap(e) {
-      console.log(e.controlId);
+    console.log(e.controlId);
   }
 }
 </script>

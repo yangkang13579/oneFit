@@ -1,23 +1,190 @@
 
-  <view class="title">
-      OneFit运动训练中心
-  </view>
-  <view class="banner">
-    <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
-      <block  wx:for="{{imgUrls}}" wx:key="">
-        <swiper-item>
-          <image src="{{item}}" class="slide-image" width="355" height="150"/>
-        </swiper-item>
-      </block>
-    </swiper>
-  </view>
-  <view class="box">
-    <block  wx:for="{{boxImg}}" wx:key="{{index}}">
-      <view class="item">
-        <image src="{{item}}"/>
+  <swiper class="hua" vertical="true" style="height: {{clientHeight?clientHeight+'px':'auto'}}">
+    <swiper-item>
+      <scroll-view scroll-y="{{true}}" style="height: {{clientHeight?clientHeight+'px':'auto'}}">
+      <view class="title">
+          OneFit运动训练中心
       </view>
+      <view class="banner">
+        <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+          <block  wx:for="{{imgUrls}}" wx:key="">
+            <swiper-item>
+              <image src="{{item}}" class="slide-image" width="355" height="150"/>
+            </swiper-item>
+          </block>
+        </swiper>
+      </view>
+      <view class="box">
+        <block  wx:for="{{boxImg}}" wx:key="{{index}}">
+          <view class="item">
+            <image src="{{item}}"/>
+          </view>
 
-    </block>
-    
+        </block>
+        
 
-  </view>
+      </view>
+      </scroll-view>
+    </swiper-item>  
+    <swiper-item>
+      <scroll-view scroll-y="{{true}}" style="height: {{clientHeight?clientHeight+'px':'auto'}}">
+         <view class="store">
+           <view class="storeBanner">
+              <image src="../../images/17.jpg"/>
+           </view>
+           <view class="store-lei">
+             <view class="store-one">
+               <view class="s-left">
+                 <view class="s-top">课程</view>
+                 <view class="s-bot">多种多样的课程设计,让你享受更多运动乐趣</view>
+               </view>
+               <view bindtap="goto" class="s-right">约课</view>
+             </view>
+             <view class="store-two">
+                <view class="s-left">
+                 <view class="s-top">私教</view>
+                 <view class="s-bot">为您私人订制1v1训练计划</view>
+               </view>
+               <view bindtap="goto" class="s-right">查看</view>
+             </view>
+           </view>
+
+            <view class="people">
+              <view class="s-item">
+                <view class="s-img">
+                  <image src="../../images/11.jpg"/>
+                </view>
+                <view class="s-name">黄丹路</view>
+                <view class="s-jj">擅长：产后恢复</view>
+              </view>
+
+               <view class="s-item">
+                <view class="s-img">
+                  <image src="../../images/11.jpg"/>
+                </view>
+                <view class="s-name">黄丹路</view>
+                <view class="s-jj">擅长：产后恢复</view>
+              </view>
+
+               <view class="s-item">
+                <view class="s-img">
+                  <image src="../../images/11.jpg"/>
+                </view>
+                <view class="s-name">黄丹路</view>
+                <view class="s-jj">擅长：产后恢复</view>
+              </view>
+            </view>
+
+            <view class="adress">
+              <view class="top">
+                <image src="../../images/adress.png"/>
+                <text>场馆地址</text>
+              </view>
+              <view class="bot">
+                <view>四川成都市武侯区</view>
+                <view class="red">查看地图</view>
+              </view>
+            </view>
+
+            <view class="adress">
+              <view class="top">
+                <image src="../../images/iphone.png"/>
+                <text>场馆电话</text>
+              </view>
+              <view class="bot">
+                <view>02135351800</view>
+                <view class="red">点击拨号</view>
+              </view>
+            </view>
+
+             <view class="adress">
+              <view class="top">
+                <image src="../../images/iphone.png"/>
+                <text>场馆介绍</text>
+              </view>
+              <view class="bot">
+                <view>ONEFIT杨浦店</view>
+              </view>
+            </view>
+
+
+             <view class="discount">
+              <view class="top">
+                <image src="../../images/zhekou.png"/>
+                <text>新人折扣</text>
+              </view>
+              <view class="bot">
+                <view class="bot-left">
+                  <image src="../../images/18.jpg"/>
+                  <text>私教入门(5课次)</text>
+                </view>
+                <view class="bot-right">
+                  <view class="new-price">
+                    新人价：￥1580.00
+                  </view>
+                  <view class="old-price">
+                    原价：￥3000.00
+                  </view>
+                </view>
+              </view>
+            </view>
+
+             <view class="member">
+              <view class="top">
+                <image src="../../images/calb.png"/>
+                <text>会员卡</text>
+              </view>
+              <view class="bot">
+                <view class="bot-left">
+                  <image src="../../images/18.jpg"/>
+                  <text>私教入门(5课次)</text>
+                </view>
+                <view class="bot-right">
+                  <view class="new-price">
+                    新人价：￥1580.00
+                  </view>
+                  <view class="old-price">
+                    原价：￥3000.00
+                  </view>
+                </view>
+              </view>
+              <view class="bot">
+                <view class="bot-left">
+                  <image src="../../images/18.jpg"/>
+                  <text>私教入门(5课次)</text>
+                </view>
+                <view class="bot-right">
+                  <view class="new-price">
+                    新人价：￥1580.00
+                  </view>
+                  <view class="old-price">
+                    原价：￥3000.00
+                  </view>
+                </view>
+              </view>
+              <view class="bot">
+                <view class="bot-left">
+                  <image src="../../images/18.jpg"/>
+                  <text>私教入门(5课次)</text>
+                </view>
+                <view class="bot-right">
+                  <view class="new-price">
+                    新人价：￥1580.00
+                  </view>
+                  <view class="old-price">
+                    原价：￥3000.00
+                  </view>
+                </view>
+              </view>
+              
+               <view bindtap="more" class="last">
+                 查看全部>>
+              </view>
+
+            </view>
+
+
+         </view>
+       </scroll-view>
+    </swiper-item>
+    </swiper>

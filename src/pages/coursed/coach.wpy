@@ -1,7 +1,4 @@
 <style lang="less">
-page {
-  // background: #333534;
-}
 .banner{
   width: 100%;
   height: 425rpx;
@@ -90,7 +87,27 @@ page {
       }
     }
   }
-} 
+}
+.dateTime{
+  overflow:auto;
+  display:flex;
+  overflow-y:hidden;
+  margin:20rpx 0;
+  .block{
+    flex-shrink: 0;
+    .items{
+      width:100rpx;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:30rpx;
+      color:#666;
+      background:#f0e4f0;
+      color:#452d4d;
+      height:60rpx;
+    }
+  }
+}
 </style>
 
 <template lang="wxml">
@@ -117,7 +134,14 @@ page {
     </view>
   </view>
 
-
+  <view class="time">
+    <view class="timename">课程时长60分钟(请选择起始时间)</view>
+    <view class='dateTime'>
+      <view class="block">
+        <view class='items' wx:for="{{times}}">{{item}}</view>
+      </view>
+    </view>
+  </view>
   <view @tap="goBuy" class="buy">购买会员卡</view>
 
 
@@ -137,7 +161,8 @@ export default class Coach extends wepy.page {
   components = {};
   data = {
     date: [],
-    currentIndex: null
+    currentIndex: null,
+    times: []
   };
   methods = {
       goBuy() {
@@ -167,10 +192,31 @@ export default class Coach extends wepy.page {
     this.returnDate(this.mGetDate(dayjs().subtract(0, 'month').year(), dayjs().subtract(0, 'month').month()), 0, dayjs().subtract(0, 'month').month(), dayjs().subtract(0, 'month').year())
     this.returnDate(this.mGetDate(dayjs().year(), dayjs().month() + 1), 0, dayjs().month() + 1, dayjs().year())
     this.returnDate(1, 0, dayjs().add(2, 'month').month(), dayjs().add(2, 'month').year())
+    this.returnTimes()
   }
   mGetDate(year, month){
     var d = new Date(year, month, 0);
     return d.getDate();
+  }
+  returnTimes() {
+    for (let i = 7; i < 24; i = i+0.5) {
+      this.times.push(this.twoTime(i))
+    }
+  }
+  twoTime(time) {
+    if (time+''.indexOf('.') === -1) {
+      if (time < 10) {
+        return '0' + time+''.split('.')[0] + ':00'
+      } else {
+        return time+''.split('.')[0] + ':00'
+      }
+    } else {
+      if (time < 10) {
+        return '0' + time+''.split('.')[0] + ':30'
+      } else {
+        return time+''.split('.')[0] + ':30'
+      }
+    }
   }
   returnDate(ary, date, month, year) {
     for(let i = 1 + date; i <= ary; i++) { 

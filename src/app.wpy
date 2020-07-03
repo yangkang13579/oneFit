@@ -12,12 +12,8 @@ import 'wepy-async-function';
 export default class extends wepy.app {
   config = {
       pages: [
-<<<<<<< HEAD
-=======
-          'pages/coursed/coach',
-          'pages/coursed/coursed',
->>>>>>> d9426b3163d22fb20959d8177d12f5f4da21dc6e
           'pages/home/home',
+          'pages/coursed/coach',
           'pages/coursed/coursed',
           'pages/user/user',
           'pages/coursed/member',

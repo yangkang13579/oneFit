@@ -1,65 +1,65 @@
 
-  <view class="_5a52ef2">
-    <view class="bg _5a52ef2"/>
+  <view class="_2ad9486">
+    <view class="bg _2ad9486"/>
 
-     <view class="page-top _5a52ef2">
-        <view class="wrap _5a52ef2">
-        <view class="empty _5a52ef2"  wx:if="{{list.length === 0}}">
-          <view class="_5a52ef2">暂无数据</view>
+     <view class="page-top _2ad9486">
+        <view class="wrap _2ad9486">
+        <view class="empty _2ad9486"  wx:if="{{list.length === 0}}">
+          <view class="_2ad9486">暂无数据</view>
         </view>
-        <block  wx:for="{{list}}" wx:key="{{index}}" class="_5a52ef2">
-            <view class="list-wrap _5a52ef2">
-              <view class="middle _5a52ef2">
-                <view class="items _5a52ef2">
-                  <image src="{{item.user.avatar}}" class="_5a52ef2"/>
-                  <text class="_5a52ef2">{{item.user.nickName}}</text>
+        <block  wx:for="{{list}}" wx:key="{{index}}" class="_2ad9486">
+            <view class="list-wrap _2ad9486">
+              <view class="middle _2ad9486">
+                <view class="items _2ad9486">
+                  <image src="{{item.user.avatar}}" class="_2ad9486"/>
+                  <text class="_2ad9486">{{item.user.nickName}}</text>
                 </view>
-                <view class="name _5a52ef2">
-                  <span class="_5a52ef2">
+                <view class="name _2ad9486">
+                  <span class="_2ad9486">
                     审核状态：
-                    <text wx:if="{{item.status==0}}" class="_5a52ef2">未审核</text>
-                    <text wx:if="{{item.status==1}}" class="_5a52ef2">未通过</text>
-                    <text wx:if="{{item.status==2}}" class="_5a52ef2">已通过</text>
-                    <text wx:if="{{item.status==3}}" class="_5a52ef2">已发货</text>
+                    <text wx:if="{{item.status==0}}" class="_2ad9486">未审核</text>
+                    <text wx:if="{{item.status==1}}" class="_2ad9486">未通过</text>
+                    <text wx:if="{{item.status==2}}" class="_2ad9486">已通过</text>
+                    <text wx:if="{{item.status==3}}" class="_2ad9486">已发货</text>
                   </span>
                 </view>
-                <view class="name _5a52ef2">
-                  <span class="_5a52ef2">
+                <view class="name _2ad9486">
+                  <span class="_2ad9486">
                     收货人姓名：{{item.addressee}}
                   </span>
                 </view>
-                <view class="name _5a52ef2">
-                  <span class="_5a52ef2">
+                <view class="name _2ad9486">
+                  <span class="_2ad9486">
                     收货人地址：{{item.address}}
                   </span>
                 </view>
-                <view class="name _5a52ef2">
-                  <span class="_5a52ef2">
+                <view class="name _2ad9486">
+                  <span class="_2ad9486">
                     申请物品ID：{{item.id}}
                   </span>
                 </view>
-                <view class="name _5a52ef2">
-                  <span class="_5a52ef2">
+                <view class="name _2ad9486">
+                  <span class="_2ad9486">
                     申请物品：{{item.name}}
                   </span>
                 </view>
-                <view class="name _5a52ef2">
-                  <span class="_5a52ef2">
+                <view class="name _2ad9486">
+                  <span class="_2ad9486">
                     申请数量：{{item.applyCount}}
                   </span>
                 </view>
-                 <view class="name _5a52ef2">
-                  <span class="_5a52ef2">
+                 <view class="name _2ad9486">
+                  <span class="_2ad9486">
                     申请原因：{{item.applyReason}}
                   </span>
                 </view>
-                 <view class="name _5a52ef2">
-                  <span class="_5a52ef2">
+                 <view class="name _2ad9486">
+                  <span class="_2ad9486">
                     手机号码：{{item.mobile}}
                   </span>
                 </view>
-                <view class="name _5a52ef2">
-                  <span class="_5a52ef2">
+                <view class="name _2ad9486">
+                  <span class="_2ad9486">
                     申请时间：{{item.createDate}}
                   </span>
                 </view>

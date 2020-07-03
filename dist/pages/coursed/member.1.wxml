@@ -1,0 +1,30 @@
+
+  <view class="com">
+    <view class="title">新人专享</view>
+      <view class="new">
+        <view class="new-item">
+        <image src="../../images/14.jpg"/>
+      </view>
+    </view>
+
+     <view class="title">私教课次卡(上海3店通用)</view>
+      <view class="new">
+        <view class="new-item">
+          <image src="../../images/14.jpg"/>
+       </view>
+       <view class="new-item">
+          <image src="../../images/14.jpg"/>
+       </view>
+       <view class="new-item">
+          <image src="../../images/14.jpg"/>
+       </view>
+    </view>
+
+    <view class="title">格斗课</view>
+      <view class="new">
+        <view class="new-item">
+        <image src="../../images/15.jpg"/>
+      </view>
+    </view>
+
+  </view>

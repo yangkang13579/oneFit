@@ -1,0 +1,23 @@
+
+  <view class="title">
+      OneFit运动训练中心
+  </view>
+  <view class="banner">
+    <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+      <block  wx:for="{{imgUrls}}" wx:key="">
+        <swiper-item>
+          <image src="{{item}}" class="slide-image" width="355" height="150"/>
+        </swiper-item>
+      </block>
+    </swiper>
+  </view>
+  <view class="box">
+    <block  wx:for="{{boxImg}}" wx:key="{{index}}">
+      <view class="item">
+        <image src="{{item}}"/>
+      </view>
+
+    </block>
+    
+
+  </view>

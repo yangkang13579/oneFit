@@ -1,0 +1,80 @@
+
+  <view class="user">
+    <view class="box">
+      <view class="top">
+        <view class="left">
+          <view class="num">0</view>
+          <text>约课次数</text>
+        </view>
+        <view class="center">
+            <view>
+              <image src="../../images/admin-bg.png"/>
+            </view>
+            <view class="name">酒杯酒</view>
+        </view>
+        <view class="right">
+          <view class="num">0</view>
+          <text>会员卡数量</text>
+        </view>
+      </view>
+      <view class="call">
+        <text>未绑定手机号</text>
+        <image src="../../images/tel.png"/>
+      </view>
+    </view>
+    <view class="bottom">
+      <view class="list">
+        <view class="table">
+          我的会籍卡
+        </view>
+        <image src="../../images/right.png"/>
+      </view>
+      <view class="list">
+        <view class="table">
+          我的约课记录
+        </view>
+        <image src="../../images/right.png"/>
+      </view>
+      <view class="list">
+        <view class="table">
+          我的签到记录
+        </view>
+        <image src="../../images/right.png"/>
+      </view>
+      <view class="list">
+        <view class="table">
+          我的订单
+        </view>
+        <image src="../../images/right.png"/>
+      </view>
+      <view class="list">
+        <view class="table">
+          我的拼团
+        </view>
+        <image src="../../images/right.png"/>
+      </view>
+      <view class="list">
+        <view class="table">
+          我的训练建议
+        </view>
+        <image src="../../images/right.png"/>
+      </view>
+      <view class="list">
+        <view class="table">
+          活动报名建议
+        </view>
+        <image src="../../images/right.png"/>
+      </view>
+      <view class="list">
+        <view class="table">
+          储值卡充值
+        </view>
+        <image src="../../images/right.png"/>
+      </view>
+
+
+
+
+    </view>
+
+  </view>

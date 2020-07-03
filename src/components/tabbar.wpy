@@ -1,0 +1,84 @@
+<style lang="less">
+.tabbar{
+  display:flex;
+  flex-direction:row;
+  flex-wrap:no-wrap;
+  height:48px;
+  z-index:10;
+  background-color:#f0f0f0;
+}
+.backgroud_light {
+
+}
+.tabbar-item {
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  color:#666666;
+}
+.tabbar-item-active {
+  color:#037ad8;
+}
+.tabbar-item_icon{
+  width:27px;
+  height:27px;
+}
+.tabbar-item_name {
+  font-size:12px;
+}
+</style>
+<template>
+  <view class="tabbar {{style}}">
+     <block wx:for="{{items}}" wx:key="name">
+       <view wx:if="{{item.active}}" class="tabbar-item tabbar-item-active">
+          <image src="{{item.iconActive}}" class="tabbar-item_icon" mode="aspectFill"></image>
+          <view class="tabbar-item_name">{{item.name}}</view>
+       </view>
+       <navigator wx:if="{{!item.active}}" url="{{item.url}}" class="tabbar-item">
+          <image src="{{item.icon}}" class="tabbar-item_icon" mode="aspectFill"></image>
+          <view class="tabbar-item_name">{{item.name}}</view>
+      </navigator>
+    </block>
+  </view>
+</template>
+<script>
+import wepy from 'wepy';
+// import abc from 'abc'
+
+export default class Tabbar extends wepy.component {
+  props = {
+      active: String
+  };
+
+  data = {
+      items: [
+          {
+              icon: '../images/nav-icon-1.png',
+              iconActive: '../images/nav-icon-1-1.png',
+              name: '主页',
+              active: false,
+              url: 'index'
+          },
+          {
+              icon: '../images/nav-icon-2.png',
+              iconActive: '../images/nav-icon-2-1.png',
+              name: '我的',
+              active: false,
+              url: 'user'
+          },
+      ]
+  };
+   watch = {
+       activeIndex(curVal, oldVal) {
+           console.log(`旧值：${oldVal}，新值：${curVal}`);
+           this.items[curVal].active = true;
+           this.items[oldVal].active = true;
+       }
+   }
+   onLoad() {
+       this.items[this.active / 1].active = true;
+   }
+}
+</script>

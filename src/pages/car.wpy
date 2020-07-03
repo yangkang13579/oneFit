@@ -1,0 +1,140 @@
+<style lang="less">
+  /*顶部*/
+  .page-top{
+    top:0;
+    left:0;
+    z-index: 2;
+    position: relative;
+  }
+  
+  .bg{
+    height: 100%;
+    width: 100%;
+    background-image: linear-gradient(#23A7A2, #0D7FC6);
+    position: fixed;
+    top:0;
+    left:0;
+  }
+  .title {
+    color: #ff8c12;
+    line-height: 54rpx;
+    padding-left: 30rpx;
+    font-size: 30rpx;
+  }
+  .list-wrap {
+    width:690rpx;
+    margin:30rpx;
+    background: #fff;
+    border:1rpx solid #e3e3e3;
+    border-radius: 20rpx;
+    background: #fff;
+    font-size: 30rpx;
+    color: #333;
+    .items{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding:30rpx 20rpx;
+      border-bottom: 1rpx solid #e3e3e3;
+    }
+    .items:nth-of-type(1){
+      border-top-left-radius: 20rpx;
+      border-top-right-radius: 20rpx;
+    }
+    .items:nth-last-of-type(1){
+      border-bottom-left-radius: 20rpx;
+      border-bottom-right-radius: 20rpx;
+    }
+  }
+  .empty{
+    position: fixed;
+    top:30%;
+    left:0;
+    font-size: 32rpx;
+    text-align: center;
+    width:100%;
+    color:#fff;
+    view{
+      margin-top:10rpx;
+    }
+  }
+</style>
+
+
+<template lang="wxml">
+<view>
+    <view class='bg'></view>
+      <view class="page-top">
+        <view class="wrap">
+        <view class='empty' wx:if='{{list.length === 0}}'>
+          <view>暂无数据</view>
+        </view>
+        <block wx:for="{{list}}" wx:key="{{index}}">
+            <view class="list-wrap">
+              <view class="middle">
+                <view class='items'>
+                  <span>
+                    {{item.meetingName}}
+                  </span>
+            
+                </view>
+
+                <view class='items'>
+                  <span>
+                    签到时间：{{item.createDate}}
+                  </span>
+                 
+                </view>
+              </view>
+            </view>
+        </block>
+        </view>
+        </view>
+  </view>
+  <!--新增地址-->
+  <!-- <button catchtap="toAddAddressPage">新增地址</button> -->
+</template>
+
+
+<script>
+  import wepy from 'wepy';
+  import PageMixin from '../mixins/page';
+  export default class Car extends wepy.page {
+    mixins = [PageMixin];
+    config = {
+      navigationBarTitleText: '我的签到',
+      navigationBarBackgroundColor: '#fff'
+    };
+    components = {
+    };
+    data = {
+      list: [],
+    };
+    timeFormat (timeStr) {
+      var dataOne = timeStr.split('T')[0];
+      var dataTwo = timeStr.split('T')[1];
+      var dataThree = dataTwo.split('+')[0];
+      var newTimeStr = dataOne + ' ' + dataThree
+      return newTimeStr;
+    }
+
+    getList () {
+      var self = this
+      this.fetchDataPromise('meeting/wechat/querySignRecordApi.json', {}, {})
+      .then(function(data) {
+        self.list = data.list.map(item => {
+          let obj = item
+          obj.createDate = self.timeFormat(obj.createDate)
+          return obj
+        })
+        self.$apply()
+      })
+    }
+    methods = {
+    }
+  
+    whenAppReadyShow() {
+      this.getList()
+    }
+  }
+</script>

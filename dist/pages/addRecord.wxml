@@ -1,0 +1,126 @@
+
+  <!--编辑栏-->
+  <view>
+    <view class="bg"/>
+     <view class="toast"  wx:if="{{showToast}}"><p>{{error}}</p></view>
+    <view class="wrap">
+      <view class="input-wrap name">
+        <p>记录者<em> (必填)</em></p>
+        <input placeholder-style="color: #ccc" bindblur="getName" bindconfirm="getName" value="{{formData.recordUser ? formData.recordUser : ''}}"/>
+      </view>
+      <view class="input-wrap mobile">
+        <p>日期<em> (必填)</em></p>
+        <!-- <view class='smallview'> -->
+          <!-- <view class="times-picker small"> -->
+            <picker mode="multiSelector" bindchange="bindStartChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}">
+              <input style="padding:0" value="{{formData.recordDate ? formData.recordDate : ''}}" disabled/>
+            </picker>
+          <!-- </view>
+
+        </view> -->
+      </view>
+      <view class="input-wrap name">
+        <p>温度<em class="blue"> (必填)</em></p>
+        <input placeholder-style="color: #ccc" bindblur="getpurpose" bindconfirm="getpurpose" value="{{formData.temperature ? formData.temperature : ''}}"/>
+      </view>
+      <view class="input-wrap name">
+        <p>风向<em class="blue"> (必填)</em></p>
+        <input placeholder-style="color: #ccc" bindblur="getwindDirection" bindconfirm="getwindDirection" value="{{formData.windDirection ? formData.windDirection : ''}}"/>
+      </view>
+      <view class="input-wrap name">
+        <p>天气<em class="blue"> (必填)</em></p>
+        <input placeholder-style="color: #ccc" bindblur="getweather" bindconfirm="getweather" value="{{formData.weather ? formData.weather : ''}}"/>
+      </view>
+      <view class="input-wrap name">
+        <p>实验数据简介01<em class="blue"> (必填)</em></p>
+        <input placeholder-style="color: #ccc" bindblur="getDis" bindconfirm="getDis" value="{{formData.detail[0].description ? formData.detail[0].description : ''}}"/>
+        
+     <view class="weui-cells">
+        <view class="weui-cell">
+            <view class="weui-cell__bd">
+                <view class="weui-uploader">
+                    <view class="weui-uploader__bd">
+                        <view class="weui-uploader__files" id="uploaderFiles">
+                            <block  wx:for="{{$upload$uploadItems}}" wx:key="index" wx:for-index="idx">
+                                <view class="weui-uploader__file" id="{{item.index}}">
+                                    <image class="weui-uploader__img" src="{{item.file}}" bindtap="$upload$preview" data-src="{{item.file}}" mode="aspectFill"/>
+                                    <view class="weui-uploader__file-content">
+                                        <image src="../images/close.png" bindtap="$upload$delImg" data-index="{{idx}}"/>
+                                    </view>
+                                </view>
+                            </block>
+                        </view>
+                        <view class="weui-uploader__input-box">
+                            <image class="weui-uploader__input" src="{{$upload$imgUpload}}" bindtap="$upload$chooseImage"/>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+
+
+      </view>
+      <view class="input-wrap name">
+        <p>实验数据简介02<em class="blue"> (必填)</em></p>
+        <input placeholder-style="color: #ccc" bindblur="getDis1" bindconfirm="getDis1" value="{{formData.detail[1].description ? formData.detail[1].description : ''}}"/>
+        
+     <view class="weui-cells">
+        <view class="weui-cell">
+            <view class="weui-cell__bd">
+                <view class="weui-uploader">
+                    <view class="weui-uploader__bd">
+                        <view class="weui-uploader__files" id="uploaderFiles">
+                            <block  wx:for="{{$upload2$uploadItems}}" wx:key="index">
+                                <view class="weui-uploader__file" bindtap="$upload2$previewImage" id="{{item.index}}">
+                                    <image class="weui-uploader__img" src="{{item.file}}" bindtap="$upload2$preview" data-src="{{item.file}}" mode="aspectFill"/>
+                                    <view class="weui-uploader__file-content">
+                                        <image src="../images/close.png" bindtap="$upload2$delImg" data-index="{{$upload2$idx}}"/>
+                                    </view>
+                                </view>
+                            </block>
+                        </view>
+                        <view class="weui-uploader__input-box">
+                            <image class="weui-uploader__input" src="{{$upload2$imgUpload}}" bindtap="$upload2$chooseImage"/>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+
+      </view>
+      <view class="input-wrap name">
+        <p>实验数据简介03<em class="blue"> (必填)</em></p>
+        <input placeholder-style="color: #ccc" bindblur="getDis2" bindconfirm="getDis2" value="{{formData.detail[2].description ? formData.detail[2].description : ''}}"/>
+        
+     <view class="weui-cells">
+        <view class="weui-cell">
+            <view class="weui-cell__bd">
+                <view class="weui-uploader">
+                    <view class="weui-uploader__bd">
+                        <view class="weui-uploader__files" id="uploaderFiles">
+                            <block  wx:for="{{$upload3$uploadItems}}" wx:key="index">
+                                <view class="weui-uploader__file" bindtap="$upload3$previewImage" id="{{item.index}}">
+                                    <image class="weui-uploader__img" bindtap="$upload3$preview" data-src="{{item.file}}" src="{{item.file}}" mode="aspectFill"/>
+                                    <view class="weui-uploader__file-content">
+                                        <image src="../images/close.png" bindtap="$upload3$delImg" data-index="{{$upload3$idx}}"/>
+                                    </view>
+                                </view>
+                            </block>
+                        </view>
+                        <view class="weui-uploader__input-box">
+                            <image class="weui-uploader__input" src="{{$upload3$imgUpload}}" bindtap="$upload3$chooseImage"/>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+
+      </view>
+      <button class="save-btn" bindtap="save">{{edit ? '编辑' : '提交'}}</button>
+      <button  wx:if="{{edit}}" class="save-btn del" bindtap="delFun">刪除</button>
+      </view>
+    </view>
+  <!--保存-->

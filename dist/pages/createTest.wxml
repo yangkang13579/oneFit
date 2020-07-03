@@ -1,0 +1,137 @@
+
+  <!--编辑栏-->
+  <view>
+    <view class="bg"/>
+     <view class="toast"  wx:if="{{showToast}}"><p>{{error}}</p></view>
+    <view class="wrap">
+      <view class="input-wrap name">
+        <p>实验名称<em> (必填)</em></p>
+        <input placeholder-style="color: #ccc" bindblur="getName" bindconfirm="getName" value="{{formData.name ? formData.name : ''}}"/>
+      </view>
+      <view class="input-wrap name">
+        <p>实验负责人<em> (必填)</em></p>
+        <input placeholder-style="color: #ccc" bindblur="getleader" bindconfirm="getleader" value="{{formData.leader ? formData.leader : ''}}"/>
+      </view>
+      <view class="input-wrap name">
+        <p>手机号<em> (必填)</em></p>
+        <input placeholder-style="color: #ccc" bindblur="getmobile" bindconfirm="getmobile" value="{{formData.mobile ? formData.mobile : ''}}"/>
+      </view>
+      <view class="input-wrap mobile">
+        <p>实验类型<em> (必填)</em></p>
+        <view>
+          <view class="times-picker">
+            <picker mode="selector" bindchange="changeClassify" range="{{classifyAry}}">
+              <input placeholder="请选择" value="{{classifyAry[formData.classify]}}" disabled/>
+            </picker>
+          </view>
+        </view>
+      </view>
+      <view class="input-wrap mobile">
+        <p>实验产品<em> (必填)</em></p>
+        <view>
+          <view class="times-picker">
+            <picker mode="selector" bindchange="changeClassify" range="{{testAry2[formData.classify]}}">
+              <input placeholder="请选择" value="{{testAry2[formData.classify][formData.classify2]}}" disabled/>
+            </picker>
+          </view>
+        </view>
+      </view>
+      <view class="input-wrap name">
+        <p>实验目的<em class="blue"> (必填)</em></p>
+        <input placeholder-style="color: #ccc" bindblur="getpurpose" bindconfirm="getpurpose" value="{{formData.purpose ? formData.purpose : ''}}"/>
+      </view>
+      <view class="input-wrap mobile">
+        <p>实验起始日期<em> (必填)</em></p>
+        <view class="smallview">
+          <view class="times-picker small">
+            <picker mode="multiSelector" bindchange="bindStartChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}">
+              <input placeholder="开始时间" value="{{formData.startDate ? formData.startDate : ''}}" disabled/>
+            </picker>
+          </view>
+
+          <view class="times-picker small" style="margin-left:10rpx;">
+            <picker mode="multiSelector" bindchange="bindEndChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}">
+              <input placeholder="结束时间" value="{{formData.endDate ? formData.endDate : ''}}" disabled/>
+            </picker>
+          </view>
+          <!-- <reportendtimescomp class='small'></reportendtimescomp> -->
+        </view>
+      </view>
+      <view class="input-wrap mobile">
+        <p>产品类型<em> (必填)</em></p>
+        <view>
+          <view class="times-picker">
+            <picker mode="selector" bindchange="changetestAry" range="{{testAry}}">
+              <input placeholder="请选择" value="{{testAry[formData.classify2]}}" disabled/>
+            </picker>
+          </view>
+        </view>
+      </view>
+      <view class="input-wrap name">
+        <p>对标产品<em class="blue"> (必填)</em></p>
+        <input placeholder-style="color: #ccc" bindblur="getcompareProduct" type="tel" bindconfirm="getcompareProduct" value="{{formData.compareProduct ? formData.compareProduct : ''}}"/>
+      </view>
+      <view class="input-wrap name">
+        <p>作物名称<em> (必填)</em></p>
+        <!-- <view>
+          <view class="times-picker" style='position:relative;color:#fff'>
+            <input style='width: 151rpx;' value="{{address}}"/>
+            <button class="save-btn" 
+            style='width: 200rpx;position: absolute;right: 0;top: 0;margin-top: 0;height: 70rpx;line-height: 70rpx;' bindtap="addFun">新增</button>
+          </view>
+        </view> -->
+      
+      </view>
+      <view class="input-wrap name goods" style="position:relative">
+        <p>名称</p>
+        <picker style="width: 120rpx;margin:0 10rpx;" bindchange="getGoods" range="{{one}}">
+          <view  wx:if="{{formData.goods1}}" class="picker">
+            {{formData.goods1}}
+          </view>
+          <view wx:else class="picker" style="color:#999">
+            请选择
+          </view>
+        </picker>
+        <!-- <input style='width: 80rpx;' bindblur="getGoods" bindconfirm="getGoods"   data-index="{{idx}}" value="{{item.cropsCategory}}"/> -->
+          <!-- <button class="save-btn" 
+          style='width: 200rpx;position: absolute;right: 0;top: 0;margin-top: 0;height: 70rpx;line-height: 70rpx;' bindtap="addFun">新增</button> -->
+        
+        <picker style="width: 120rpx;margin:0 10rpx;" bindchange="getGoods2" value="{{formData.goodsindex1}}" range="{{goodsAry}}">
+          <view class="picker" wx:if="{{formData.goods2}}">
+            {{formData.goods2}}
+          </view>
+          <view class="picker" wx:else style="color:#999">
+            请选择
+          </view>
+        </picker>
+        <p style="margin-left:5px;">面积</p>
+        <input type="digit" style="width:70rpx;" bindblur="getarea" bindconfirm="getarea" value="{{formData.area}}"/> <p>亩</p>
+        <!-- <button class="save-btn1 save-btn" 
+          style='width: 106rpx;position: absolute;;right: 20rpx;top: 0;margin-top: 40rpx;height: 70rpx;line-height: 70rpx;' 
+        >删除</button> -->
+      
+      </view>
+      <view class="input-wrap name">
+        <p>地址位置<em> (必填)</em></p>
+        <view>
+          <view class="times-picker" style="position:relative">
+            <picker mode="region" style="width:400rpx" value="{{address}}" bindchange="bindRegionChange">
+              <input placeholder="请选择" style="width: 431rpx;" value="{{address}}" disabled/>
+            </picker>
+            <button class="save-btn" style="width: 200rpx;position: absolute;right: 0;top: 0;margin-top: 0;height: 70rpx;line-height: 70rpx;" bindtap="chooseLocation">选择位置</button>
+          </view>
+        </view>
+      </view>
+      <view class="input-wrap name">
+        <p>备注信息<em> (选填)</em></p>
+        <textarea placeholder-style="color: #ccc" bindblur="getRemark" bindconfirm="getRemark" value="{{formData.remark ? formData.remark : ''}}"/>
+      </view>
+      <view class="input-wrap name">
+        <p>实验结论<em> (选填)</em></p>
+        <textarea placeholder-style="color: #ccc" bindblur="getResult" bindconfirm="getResult" value="{{formData.result ? formData.result : ''}}"/>
+      </view>
+      <button class="save-btn" bindtap="save">{{formData.id || formData.id === 0 ? '编辑' : '提交'}}</button>
+      <button wx:if="{{formData.id || formData.id === 0}}" class="save-btn del" bindtap="delFun">刪除</button>
+      </view>
+    </view>
+  <!--保存-->

@@ -1,0 +1,69 @@
+@import "./../npm/wepy-com-toast/toast.wxss";
+.tab_pay {
+  height: 100%;
+}
+page,
+.body {
+  height: 100%;
+  font-family: "\5FAE\8F6F\96C5\9ED1", arial;
+  background: #1f1f1f;
+}
+.pay-top {
+  width: 100%;
+  height: 550rpx;
+}
+.pay-top image {
+  width: 100%;
+  height: 550rpx;
+}
+.pay-list {
+  width: 100%;
+  height: 299rpx;
+  background: #1f1f1f;
+}
+.pay-left,
+.pay-right {
+  float: left;
+  margin-left: 30rpx;
+  width: 330rpx;
+  height: 200rpx;
+  background: #575757;
+  border-radius: 10rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #d0d0d0;
+}
+.borderOne,
+.borderTwo {
+  border: 2px solid #a42a29;
+}
+.pay-money {
+  font-size: 60rpx;
+  font-weight: bolder;
+  margin-right: 8rpx;
+}
+.pay-time {
+  font-size: 40rpx;
+  font-weight: bolder;
+}
+.pay-bootom {
+  margin-top: 100rpx;
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+}
+.pay-btn {
+  width: 500rpx;
+  height: 100rpx;
+  font-size: 40rpx;
+  color: #fff;
+  background: #73030e;
+  border-radius: 50rpx;
+  text-align: center;
+  line-height: 100rpx;
+  font-weight: bolder;
+  letter-spacing: 5rpx;
+  box-shadow: 0 0 10rpx rgba(26, 26, 26, 0.7);
+}

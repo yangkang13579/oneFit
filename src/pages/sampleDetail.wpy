@@ -1,0 +1,199 @@
+
+<style lang="less">
+@import "../wxParse/wxParse.wxss";
+page {
+  background: #fff;
+}
+img {
+  max-width: 100%;
+}
+image {
+  max-width: 100%;
+}
+.swiper {
+  width: 750rpx;
+  height: 750rpx;
+  swiper {
+    width: 100%;
+    height: 750rpx;
+        image{
+      width: 100%;
+      height: 750rpx;
+    }
+  }
+}
+.title {
+  margin-top: 30rpx;
+  width: 710rpx;
+  padding: 0 20rpx;
+  font-size: 28rpx;
+  font-weight: 600;
+  color: #000;
+}
+.title-score {
+  margin: 5rpx 0 0 20rpx;
+  width: 710rpx;
+  font-size: 28rpx;
+  color: #2b779a;
+  padding-bottom: 30rpx;
+  border-bottom: 2rpx solid #f3f3f3;
+}
+.shaopTitle {
+  margin-top: 30rpx;
+  // margin-bottom: 120rpx;
+  width: 710rpx;
+  padding: 0 20rpx;
+  .detail {
+    width: 710rpx;
+    font-size: 28rpx;
+    font-weight: 600;
+    color: #000;
+  }
+  .content {
+    width: 710rpx;
+    font-size: 27rpx;
+    color: #000;
+    margin-top: 20rpx;
+    padding-bottom: 170rpx;
+    // image{
+    //   width: 710rpx;
+    // }
+  }
+}
+.btnBack {
+  bottom: 0rpx;
+  padding-bottom: 20rpx;
+  background: #fff;
+  position: fixed;
+  left: 0rpx;
+  width: 750rpx;
+  height: 110rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .btnSample {
+    width: 710rpx;
+    height: 90rpx;
+    background: #0072a0;
+    color: #fff;
+    font-size: 30rpx;
+    font-weight: 600;
+    text-align: center;
+
+    line-height: 90rpx;
+    border-radius: 20rpx;
+  }
+}
+.details {
+}
+</style>
+
+			
+<template lang="wxml">
+<import src="../wxParse/wxParse.wxml" />
+  <view class="body">
+     <view class="page-section page-section-spacing swiper">
+      <swiper indicator-dots="{{indicatorDots}}"
+        autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" indicator-active-color="#2b779a">
+        <block wx:for="{{list.headPictureArray}}" wx:key="*this">
+          <swiper-item>
+            <image src="{{item}}" class="swiper-item" />
+          </swiper-item>
+        </block>
+      </swiper>
+    </view>
+    <view class="title">
+      {{list.name}}
+    </view>
+    <view class="title-score">
+      {{list.score}}积分
+    </view>
+
+    <view class="shaopTitle">
+      <view class="detail">商品详情</view>
+   
+       <view class="content">
+         <!-- <text>{{list.content}}</text> -->
+          <rich-text nodes="{{list.content}}"></rich-text>
+       </view>
+       
+      
+    </view>
+
+    <view class="btnBack">
+      <view wx:if="{{list.totalCount-list.usedCount>0}}" class="btnSample" @tap.stop="toFrom">立即申请</view>
+      <view wx:else class="btnSample" @tap.stop="end">已申领完</view>
+    </view>
+     
+
+    
+
+
+
+
+
+
+  </view>
+</template>
+
+<script>
+/* global wx */
+import wepy from "wepy";
+import PageMixin from "../mixins/page";
+
+export default class SampleDetail extends wepy.page {
+  mixins = [PageMixin];
+  config = {
+    navigationBarTitleText: "样品详情",
+    navigationBarBackgroundColor: "#fff"
+  };
+
+  data = {
+    //  name: 'myHtmlParserKiner',
+    screenWidth: 0,
+    imgwidth: 0,
+    imgheight: 0,
+    id: "",
+    list: [],
+    background: ["demo-text-1", "demo-text-2", "demo-text-3"],
+    indicatorDots: true,
+    vertical: false,
+    autoplay: false,
+    interval: 2000,
+    duration: 500
+  };
+  methods = {
+    toFrom() {
+      wx.navigateTo({
+        url: "/pages/form?id=" + this.id
+      });
+    }
+  };
+
+  onLoad(options) {
+    this.id = options.id;
+    let self = this;
+    wx.getSystemInfo({
+      success: function(res) {
+        console.log("res", res);
+        let screenWidth = res.windowWidth;
+        self.screenWidth = screenWidth;
+        self.$apply();
+      }
+    });
+  }
+
+  whenAppReadyShow() {
+    this.fetchDataPromise("wx/specimen/querySpecimenApi.json", {
+      id: this.id
+    })
+      .then(data => {
+        console.log("11 ", data);
+        this.list = data.list[0];
+        console.log("this.list", this.list);
+        this.$apply();
+      })
+      .catch(function(error) {});
+  }
+}
+</script>

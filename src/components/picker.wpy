@@ -1,0 +1,198 @@
+<template>
+<view class="time-picker">
+  <picker mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}">
+    <input value='{{time}}' disabled/>
+  </picker>
+</view>
+</template>
+<script>
+import wepy from 'wepy'
+export default class TimePicker extends wepy.component {
+  props = {
+    time: {
+      type: String,
+      default: ''
+    }
+  }
+
+  data = {
+    years: [],
+    months: [],
+    days: [],
+    hours: [],
+    minutes: [],
+    second: [],
+    multiArray: [], // 选择范围
+    multiIndex: [0, 9, 16, 10, 17], // 选中值数组
+    choose_year: '',
+    yearIndex: 0
+  }
+  // 设置初始值
+  setTimeDate() {
+    const date = new Date()
+    let _yearIndex = 0
+    // 默认设置
+    console.info(this.time)
+    let _defaultYear = this.time ? this.time.split('-')[0] : 0
+    // 获取年
+    for (let i = date.getFullYear(); i <= date.getFullYear() + 5; i++) {
+      this.years.push('' + i)
+      // 默认设置的年的位置
+      if (_defaultYear && i === parseInt(_defaultYear)) {
+        this.yearIndex = _yearIndex
+        this.choose_year = _defaultYear
+      }
+      _yearIndex = _yearIndex + 1
+    }
+    // 获取月份
+    for (let i = 1; i <= 12; i++) {
+      if (i < 10) {
+        i = '0' + i
+      }
+      this.months.push('' + i)
+    }
+    // 获取日期
+    for (let i = 1; i <= 31; i++) {
+      if (i < 10) {
+        i = '0' + i
+      }
+      this.days.push('' + i)
+    }
+    // 获取小时
+    for (let i = 0; i < 24; i++) {
+      if (i < 10) {
+        i = '0' + i
+      }
+      this.hours.push('' + i)
+    }
+    // 获取分钟
+    for (let i = 0; i < 60; i++) {
+      if (i < 10) {
+        i = '0' + i
+      }
+      this.minutes.push('' + i)
+    }
+    // 获取秒数
+    for (let i = 0; i < 60; i++) {
+      if (i < 10) {
+        i = '0' + i
+      }
+      this.second.push('' + i)
+    }
+  }
+  // 返回月份的天数
+  setDays(selectYear, selectMonth) {
+    let num = selectMonth
+    let temp = []
+    if (num === 1 || num === 3 || num === 5 || num === 7 || num === 8 || num === 10 || num === 12) {
+        // 判断31天的月份
+      for (let i = 1; i <= 31; i++) {
+        if (i < 10) {
+          i = '0' + i
+        }
+        temp.push('' + i)
+      }
+    } else if (num === 4 || num === 6 || num === 9 || num === 11) { // 判断30天的月份
+      for (let i = 1; i <= 30; i++) {
+        if (i < 10) {
+          i = '0' + i
+        }
+        temp.push('' + i)
+      }
+    } else if (num === 2) { // 判断2月份天数
+      let year = parseInt(selectYear)
+      console.log(year)
+      if (((year % 400 === 0) || (year % 100 !== 0)) && (year % 4 === 0)) {
+        for (let i = 1; i <= 29; i++) {
+          if (i < 10) {
+            i = '0' + i
+          }
+          temp.push('' + i)
+        }
+      } else {
+        for (let i = 1; i <= 28; i++) {
+          if (i < 10) {
+            i = '0' + i
+          }
+          temp.push('' + i)
+        }
+      }
+    }
+    return temp
+  }
+  // 设置默认值 格式2019-07-10 10:30
+  setDefaultTime() {
+    let allDateList = this.time.split(' ')
+    // 日期
+    let dateList = allDateList[0].split('-')
+    let month = parseInt(dateList[1]) - 1
+    let day = parseInt(dateList[2]) - 1
+    // 时间
+    let timeList = allDateList[1].split(':')
+    this.multiArray[2] = this.setDays(dateList[0], parseInt(dateList[1]))
+    this.multiIndex = [this.yearIndex, month, day, timeList[0], timeList[1]]
+  }
+
+  methods = {
+    // 监听picker的滚动事件
+    bindMultiPickerColumnChange(e) {
+      // 获取年份
+      if (e.detail.column === 0) {
+        this.choose_year = this.multiArray[e.detail.column][e.detail.value]
+        console.log(this.choose_year)
+      }
+      // console.log('修改的列为', e.detail.column, '，值为', e.detail.value);
+      // 设置月份数组
+      if (e.detail.column === 1) {
+        let num = parseInt(this.multiArray[e.detail.column][e.detail.value])
+        this.multiArray[2] = this.setDays(this.choose_year, num)
+      }
+
+      this.multiIndex[e.detail.column] = e.detail.value
+      this.$apply()
+    },
+
+    // 获取时间日期
+    bindMultiPickerChange(e) {
+      // console.log('picker发送选择改变，携带值为', e.detail.value)
+      this.multiIndex = e.detail.value
+      const index = this.multiIndex
+      const year = this.multiArray[0][index[0]]
+      const month = this.multiArray[1][index[1]]
+      const day = this.multiArray[2][index[2]]
+      const hour = this.multiArray[3][index[3]]
+      const minute = this.multiArray[4][index[4]]
+      const second = this.multiArray[5][index[5]]
+      // console.log(`${year}-${month}-${day}-${hour}-${minute}`);
+      this.time = year + '-' + month + '-' + day + ' ' + hour + ':' + minute + ':' + second
+      this.$emit('getTime', this.time)
+      this.$apply()
+    }
+  }
+  onLoad () {
+    this.setTimeDate()
+    this.multiArray = [this.years, this.months, this.days, this.hours, this.minutes, this.second]
+    this.choose_year = this.multiArray[0][0]
+    if (!this.time) {
+      // 默认显示当前日期
+      let date = new Date()
+      let currentMonth = date.getMonth()
+      let currentDay = date.getDate() - 1
+      // console.info('月', date.getMonth())
+      // console.info('日', date.getDate())
+      this.multiArray[2] = this.setDays(this.choose_year, currentMonth + 1)
+      this.multiIndex = [0, currentMonth, currentDay, 10, 0]
+    } else {
+      this.setDefaultTime()
+    }
+
+    this.$apply()
+  }
+}
+</script>
+<style lang="less">
+.time-picker{
+    width: 240rpx;
+}
+
+</style>

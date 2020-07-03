@@ -1,0 +1,205 @@
+<style lang="less" scoped>
+.page-top {
+  top: 0;
+  left: 0;
+  z-index: 2;
+  position: relative;
+}
+.middle{
+  padding: 0 0 20rpx 0;
+}
+.bg {
+  height: 100%;
+  width: 100%;
+  background-image: linear-gradient(#23a7a2, #0d7fc6);
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+.title {
+  color: #ff8c12;
+  line-height: 54rpx;
+  padding-left: 30rpx;
+  font-size: 30rpx;
+}
+.list-wrap {
+  width: 690rpx;
+  margin: 30rpx;
+  background: #fff;
+  border: 1rpx solid #e3e3e3;
+  border-radius: 20rpx;
+  background: #fff;
+  font-size: 30rpx;
+  color: #333;
+  .items {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 30rpx 20rpx;
+    border-bottom: 1rpx solid #e3e3e3;
+    image{
+      width: 90rpx;
+      height: 90rpx;
+      margin-right: 20rpx;
+      border-radius: 50%;
+    }
+    text{
+      font-size: 28rpx;
+      color: #000;
+    }
+  }
+  .items:nth-of-type(1) {
+    border-top-left-radius: 20rpx;
+    border-top-right-radius: 20rpx;
+  }
+  .items:nth-last-of-type(1) {
+    border-bottom-left-radius: 20rpx;
+    border-bottom-right-radius: 20rpx;
+  }
+  .name{
+     display: flex;
+     align-items: center;
+     justify-content: flex-start;
+     margin-top: 20rpx;
+     padding: 0 20rpx;
+     span{
+       font-size: 28rpx;
+       color: #000;
+     }
+  }
+}
+.empty {
+  position: fixed;
+  top: 30%;
+  left: 0;
+  font-size: 32rpx;
+  text-align: center;
+  width: 100%;
+  color: #fff;
+  view {
+    margin-top: 10rpx;
+  }
+}
+</style>
+
+<template lang="wxml">
+  <view>
+    <view class='bg'></view>
+
+     <view class="page-top">
+        <view class="wrap">
+        <view class='empty' wx:if='{{list.length === 0}}'>
+          <view>暂无数据</view>
+        </view>
+        <block wx:for="{{list}}" wx:key="{{index}}">
+            <view class="list-wrap">
+              <view class="middle">
+                <view class='items'>
+                  <image src="{{item.user.avatar}}">
+                  <text>{{item.user.nickName}}</text>
+                </view>
+                <view class='name'>
+                  <span>
+                    审核状态：
+                    <text wx:if="{{item.status==0}}">未审核</text>
+                    <text wx:if="{{item.status==1}}">未通过</text>
+                    <text wx:if="{{item.status==2}}">已通过</text>
+                    <text wx:if="{{item.status==3}}">已发货</text>
+                  </span>
+                </view>
+                <view class='name'>
+                  <span>
+                    收货人姓名：{{item.addressee}}
+                  </span>
+                </view>
+                <view class='name'>
+                  <span>
+                    收货人地址：{{item.address}}
+                  </span>
+                </view>
+                <view class='name'>
+                  <span>
+                    申请物品ID：{{item.id}}
+                  </span>
+                </view>
+                <view class='name'>
+                  <span>
+                    申请物品：{{item.name}}
+                  </span>
+                </view>
+                <view class='name'>
+                  <span>
+                    申请数量：{{item.applyCount}}
+                  </span>
+                </view>
+                 <view class='name'>
+                  <span>
+                    申请原因：{{item.applyReason}}
+                  </span>
+                </view>
+                 <view class='name'>
+                  <span>
+                    手机号码：{{item.mobile}}
+                  </span>
+                </view>
+                <view class='name'>
+                  <span>
+                    申请时间：{{item.createDate}}
+                  </span>
+                </view>
+              </view>
+            </view>
+        </block>
+    </view>
+    </view>
+ 
+  </view>
+</template>
+
+<script>
+/* global wx */
+import wepy from "wepy";
+import PageMixin from "../mixins/page";
+export default class MeMaple extends wepy.page {
+  mixins = [PageMixin];
+  config = {
+    navigationBarTitleText: "我的样品申领",
+    navigationBarBackgroundColor: "#fff"
+  };
+  components = {};
+  data = {
+    list: [],
+  };
+
+  methods = {};
+
+  onLoad() {
+    var that = this;
+  }
+   timeFormat (timeStr) {
+      var dataOne = timeStr.split('T')[0];
+      var dataTwo = timeStr.split('T')[1];
+      var dataThree = dataTwo.split('+')[0];
+      var newTimeStr = dataOne + ' ' + dataThree
+      return newTimeStr;
+    }
+  // 获取列表
+  getList() {
+    var self = this;
+    this.fetchDataPromise("wx/specimen/myApplySpecimenApi.json", {}, {}).then(
+      function(data) {
+        console.log("data", data);
+        self.list = data.list.map(item => {
+          let obj = item;
+          obj.createDate = self.timeFormat(obj.createDate);
+          return obj;
+        });
+        self.$apply();
+      }
+    );
+  }
+  whenAppReadyShow() {
+    this.getList();
+  }
+}
+</script>

@@ -1,0 +1,15 @@
+
+  <view class="banner">
+    <image src="../../images/13.jpg"/>
+  </view>
+  <view class="title">
+    <view class="top">
+      <view class="name">减脂塑形</view>
+      <view class="size">仅支持会员卡预约</view>
+    </view>
+    <view class="study">课程时长：60分钟</view>
+    <view class="code">约课得1积分</view>
+  </view>
+  <view class="time">
+    <view class="timename">选择时间</view>
+  </view>

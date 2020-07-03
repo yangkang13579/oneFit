@@ -1,0 +1,60 @@
+<style lang="less">
+
+</style>
+
+<template>
+    <view class="weui-msg">
+        <view class="icon-box">
+            <icon type="info" size="93"></icon>
+            <view class="icon-box__ctn">
+                <view class="icon-box__title">您需要授权用户信息才能使用个人中心</view>
+            </view>
+        </view>
+        <view class="weui-msg__opr-area">
+            <view class="weui-btn-area">
+                <button class="weui-btn" type="primary" @tap="openSetting">打开授权设置</button>
+                <button class="weui-btn" type="default" @tap="cancel">返回</button>
+            </view>
+        </view>
+        <view class="weui-msg__extra-area">
+        </view>
+    </view>
+</template>
+
+<script>
+/* global wx */
+import wepy from 'wepy';
+export default class LoginSetting extends wepy.page {
+  config = {
+      navigationBarTitleText: '授权用户信息'
+  };
+  data = {
+      code: 'unknown',
+      message: 'unknown'
+  };
+  methods = {
+      openSetting() {
+          var self = this;
+          wx.openSetting({
+              success: res => {
+                  console.log(res);
+                  if (res.authSetting['scope.userInfo']) {
+                      console.log('授权成功!');
+                      self.restart();
+                  }
+              }
+          });
+      },
+      cancel() {
+          wx.reLaunch({ url: '/pages/index' });
+      }
+  };
+  restart() {
+      console.log('restart');
+      let app = this.$parent;
+      app.relogin();
+      wx.reLaunch({ url: '/pages/index' });
+  }
+  onLoad() {}
+}
+</script>

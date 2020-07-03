@@ -1,0 +1,203 @@
+<style lang="less">
+page {
+  background: #fff;
+}
+.myTitle {
+  padding: 10rpx 20rpx;
+  height: 140rpx;
+  width: 710rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  .myName {
+    width: 500rpx;
+    height: 100rpx;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    image {
+      width: 100rpx;
+      height: 100rpx;
+      border-radius: 50%;
+      margin-right: 30rpx;
+    }
+    text {
+      font-size: 30rpx;
+      color: #000;
+    }
+  }
+  .myApply{
+     width: 190rpx;
+     height: 100rpx;
+     display: flex;
+     justify-content: flex-end;
+     align-items: center;
+     text{
+        font-size: 30rpx;
+        color: #000;
+        margin-right: 20rpx;
+
+     }
+     image{
+       width: 26rpx;
+       height: 26rpx;
+     }
+  }
+}
+.myList{
+  width: 710rpx;
+  padding: 20rpx;
+  background: #f4f4f4;
+  .myItem{
+    width: 660rpx;
+    padding: 30rpx 25rpx;
+    border-radius: 20rpx;
+    font-size: .1rem;
+    background: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20rpx;
+    image{
+      width: 200rpx;
+      height: 220rpx;
+    }
+    .myItem-right{
+      width: 420rpx;
+      height: 220rpx;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      .myItem-title{
+        width: 100%;
+        font-size: 30rpx;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+      }
+      .myItem-bot{
+        width: 100%;
+        height: 90rpx;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .btnLeft{
+          font-size: 30rpx;
+          color: #5e99a6;
+        }
+        .btnSample{
+          width:200rpx;
+          height: 60rpx;
+          text-align: center;
+          line-height: 60rpx;
+          border-radius: 30rpx;
+          font-size: 30rpx;
+          background: #dbe6e9;
+          color: #2b779a;
+        }
+      }
+    }
+  }
+}
+</style>
+
+<template lang="wxml">
+  <view class="git">
+    <view class="myTitle">
+      <view class="myName">
+        <image src='{{userInfo.profile}}' />
+        <text>{{userInfo.nickName}}</text>
+      </view>
+      <view @tap='mySamples' class="myApply">
+        <text>我的申领</text>
+        <image src='../images/arrow_r.svg' class='right'/>
+      </view>
+    </view>
+    <view class="myList">
+      <block wx:for="{{list}}" wx:key="index">
+        <view data-id="{{item.id}}" @tap.stop="goDetails" class="myItem">
+          <image src="{{item.headPicture}}" />
+          <view class="myItem-right">
+            <view class="myItem-title">{{item.name}}</view>
+            <view class="myItem-bot">
+              <view class="btnLeft">{{item.score}}积分</view>
+              <view data-id="{{item.id}}" wx:if="{{item.totalCount-item.usedCount>0}}" @tap.stop="toFrom" class="btnSample">立即申请</view>
+              <view wx:else class="btnSample" @tap.stop="end">已申领完</view>
+            </view>
+          </view>
+
+        </view>
+      </block>
+
+    </view>
+  
+  </view>
+</template>
+
+<script>
+/* global wx */
+import wepy from "wepy";
+import PageMixin from "../mixins/page";
+export default class GitSample extends wepy.page {
+  mixins = [PageMixin];
+  config = {
+    navigationBarTitleText: "样品申领",
+    navigationBarBackgroundColor: "#fff"
+  };
+  components = {};
+  data = {
+    list:[],
+    userInfo:[]
+  };
+  methods = {
+    toFrom(e){
+      console.log("e",e)
+      let id = e.currentTarget.dataset.id;
+      wx.navigateTo({
+          url: '/pages/form?id=' + id
+      });
+    },
+       // 我的样品申领
+    mySamples(){
+     wx.navigateTo({
+        url: "/pages/meMaple"
+      });
+    },
+    
+   goDetails(e){
+      console.log("e11",e)
+    let id = e.currentTarget.dataset.id;
+    console.log(id)
+     wx.navigateTo({
+        url: '/pages/sampleDetail?id=' + id
+     });
+    
+   }
+  }
+  onLoad(){
+  }
+   init(){
+      this.fetchDataPromise("user/userInfo.json", {})
+        .then(data => {
+          console.log("6677",data)
+          this.userInfo = data
+          this.$apply()
+        })
+        .catch(function(error) {});
+    }
+  whenAppReadyShow() {
+    this.fetchDataPromise("wx/specimen/querySpecimenApi.json", {})
+      .then(data => {
+        console.log("11 ", data);
+        this.list = data.list;
+        this.init()
+        this.$apply()
+      })
+      .catch(function(error) {});
+      
+      
+  }
+}
+</script>

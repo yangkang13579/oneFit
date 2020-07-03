@@ -1,0 +1,156 @@
+.bg {
+  height: 100%;
+  width: 100%;
+  background-image: linear-gradient(#23a7a2, #0d7fc6);
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+.admin {
+  top: 0;
+  left: 0;
+  z-index: 2;
+  position: relative;
+}
+.admin .info {
+  width: 100%;
+  height: 460rpx;
+  font-size: 32rpx;
+  clear: both;
+  overflow: hidden;
+  position: relative;
+}
+.admin .info .admin-bg {
+  width: 696rpx;
+  height: 416rpx;
+  position: absolute;
+  left: 22rpx;
+  top: 22rpx;
+}
+.admin .info .user-info {
+  width: 696rpx;
+  height: 416rpx;
+  position: absolute;
+  left: 22rpx;
+  top: 22rpx;
+  z-index: 11;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.admin .info .logo {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+  margin-left: 30rpx;
+}
+.admin .info .name {
+  width: 290rpx;
+  color: #fff;
+  font-size: 38rpx;
+}
+.admin .info .name view {
+  font-weight: bold;
+}
+.admin .info .name .indenty {
+  border: 1rpx solid #fff;
+  color: #fff;
+  padding: 2rpx 5rpx;
+  border-radius: 5rpx;
+  font-size: 20rpx;
+  margin-top: 5rpx;
+  float: left;
+}
+.admin .info .infoMation {
+  display: flex;
+  align-items: center;
+  color: #fff;
+  font-size: 28rpx;
+  float: right;
+  margin-right: 30rpx;
+}
+.admin .info .infoMation .left {
+  width: 26rpx;
+  height: 26rpx;
+  margin-left: 10rpx;
+}
+.admin .info .Passport {
+  position: absolute;
+  bottom: 60rpx;
+  right: 94rpx;
+  z-index: 222;
+  color: #fff;
+  font-size: 28rpx;
+}
+.admin .item {
+  width: 696rpx;
+  border-radius: 30rpx;
+  color: #333;
+  margin-left: 22rpx;
+}
+.admin .item view {
+  height: 100rpx;
+  line-height: 100rpx;
+  width: 634rpx;
+  padding: 0 30rpx;
+  background: #fff;
+  border-bottom: 0.5rpx solid #f5f5f5;
+  font-size: 28rpx;
+}
+.admin .item view .right {
+  width: 26rpx;
+  height: 26rpx;
+  float: right;
+  margin-top: 36rpx;
+}
+.admin .item view .icon {
+  width: 40rpx;
+  height: 40rpx;
+  float: left;
+  margin-top: 30rpx;
+  margin-right: 30rpx;
+}
+.admin .item .view1 {
+  border-top-right-radius: 30rpx;
+  border-top-left-radius: 30rpx;
+  border-bottom: 1rpx solid #a4ccdd;
+}
+.admin .item .view2 {
+  border-bottom-right-radius: 30rpx;
+  border-bottom-left-radius: 30rpx;
+}
+.admin .item2 {
+  margin-bottom: 40rpx;
+  margin-top: 22rpx;
+}
+.admin .item2 .view1,
+.admin .item2 .view3,
+.admin .item2 .view4 {
+  border-bottom: 1rpx solid #e3e3e3;
+}
+.tabBar {
+  position: fixed;
+  bottom: 0;
+  background: #ffffff;
+  width: 100%;
+  left: 0;
+  z-index: 2222;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.tabBar .left {
+  width: 50%;
+  font-size: 32rpx;
+  color: #333;
+  text-align: center;
+}
+.tabBar .left image {
+  width: 40rpx;
+  height: 40rpx;
+  margin: 5rpx 0;
+}
+.tabBar .left view {
+  margin-top: -5rpx;
+  margin-bottom: 5rpx;
+}

@@ -1,0 +1,14 @@
+
+   <view class="weui-msg">
+    <view class="icon-box">
+      <icon type="info" size="93"/>
+      <view class="icon-box__ctn">
+        <view class="icon-box__title">提示</view>
+        <view class="icon-box__desc">绑定手机可以更方便，手机号码也可以用于PC端登录</view>
+      </view>
+    </view>
+    <view class="weui-btn-area">
+      <button class="weui-btn" type="primary" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">绑定手机</button>
+      <button class="weui-btn" type="default" bindtap="cancel">暂不绑定</button>
+    </view>
+  </view>

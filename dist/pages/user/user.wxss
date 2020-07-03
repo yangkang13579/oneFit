@@ -1,0 +1,88 @@
+page {
+  background: #2e2c2d;
+}
+.box {
+  width: 100%;
+  height: 350rpx;
+  padding-top: 60rpx;
+  background: #010101;
+}
+.box .top {
+  width: 100%;
+  height: 280rpx;
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+}
+.box .top .left,
+.box .top .right {
+  padding: 0 10rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.box .top .left .num,
+.box .top .right .num {
+  color: #ea280c;
+  font-size: 55rpx;
+  margin-bottom: 10rpx;
+}
+.box .top .left text,
+.box .top .right text {
+  font-size: 28rpx;
+  color: #fff;
+}
+.box .top .center {
+  padding: 0 10rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.box .top .center image {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+}
+.box .top .center .name {
+  font-size: 28rpx;
+  color: #fff;
+}
+.box .call {
+  width: 100%;
+  height: 50rpx;
+  margin-top: 10rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.box .call text {
+  font-size: 28rpx;
+  color: #fff;
+}
+.box .call image {
+  width: 35rpx;
+  height: 35rpx;
+}
+.bottom {
+  width: 670rpx;
+  padding: 0 25rpx 25rpx 20rpx;
+  margin: 30rpx 0 0 20rpx;
+  background: #262626;
+  border-radius: 10rpx;
+}
+.bottom .list {
+  width: 100%;
+  height: 90rpx;
+  border-bottom: 1rpx solid #353535;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.bottom .list .table {
+  font-size: 28rpx;
+  color: #fff;
+}
+.bottom .list image {
+  width: 35rpx;
+  height: 35rpx;
+}

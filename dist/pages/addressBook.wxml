@@ -1,0 +1,59 @@
+
+
+  <view>
+    <view class="bg"/>
+    <view class="page-top">
+    <view class="wrap"> 
+      <block  wx:for="{{list}}" wx:key="id" wx:for-index="idx">
+        <view class="list-wrap" catchtap="choseAdd">
+          <view class="middle">
+            <view class="tit">
+              <span>{{item.name}}</span>
+              <p>{{item.createDate}}</p>
+            </view>
+
+            <view class="items">
+              <span>
+                创建者：
+              </span>
+              {{item.user.nickName}}_{{item.user.mobile}}
+            </view>
+
+            <view class="items">
+              <span>
+                会议有效时间段：
+              </span>
+              {{item.start}}至{{item.end}}
+            </view>
+
+            <view class="items">
+              <span>
+                会议邀请码：
+              </span>
+              {{item.code}}
+            </view>
+             <view class="items">
+              <span>
+              已签到人数：
+              </span>
+              {{item.signInCount ? item.signInCount : 0}}
+            </view>
+
+            <view class="eitBtn" wx:if="{{item.createUser === 'passport_' + user.id && item.edit}}">
+              <view class="eidt" bindtap="edit" data-item="{{item}}">编辑</view>
+              <view class="del" bindtap="del" data-item="{{item}}">删除</view>
+            </view>
+          </view>
+        </view>
+      </block>
+    </view>
+
+    <view class="empty"  wx:if="{{list.length === 0}}">
+      <view>暂无会议</view>
+    </view>
+
+    <view class="toast" wx:if="{{showToast}}"><p>{{error}}</p></view>
+  </view>
+  </view>
+  <!--新增地址-->
+  <!-- <button catchtap="toAddAddressPage">新增地址</button> -->

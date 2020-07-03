@@ -1,0 +1,9 @@
+page._4396904 {
+  background: #F4F4F4;
+}
+.lianxi._4396904 {
+  color: #000;
+  font-size: 28rpx;
+  padding: 20rpx 20rpx;
+  text-indent: 2em;
+}

@@ -1,0 +1,65 @@
+
+  <view class="producTop">
+    <image src="{{product.poster}}"/>
+  </view>
+  <view class="producTop-title">
+    <view class="producTop-title-price">
+      {{product.priceDesc}}
+    </view>
+    <!--<view class="producTop-title-out">
+        库存 {{product.stockNum}}
+      </view>-->
+    <view class="producTop-title-name">
+      {{product.name}}
+    </view>
+  </view>
+  <view class="producTop-Img">
+    <image src="{{product.introduce}}" mode="widthFix"/>
+  </view>
+  <view class="producTop-bottom">
+    <div bindtap="call" class="producTop-bottom-kefu">
+      <image src="../images/fefu.png"/>
+      <text>客服</text>
+    </div>
+    <div bindtap="producTopCar" class="producTop-bottom-car">
+      <image src="../images/car.png"/>
+      <text>购物车</text>
+    </div>
+    <button bindtap="addBtn" class="addBtn">
+                      添加购物车
+                    </button>
+  </view>
+  <view  wx:if="{{isBook}}" class="produc-box">
+    <view class="produc-box-top">
+      <view class="produc-box-top-Img">
+        <image src="{{productDetail.poster}}"/>
+      </view>
+      <view class="produc-box-top-right">
+        <view class="produc-box-price">{{productDetail.priceDesc}}</view>
+        <view class="produc-box-stock">
+          <!--库存{{productDetail.stockNum}}件-->
+        </view>
+      </view>
+    </view>
+    <view class="produc-con">
+      <view class="produc-con-title">
+        产品分类
+      </view>
+      <view class="produc-con-list">
+        <block wx:for="{{childs}}" wx:key="index">
+          <view bindtap="produc" data-status="{{item.selected}}" class="{{item.selected == true ? 'line' : 'produc-con-item'}}" data-child="{{item.id}}">{{item.tagId}}</view>
+        </block>
+      </view>
+    </view>
+    <view class="product-bottom-liang">
+      <view class="product-bottom-liang-text">购买数量</view>
+      <view class="product-bottom-text">
+        <view bindtap="sub" class="sub">-</view>
+        <input bindblur="getSearchContent" bindconfirm="getSearchContent" type="number" class="nuber" value="{{number}}"/>
+        <!--<view class="nuber">{{number}}</view>-->
+        <view bindtap="add" class="add">+</view>
+      </view>
+    </view>
+    <button bindtap="productBtn" class="productBtn">确定</button>
+  </view>
+  <view bindtap="bank"  wx:if="{{isBook}}" class="bank"/>

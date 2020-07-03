@@ -1,0 +1,85 @@
+<style lang="less">
+    .button-hover {
+        background-color: #3087c9;
+    }
+    .icon-box image{
+        width:300rpx;
+        height:300rpx;
+    }
+</style>
+
+<template>
+    <view class="weui-msg">
+        <view class="icon-box">
+            <image src="../images/logo.svg"></image>
+            <view class="icon-box__ctn">
+                <view class="icon-box__title">需要登录</view>
+            </view>
+        </view>
+        <view class="weui-msg__opr-area">
+            <view class="weui-btn-area">
+                <button class="weui-btn weui-btn-primary" lang="zh_CN" open-type="getUserInfo" bindgetuserinfo="wxLogin">微信登录</button>
+                <button class="weui-btn" type="default" @tap="cancel">取消登录</button>
+            </view>
+        </view>
+        <view class="weui-msg__extra-area">
+        </view>
+    </view>
+</template>
+
+<script>
+    /* global wx */
+    import wepy from 'wepy';
+    import PageMixin from '../mixins/page';
+    export default class Login extends wepy.page {
+        mixins = [PageMixin];
+        config = {
+            navigationBarTitleText: '用户登录'
+        };
+        data = {
+            code: 'unknown',
+            message: 'unknown'
+        };
+        methods = {
+            wxLogin(e) {     
+                if (e.detail.iv && e.detail.encryptedData) {
+                    wx.showLoading({
+                        title: '正在登录...'
+                    });
+                    var self = this;
+                    self.app
+                        .loginWX(e.detail.iv, e.detail.encryptedData)
+                        .then(function(data) {
+                            wx.showToast({
+                                title: '登录成功',
+                                icon: 'success',
+                                duration: 2000
+                            });
+                           
+                            setTimeout(function() {
+                                wx.navigateBack();
+                            }, 500);
+                        })
+                        .catch(function(error) {
+                            console.log('登录失败:', error);
+                            wx.showToast({
+                                title: '登录失败,请重试！' + error.message,
+                                icon: 'success',
+                                duration: 2000
+                            });
+                        });
+                }else{
+                  wx.switchTab({
+                    url: '/pages/list'
+                  });
+                }
+            },
+            cancel() {
+                wx.switchTab({
+                    url: '/pages/home'
+                });
+            }
+        };
+        onLoad() {}
+    }
+</script>

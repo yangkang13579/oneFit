@@ -1,0 +1,420 @@
+<style lang="less">
+    .search-tit {
+        width: 100%;
+        height: 92rpx;
+        position: fixed;
+        top: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: #fff;
+        z-Index: 3;
+    }
+    .tit-bg {
+        width: 336rpx;
+        height: 34rpx;
+        position: absolute;
+        bottom: 0;
+        left: 40rpx;
+    }
+    .tit-bg2 {
+        width: 336rpx;
+        height: 34rpx;
+        position: absolute;
+        bottom: 0;
+        right: 40rpx;
+    }
+    .search-tit text {
+        text-align: center;
+        width: 50%;
+        font-size: 16px; // color: #444444;
+    }
+    .search-list {
+        margin-top: 122rpx;
+        padding-bottom: 110rpx;
+    }
+    .search-item {
+        margin: 16rpx 32rpx 0 32rpx;
+        padding: 32rpx;
+        background: #fff;
+        clear: both;
+        overflow: hidden;
+        margin-top: 16rpx;
+        border-radius: 4px;
+    }
+    .search-item image {
+        width: 140rpx;
+        height: 140rpx;
+        border-radius: 50%;
+        float: left;
+        margin-right: 16rpx;
+    }
+    .search-item .item-con {
+        font-size: 14px;
+    }
+    .name {
+        font-size: 14px;
+        color: #444;
+        margin: 4rpx 0;
+    }
+    .num {
+        font-size: 12px;
+        color: #909090;
+    }
+    .school {
+        font-weight: bold;
+        font-size: 14px;
+    }
+    .others-item {
+        padding: 32rpx 0 26rpx 26rpx;
+        background: #fff;
+        margin: 16rpx 32rpx 0 32rpx;
+        border-radius: 4px;
+        clear: both;
+        overflow: hidden;
+        position: relative;
+    }
+    .others-itemImg {
+        width: 200rpx;
+        height: 150rpx;
+        margin-right: 16rpx;
+        float: left;
+    }
+    .right {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        width: 80rpx;
+        height: 100%;
+        border-top-right-radius: 4px;
+        border-bottom-right-radius: 4px;
+        background: #65ABFF;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .right image {
+        width: 60rpx;
+        height: 60rpx;
+        vertical-align: middle;
+    }
+    .item-con {
+        width: 360rpx;
+        float: left;
+    }
+    .bottom-btn {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        height: 98rpx;
+        background: #fff;
+        font-size: 16px;
+        color: #65ABFF;
+        text-align: center;
+        line-height: 98rpx;
+        z-Index: 3;
+    }
+    .item-conIndex {
+        width: 402rpx;
+        float: left;
+    }
+    .nameIndex {
+        width: 402rpx;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+    .line {
+        color: #65ABFF;
+    }
+    .noImg {
+        width: 100%;
+        height: 500rpx;
+        margin-top: 200rpx;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .noImg image {
+        width: 400rpx;
+        height: 400rpx;
+    }
+</style>
+        
+<template lang="wxml">
+    <view class='search-tit'>
+        <image src='../images/tit-bg.png' class='tit-bg' wx:if='{{currentIndex == 0}}' />
+        <image src='../images/tit-icon2.png' class='tit-bg2' wx:if='{{currentIndex == 1}}' />
+        <text @tap='tabFun(0)' class="{{currentIndex == 0 ? 'line' : ''}}">学校</text>
+        <text @tap='tabFun(1)' class="{{currentIndex == 1 ? 'line' : ''}}">其他资源</text>
+    </view>
+    <view class='search-list'>
+        <view wx:if='{{currentIndex == 0}}'>
+            <block wx:if="{{schoolList.length!=''}}" wx:for="{{schoolList}}" wx:key="index">
+                <view data-id="{{item.id}}" data-typeId="{{item.typeId}}" class='search-item' @tap.stop="schoolDetail">
+                    <image wx:if="{{item.imageUrl!=''}}" src='{{item.imageUrl}}' />
+                    <image wx:if="{{item.imageUrl==''}}" src='https://staticservice.extremevalue.cn/images/6586/3712/5768/511cbd79b5b4e89c477c2c266a43b675_0_0.jpg' />
+                    <view class='item-conIndex'>
+                        <view class='school'>{{item.name}}</view>
+                        <view class='nameIndex'>场馆主题
+                            <block wx:for="{{item.catalogs}}" wx:key="index">
+                                {{item.name}}
+                            </block>
+                        </view>
+                        <view class='num'>访问次数 {{item.views}}人次</view>
+                    </view>
+                </view>
+            </block>
+            <view class="noImg" wx:if="{{schoolList.length==''}}">
+                <image src="https://staticservice.extremevalue.cn/images/9225/2226/9572/8de9437c5dba69d3e106e4a0bb723a18_0_0.png"></image>
+            </view>
+        </view>
+        <view wx:if='{{currentIndex == 1}}'>
+            <block wx:if="{{restList.length!=''}}" wx:for="{{restList}}" wx:key="index">
+                <view @tap.stop="othersTap" data-typeId="{{item.typeId}}" data-downloadUrl="{{item.downloadUrl}}" class='others-item' data-id="{{item.id}}">
+                    <!--<image class="others-itemImg" src="{{item.typeId === 'image' && item.imageUrl!='' ? item.imageUrl:item.typeId ==='class'?'https://staticservice.extremevalue.cn/images/8532/1830/4722/0a771af06d5d5dc871da398da4dac564_0_0.png':item.typeId==='ppt'?'https://staticservice.extremevalue.cn/images/7850/6313/8907/2fea8ebe5b3b6485269c2224aa12f7f3_0_0.png':item.typeId==='word'?'https://staticservice.extremevalue.cn/images/8699/2951/6925/f0688862164df678b7f5c54e358de48d_0_0.png':item.typeId==='excel'?'https://staticservice.extremevalue.cn/images/8013/4426/7383/297490dd32b486480bcb943b0b38bd20_0_0.png':item.typeId==='pdf'?'https://staticservice.extremevalue.cn/images/4255/4044/3957/8e5275c085957bf1ba189c9794d0f517_0_0.png':item.typeId==='video'?'https://staticservice.extremevalue.cn/images/8532/1830/4722/0a771af06d5d5dc871da398da4dac564_0_0.png':'https://staticservice.extremevalue.cn/images/0014/5108/4425/7ff0002d3ddb474f9ad8225f95672cea_0_0.png'}}">
+                                </image>-->
+                   <!-- <image class="others-itemImg" src="{{item.typeId === 'image' && item.imageUrl!='' ? item.imageUrl:item.typeId ==='class'?'https://staticservice.extremevalue.cn/images/8532/1830/4722/0a771af06d5d5dc871da398da4dac564_0_0.png':item.typeId==='ppt' && item.fileType ==='word'?'https://staticservice.extremevalue.cn/images/8699/2951/6925/f0688862164df678b7f5c54e358de48d_0_0.png':item.typeId==='ppt'&&item.fileType==='excel'?'https://staticservice.extremevalue.cn/images/8013/4426/7383/297490dd32b486480bcb943b0b38bd20_0_0.png':item.typeId==='ppt'&&item.fileType==='pdf'?'https://staticservice.extremevalue.cn/images/4255/4044/3957/8e5275c085957bf1ba189c9794d0f517_0_0.png':item.typeId==='ppt'&&item.fileType==='txt'?'https://staticservice.extremevalue.cn/images/4636/6414/9820/946d487bf26a58b00adf95ce29997254_0_0.png':item.typeId==='ppt'&&item.fileType===''?'https://staticservice.extremevalue.cn/images/7850/6313/8907/2fea8ebe5b3b6485269c2224aa12f7f3_0_0.png':item.typeId==='video'?'https://staticservice.extremevalue.cn/images/8532/1830/4722/0a771af06d5d5dc871da398da4dac564_0_0.png':'https://staticservice.extremevalue.cn/images/0014/5108/4425/7ff0002d3ddb474f9ad8225f95672cea_0_0.png'}}">
+                    </image>-->
+                    
+
+                     <image class="others-itemImg" src="{{item.typeId === 'image' && item.imageUrl!='' ? item.imageUrl:item.typeId ==='class'?'https://staticservice.extremevalue.cn/images/6163/9422/9736/0a771af06d5d5dc871da398da4dac564_0_0.png':item.typeId==='ppt' && item.fileType ==='word'?'https://staticservice.extremevalue.cn/images/9409/3681/8969/f0688862164df678b7f5c54e358de48d_0_0.png':item.typeId==='ppt'&&item.fileType==='excel'?'https://staticservice.extremevalue.cn/images/0409/2866/2594/297490dd32b486480bcb943b0b38bd20_0_0.png':item.typeId==='ppt'&&item.fileType==='pdf'?'https://staticservice.extremevalue.cn/images/8290/4908/3107/8e5275c085957bf1ba189c9794d0f517_0_0.png':item.typeId==='ppt'&&item.fileType==='txt'?'https://staticservice.extremevalue.cn/images/6620/5276/6157/946d487bf26a58b00adf95ce29997254_0_0.png':item.typeId==='ppt'&&item.fileType==='ppt'?'https://staticservice.extremevalue.cn/images/1254/2975/4333/2fea8ebe5b3b6485269c2224aa12f7f3_0_0.png':item.typeId==='video'?'https://staticservice.extremevalue.cn/images/6163/9422/9736/0a771af06d5d5dc871da398da4dac564_0_0.png':'https://staticservice.extremevalue.cn/images/4196/7043/5635/7ff0002d3ddb474f9ad8225f95672cea_0_0.png'}}"
+            ></image>
+                   
+                    <view class='item-con'>
+                        <view class='school'>{{item.title}}</view>
+                        <view class='name'>
+                            <block wx:for="{{item.tags}}" wx:key="index">
+                                {{item.catalogName}}
+                            </block>
+                        </view>
+                        <view class='num'>引用次数 {{item.cited}}</view>
+                    </view>
+                    <view data-id="{{item.id}}" @tap.stop="addSeart" class='right'>
+                        <image src='../images/icon21.png' />
+                    </view>
+                </view>
+            </block>
+            <view class="noImg" wx:if="{{restList.length==''}}">
+                <image src="https://staticservice.extremevalue.cn/images/9225/2226/9572/8de9437c5dba69d3e106e4a0bb723a18_0_0.png"></image>
+            </view>
+        </view>
+    </view>
+    <view wx:if="{{currentIndex == 1 && restList.length!=''}}" @tap="look" class='bottom-btn'>方案预览</view>
+</template>
+        
+<script>
+    /* global wx */
+    import wepy from 'wepy';
+    import PageMixin from '../mixins/page';
+    export default class SearchResult extends wepy.page {
+        mixins = [PageMixin];
+        config = {
+            navigationBarTitleText: '搜索结果',
+        };
+        components = {
+            // tabbar: Tabbar
+        };
+        data = {
+            currentIndex: 0,
+            loadUser: true, // 需要登录信息
+            inputData: "",
+            schoolId: "",
+            id: '',
+            catalogId: '',
+            filePath: "",
+            blueprintId: "",
+            downloadurl: "",
+            pageNumber1: 1,
+            pageNumber2: 1,
+            lastPage1: false,
+            lastPage2: false,
+            restList: [],
+            schoolList: [],
+            imgUrl: []
+        };
+        methods = {
+            othersTap(e) {
+                console.log(e)
+                var self = this;
+                self.typeId = e.currentTarget.dataset.typeid;
+                self.downloadurl = e.currentTarget.dataset.downloadurl;
+                self.blueprintId = e.currentTarget.dataset.id;
+                this.fetchDataPromise('user/resourceInfo.do', {
+                        resourceId: self.blueprintId,
+                    })
+                    .then(function(data) {
+                        console.log('预览22 ', data);
+                        self.$apply();
+                    })
+                if (self.typeId === "video" || self.typeId === "class") {
+                    console.log("2222")
+                    wx.setStorageSync('video', self.downloadurl);
+                    wx.navigateTo({
+                        url: '/pages/movie'
+                    });
+                } else if (self.typeId === "image") {
+                    self.imgUrl.push(self.downloadurl)
+                    wx.previewImage({
+                        current: self.downloadurl,
+                        urls: self.imgUrl
+                    })
+                } else if (self.typeId === "ppt") {
+                    console.log("ppppppt")
+                    console.log("self.downloadurleee", self.downloadurl)
+                    wx.downloadFile({ 
+                        url: self.downloadurl,
+                           success: function(res) {
+                            console.log("resss", res)
+                            self.filePath = res.tempFilePath;   
+                            wx.openDocument({     
+                                filePath: self.filePath,
+                                success: function(res) {      
+                                    console.log('打开文档成功', res)     
+                                },
+                                fail: function(res) {
+                                    console.log('打开文档失败', res)  
+                                }    
+                            })   
+                        }  
+                    })
+                }
+                self.$apply();
+            },
+            schoolDetail(e) {
+                var self = this;
+                console.log(e)
+                var self = this;
+                console.log(e)
+                self.id = e.currentTarget.dataset.id;
+                wx.navigateTo({
+                    url: '/pages/school_detail?id=' + self.id
+                });
+            },
+            addSeart(e) {
+                console.log(e)
+                var self = this;
+                self.id = e.currentTarget.dataset.id;
+                this.fetchDataPromise('user/blueprintResourceInsert.do', {
+                        resourceId: self.id,
+                    })
+                    .then(function(data) {
+                        console.log('资源 ', data);
+                        // self.restList = data.items;
+                        wx.showToast({
+                            title: '添加成功',
+                            icon: 'success',
+                            duration: 2000
+                        });
+                        self.$apply();
+                    })
+            },
+            look(e) {
+                // console.log(e)
+                // var self = this;
+                // self.resourceId = e.currentTarget.dataset.id;
+                // wx.navigateTo({
+                //     url: '/pages/scheme_look?resourceId=' + self.resourceId
+                // });
+                wx.navigateTo({
+                    url: '/pages/scheme_look'
+                });
+            },
+            tabFun(index) {
+                console.log(index+'=========================')
+                this.pageNumber1 = 1
+                this.pageNumber2 = 1
+                this.lastPage1 = false
+                this.lastPage2 = false
+                this.restList = []
+                this.schoolList = []
+                var self = this
+                self.currentIndex = index;
+                console.log(self.currentIndex)
+                self.searchFun(self.currentIndex)
+            }
+        };
+        searchFun(index) {
+            var self = this;
+           
+            if (index == 0) {
+                
+                console.log(self.pageNumber1)
+                this.fetchDataPromise('schoolSearch.do', {
+                        k: self.inputData,
+                        pageNumber: self.pageNumber1,
+                        pageSize: 10,
+                        catalogId: self.catalogId
+                    })
+                    .then(function(data) {
+                        for (var i = 0; i < data.items.length; i++) {
+                            self.schoolList.push(data.items[i]);
+                        }
+                        console.log(self.schoolList)
+                        self.$apply();
+                        if (data.page.totalPage === self.pageNumber1) self.lastPage1 = true
+                        // self.schoolList = data.items;
+                    })
+            } else {
+                this.fetchDataPromise('resourceSearch.do', {
+                        k: self.inputData,
+                        pageNumber: self.pageNumber2,
+                        pageSize: 10,
+                        catalogId: self.catalogId
+                    })
+                    .then(function(data) {
+                        console.log('资源 ', data);
+                        for (var i = 0; i < data.items.length; i++) {
+                            self.restList.push(data.items[i]);
+                        }
+                        if (data.page.totalPage === self.pageNumber2) self.lastPage2 = true
+                        // self.schoolList = data.items;
+                        self.$apply();
+                    })
+            }
+        }
+        onLoad(e) {
+            console.log(e)
+            this.inputData = e.k;
+            this.catalogId = e.catalogId;
+            this.pageNumber1 = 1
+            this.pageNumber2 = 1
+            this.lastPage1 = false
+            this.lastPage2 = false
+            this.restList = []
+            this.schoolList = []
+        }
+        onReachBottom() {
+            console.log(this.pageNumber1 + '-------------------')
+            if (this.currentIndex === 0 || this.currentIndex === '0') {
+                this.pageNumber1++
+                    if (this.lastPage1 === false) this.searchFun(this.currentIndex)
+            } else {
+                this.pageNumber2++
+                    if (this.lastPage2 === false) this.searchFun(this.currentIndex)
+            }
+        }
+        whenAppReadyShow() {
+        
+            this.pageNumber1 = 1
+            this.pageNumber2 = 1
+            this.lastPage1 = false
+            this.lastPage2 = false
+            this.restList = []
+            this.schoolList = []
+            wx.removeStorageSync("video")
+            wx.removeStorageSync("inputvalue")
+            wx.removeStorageSync("showTag")
+            var self = this;
+            if (self.inputData === null) {
+                self.whenParamError();
+                return;
+            } else {
+                this.searchFun(this.currentIndex)
+            }
+        }
+    }
+</script>
+        
+      

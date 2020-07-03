@@ -1,0 +1,4 @@
+
+	<view class="carPay">
+	 <web-view src="https://sinochem.creacree.com/contactussec.html"/>
+	</view>

@@ -1,0 +1,115 @@
+<style lang="less">
+@import "./style/app.less";
+</style>
+
+<script>
+/* global wx */
+// 在Page页面实例中，可以通过this.$parent来访问App实例。
+import wepy from 'wepy';
+import app from './lib/app';
+import 'wepy-async-function';
+
+export default class extends wepy.app {
+  config = {
+      pages: [
+          'pages/home/home',
+          'pages/user/user',
+          'pages/coursed/coursed',
+          'pages/coursed/coach',
+          'pages/coursed/member',
+          'pages/coursed/card',
+          'pages/done',
+          'pages/addRecord',
+          'pages/createTest',
+          'pages/addressBook',
+          'pages/textDetails',
+          'pages/list',
+          'pages/editAddress',
+          'pages/productDetail',
+          'pages/car',
+          'pages/user',
+          'pages/payMoney',
+          'pages/upload',
+          'pages/login',
+          'pages/order',
+          'pages/sign',
+          'pages/gitSample',
+          'pages/sampleDetail',
+          'pages/form',
+          'pages/meMaple',
+          'pages/webview',
+          'pages/webview1',
+          'pages/webview2',
+          'pages/webview3',
+          'pages/zhonghua'
+      ],
+      window: {
+          backgroundColor: '#fefefe',
+          navigationBarBackgroundColor: '#fefefe',
+          navigationBarTitleText: '首页',
+          navigationBarTextStyle: 'black',
+          navigationStyle: "custom",
+      },
+       tabBar: {
+        color: "#5e5e5e",
+        selectedColor: "#e82511",
+        backgroundColor: "#343434",
+        borderStyle: "black",
+        list: [
+          {
+            pagePath: "pages/home/home",
+            text: "首页",
+            iconPath: "images/home.png",
+            selectedIconPath: "images/home_select.png"
+          },
+          {
+            pagePath: "pages/coursed/coursed",
+            text: "课程",
+            iconPath: "images/course.png",
+            selectedIconPath: "images/course_select.png"
+          },
+          {
+            pagePath: "pages/user/user",
+            text: "我的",
+            iconPath: "images/user.png",
+            selectedIconPath: "images/user_selet.png"
+          }
+        ]
+    },
+    "permission": {
+      "scope.userLocation": {
+        "desc": "您的位置信息将用于寻找附近的检测点"
+      }
+    },
+   
+  }; 
+  globalData = { 
+      //中化作物
+      appId: 'wx59fd07ac9d84ef04',
+      appType: 'sinochem_xcx',
+      wxId: 'gh_3d0d25c141db',
+      passportUrl: 'https://passport.lingtaodata.com/passport/', // 认证服务器
+      dataUrl: 'https://sinochem.lingtaodata.com/data/', // 数据服务器
+      uploadUrl: "https://www.lingtaodata.com/",
+
+      //灵韬作物
+      // appId: 'wx5cef6b57858f3941',
+      // appType: 'qr_xcx',
+      // wxId: 'gh_db8177eb7a0b',
+      // passportUrl: 'https://passport.lingtaodata.com/passport/', // 认证服务器
+      // dataUrl: 'https://dev.lingtaodata.com/data/', // 数据服务器
+      // uploadUrl: "https://www.lingtaodata.com/",
+  };
+  constructor() {
+      super();
+      this.use('promisify'); 
+  }
+  onLaunch(options) {
+      // 初始化都是异步的
+      //  wx.navigateTo({
+      //         url: '/pages/animate'
+      //     });
+      app.init(this.globalData, options);
+  }
+}
+</script>

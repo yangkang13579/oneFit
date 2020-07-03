@@ -1,0 +1,23 @@
+
+  <view class="body">
+    <view class="tab_item tab_pay">
+      <view class="pay-top">
+        <image src="http://cdn.sunjoypai.com/images/0019/6135/0757/acd06f306164370612b2bcc3537017e5_0_0.png"/>
+      </view>
+      <view class="pay-list">
+        <view bindtap="day" data-type="1" class="pay-left {{isShowOne ? 'borderOne' : ''}}" >
+          <text class="pay-money">9.9</text>
+          <text class="pay-time">元/天</text>
+        </view>
+        <view bindtap="month" data-type="2" class="pay-right {{isShowTwo ? 'borderTwo' : ''}}">
+          <text class="pay-money">199</text>
+          <text class="pay-time">元/月</text>
+        </view>
+      </view>
+      <view class="pay-bootom">
+        <view bindtap="pay" class="pay-btn">
+          立即充值
+        </view>
+      </view>
+    </view>
+  </view>

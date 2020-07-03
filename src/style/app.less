@@ -1,0 +1,139 @@
+@import "base/reset.less";
+
+@import "widget/weui-cell/weui-cell.less";
+@import "widget/weui-cell/weui-access.less";
+@import "widget/weui-cell/weui-check.less";
+@import "widget/weui-cell/weui-form.less";
+@import "widget/weui-cell/weui-switch.less";
+@import "widget/weui-cell/weui-uploader.less";
+
+@import "./widget/weui-page/weui-article.less";
+@import "./widget/weui-page/weui-msg.less";
+
+@import "widget/weui-flex/weui-flex.less";
+
+@import "widget/weui-button/weui-button.less";
+
+@import "./widget/weui-agree/weui-agree.less";
+
+@import "./widget/weui-footer/weui-footer.less";
+
+@import "./widget/weui-grid/weui-grid.less";
+
+@import "./widget/weui-loading/weui-loading.less";
+
+@import "./widget/weui-tips/weui-badge.less";
+@import "./widget/weui-tips/weui-loadmore.less";
+
+@import "./widget/weui-panel/weui-panel.less";
+
+@import "./widget/weui-media-box/weui-media-box.less";
+
+@import "./widget/weui-progress/weui-progress.less";
+
+@import "./widget/weui-tab/weui-tab.less";
+
+@import "./widget/weui-searchbar/weui-searchbar.less";
+
+page {
+    color:#333333;
+    
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    min-height: 100%;
+}
+
+.flex {
+    flex: 1;
+    flex-basis: 0.000000001px;
+}
+/** 搜索框 */
+.weui-search {
+    display: block;
+    position: relative;
+}
+.searchbar-result {
+    margin-top: 0;
+    font-size: 14px;
+    position: absolute;
+    width: 100%;
+    top: 48px;
+}
+.searchbar-result:before {
+    display: none;
+}
+
+/** 覆盖默认颜色 */
+/** 当type 为primary的时候，无法覆盖默认样式 */
+.weui-btn-primary{
+  background-color:#037ad8;
+  color:#ffffff;
+}
+.button-hover{
+  background-color:#0c7bd1;
+}
+.weui-btn-hover{
+  background-color:#0c7bd1;
+}
+.row {
+  padding: 10px;
+  margin-bottom: 5px;
+  background-color: #ffffff;
+  box-shadow: 0px 1px 1px rgba(153, 153, 153, 0.349019607843137);
+}
+
+.article-title {
+    font-weight: 700;
+    font-style: normal;
+    line-height: 20px;
+    font-size: 14px;
+    border-bottom: 1px dashed #cccccc;
+    text-overflow: ellipsis;
+}
+.article-title-translate {
+    font-weight: normal;
+}
+.article-title-1 {
+  font-size: 12px;
+  color: #666666;
+  font-weight: 400;
+  flex: 1;
+  flex-basis: 0.000000001px;
+}
+.article-desc {
+  font-weight: 400;
+  font-size: 14px;
+  margin-top: 5px;
+  margin-bottom: 15px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.article-desc-1 {
+  display: flex;
+  flex-direction: row;
+  font-size: 12px;
+}
+.article-desc-1 .strong {
+  font-weight: 700;
+  margin-right: 5px;
+}
+.article-tags {
+  display: flex;
+  flex-direction: row;
+  font-size: 12px;
+  display: flex;
+  flex-wrap:wrap;
+}
+.article-tag {
+  color:#19a1c3;
+  background-color: #f2f2f2;
+  line-height: 20px;
+  height: 20px;
+  border: 1px solid #e4e4e4;
+  border-radius: 10px;
+  padding: 0 10px;
+  margin:5px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

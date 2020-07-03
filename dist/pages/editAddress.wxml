@@ -1,0 +1,72 @@
+
+  <!--编辑栏-->
+  <view>
+    <view class="bg"/>
+  <view class="wrap">
+    <view class="input-wrap name">
+      <p>会议名称<em> (必填)</em></p>
+      <input placeholder-style="color: #ccc" bindblur="getName" bindconfirm="getName" value="{{formData.name ? formData.name : ''}}"/>
+    </view>
+    <view class="input-wrap mobile">
+      <p>会议类别<em> (必填)</em></p>
+      <view>
+        <view class="times-picker">
+          <picker mode="selector" bindchange="changeClassify" range="{{classifyAry}}">
+            <input value="{{classifyAry[formData.classify]}}" disabled/>
+          </picker>
+        </view>
+      </view>
+    </view>
+    <view class="input-wrap name">
+      <p>内容简介<em class="blue"> (选填)</em></p>
+      <input placeholder-style="color: #ccc" bindblur="getContent" bindconfirm="getContent" value="{{formData.content ? formData.content : ''}}"/>
+    </view>
+    <view class="input-wrap name">
+      <p>会议负责人<em> (必填)</em></p>
+      <input placeholder-style="color: #ccc" bindblur="getleader" bindconfirm="getleader" value="{{formData.leader ? formData.leader : ''}}"/>
+    </view>
+    <view class="input-wrap name">
+      <p>会议地址<em> (必填)</em></p>
+      <view>
+        <view class="times-picker" style="position:relative">
+          <picker mode="region" style="width:400rpx" value="{{address}}" bindchange="bindRegionChange">
+            <input style="width: 431rpx;" value="{{address}}" disabled/>
+          </picker>
+           <button class="save-btn" style="width: 200rpx;position: absolute;right: 0;top: 0;margin-top: 0;height: 70rpx;line-height: 70rpx;" bindtap="chooseLocation">选择位置</button>
+        </view>
+      </view>
+     
+    </view>
+    <view class="input-wrap name">
+      <p>详细地址<em>(必填) </em></p>
+      <input placeholder-style="color: #ccc" bindblur="getaddress" bindconfirm="getaddress" value="{{formData.address ? formData.address : ''}}"/>
+    </view>
+    <view class="input-wrap name">
+      <p>容纳人数<em class="blue"> (选填)</em></p>
+      <input placeholder-style="color: #ccc" bindblur="getuserCount" type="tel" bindconfirm="getuserCount" value="{{formData.userCapacity ? formData.userCapacity : ''}}"/>
+    </view>
+     <view class="input-wrap mobile">
+      <p>会议有效时间段<em> (必填)</em></p>
+      <view class="smallview">
+        <view class="times-picker small">
+          <picker mode="multiSelector" bindchange="bindStartChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}">
+            <input value="{{formData.startDate1 ? formData.startDate1 + '分' : ''}}" disabled/>
+          </picker>
+        </view>
+
+        <view class="times-picker small">
+          <picker mode="multiSelector" bindchange="bindEndChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}">
+            <input value="{{formData.endDate1 ? formData.endDate1 + '分' : ''}}" disabled/>
+          </picker>
+        </view>
+        <!-- <reportendtimescomp class='small'></reportendtimescomp> -->
+      </view>
+    </view>
+    <!-- <view class="input-wrap name">
+      <p>作物类别<em class='blue'> (选填)</em></p>
+      <input placeholder-style="color: #ccc" bindblur="getName" bindconfirm="getName" value="{{name ? name : ''}}" />
+    </view> -->
+    <button class="save-btn" bindtap="save">{{type === 'edit' ? '编辑' : '提交'}}</button>
+    </view>
+  </view>
+  <!--保存-->

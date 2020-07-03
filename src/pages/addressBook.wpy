@@ -1,0 +1,303 @@
+<style lang="less">
+  /*顶部*/
+  .bg{
+    height: 100%;
+    width: 100%;
+    background-image: linear-gradient(#23A7A2, #0D7FC6);
+    position: fixed;
+    top:0;
+    left:0;
+  }
+  .title {
+    color: #ff8c12;
+    line-height: 54rpx;
+    padding-left: 30rpx;
+    font-size: 30rpx;
+  }
+  .page-top{
+    top:0;
+    left:0;
+    z-index: 2;
+    position: relative;
+  }
+  .list-wrap {
+    display: flex;
+    flex-direction: column;
+    width:690rpx;
+    margin:40rpx 30rpx 0 30rpx;
+    border-radius: 40rpx;
+    border:1rpx solid #e3e3e3;
+    background: #fff;
+    padding-bottom:20rpx;
+    .tit{
+      border-top-left-radius: 40rpx;
+      border-top-right-radius: 20rpx;
+      padding:20rpx;
+      border:1rpx solid #e3e3e3;
+      border-bottom: 0;
+      background: #f2f2f2;
+      color: #333;
+      display: flex;
+      align-items: center;
+      font-size: 32rpx;
+      justify-content: space-between;
+      margin-bottom: 20rpx;
+    }
+    .items{
+      margin-bottom: 40rpx;
+      padding:0 40rpx;
+      margin-bottom:10rpx;
+      color: #0572ac;
+      font-size: 30rpx;
+      span{
+        color:#333;
+        font-size: 28rpx;
+      }
+    }
+    .eitBtn{
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      view{
+        width:300rpx;
+        height: 70rpx;
+        border-radius: 10rpx;
+        font-size: 30rpx;
+        color: #fff;
+        line-height: 70rpx;
+        text-align: center;
+      }
+      .del{
+        background: #97989a;
+        margin-left:30rpx;
+      }
+      .eidt{
+        background: #0074ae;
+      }
+    }
+  }
+  .empty{
+    position: fixed;
+    top:30%;
+    left:0;
+    font-size: 32rpx;
+    text-align: center;
+    width:100%;
+    color:#fff;
+    view{
+      margin-top:10rpx;
+    }
+  }
+  .toast{
+    display: flex;
+    align-items: center;
+    position: fixed;
+    top:40%;
+    justify-content: center;
+    width: 100%;
+    p{
+      border-radius: 10rpx;
+      background: rgba(0, 0, 0, 0.6);
+      color: #fff;
+      font-size: 30rpx;
+      padding:20rpx 30rpx;
+    }
+  }
+</style>
+
+
+<template lang="wxml">
+
+  <view>
+    <view class='bg'></view>
+    <view  class="page-top">
+    <view class="wrap"> 
+      <block wx:for='{{list}}' wx:key="id" wx:for-index="idx">
+        <view class="list-wrap" catchtap="choseAdd" >
+          <view class="middle">
+            <view class='tit'>
+              <span>{{item.name}}</span>
+              <p>{{item.createDate}}</p>
+            </view>
+
+            <view  class='items'>
+              <span>
+                创建者：
+              </span>
+              {{item.user.nickName}}_{{item.user.mobile}}
+            </view>
+
+            <view  class='items'>
+              <span>
+                会议有效时间段：
+              </span>
+              {{item.start}}至{{item.end}}
+            </view>
+
+            <view  class='items'>
+              <span>
+                会议邀请码：
+              </span>
+              {{item.code}}
+            </view>
+             <view  class='items'>
+              <span>
+              已签到人数：
+              </span>
+              {{item.signInCount ? item.signInCount : 0}}
+            </view>
+
+            <view class='eitBtn' wx:if="{{item.createUser === 'passport_' + user.id && item.edit}}">
+              <view class='eidt' @tap='edit' data-item='{{item}}'>编辑</view>
+              <view class='del' @tap='del' data-item='{{item}}'>删除</view>
+            </view>
+          </view>
+        </view>
+      </block>
+    </view>
+
+    <view class='empty' wx:if='{{list.length === 0}}'>
+      <view>暂无会议</view>
+    </view>
+
+    <view class='toast' wx:if='{{showToast}}'><p>{{error}}</p></view>
+  </view>
+  </view>
+  <!--新增地址-->
+  <!-- <button catchtap="toAddAddressPage">新增地址</button> -->
+</template>
+
+
+<script>
+  import wepy from 'wepy';
+  import PageMixin from '../mixins/page';
+  export default class AddressBook extends wepy.page {
+    mixins = [PageMixin];
+    config = {
+      navigationBarTitleText: '会议管理',
+      navigationBarBackgroundColor: '#fff'
+    };
+    components = {
+    };
+    data = {
+      list: [],
+      delItem: null,
+      showToast: false,
+      error: '',
+      user: this.user,
+      pageSize: 10,
+      totalPage: 0,
+      indexPage: 0
+    };
+    onReachBottom() {
+      if (this.indexPage >= this.totalPage) {
+        this.toast('无更多数据')
+        return
+      }
+      this.indexPage++
+      // 下拉触底，先判断是否有请求正在进行中
+      // 以及检查当前请求页数是不是小于数据总页数，如符合条件，则发送请求
+      this.getList()
+    }
+      // 获取列表
+    getList () {
+      var self = this
+      this.fetchDataPromise('meeting/wechat/queryMeetingApi.json', {
+        pageSize: this.pageSize,
+        indexPage: this.indexPage
+      }, {})
+      .then(function(data) {
+        console.log(self.list)
+        data.list = data.list.map(item => {
+          let obj = item
+          obj.createDate = self.timeFormat(obj.createDate)
+          obj.start = obj.startDate.split(' ')[0]
+          obj.end = obj.endDate.split(' ')[0]
+          obj.edit = new Date(obj.startDate.replace(/-/g, "/")).getTime() < new Date().getTime() ? false : true
+          return obj
+        })
+        self.totalPage = data.queryParam.totalPage
+        self.list = self.list.concat(data.list)
+        self.$apply()
+      })
+    }
+    timeFormat (timeStr) {
+      var dataOne = timeStr.split('T')[0];
+      var dataTwo = timeStr.split('T')[1];
+      var dataThree = dataTwo.split('+')[0];
+      var newTimeStr = dataOne + ' ' + dataThree
+      return newTimeStr;
+    }
+    delFun () {
+      var self = this
+      this.delItem.status = -1
+      this.fetchDataPromise('meeting/wechat/updateMeetingApi.json', this.delItem, {})
+      .then(function(data) {
+        self.getList()
+        self.$apply()
+      })
+    }
+    toast (error) {
+      this.showToast = true
+      this.error = error
+      var that = this
+      setTimeout(() => {
+        that.showToast = false
+      }, 2000);
+    }
+    methods = {
+      // 编辑
+      edit (e) {
+        if (e.target.dataset.item.createUser.split('_')[1] !== this.user.id) {
+          this.toast('您不是该会议的创建者, 不能编辑')
+          return
+        }
+        console.log(this.user, 'useruser')
+        console.log(e.target.dataset.item.startDate.replace(/-/g, "/"), 'e.target.dataset.item.startDate')
+        if (new Date(e.target.dataset.item.startDate.replace(/-/g, "/")).getTime() < new Date().getTime()) {
+          this.toast('该会议已经开始, 不能编辑')
+          return
+        }
+        wx.navigateTo({
+          url: '/pages/editAddress?item=' + JSON.stringify(e.target.dataset.item)
+        });
+      },
+      // 删除
+      del (e) {
+        if (e.target.dataset.item.createUser.split('_')[1] !== this.user.id) {
+          this.toast('您不是该会议的创建者, 不能编辑')
+          return
+        }
+        if (new Date(e.target.dataset.item.startDate.replace(/-/g, "/")).getTime() < new Date().getTime()) {
+          this.toast('该会议已经开始, 不能删除')
+          return
+        }
+        this.delItem = e.target.dataset.item
+        var self = this
+        wx.showModal({
+          title:'提示',
+          content:'是否确认删除当前会议?',
+          cancelText:'取消',
+          confirmText:'确认',
+          success:function (res) {
+            if (res.confirm) {
+              self.delFun()
+            };
+          },
+          fail:function (err) {
+          },
+        })
+
+      }
+    }
+    onLoad () {
+      
+    }
+    whenAppReadyShow() {
+      this.getList()
+      this.showToast = false
+      // 每次都刷新
+    }
+  }
+</script>

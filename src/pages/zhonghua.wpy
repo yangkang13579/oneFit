@@ -1,0 +1,48 @@
+<style lang="less" scoped>
+  page {
+    background: #F4F4F4;
+  }
+  .lianxi{
+    color: #000;
+    font-size: 28rpx;
+    padding: 20rpx 20rpx;
+    text-indent:2em;
+
+  }
+</style>
+
+<template lang="wxml">
+  <view class="lianxi">
+     中化作物是扬农化工的全资子公司，是其旗下农药制剂分销、贸易平台，在亚太的菲律宾、泰国、印度、澳大利亚以及美洲的巴西、阿根廷设有子公司。中化作物目前在中国拥有“沈阳科创”和“南通科技”南北两大生产基地，具备扬农化工的原药优势和沈阳农研公司的研发支持。中化作物作为有情怀的农业服务国家队，一直在集成高性价比作物综合防治方案，从种子包衣，土壤改良，到除草，防虫防病，品质改善，充分发挥每个环节的优势，致力为农民丰收保驾护航。
+  </view>
+</template>
+
+<script>
+  /* global wx */
+  import wepy from 'wepy';
+  import PageMixin from '../mixins/page';
+  export default class Zhonghua extends wepy.page {
+    mixins = [PageMixin];
+    config = {
+      navigationBarTitleText: '中化作物',
+      navigationBarBackgroundColor: '#fff'
+    };
+    components = {};
+    data = {
+     
+    };
+    methods = {
+    };
+   initData() { //初始化数据
+   }
+   init() {
+     
+   }
+   onLoad () {
+   
+   }
+  whenAppReadyShow() {
+  }
+   
+ }
+</script>

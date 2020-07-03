@@ -1,0 +1,362 @@
+page {
+  background: #F4F4F4;
+}
+.carPay {
+  min-height: 100%;
+  background-color: #f2f2f2;
+}
+.carPay-title {
+  width: 100%;
+  height: 90rpx;
+  background: #FAC03D;
+  color: #fff;
+  font-size: 30rpx;
+  text-align: center;
+  line-height: 90rpx;
+  font-weight: bolder;
+}
+.carPayNews {
+  width: 710rpx;
+  padding: 20rpx 20rpx;
+  background: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.carPayNews-con {
+  width: 560rpx;
+  margin-left: 20rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.carPayNews-name,
+.carPayNews-mobile {
+  width: 100%;
+  color: #000000;
+  font-size: 28rpx;
+}
+.carPayNews-addr {
+  width: 100%;
+  color: #9b9b9b;
+  font-size: 28rpx;
+}
+.carPayNews-left image {
+  width: 30rpx;
+  height: 40rpx;
+}
+.carPayNews-right image {
+  width: 20rpx;
+  height: 30rpx;
+}
+.btn-site-new {
+  width: 100%;
+  height: 1rpx;
+  text-align: center;
+  line-height: 1rpx;
+  font-size: 14px;
+  /* border: 1px solid #ccc; */
+}
+.carXiu {
+  width: 690rpx;
+  height: 70rpx;
+  padding: 0 30rpx;
+  display: flex;
+  align-items: center;
+  border-bottom: 1rpx solid #ccc;
+  border-top: 1rpx solid #ccc;
+  background: #fff;
+}
+.carXiu image {
+  width: 35rpx;
+  height: 35rpx;
+}
+.carXiu text {
+  font-size: 30rpx;
+  color: #000;
+  margin-left: 30rpx;
+}
+.carLists {
+  width: 690rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20rpx 30rpx;
+  background: #fff;
+  border-bottom: 1rpx solid #ccc;
+}
+.carListimage {
+  width: 95rpx;
+  height: 95rpx;
+}
+.carListimage image {
+  width: 95rpx;
+  height: 95rpx;
+}
+.carListCon {
+  width: 420rpx;
+  display: flex;
+  margin-left: 20rpx;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.carListCon-title {
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 30rpx;
+  color: #000;
+}
+.carListCon-num {
+  width: 100%;
+  font-size: 28rpx;
+  color: #000;
+}
+.carListRight {
+  width: 150rpx;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  color: #D0021B;
+  font-size: 30rpx;
+}
+.carDear {
+  margin-top: 20rpx;
+  padding: 0 30rpx;
+  width: 690rpx;
+  height: 90rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #fff;
+}
+.carDear image {
+  width: 50rpx;
+  height: 50rpx;
+}
+.carDear text {
+  font-size: 30rpx;
+  color: #000;
+}
+.carDear input {
+  height: 80rpx;
+  border: 0;
+  font-size: 28rpx;
+}
+.carDear i {
+  color: #9B9B9B;
+  font-style: normal;
+  font-size: 28rpx;
+}
+.carStore i {
+  color: #9B9B9B;
+  font-style: normal;
+  font-size: 28rpx;
+  margin-right: 10rpx;
+}
+.carStore {
+  width: 690rpx;
+  background: #fff;
+  height: 90rpx;
+  padding: 0rpx 30rpx;
+  border-top: 1rpx solid #ccc;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.carStore text {
+  font-size: 28rpx;
+  color: #000;
+}
+.carStore image {
+  width: 100rpx;
+  height: 50rpx;
+}
+.carErear {
+  width: 690rpx;
+  height: 180rpx;
+  padding: 20rpx 30rpx 0 30rpx;
+  background: #fff;
+  border-top: 1rpx solid #ccc;
+}
+.carErear-text {
+  font-size: 28rpx;
+  color: #000;
+  float: left;
+}
+.textErea {
+  font-size: 28rpx;
+  color: #000;
+  float: left;
+  width: 530rpx;
+  margin-left: 30rpx;
+  height: 160rpx;
+}
+.textErea textarea {
+  border: 0;
+  outline: none;
+  width: 520rpx;
+  height: 150rpx;
+  padding: 5rpx;
+}
+.carIdnode {
+  width: 690rpx;
+  height: 90rpx;
+  line-height: 90rpx;
+  padding: 0rpx 30rpx;
+  background: #fff;
+  border-top: 1rpx solid #ccc;
+  /*margin-bottom: 3rpx;*/
+}
+.carPayContent {
+  padding-bottom: 300rpx;
+}
+.carIdnode-text {
+  float: right;
+}
+.carIdnode-one {
+  font-size: 30rpx;
+  color: #000000;
+}
+.carIdnode-two {
+  font-size: 30rpx;
+  color: #D0021B;
+  margin-left: 20rpx;
+}
+.payFixed {
+  width: 100%;
+  height: 100rpx;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  background: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.payFixed-left-one {
+  font-size: 30rpx;
+  color: #000;
+}
+.payFixed-left-two {
+  font-size: 30rpx;
+  color: #D0021B;
+  margin-right: 20rpx;
+}
+.payFixed-right {
+  width: 328rpx;
+  height: 100%;
+  color: #fff;
+  background: #FAC03D;
+  text-align: center;
+  line-height: 100rpx;
+  font-size: 30rpx;
+}
+.payFixed-left {
+  width: 400rpx;
+  text-align: center;
+}
+.title {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 14rpx;
+  align-items: center;
+  color: #ff8c12;
+}
+.question {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 85rpx;
+  margin-left: 270rpx;
+}
+.add-address {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  color: #333;
+}
+.default-address {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+.default-address-left {
+  width: 100%;
+  padding: 0 0 20rpx 0;
+}
+.adress {
+  float: left;
+  width: 60%;
+  height: auto;
+}
+.tel {
+  float: right;
+  width: 40%;
+  height: auto;
+}
+.default-address-left text {
+  color: #333;
+  line-height: 35rpx;
+  font-size: 28rpx;
+}
+.default-address-left .default-icon {
+  width: 72rpx;
+  height: 30rpx;
+  line-height: 30rpx;
+  border: 1rpx solid #ff8c12;
+  color: #ff8c12;
+  font-size: 26rpx;
+  text-align: center;
+  margin-top: 20rpx;
+}
+.default-address-right {
+  padding: 0rpx 60rpx 10rpx 0rpx;
+}
+.default-address-right text {
+  font-size: 28rpx;
+  color: #666;
+}
+.default-address-right .mobile {
+  margin-bottom: 20rpx;
+  color: #333;
+}
+.user-info text {
+  font-size: 28rpx;
+}
+.arrow.mr {
+  position: absolute;
+  top: 95rpx;
+  right: 35rpx;
+  width: 20rpx;
+  height: 20rpx;
+  /* margin-right: 30rpx; */
+}
+/* 用户信息 */
+.user-info {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  /* border-bottom: 1rpx solid #ccc; */
+}
+.user-info .name-mobile {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 30rpx;
+}
+.user-info .name-mobile text {
+  color: #666;
+}
+.user-info .address {
+  color: #666;
+}
+.vscode {
+  width: 50rpx;
+  height: 50rpx;
+}

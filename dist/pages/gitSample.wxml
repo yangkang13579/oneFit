@@ -1,0 +1,31 @@
+
+  <view class="git">
+    <view class="myTitle">
+      <view class="myName">
+        <image src="{{userInfo.profile}}"/>
+        <text>{{userInfo.nickName}}</text>
+      </view>
+      <view bindtap="mySamples" class="myApply">
+        <text>我的申领</text>
+        <image src="../images/arrow_r.svg" class="right"/>
+      </view>
+    </view>
+    <view class="myList">
+      <block  wx:for="{{list}}" wx:key="index">
+        <view data-id="{{item.id}}" catchtap="goDetails" class="myItem">
+          <image src="{{item.headPicture}}"/>
+          <view class="myItem-right">
+            <view class="myItem-title">{{item.name}}</view>
+            <view class="myItem-bot">
+              <view class="btnLeft">{{item.score}}积分</view>
+              <view data-id="{{item.id}}" wx:if="{{item.totalCount-item.usedCount>0}}" catchtap="toFrom" class="btnSample">立即申请</view>
+              <view wx:else class="btnSample" catchtap="end">已申领完</view>
+            </view>
+          </view>
+
+        </view>
+      </block>
+
+    </view>
+  
+  </view>

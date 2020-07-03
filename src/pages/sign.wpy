@@ -1,0 +1,220 @@
+<style lang="less" scoped>
+  page {
+    background: #F4F4F4;
+  }
+   .bg{
+    height: 100%;
+    width: 100%;
+    background-image: linear-gradient(#23A7A2, #0D7FC6);
+    position: fixed;
+    top:0;
+    left:0;
+  }
+  .admin{
+    top:0;
+    left:0;
+    z-index: 2;
+    position: relative
+  }
+  .tit{
+    padding:40% 0 20rpx 0;
+    width:100%;
+    text-align: center;
+    font-size:32rpx;
+    color: #fff;
+  }
+     .write-input {
+      width:100% /* 250/37.5 */;
+      margin: 10rpx /* 80/37.5 */ /* 15/37.5 */ 10rpx  /* 56/37.5 */ 0  10rpx ;
+      position: relative;
+      clear: both;
+      overflow: hidden;
+      height: 100rpx /* 40/37.5 */;
+      background: #fff;
+      .realInput {
+        height: 100rpx /* 40/37.5 */;
+        width: 1700rpx;
+        position: absolute;
+        text-indent: -999em;
+        left: -100%;
+        z-index: 1111111;
+        margin-left: -300rpx;
+      }
+    }
+    li {
+      float: left;
+      width: 100rpx /* 40/37.5 */ /* 26/37.5 */;
+      height:100rpx /* 40/37.5 */ /* 26/37.5 */;
+      background: #f3eeeb;
+      border-radius: 10rpx /* 5/37.5 */;
+      color: #222;
+      margin-left: 75rpx /* 11/37.5 */;
+      border:1rpx solid #65ABFF;
+      input {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        -ms-appearance: none;
+        resize: none;
+        outline: none;
+        border: 0;
+        width: 100rpx /* 40/37.5 */ /* 26/37.5 */;
+        height:100rpx /* 40/37.5 */ /* 26/37.5 */;
+        text-align: center;
+        font-size: 30rpx /* 14/37.5 */;
+      }
+    }
+    .border{
+      border:4rpx solid #0d68b3;
+      margin-top:-2rpx;
+    }
+    .Li{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-left:-10rpx;
+      li{
+        margin-left:20rpx;
+      }
+    }
+    .save-btn{
+      font-size:30rpx;
+      margin-left: 30rpx;
+      margin-top:50rpx;
+      width: 690rpx;
+      height: 90rpx;
+      line-height: 90rpx;
+      background: #0970AC;
+      color: #fff;
+      margin-bottom: 50rpx;
+    }
+</style>
+
+<template lang="wxml">
+  <view>
+    <view class='bg'></view>
+    <view class='admin'>
+    <view class='tit'>请输入会议码</view>
+      <ul class="write-input clearfix">
+      <input
+        ref="input"
+        maxlength="{{4}}"
+        class="realInput"
+        focus="{{inputShowed}}"
+        value="{{realInput}}"
+        type="number"
+        bindinput="getNum"
+      />
+      <view class='Li'>
+        <li wx:for="{{disInputs}}" wx:for-index="index" wx:for-item="disInput" class="{{realInput.length === index + 1 ? 'border' : ''}}">
+          <input
+            type="password"
+            maxlength="1"
+            disabled
+            value="{{disInput}}"
+            wx:if="{{disInput && disInput !== ''}}"
+          />
+        </li>
+      </view>
+    </ul>
+    <view class='toast' wx:if='{{showToast}}'><p>{{error}}</p></view>
+    </view>
+  </view>
+</template>
+
+<script>
+  /* global wx */
+  import wepy from 'wepy';
+  import PageMixin from '../mixins/page';
+  export default class Home extends wepy.page {
+    mixins = [PageMixin];
+    config = {
+      navigationBarTitleText: '会议签到',
+      navigationBarBackgroundColor: '#fff'
+    };
+    components = {};
+    data = {
+      inputShowed: true,
+      msg: '',
+      showToast: false,
+      error: '',
+      disInputs: [
+        '',
+        '',
+        '',
+        '',
+      ],
+      realInput: '',
+      formData: {}
+    }
+    toast (error) {
+      this.showToast = true
+      this.error = error
+      var that = this
+      setTimeout(() => {
+        that.showToast = false
+      }, 2000);
+    }
+    methods = {
+      sure () {
+
+      },
+      getNum(e) {
+        this.realInput = e.detail.value
+        if (e.detail.value.length === 0) {
+          this.disInputs = [
+            '',
+            '',
+            '',
+            '',
+          ]
+          return
+        }
+        for (var i = 0; i < e.detail.value.length; i++) {
+          if ((this.disInputs.length > e.detail.value.length) || e.detail.value.length === 0) {
+            let len = this.disInputs.length - e.detail.value.length
+            this.disInputs[4 - len] = ''
+          }
+          if (i < 4) {
+            this.disInputs[i] = e.detail.value.charAt(i);
+          }
+        }
+        if (e.detail.value.length >= 4) {
+          this.formData.code = e.detail.value
+          var that = this
+          this.fetchDataPromise('meeting/wechat/signInApi.json', this.formData, {})
+          .then(function(data) {
+            console.log('111', data)
+            that.toast('签到成功')
+            setTimeout(function() {
+              wx.navigateBack({
+                delta: 1
+              });
+            }, 1000)
+          }).catch(function (res) {
+            console.log(res, '11111')
+          })
+        }
+      }
+    };
+   initData() { //初始化数据
+   }
+   init() {
+     this.$refs.pwd.focus();
+   }
+   onLoad () {
+     var that = this
+     wx.getLocation({
+        type: 'gcj02',
+        success: function (res) {
+          that.formData.latitude = res.latitude
+          that.formData.longitude = res.longitude
+        },
+        fail: function (res) {
+          console.log(res);
+        }
+      })
+   }
+   tabFunSecah(index) {
+   }
+ }
+</script>

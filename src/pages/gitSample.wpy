@@ -138,66 +138,65 @@ page {
 
 <script>
 /* global wx */
-import wepy from "wepy";
-import PageMixin from "../mixins/page";
+import wepy from 'wepy';
+import PageMixin from '../mixins/page';
 export default class GitSample extends wepy.page {
   mixins = [PageMixin];
   config = {
-    navigationBarTitleText: "样品申领",
-    navigationBarBackgroundColor: "#fff"
+      navigationBarTitleText: '样品申领',
+      navigationBarBackgroundColor: '#fff'
   };
   components = {};
   data = {
-    list:[],
-    userInfo:[]
+      list: [],
+      userInfo: []
   };
   methods = {
-    toFrom(e){
-      console.log("e",e)
-      let id = e.currentTarget.dataset.id;
-      wx.navigateTo({
-          url: '/pages/form?id=' + id
-      });
-    },
-       // 我的样品申领
-    mySamples(){
-     wx.navigateTo({
-        url: "/pages/meMaple"
-      });
-    },
-    
-   goDetails(e){
-      console.log("e11",e)
-    let id = e.currentTarget.dataset.id;
-    console.log(id)
-     wx.navigateTo({
-        url: '/pages/sampleDetail?id=' + id
-     });
-    
-   }
+      toFrom(e) {
+          console.log('e', e);
+          let id = e.currentTarget.dataset.id;
+          wx.navigateTo({
+              url: '/pages/form?id=' + id
+          });
+      },
+      // 我的样品申领
+      mySamples() {
+          wx.navigateTo({
+              url: '/pages/meMaple'
+          });
+      },
+
+      goDetails(e) {
+          console.log('e11', e);
+          let id = e.currentTarget.dataset.id;
+          console.log(id);
+          wx.navigateTo({
+              url: '/pages/sampleDetail?id=' + id
+          });
+
+      }
   }
-  onLoad(){
+  onLoad() {
   }
-   init(){
-      this.fetchDataPromise("user/userInfo.json", {})
-        .then(data => {
-          console.log("6677",data)
-          this.userInfo = data
-          this.$apply()
-        })
-        .catch(function(error) {});
-    }
+  init() {
+      this.fetchDataPromise('user/userInfo.json', {})
+          .then(data => {
+              console.log('6677', data);
+              this.userInfo = data;
+              this.$apply();
+          })
+          .catch(function(error) {});
+  }
   whenAppReadyShow() {
-    this.fetchDataPromise("wx/specimen/querySpecimenApi.json", {})
-      .then(data => {
-        console.log("11 ", data);
-        this.list = data.list;
-        this.init()
-        this.$apply()
-      })
-      .catch(function(error) {});
-      
-      
+      this.fetchDataPromise('wx/specimen/querySpecimenApi.json', {})
+          .then(data => {
+              console.log('11 ', data);
+              this.list = data.list;
+              this.init();
+              this.$apply();
+          })
+          .catch(function(error) {});
+
   }
 }
 </script>

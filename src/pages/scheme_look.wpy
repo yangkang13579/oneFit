@@ -349,232 +349,232 @@
   export default class SchemeLook extends wepy.page {
       mixins = [PageMixin];
       config = {
-        navigationBarBackgroundColor: '#000000',
-        navigationBarTitleText: '方案预览',
+          navigationBarBackgroundColor: '#000000',
+          navigationBarTitleText: '方案预览',
       };
       components = {
-        // tabbar: Tabbar
+          // tabbar: Tabbar
       };
       data = {
-        inputvalue: '',
-        resourceId: "",
-        showTag: null,
-        catalogs: [],
-        resources: [],
-        currentIndex: null,
-        item: ['日常安全教育', '日常安全教育', '日常安全教育', '日常安全教育', '日常安全教育', '日教育', '日常安全教育', '日常安全教育', '日常安全教育'],
-        modal: false,
-        countryList: [],
-        poId: [],
-        id: '',
-        blueprintId: "",
-        downloadurl: "",
-        imgUrl: [],
-        disbal: false
+          inputvalue: '',
+          resourceId: '',
+          showTag: null,
+          catalogs: [],
+          resources: [],
+          currentIndex: null,
+          item: ['日常安全教育', '日常安全教育', '日常安全教育', '日常安全教育', '日常安全教育', '日教育', '日常安全教育', '日常安全教育', '日常安全教育'],
+          modal: false,
+          countryList: [],
+          poId: [],
+          id: '',
+          blueprintId: '',
+          downloadurl: '',
+          imgUrl: [],
+          disbal: false
       }
       methods = {
-        othersTap(e) {
-          console.log(e)
-          var self = this;
-          self.typeId = e.currentTarget.dataset.typeid;
-          self.downloadurl = e.currentTarget.dataset.downloadurl;
-          self.blueprintId = e.currentTarget.dataset.id;
-          this.fetchDataPromise('user/resourceInfo.do', {
-              resourceId: self.blueprintId,
-            })
-            .then(function(data) {
-              console.log('预览22 ', data);
-              self.$apply();
-            })
-          if (self.typeId === "video" || self.typeId === "class") {
-            console.log("2222")
-            wx.setStorageSync('video', self.downloadurl);
-            wx.navigateTo({
-              url: '/pages/movie'
-            });
-          } else if (self.typeId === "ppt") {
-            console.log("ppppppt")
-            console.log("self.downloadurleee", self.downloadurl)
-            wx.downloadFile({ 
-              url: self.downloadurl,
-                 success: function(res) {
-                console.log("resss", res)
-                self.filePath = res.tempFilePath;   
-                wx.openDocument({     
-                  filePath: self.filePath,
-                  success: function(res) {      
-                    console.log('打开文档成功', res)     
-                  },
-                  fail: function(res) {
-                    console.log('打开文档失败', res)  
-                  }    
-                })   
-              }  
-            })
-          } else if (self.typeId === "image") {
-            self.imgUrl.push(self.downloadurl)
-            wx.previewImage({
-              current: self.downloadurl,
-              urls: self.imgUrl
-            })
-          }
-          self.$apply();
-        },
-        closeModal() {
-          this.modal = false
-        },
-        getSearchContent(e) {
-          console.log(e)
-          this.inputvalue = e.detail.value;
-          wx.setStorageSync('inputvalue', this.inputvalue);
-          this.$apply();
-        },
-        save(e) {
-          var self = this;
-          if (self.inputvalue == "") {
-            console.log("33")
-            wx.showToast({
-              title: '请填写方案名称',
-              icon: 'success',
-              duration: 2000
-            });
-          } else if (self.showTag == null) {
-            console.log("44")
-            wx.showToast({
-              title: '请选择方案主题',
-              icon: 'success',
-              duration: 2000
-            });
-          } else {
-            if (self.disbal == true) {
-              return
-            } else {
-              console.log('55 ');
-              this.fetchDataPromise('user/blueprintSave.do', {
-                  catalogId: self.showTag.id,
-                  name: self.inputvalue,
-                  resourceIds: self.poId.join(",")
-                })
-                .then(function(data) {
-                  console.log("dd", data)
-                  self.disbal = true;
-                  wx.showToast({
-                    title: '方案保存成功',
-                    icon: 'success',
-                    duration: 2000
+          othersTap(e) {
+              console.log(e);
+              var self = this;
+              self.typeId = e.currentTarget.dataset.typeid;
+              self.downloadurl = e.currentTarget.dataset.downloadurl;
+              self.blueprintId = e.currentTarget.dataset.id;
+              this.fetchDataPromise('user/resourceInfo.do', {
+                  resourceId: self.blueprintId,
+              })
+                  .then(function(data) {
+                      console.log('预览22 ', data);
+                      self.$apply();
                   });
-                  wx.removeStorageSync("video")
-            wx.removeStorageSync("inputvalue")
-                  setTimeout(function() {
-                    wx.switchTab({
-                      url: '/pages/scheme'
-                    })
-                  }, 2000);
-              
-            })
-        }
-      }
-    },
-    sure() {
-      this.showTag = this.catalogs[this.currentIndex]
-      this.modal = false
-      console.log(this.showTag.id)
-      wx.setStorageSync('showTag', this.showTag);
-    },
-    titFun(e) {
-      console.log(e)
-      this.currentIndex = e.currentTarget.dataset.index
-    },
-    showModal() {
-      this.modal = !this.modal
-    },
-    reset() {
-      console.log(1)
-      // this.modal = false
-      this.currentIndex = null
-      this.showTag = null
-    },
-    searchClick(e) {
-      wx.navigateTo({
-        url: '/pages/search'
-      });
-    },
-    ranking(e) {
-      wx.navigateTo({
-        url: '/pages/ranking'
-      });
-    }
+              if (self.typeId === 'video' || self.typeId === 'class') {
+                  console.log('2222');
+                  wx.setStorageSync('video', self.downloadurl);
+                  wx.navigateTo({
+                      url: '/pages/movie'
+                  });
+              } else if (self.typeId === 'ppt') {
+                  console.log('ppppppt');
+                  console.log('self.downloadurleee', self.downloadurl);
+                  wx.downloadFile({
+                      url: self.downloadurl,
+                      success: function(res) {
+                          console.log('resss', res);
+                          self.filePath = res.tempFilePath;
+                          wx.openDocument({
+                              filePath: self.filePath,
+                              success: function(res) {
+                                  console.log('打开文档成功', res);
+                              },
+                              fail: function(res) {
+                                  console.log('打开文档失败', res);
+                              }
+                          });
+                      }
+                  });
+              } else if (self.typeId === 'image') {
+                  self.imgUrl.push(self.downloadurl);
+                  wx.previewImage({
+                      current: self.downloadurl,
+                      urls: self.imgUrl
+                  });
+              }
+              self.$apply();
+          },
+          closeModal() {
+              this.modal = false;
+          },
+          getSearchContent(e) {
+              console.log(e);
+              this.inputvalue = e.detail.value;
+              wx.setStorageSync('inputvalue', this.inputvalue);
+              this.$apply();
+          },
+          save(e) {
+              var self = this;
+              if (self.inputvalue == '') {
+                  console.log('33');
+                  wx.showToast({
+                      title: '请填写方案名称',
+                      icon: 'success',
+                      duration: 2000
+                  });
+              } else if (self.showTag == null) {
+                  console.log('44');
+                  wx.showToast({
+                      title: '请选择方案主题',
+                      icon: 'success',
+                      duration: 2000
+                  });
+              } else {
+                  if (self.disbal == true) {
+  
+                  } else {
+                      console.log('55 ');
+                      this.fetchDataPromise('user/blueprintSave.do', {
+                          catalogId: self.showTag.id,
+                          name: self.inputvalue,
+                          resourceIds: self.poId.join(',')
+                      })
+                          .then(function(data) {
+                              console.log('dd', data);
+                              self.disbal = true;
+                              wx.showToast({
+                                  title: '方案保存成功',
+                                  icon: 'success',
+                                  duration: 2000
+                              });
+                              wx.removeStorageSync('video');
+                              wx.removeStorageSync('inputvalue');
+                              setTimeout(function() {
+                                  wx.switchTab({
+                                      url: '/pages/scheme'
+                                  });
+                              }, 2000);
+  
+                          });
+                  }
+              }
+  },
+          sure() {
+              this.showTag = this.catalogs[this.currentIndex];
+              this.modal = false;
+              console.log(this.showTag.id);
+              wx.setStorageSync('showTag', this.showTag);
+          },
+          titFun(e) {
+              console.log(e);
+              this.currentIndex = e.currentTarget.dataset.index;
+          },
+          showModal() {
+              this.modal = !this.modal;
+          },
+          reset() {
+              console.log(1);
+              // this.modal = false
+              this.currentIndex = null;
+              this.showTag = null;
+          },
+          searchClick(e) {
+              wx.navigateTo({
+                  url: '/pages/search'
+              });
+          },
+          ranking(e) {
+              wx.navigateTo({
+                  url: '/pages/ranking'
+              });
+          }
   };
   delete(e) {
-    console.log(e)
-    var self = this;
-    self.resourceId = e.currentTarget.dataset.id;
-    this.fetchDataPromise('user/blueprintResourceDelete.do', {
-        resourceId: self.resourceId
-      })
-      .then(function(data) {
-        console.log('删除 ', data);
-        self.whenAppReadyShow()
-        setTimeout(function() {
-          wx.showToast({
-            title: '删除成功',
-            icon: 'success',
-            duration: 2000
-          });
-        }, 100);
-      })
+          console.log(e);
+          var self = this;
+          self.resourceId = e.currentTarget.dataset.id;
+          this.fetchDataPromise('user/blueprintResourceDelete.do', {
+              resourceId: self.resourceId
+          })
+              .then(function(data) {
+                  console.log('删除 ', data);
+                  self.whenAppReadyShow();
+                  setTimeout(function() {
+                      wx.showToast({
+                          title: '删除成功',
+                          icon: 'success',
+                          duration: 2000
+                      });
+                  }, 100);
+              });
   }
   onLoad(e) {
-    console.log(e)
-    this.resourceId = e.resourceId;
+          console.log(e);
+          this.resourceId = e.resourceId;
   }
   whenAppReadyShow() {
-    wx.removeStorageSync("video")
-    var self = this;
-     if(!wx.getStorageSync('inputvalue')){
-       self.inputvalue="";
-       self.showTag = null
-       console.log(11111111111111111111111111111)
-     }else{
-       console.log(22222222222222222222)
-        self.inputvalue = wx.getStorageSync('inputvalue');
-     }
-     if(!wx.getStorageSync('showTag')){
-       
-     }else{
-        self.showTag = wx.getStorageSync('showTag');
+          wx.removeStorageSync('video');
+          var self = this;
+          if (!wx.getStorageSync('inputvalue')) {
+              self.inputvalue = '';
+              self.showTag = null;
+              console.log(11111111111111111111111111111);
+          } else {
+              console.log(22222222222222222222);
+              self.inputvalue = wx.getStorageSync('inputvalue');
+          }
+          if (!wx.getStorageSync('showTag')) {
+  
+          } else {
+              self.showTag = wx.getStorageSync('showTag');
 
-     }
-      self.$apply();
-    // self.inputvalue ="";
-    self.poId=[];
-    self.resourceId="";
-    
-    this.fetchDataPromise('user/blueprintPreview.do', {}, {}).then(data => {
-      console.log('data is:', data);
-      self.catalogs = data.catalogs
-      self.resources = data.resources;
-      for (var i = 0; i < self.resources.length; i++) {
-        self.poId.push(self.resources[i].id)
-      }
-      console.log('self.poId', self.poId)
-      self.$apply();
-      // 取前6个，增加一个more
-    });
+          }
+          self.$apply();
+          // self.inputvalue ="";
+          self.poId = [];
+          self.resourceId = '';
+  
+          this.fetchDataPromise('user/blueprintPreview.do', {}, {}).then(data => {
+              console.log('data is:', data);
+              self.catalogs = data.catalogs;
+              self.resources = data.resources;
+              for (var i = 0; i < self.resources.length; i++) {
+                  self.poId.push(self.resources[i].id);
+              }
+              console.log('self.poId', self.poId);
+              self.$apply();
+              // 取前6个，增加一个more
+          });
   }
   onShareAppMessage(res) {
-    return this.whenAppShare({
-      title: '安全教育资源地图'
-    });
+          return this.whenAppShare({
+              title: '安全教育资源地图'
+          });
   }
   regionchange(e) {
-    console.log(e.type);
+          console.log(e.type);
   }
   markertap(e) {
-    console.log(e.markerId);
+          console.log(e.markerId);
   }
   controltap(e) {
-    console.log(e.controlId);
+          console.log(e.controlId);
   }
   }
 </script>

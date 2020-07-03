@@ -271,103 +271,101 @@
   export default class SchoolDetail extends wepy.page {
     mixins = [PageMixin];
     config = {
-      navigationBarTitleText: '学校详情'
+        navigationBarTitleText: '学校详情'
     };
     data = {
-      isShade: false,
-      isintor: true,
-      currentIndex: 0,
-      schoolId: "",
-      schoolDetail: [],
-      schoolResource: [],
-      pageNum1: 1,
-      istrue: true,
-      totalPage: "",
-      imgUrl: []
+        isShade: false,
+        isintor: true,
+        currentIndex: 0,
+        schoolId: '',
+        schoolDetail: [],
+        schoolResource: [],
+        pageNum1: 1,
+        istrue: true,
+        totalPage: '',
+        imgUrl: []
     };
     methods = {
-      othersTap(e) {
-        console.log(e)
-        var self = this;
-        self.id = e.currentTarget.dataset.id;
-        self.typeId = e.currentTarget.dataset.typeid;
-        self.downloadurl = e.currentTarget.dataset.downloadurl;
-         this.fetchDataPromise('user/resourceInfo.do', {
-            resourceId: self.id,
-           
-          })
-          .then(function(data) {
-            console.log('走街口了 ', data);
+        othersTap(e) {
+            console.log(e);
+            var self = this;
+            self.id = e.currentTarget.dataset.id;
+            self.typeId = e.currentTarget.dataset.typeid;
+            self.downloadurl = e.currentTarget.dataset.downloadurl;
+            this.fetchDataPromise('user/resourceInfo.do', {
+                resourceId: self.id,
+  
+            })
+                .then(function(data) {
+                    console.log('走街口了 ', data);
+                    self.$apply();
+                });
+            if (self.typeId === 'video' || self.typeId === 'class') {
+                console.log('2222');
+                wx.setStorageSync('video', self.downloadurl);
+                wx.navigateTo({
+                    url: '/pages/movie'
+                });
+            } else if (self.typeId === 'image') {
+                self.imgUrl.push(self.downloadurl);
+                wx.previewImage({
+                    current: self.downloadurl,
+                    urls: self.imgUrl
+                });
+            } else if (self.typeId === 'ppt') {
+                console.log('ppppppt');
+                console.log('self.downloadurleee', self.downloadurl);
+                wx.downloadFile({
+                    url: self.downloadurl,
+                    success: function(res) {
+                        console.log('resss', res);
+                        self.filePath = res.tempFilePath;
+                        wx.openDocument({
+                            filePath: self.filePath,
+                            success: function(res) {
+                                console.log('打开文档成功', res);
+                            },
+                            fail: function(res) {
+                                console.log('打开文档失败', res);
+                            }
+                        });
+                    }
+                });
+            }
             self.$apply();
-          })
-        if (self.typeId === "video" || self.typeId === "class") {
-          console.log("2222")
-          wx.setStorageSync('video', self.downloadurl);
-          wx.navigateTo({
-            url: '/pages/movie'
-          });
-        }
-        else if (self.typeId === "image") {
-          self.imgUrl.push(self.downloadurl)
-          wx.previewImage({
-            current: self.downloadurl,
-            urls: self.imgUrl
-          })
-        }
-        else if (self.typeId === "ppt") {
-                    console.log("ppppppt")
-                    console.log("self.downloadurleee", self.downloadurl)
-                    wx.downloadFile({ 
-                        url: self.downloadurl,
-                           success: function(res) {
-                            console.log("resss", res)
-                            self.filePath = res.tempFilePath;   
-                            wx.openDocument({     
-                                filePath: self.filePath,
-                                success: function(res) {      
-                                    console.log('打开文档成功', res)     
-                                },
-                                fail: function(res) {
-                                    console.log('打开文档失败', res)  
-                                }    
-                            })   
-                        }  
-                    })
-                }
-        self.$apply();
-      },
-      look() {
-        wx.navigateTo({
-          url: '/pages/scheme_look'
-        });
-      },
-      addSeart(e) {
-        console.log(e)
-        var self = this;
-        self.id = e.currentTarget.dataset.id;
-        this.fetchDataPromise('user/blueprintResourceInsert.do', {
-            resourceId: self.id,
-          })
-          .then(function(data) {
-            console.log('资源 ', data);
-            // self.restList = data.items;
-            wx.showToast({
-              title: '添加成功',
-              icon: 'success',
-              duration: 2000
+        },
+        look() {
+            wx.navigateTo({
+                url: '/pages/scheme_look'
             });
-            self.$apply();
-          })
-      },
-      tabFun(index) {
-        this.pageNum1 = 1
-        this.istrue = true
-      this.totalPage = ""
-        console.log(index)
-        this.schoolResource = []
-        var self = this;
-        self.currentIndex = index;
-        self.ontabFun()
+        },
+        addSeart(e) {
+            console.log(e);
+            var self = this;
+            self.id = e.currentTarget.dataset.id;
+            this.fetchDataPromise('user/blueprintResourceInsert.do', {
+                resourceId: self.id,
+            })
+                .then(function(data) {
+                    console.log('资源 ', data);
+                    // self.restList = data.items;
+                    wx.showToast({
+                        title: '添加成功',
+                        icon: 'success',
+                        duration: 2000
+                    });
+                    self.$apply();
+                });
+        },
+        tabFun(index) {
+            this.pageNum1 = 1;
+            this.istrue = true;
+            this.totalPage = '';
+            console.log(index);
+            this.schoolResource = [];
+            var self = this;
+            self.currentIndex = index;
+            self.ontabFun();
         // if (self.currentIndex == 0) {
         //   this.fetchDataPromise('schoolInfo.do', {
         //       id: self.schoolId
@@ -398,85 +396,85 @@
         //       self.$apply();
         //     })
         // }
-      },
-      shade(e) {
-        this.isShade = true;
-        this.isintor = false;
-      },
-      intor(e) {
-        this.isShade = false;
-        this.isintor = true;
-      }
+        },
+        shade(e) {
+            this.isShade = true;
+            this.isintor = false;
+        },
+        intor(e) {
+            this.isShade = false;
+            this.isintor = true;
+        }
     };
     ontabFun(index) {
-      var self = this;
-      if (index == 0) {
-        this.fetchDataPromise('schoolInfo.do', {
-            id: self.schoolId
-          })
-          .then(function(data) {
-            self.schoolDetail = data.item;
-            console.log('schoolInfo', self.schoolDetail);
-            self.$apply();
-          })
-      } else {
-        this.fetchDataPromise('schoolInfo.do', {
-            id: self.schoolId
-          })
-          .then(function(data) {
-            self.schoolDetail = data.item;
-            console.log('schoolInfo', self.schoolDetail);
-            self.$apply();
-          })
-        this.fetchDataPromise('schoolResource.do', {
-            schoolId: self.schoolId,
-            pageNumber: self.pageNum1,
-            pageSize: 10
-          })
-          .then(function(data) {
-            // self.schoolResource = data.items;
-            for (var i = 0; i < data.items.length; i++) {
-              self.schoolResource.push(data.items[i]);
-            }
-            self.totalPage = data.page.totalPage;
-            if (self.totalPage == self.pageNum1) {
-              self.istrue = false;
-            } else {
-              self.istrue = true;
-            }
-            console.log('data', data);
-            self.$apply();
-          })
-      }
+        var self = this;
+        if (index == 0) {
+            this.fetchDataPromise('schoolInfo.do', {
+                id: self.schoolId
+            })
+                .then(function(data) {
+                    self.schoolDetail = data.item;
+                    console.log('schoolInfo', self.schoolDetail);
+                    self.$apply();
+                });
+        } else {
+            this.fetchDataPromise('schoolInfo.do', {
+                id: self.schoolId
+            })
+                .then(function(data) {
+                    self.schoolDetail = data.item;
+                    console.log('schoolInfo', self.schoolDetail);
+                    self.$apply();
+                });
+            this.fetchDataPromise('schoolResource.do', {
+                schoolId: self.schoolId,
+                pageNumber: self.pageNum1,
+                pageSize: 10
+            })
+                .then(function(data) {
+                    // self.schoolResource = data.items;
+                    for (var i = 0; i < data.items.length; i++) {
+                        self.schoolResource.push(data.items[i]);
+                    }
+                    self.totalPage = data.page.totalPage;
+                    if (self.totalPage == self.pageNum1) {
+                        self.istrue = false;
+                    } else {
+                        self.istrue = true;
+                    }
+                    console.log('data', data);
+                    self.$apply();
+                });
+        }
     }
     onReachBottom() {
-      console.log("self.currentIndex", this.currentIndex)
-      if (this.currentIndex == 1) {
-        if (this.istrue == false) {
-          wx.showToast({
-            title: '已经没有数据啦',
-            icon: 'success',
-            duration: 2000
-          });
-          return
-        } else {
-          this.pageNum1++;
-          console.log("this.pageNum1", this.pageNum1)
-          console.log("self.cc", this.currentIndex)
-          this.ontabFun(this.currentIndex)
-        }
-      } else {}
-    }
+        console.log('self.currentIndex', this.currentIndex);
+        if (this.currentIndex == 1) {
+            if (this.istrue == false) {
+                wx.showToast({
+                    title: '已经没有数据啦',
+                    icon: 'success',
+                    duration: 2000
+                });
+  
+            } else {
+                this.pageNum1++;
+                console.log('this.pageNum1', this.pageNum1);
+                console.log('self.cc', this.currentIndex);
+                this.ontabFun(this.currentIndex);
+            }
+        } else {}
+  }
     onLoad(e) {
-      console.log(e)
-      this.schoolId = e.id;
-       this.schoolResource=[]
+        console.log(e);
+        this.schoolId = e.id;
+        this.schoolResource = [];
     }
     whenAppReadyShow() {
-      wx.removeStorageSync("video")
-      var self = this;
-      self.schoolResource=[]
-      self.ontabFun(this.currentIndex)
+        wx.removeStorageSync('video');
+        var self = this;
+        self.schoolResource = [];
+        self.ontabFun(this.currentIndex);
     //   this.fetchDataPromise('schoolInfo.do', {
     //       id: self.schoolId
     //     })

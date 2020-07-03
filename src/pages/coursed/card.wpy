@@ -167,48 +167,48 @@ page {
 
 <script>
 /* global wx */
-import wepy from "wepy";
-import PageMixin from "../../mixins/page";
+import wepy from 'wepy';
+import PageMixin from '../../mixins/page';
 export default class Member extends wepy.page {
   // mixins = [PageMixin];
   config = {
-    navigationBarTitleText: "会员卡列表",
-    navigationStyle:"default",
-    navigationBarBackgroundColor: "#e84644"
+      navigationBarTitleText: '会员卡列表',
+      navigationStyle: 'default',
+      navigationBarBackgroundColor: '#e84644'
   };
   components = {};
   data = {
   };
   methods = {
-   
+
   };
 
   onReachBottom() {}
 
   whenAppReadyShow() {
-    this.fetchDataPromise("user/userInfo.json", {})
-      .then(data => {
-        const userInfo = data;
-        this.$apply();
-        wx.setStorage({
-          key: "userInfo",
-          data: JSON.stringify(userInfo)
-        });
-      })
-      .catch(function(error) {});
+      this.fetchDataPromise('user/userInfo.json', {})
+          .then(data => {
+              const userInfo = data;
+              this.$apply();
+              wx.setStorage({
+                  key: 'userInfo',
+                  data: JSON.stringify(userInfo)
+              });
+          })
+          .catch(function(error) {});
   }
   onShow() {
-    // wx.hideTabBar()
+      // wx.hideTabBar()
   }
   onShareAppMessage(res) {}
   regionchange(e) {
-    console.log(e.type);
+      console.log(e.type);
   }
   markertap(e) {
-    console.log(e.markerId);
+      console.log(e.markerId);
   }
   controltap(e) {
-    console.log(e.controlId);
+      console.log(e.controlId);
   }
 }
 </script>

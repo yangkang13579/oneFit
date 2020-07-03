@@ -138,62 +138,62 @@ image {
 
 <script>
 /* global wx */
-import wepy from "wepy";
-import PageMixin from "../mixins/page";
+import wepy from 'wepy';
+import PageMixin from '../mixins/page';
 
 export default class SampleDetail extends wepy.page {
   mixins = [PageMixin];
   config = {
-    navigationBarTitleText: "样品详情",
-    navigationBarBackgroundColor: "#fff"
+      navigationBarTitleText: '样品详情',
+      navigationBarBackgroundColor: '#fff'
   };
 
   data = {
-    //  name: 'myHtmlParserKiner',
-    screenWidth: 0,
-    imgwidth: 0,
-    imgheight: 0,
-    id: "",
-    list: [],
-    background: ["demo-text-1", "demo-text-2", "demo-text-3"],
-    indicatorDots: true,
-    vertical: false,
-    autoplay: false,
-    interval: 2000,
-    duration: 500
+      //  name: 'myHtmlParserKiner',
+      screenWidth: 0,
+      imgwidth: 0,
+      imgheight: 0,
+      id: '',
+      list: [],
+      background: ['demo-text-1', 'demo-text-2', 'demo-text-3'],
+      indicatorDots: true,
+      vertical: false,
+      autoplay: false,
+      interval: 2000,
+      duration: 500
   };
   methods = {
-    toFrom() {
-      wx.navigateTo({
-        url: "/pages/form?id=" + this.id
-      });
-    }
+      toFrom() {
+          wx.navigateTo({
+              url: '/pages/form?id=' + this.id
+          });
+      }
   };
 
   onLoad(options) {
-    this.id = options.id;
-    let self = this;
-    wx.getSystemInfo({
-      success: function(res) {
-        console.log("res", res);
-        let screenWidth = res.windowWidth;
-        self.screenWidth = screenWidth;
-        self.$apply();
-      }
-    });
+      this.id = options.id;
+      let self = this;
+      wx.getSystemInfo({
+          success: function(res) {
+              console.log('res', res);
+              let screenWidth = res.windowWidth;
+              self.screenWidth = screenWidth;
+              self.$apply();
+          }
+      });
   }
 
   whenAppReadyShow() {
-    this.fetchDataPromise("wx/specimen/querySpecimenApi.json", {
-      id: this.id
-    })
-      .then(data => {
-        console.log("11 ", data);
-        this.list = data.list[0];
-        console.log("this.list", this.list);
-        this.$apply();
+      this.fetchDataPromise('wx/specimen/querySpecimenApi.json', {
+          id: this.id
       })
-      .catch(function(error) {});
+          .then(data => {
+              console.log('11 ', data);
+              this.list = data.list[0];
+              console.log('this.list', this.list);
+              this.$apply();
+          })
+          .catch(function(error) {});
   }
 }
 </script>

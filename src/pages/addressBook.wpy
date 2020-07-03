@@ -175,129 +175,129 @@
   export default class AddressBook extends wepy.page {
     mixins = [PageMixin];
     config = {
-      navigationBarTitleText: '会议管理',
-      navigationBarBackgroundColor: '#fff'
+        navigationBarTitleText: '会议管理',
+        navigationBarBackgroundColor: '#fff'
     };
     components = {
     };
     data = {
-      list: [],
-      delItem: null,
-      showToast: false,
-      error: '',
-      user: this.user,
-      pageSize: 10,
-      totalPage: 0,
-      indexPage: 0
+        list: [],
+        delItem: null,
+        showToast: false,
+        error: '',
+        user: this.user,
+        pageSize: 10,
+        totalPage: 0,
+        indexPage: 0
     };
     onReachBottom() {
-      if (this.indexPage >= this.totalPage) {
-        this.toast('无更多数据')
-        return
-      }
-      this.indexPage++
-      // 下拉触底，先判断是否有请求正在进行中
-      // 以及检查当前请求页数是不是小于数据总页数，如符合条件，则发送请求
-      this.getList()
+        if (this.indexPage >= this.totalPage) {
+            this.toast('无更多数据');
+            return;
+        }
+        this.indexPage++;
+        // 下拉触底，先判断是否有请求正在进行中
+        // 以及检查当前请求页数是不是小于数据总页数，如符合条件，则发送请求
+        this.getList();
     }
       // 获取列表
     getList () {
-      var self = this
-      this.fetchDataPromise('meeting/wechat/queryMeetingApi.json', {
-        pageSize: this.pageSize,
-        indexPage: this.indexPage
-      }, {})
-      .then(function(data) {
-        console.log(self.list)
-        data.list = data.list.map(item => {
-          let obj = item
-          obj.createDate = self.timeFormat(obj.createDate)
-          obj.start = obj.startDate.split(' ')[0]
-          obj.end = obj.endDate.split(' ')[0]
-          obj.edit = new Date(obj.startDate.replace(/-/g, "/")).getTime() < new Date().getTime() ? false : true
-          return obj
-        })
-        self.totalPage = data.queryParam.totalPage
-        self.list = self.list.concat(data.list)
-        self.$apply()
-      })
+        var self = this;
+        this.fetchDataPromise('meeting/wechat/queryMeetingApi.json', {
+            pageSize: this.pageSize,
+            indexPage: this.indexPage
+        }, {})
+            .then(function(data) {
+                console.log(self.list);
+                data.list = data.list.map(item => {
+                    let obj = item;
+                    obj.createDate = self.timeFormat(obj.createDate);
+                    obj.start = obj.startDate.split(' ')[0];
+                    obj.end = obj.endDate.split(' ')[0];
+                    obj.edit = !(new Date(obj.startDate.replace(/-/g, '/')).getTime() < new Date().getTime());
+                    return obj;
+                });
+                self.totalPage = data.queryParam.totalPage;
+                self.list = self.list.concat(data.list);
+                self.$apply();
+            });
     }
     timeFormat (timeStr) {
-      var dataOne = timeStr.split('T')[0];
-      var dataTwo = timeStr.split('T')[1];
-      var dataThree = dataTwo.split('+')[0];
-      var newTimeStr = dataOne + ' ' + dataThree
-      return newTimeStr;
+        var dataOne = timeStr.split('T')[0];
+        var dataTwo = timeStr.split('T')[1];
+        var dataThree = dataTwo.split('+')[0];
+        var newTimeStr = dataOne + ' ' + dataThree;
+        return newTimeStr;
     }
     delFun () {
-      var self = this
-      this.delItem.status = -1
-      this.fetchDataPromise('meeting/wechat/updateMeetingApi.json', this.delItem, {})
-      .then(function(data) {
-        self.getList()
-        self.$apply()
-      })
+        var self = this;
+        this.delItem.status = -1;
+        this.fetchDataPromise('meeting/wechat/updateMeetingApi.json', this.delItem, {})
+            .then(function(data) {
+                self.getList();
+                self.$apply();
+            });
     }
     toast (error) {
-      this.showToast = true
-      this.error = error
-      var that = this
-      setTimeout(() => {
-        that.showToast = false
-      }, 2000);
+        this.showToast = true;
+        this.error = error;
+        var that = this;
+        setTimeout(() => {
+            that.showToast = false;
+        }, 2000);
     }
     methods = {
-      // 编辑
-      edit (e) {
-        if (e.target.dataset.item.createUser.split('_')[1] !== this.user.id) {
-          this.toast('您不是该会议的创建者, 不能编辑')
-          return
-        }
-        console.log(this.user, 'useruser')
-        console.log(e.target.dataset.item.startDate.replace(/-/g, "/"), 'e.target.dataset.item.startDate')
-        if (new Date(e.target.dataset.item.startDate.replace(/-/g, "/")).getTime() < new Date().getTime()) {
-          this.toast('该会议已经开始, 不能编辑')
-          return
-        }
-        wx.navigateTo({
-          url: '/pages/editAddress?item=' + JSON.stringify(e.target.dataset.item)
-        });
-      },
-      // 删除
-      del (e) {
-        if (e.target.dataset.item.createUser.split('_')[1] !== this.user.id) {
-          this.toast('您不是该会议的创建者, 不能编辑')
-          return
-        }
-        if (new Date(e.target.dataset.item.startDate.replace(/-/g, "/")).getTime() < new Date().getTime()) {
-          this.toast('该会议已经开始, 不能删除')
-          return
-        }
-        this.delItem = e.target.dataset.item
-        var self = this
-        wx.showModal({
-          title:'提示',
-          content:'是否确认删除当前会议?',
-          cancelText:'取消',
-          confirmText:'确认',
-          success:function (res) {
-            if (res.confirm) {
-              self.delFun()
-            };
-          },
-          fail:function (err) {
-          },
-        })
+        // 编辑
+        edit (e) {
+            if (e.target.dataset.item.createUser.split('_')[1] !== this.user.id) {
+                this.toast('您不是该会议的创建者, 不能编辑');
+                return;
+            }
+            console.log(this.user, 'useruser');
+            console.log(e.target.dataset.item.startDate.replace(/-/g, '/'), 'e.target.dataset.item.startDate');
+            if (new Date(e.target.dataset.item.startDate.replace(/-/g, '/')).getTime() < new Date().getTime()) {
+                this.toast('该会议已经开始, 不能编辑');
+                return;
+            }
+            wx.navigateTo({
+                url: '/pages/editAddress?item=' + JSON.stringify(e.target.dataset.item)
+            });
+        },
+        // 删除
+        del (e) {
+            if (e.target.dataset.item.createUser.split('_')[1] !== this.user.id) {
+                this.toast('您不是该会议的创建者, 不能编辑');
+                return;
+            }
+            if (new Date(e.target.dataset.item.startDate.replace(/-/g, '/')).getTime() < new Date().getTime()) {
+                this.toast('该会议已经开始, 不能删除');
+                return;
+            }
+            this.delItem = e.target.dataset.item;
+            var self = this;
+            wx.showModal({
+                title: '提示',
+                content: '是否确认删除当前会议?',
+                cancelText: '取消',
+                confirmText: '确认',
+                success: function (res) {
+                    if (res.confirm) {
+                        self.delFun();
+                    };
+                },
+                fail: function (err) {
+                },
+            });
 
-      }
+        }
     }
     onLoad () {
-      
+  
     }
     whenAppReadyShow() {
-      this.getList()
-      this.showToast = false
-      // 每次都刷新
+        this.getList();
+        this.showToast = false;
+        // 每次都刷新
     }
   }
 </script>

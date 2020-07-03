@@ -332,40 +332,40 @@ transform:rotate(45deg);
   export default class User extends wepy.page {
     mixins = [PageMixin];
     config = {
-      navigationBarTitleText: '个人中心',
-      navigationBarBackgroundColor: '#65ABFF'
+        navigationBarTitleText: '个人中心',
+        navigationBarBackgroundColor: '#65ABFF'
     };
     components = {
-      // tabbar: Tabbar
+        // tabbar: Tabbar
     };
     data = {
-      loadUser: true, // 需要登录信息
-      userAvatar: 'https://www.jteam.cn/images/9321/0426/1898/8a75ea37e87804f8a6f57da0f3a6b0ed_2_80x80.jpg'
+        loadUser: true, // 需要登录信息
+        userAvatar: 'https://www.jteam.cn/images/9321/0426/1898/8a75ea37e87804f8a6f57da0f3a6b0ed_2_80x80.jpg'
     };
     methods = {
-      userNew() {
-        wx.navigateTo({
-          url: '/pages/user_scheme'
-        });
-      },
-      call() {
-        wx.makePhoneCall({
-          phoneNumber: '4008210178' //仅为示例，并非真实的电话号码
-        })
-      },
-      toMyCommunity(){
-         wx.navigateTo({
-          url: '/pages/order'
-        });
-      },
-      set() {
-        wx.navigateTo({
-          url: '/pages/addressBook'
-        });
-      }
+        userNew() {
+            wx.navigateTo({
+                url: '/pages/user_scheme'
+            });
+        },
+        call() {
+            wx.makePhoneCall({
+                phoneNumber: '4008210178' // 仅为示例，并非真实的电话号码
+            });
+        },
+        toMyCommunity() {
+            wx.navigateTo({
+                url: '/pages/order'
+            });
+        },
+        set() {
+            wx.navigateTo({
+                url: '/pages/addressBook'
+            });
+        }
     };
     whenAppReadyShow() {
-      // 每次都刷新
+        // 每次都刷新
     }
   }
 </script>

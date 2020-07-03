@@ -24,25 +24,25 @@
   export default class Zhonghua extends wepy.page {
     mixins = [PageMixin];
     config = {
-      navigationBarTitleText: '中化作物',
-      navigationBarBackgroundColor: '#fff'
+        navigationBarTitleText: '中化作物',
+        navigationBarBackgroundColor: '#fff'
     };
     components = {};
     data = {
-     
+  
     };
     methods = {
     };
-   initData() { //初始化数据
-   }
-   init() {
-     
-   }
-   onLoad () {
-   
-   }
+    initData() { // 初始化数据
+    }
+    init() {
+  
+    }
+    onLoad () {
+  
+    }
   whenAppReadyShow() {
   }
-   
- }
+  
+}
 </script>

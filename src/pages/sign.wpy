@@ -128,93 +128,93 @@
   export default class Home extends wepy.page {
     mixins = [PageMixin];
     config = {
-      navigationBarTitleText: '会议签到',
-      navigationBarBackgroundColor: '#fff'
+        navigationBarTitleText: '会议签到',
+        navigationBarBackgroundColor: '#fff'
     };
     components = {};
     data = {
-      inputShowed: true,
-      msg: '',
-      showToast: false,
-      error: '',
-      disInputs: [
-        '',
-        '',
-        '',
-        '',
-      ],
-      realInput: '',
-      formData: {}
+        inputShowed: true,
+        msg: '',
+        showToast: false,
+        error: '',
+        disInputs: [
+            '',
+            '',
+            '',
+            '',
+        ],
+        realInput: '',
+        formData: {}
     }
     toast (error) {
-      this.showToast = true
-      this.error = error
-      var that = this
-      setTimeout(() => {
-        that.showToast = false
-      }, 2000);
+        this.showToast = true;
+        this.error = error;
+        var that = this;
+        setTimeout(() => {
+            that.showToast = false;
+        }, 2000);
     }
     methods = {
-      sure () {
+        sure () {
 
-      },
-      getNum(e) {
-        this.realInput = e.detail.value
-        if (e.detail.value.length === 0) {
-          this.disInputs = [
-            '',
-            '',
-            '',
-            '',
-          ]
-          return
-        }
-        for (var i = 0; i < e.detail.value.length; i++) {
-          if ((this.disInputs.length > e.detail.value.length) || e.detail.value.length === 0) {
-            let len = this.disInputs.length - e.detail.value.length
-            this.disInputs[4 - len] = ''
-          }
-          if (i < 4) {
-            this.disInputs[i] = e.detail.value.charAt(i);
-          }
-        }
-        if (e.detail.value.length >= 4) {
-          this.formData.code = e.detail.value
-          var that = this
-          this.fetchDataPromise('meeting/wechat/signInApi.json', this.formData, {})
-          .then(function(data) {
-            console.log('111', data)
-            that.toast('签到成功')
-            setTimeout(function() {
-              wx.navigateBack({
-                delta: 1
-              });
-            }, 1000)
-          }).catch(function (res) {
-            console.log(res, '11111')
-          })
-        }
-      }
-    };
-   initData() { //初始化数据
-   }
-   init() {
-     this.$refs.pwd.focus();
-   }
-   onLoad () {
-     var that = this
-     wx.getLocation({
-        type: 'gcj02',
-        success: function (res) {
-          that.formData.latitude = res.latitude
-          that.formData.longitude = res.longitude
         },
-        fail: function (res) {
-          console.log(res);
+        getNum(e) {
+            this.realInput = e.detail.value;
+            if (e.detail.value.length === 0) {
+                this.disInputs = [
+                    '',
+                    '',
+                    '',
+                    '',
+                ];
+                return;
+            }
+            for (var i = 0; i < e.detail.value.length; i++) {
+                if ((this.disInputs.length > e.detail.value.length) || e.detail.value.length === 0) {
+                    let len = this.disInputs.length - e.detail.value.length;
+                    this.disInputs[4 - len] = '';
+                }
+                if (i < 4) {
+                    this.disInputs[i] = e.detail.value.charAt(i);
+                }
+            }
+            if (e.detail.value.length >= 4) {
+                this.formData.code = e.detail.value;
+                var that = this;
+                this.fetchDataPromise('meeting/wechat/signInApi.json', this.formData, {})
+                    .then(function(data) {
+                        console.log('111', data);
+                        that.toast('签到成功');
+                        setTimeout(function() {
+                            wx.navigateBack({
+                                delta: 1
+                            });
+                        }, 1000);
+                    }).catch(function (res) {
+                        console.log(res, '11111');
+                    });
+            }
         }
-      })
-   }
-   tabFunSecah(index) {
-   }
- }
+    };
+    initData() { // 初始化数据
+    }
+    init() {
+        this.$refs.pwd.focus();
+    }
+    onLoad () {
+        var that = this;
+        wx.getLocation({
+            type: 'gcj02',
+            success: function (res) {
+                that.formData.latitude = res.latitude;
+                that.formData.longitude = res.longitude;
+            },
+            fail: function (res) {
+                console.log(res);
+            }
+        });
+    }
+    tabFunSecah(index) {
+    }
+}
 </script>

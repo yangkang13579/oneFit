@@ -293,152 +293,152 @@
   export default class ProductDetail extends wepy.page {
     mixins = [PageMixin];
     config = {
-      navigationBarTitleText: '商品详情',
-      navigationBarBackgroundColor: '#65ABFF'
+        navigationBarTitleText: '商品详情',
+        navigationBarBackgroundColor: '#65ABFF'
     };
     components = {};
     data = {
-      loadUser: true,
-      number: 1,
-      productId: '',
-      shopId: '',
-      product: [],
-      isBook: false,
-      childs: [],
-      productDetail: []
+        loadUser: true,
+        number: 1,
+        productId: '',
+        shopId: '',
+        product: [],
+        isBook: false,
+        childs: [],
+        productDetail: []
     }
     methods = {
-      getSearchContent(e) {
-        this.number = e.detail.value;
-        if(this.number == 0){
-          this.change()
-        }else{
+        getSearchContent(e) {
+            this.number = e.detail.value;
+            if (this.number == 0) {
+                this.change();
+            } else {
 
-        }
-        
-      },
-      producTopCar() {
-        wx.switchTab({
-          url: '/pages/car'
-        });
-      },
-      call() {
-        wx.makePhoneCall({
-          phoneNumber: '4008210178' //仅为示例，并非真实的电话号码
-        })
-      },
-      bank() {
-        this.isBook = false;
-      },
-      addBtn() {
-        console.log("")
-        this.isBook = true;
-      },
-      produc(e) {
-        console.log('eeeeee', e)
-        var self = this;
-        self.childId = e.currentTarget.dataset.child;
-        this.fetchDataPromise('shop/product.json', {
-            shopId: self.shopId,
-            productId: self.Id,
-            childId: self.childId
-          })
-          .then(function(data) {
-            console.log("data", data)
-            self.childs = data.product.childs;
-            self.productDetail = data.product;
-            self.$apply()
-          })
-      },
-      sub() {
-        if (this.number == '1') {
-          wx.showToast({
-            title: '数量最低为1',
-            icon: 'success',
-            duration: 2000
-          });
-          return;
-        } else {
-          this.number--
-        }
-      },
-      add() {
-        this.number++
-      },
-      productBtn() {
-        var self = this;
-        if (self.childId == undefined) {
-          console.log("self.childId", self.product.childs[0].id)
-        } else {
-          console.log("self.childId", self.childId)
-        }
-        console.log("self.shopId", self.shopId)
-        console.log("self.productId", self.Id)
-        console.log("self.number", self.number)
-        this.fetchDataPromise('shop/shopCart.json', {
-            action: 'add',
-            shopId: self.shopId,
-            productId: self.Id,
-            childId: self.childId,
-            count: self.number
-          })
-          .then(function(data) {
-            console.log('22 ', data);
-            self.$apply();
+            }
+  
+        },
+        producTopCar() {
             wx.switchTab({
-              url: '/pages/car'
+                url: '/pages/car'
             });
-          })
-        this.isBook = false;
-      },
-      logs() {
-        wx.navigateTo({
-          url: '/pages/upload'
-        });
-      },
-      search() {
-        wx.navigateTo({
-          url: '/pages/search_result'
-        });
-      }
-    }
-    change(){
-      this.number = 1;
-      this.$apply()
-    }
-    onLoad(e) {
-      console.log('e', e)
-      this.shopId = e.shopId;
-      this.Id = e.Id;
-      this.$apply();
-    }
-    whenAppReadyShow() {
-      var self = this;
-      self.number = 1;
-      this.fetchDataPromise('shop/product.json', {
-          shopId: self.shopId,
-          productId: self.Id
-        })
-        .then(function(data) {
-          console.log('22 ', data);
-          self.product = data.product;
-          self.$apply();
-          if (!self.product.childs) {
-          } else {
-            self.fetchDataPromise('shop/product.json', {
+        },
+        call() {
+            wx.makePhoneCall({
+                phoneNumber: '4008210178' // 仅为示例，并非真实的电话号码
+            });
+        },
+        bank() {
+            this.isBook = false;
+        },
+        addBtn() {
+            console.log('');
+            this.isBook = true;
+        },
+        produc(e) {
+            console.log('eeeeee', e);
+            var self = this;
+            self.childId = e.currentTarget.dataset.child;
+            this.fetchDataPromise('shop/product.json', {
                 shopId: self.shopId,
                 productId: self.Id,
-                childId: self.product.childs[0].id
-              })
-              .then(function(data) {
-                console.log('子分类 ', data);
-                self.productDetail = data.product;
-                self.childs = data.product.childs;
-                self.childId = self.product.childs[0].id;
-                self.$apply()
-              })
-          }
+                childId: self.childId
+            })
+                .then(function(data) {
+                    console.log('data', data);
+                    self.childs = data.product.childs;
+                    self.productDetail = data.product;
+                    self.$apply();
+                });
+        },
+        sub() {
+            if (this.number == '1') {
+                wx.showToast({
+                    title: '数量最低为1',
+                    icon: 'success',
+                    duration: 2000
+                });
+  
+            } else {
+                this.number--;
+            }
+        },
+        add() {
+            this.number++;
+        },
+        productBtn() {
+            var self = this;
+            if (self.childId == undefined) {
+                console.log('self.childId', self.product.childs[0].id);
+            } else {
+                console.log('self.childId', self.childId);
+            }
+            console.log('self.shopId', self.shopId);
+            console.log('self.productId', self.Id);
+            console.log('self.number', self.number);
+            this.fetchDataPromise('shop/shopCart.json', {
+                action: 'add',
+                shopId: self.shopId,
+                productId: self.Id,
+                childId: self.childId,
+                count: self.number
+            })
+                .then(function(data) {
+                    console.log('22 ', data);
+                    self.$apply();
+                    wx.switchTab({
+                        url: '/pages/car'
+                    });
+                });
+            this.isBook = false;
+        },
+        logs() {
+            wx.navigateTo({
+                url: '/pages/upload'
+            });
+        },
+        search() {
+            wx.navigateTo({
+                url: '/pages/search_result'
+            });
+        }
+    }
+    change() {
+        this.number = 1;
+        this.$apply();
+    }
+    onLoad(e) {
+        console.log('e', e);
+        this.shopId = e.shopId;
+        this.Id = e.Id;
+        this.$apply();
+    }
+    whenAppReadyShow() {
+        var self = this;
+        self.number = 1;
+        this.fetchDataPromise('shop/product.json', {
+            shopId: self.shopId,
+            productId: self.Id
         })
+            .then(function(data) {
+                console.log('22 ', data);
+                self.product = data.product;
+                self.$apply();
+                if (!self.product.childs) {
+                } else {
+                    self.fetchDataPromise('shop/product.json', {
+                        shopId: self.shopId,
+                        productId: self.Id,
+                        childId: self.product.childs[0].id
+                    })
+                        .then(function(data) {
+                            console.log('子分类 ', data);
+                            self.productDetail = data.product;
+                            self.childs = data.product.childs;
+                            self.childId = self.product.childs[0].id;
+                            self.$apply();
+                        });
+                }
+            });
     }
   }
 </script>

@@ -182,3 +182,35 @@ page {
   transform: rotate(0deg) scale(1) translate(75%, 0%);
   -webkit-transform: rotate(0deg) scale(1) translate(75%, 0%);
 }
+.hover {
+  background: red;
+}
+.times {
+  height: 130rpx;
+  background: #010101;
+  width: 100%;
+  overflow: auto;
+  display: flex;
+  overflow-y: hidden;
+}
+.times .time {
+  flex-shrink: 0;
+}
+.times .time .block {
+  float: left;
+  color: #fff;
+  font-size: 32rpx;
+  width: 110rpx;
+  text-align: center;
+  margin: 5rpx 0;
+}
+.times .time .block .date {
+  width: 50rpx;
+  border-radius: 50%;
+  margin-left: 30rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50rpx;
+  margin-bottom: 15rpx;
+}

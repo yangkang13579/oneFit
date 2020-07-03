@@ -1,6 +1,112 @@
 <style lang="less">
 page {
-  // background: #333534;
+  background: #f4f4f4;
+}
+.banner{
+  width: 100%;
+  height: 500rpx;
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  image{
+    width: 650rpx;
+    height: 410rpx;
+  }
+}
+.title{
+  width: 700rpx;
+  background: #fff;
+  padding:25rpx;
+  .textName{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    font-size: 35rpx;
+    color: #000;
+  }
+  .price{
+    height: 80rpx;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    .new{
+      color: #e84644;
+      font-size: 35rpx;
+    }
+    .order{
+      text-decoration:line-through;
+      font-size: 28rpx;
+      color: #878787;
+      margin-top: 10rpx;
+    }
+  }
+}
+.jianjie{
+  margin-top: 20rpx;
+  background: #fff;
+  width: 700rpx;
+  padding: 30rpx 25rpx;
+  .jian-title{
+    font-size: 32rpx;
+  }
+  .jian-text{
+     font-size: 28rpx;
+    color: #878787;
+  }
+}
+.buyName{
+  margin-top: 20rpx;
+  background: #fff;
+  margin-bottom: 200rpx;
+  width: 700rpx;
+  padding: 30rpx 25rpx;
+  .buy-title{
+    font-size: 32rpx;
+    margin-bottom: 20rpx;
+  }
+  .buy-text{
+    display: flex;
+    justify-content: flex-start;
+    .qixian{
+      width: 200rpx;
+      color: #878787;
+      font-size: 28rpx;
+    }
+    .tian{
+      color: #676767;
+      font-size: 28rpx;
+    }
+  }
+}
+.fixed{
+  position: fixed;
+  background: #fff;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  padding: 20rpx 0;
+  .buy{
+    width: 710rpx;
+    height: 90rpx;
+    border-radius: 45rpx;
+    background: #e84644;
+    text-align: center;
+    line-height: 90rpx;
+    font-size: 32rpx;
+    color: #fff;
+    margin-left: 20rpx;
+  }
+  .bot{
+    width: 100%;
+    height: 80rpx;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text{
+      font-size: 28rpx;
+    }
+  }
 }
 
 
@@ -8,9 +114,51 @@ page {
 </style>
 
 <template lang="wxml">
-  <view class="com">
-   eee
+  <view class="banner">
+    <image src="../../images/16.jpg"></image>
+  </view>
 
+  <view class="title">
+    <view class="textName">私教入门课(5次卡)</view>
+    <view class="price">
+        <text class="new">￥1580</text>
+        <text class="order">￥3000</text>
+    </view>
+  </view>
+
+  <view class="jianjie">
+    <view class="jian-title">
+      商品简介
+    </view>
+    <view class="jian-text">限时抢购,一经出售,恕不退换,仅限新会员</view>
+  </view>
+
+
+  <view class="buyName">
+    <view class="buy-title">
+      购买须知
+    </view>
+    <view class="buy-text">
+      <view class="qixian">有效期: </view>
+      <view class="tian">30天</view>
+    </view>
+    <view class="buy-text">
+      <view class="qixian">场馆名称: </view>
+      <view class="tian">OneFit运动训练中心</view>
+    </view>
+    <view class="buy-text">
+      <view class="qixian">场馆地址: </view>
+      <view class="tian">上海市虹口区</view>
+    </view>
+  </view>
+
+  <view class='fixed'>
+    <view class="buy">确认支付1500元</view>
+    <view class="bot">
+      <view>
+        <text style="color:#000">同意</text><text style="color:#e84644">《入会协议》</text>
+      </view>
+    </view>
   </view>
   
 

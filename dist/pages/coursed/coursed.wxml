@@ -54,7 +54,7 @@
             <image src="../../images/11.jpg"/>
             <text>孕产训练</text>
           </view>
-          <view class="item-right">
+          <view bindtap="goCoach" class="item-right">
             预约
           </view>
         </view>
@@ -72,7 +72,7 @@
             <image src="../../images/11.jpg"/>
             <text>孕产训练</text>
           </view>
-          <view class="item-right">
+          <view bindtap="goCoach" class="item-right">
             预约
           </view>
         </view>

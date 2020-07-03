@@ -235,7 +235,7 @@ page {
             <image src="../../images/11.jpg"></image>
             <text>孕产训练</text>
           </view>
-          <view class="item-right">
+          <view @tap="goCoach" class="item-right">
             预约
           </view>
         </view>
@@ -253,7 +253,7 @@ page {
             <image src="../../images/11.jpg"></image>
             <text>孕产训练</text>
           </view>
-          <view class="item-right">
+          <view @tap="goCoach" class="item-right">
             预约
           </view>
         </view>

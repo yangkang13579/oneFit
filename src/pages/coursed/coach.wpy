@@ -1,7 +1,4 @@
 <style lang="less">
-page {
-  // background: #333534;
-}
 .banner{
   width: 100%;
   height: 425rpx;
@@ -42,7 +39,7 @@ page {
   }
 }
 .time{
-  width: 710rpx;
+  width: 100%;
   padding: 10rpx 20rpx;
   .timename{
     font-size: 32rpx;
@@ -59,7 +56,58 @@ page {
   color: #fff;
   margin-left: 20rpx;
 }
- 
+.hover{
+  background: red;
+  color:#fff;
+} 
+.times{
+  height:130rpx;
+  width:100%;
+  overflow:auto;
+  display:flex;
+  overflow-y:hidden;
+  .time1{
+    flex-shrink: 0;
+    .block{
+      float:left;
+      color:#666;
+      font-size:32rpx;
+      width:110rpx;
+      text-align:center;
+      margin:5rpx 0;
+      .date{
+        width:50rpx;
+        border-radius:50%;
+        margin-left:30rpx;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        height:50rpx;
+        margin-bottom:15rpx;
+      }
+    }
+  }
+}
+.dateTime{
+  overflow:auto;
+  display:flex;
+  overflow-y:hidden;
+  margin:20rpx 0;
+  .block{
+    flex-shrink: 0;
+    .items{
+      width:100rpx;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:30rpx;
+      color:#666;
+      background:#f0e4f0;
+      color:#452d4d;
+      height:60rpx;
+    }
+  }
+}
 </style>
 
 <template lang="wxml">
@@ -76,9 +124,24 @@ page {
   </view>
   <view class="time">
     <view class="timename">选择时间</view>
+    <view class='times'>
+      <view class="time1">
+        <view class="block" wx:for="{{date}}" wx:for-item="item" wx:for-index="idx" data-index="{{idx}}" bindtap='getDate'>
+          <view class="{{currentIndex === idx ? 'hover date' : 'date'}}">{{item.date}}</view>
+          <view class="week">{{item.isWeek ? item.week : item.month}}</view>
+        </view>
+      </view>
+    </view>
   </view>
 
-
+  <view class="time">
+    <view class="timename">课程时长60分钟(请选择起始时间)</view>
+    <view class='dateTime'>
+      <view class="block">
+        <view class='items' wx:for="{{times}}">{{item}}</view>
+      </view>
+    </view>
+  </view>
   <view @tap="goBuy" class="buy">购买会员卡</view>
 
 
@@ -87,6 +150,7 @@ page {
 <script>
 /* global wx */
 import wepy from 'wepy';
+import dayjs from 'dayjs'
 import PageMixin from '../../mixins/page';
 export default class Coach extends wepy.page {
   // mixins = [PageMixin];
@@ -96,6 +160,9 @@ export default class Coach extends wepy.page {
   };
   components = {};
   data = {
+    date: [],
+    currentIndex: null,
+    times: []
   };
   methods = {
       goBuy() {
@@ -120,7 +187,75 @@ export default class Coach extends wepy.page {
           .catch(function(error) {});
   }
   onShow() {
-      // wx.hideTabBar()
+    this.date = []
+    this.returnDate(this.mGetDate(dayjs().subtract(1, 'month').year(), dayjs().subtract(1, 'month').month()), dayjs().date(), dayjs().subtract(1, 'month').month(), dayjs().subtract(1, 'month').year())
+    this.returnDate(this.mGetDate(dayjs().subtract(0, 'month').year(), dayjs().subtract(0, 'month').month()), 0, dayjs().subtract(0, 'month').month(), dayjs().subtract(0, 'month').year())
+    this.returnDate(this.mGetDate(dayjs().year(), dayjs().month() + 1), 0, dayjs().month() + 1, dayjs().year())
+    this.returnDate(1, 0, dayjs().add(2, 'month').month(), dayjs().add(2, 'month').year())
+    this.returnTimes()
+  }
+  mGetDate(year, month){
+    var d = new Date(year, month, 0);
+    return d.getDate();
+  }
+  returnTimes() {
+    for (let i = 7; i < 24; i = i+0.5) {
+      this.times.push(this.twoTime(i))
+    }
+  }
+  twoTime(time) {
+    if (time+''.indexOf('.') === -1) {
+      if (time < 10) {
+        return '0' + time+''.split('.')[0] + ':00'
+      } else {
+        return time+''.split('.')[0] + ':00'
+      }
+    } else {
+      if (time < 10) {
+        return '0' + time+''.split('.')[0] + ':30'
+      } else {
+        return time+''.split('.')[0] + ':30'
+      }
+    }
+  }
+  returnDate(ary, date, month, year) {
+    for(let i = 1 + date; i <= ary; i++) { 
+      this.date.push({
+        date: i,
+        month: month + '月',
+        week: '周' + this.returnWeek(dayjs(year + '-' + month + '-' + i).day()),
+        isWeek: dayjs(year + '-' + month + '-' + i).valueOf() < dayjs().subtract(8, 'day').valueOf()
+        || dayjs(year + '-' + month + '-' + i).valueOf() > dayjs().add(14, 'day').valueOf() ? false : true
+      })
+      if (dayjs(year + '-' + month + '-' + i).isSame(dayjs(dayjs().year() + '-' + (dayjs().month() + 1) + '-' + dayjs().date()))) {
+        this.currentIndex = this.date.length - 1
+      }
+    }
+  }
+  returnWeek(week) {
+    switch(week) {
+     case 0:
+        return '日'
+        break;
+     case 1:
+        return '一'
+        break;
+     case 2:
+        return '二'
+        break;
+      case 3:
+        return '三'
+        break;
+      case 4:
+        return '四'
+        break;
+      case 5:
+        return '五'
+        break;
+      case 6:
+        return '六'
+        break;
+     } 
   }
   onShareAppMessage(res) {}
   regionchange(e) {

@@ -158,401 +158,400 @@
 <script>
   import wepy from 'wepy';
   import PageMixin from '../mixins/page';
-  import upload from '../components/upload'
-  import upload2 from '../components/upload2'
-  import upload3 from '../components/upload3'
+  import upload from '../components/upload';
+  import upload2 from '../components/upload2';
+  import upload3 from '../components/upload3';
   export default class CreateTest extends wepy.page {
     mixins = [PageMixin];
     config = {
-      navigationBarTitleText: '创建实验',
-      navigationBarBackgroundColor: '#fff'
+        navigationBarTitleText: '创建实验',
+        navigationBarBackgroundColor: '#fff'
     };
     components={
-     upload,
-     upload2,
-     upload3
-		}
+        upload,
+        upload2,
+        upload3
+  }
     data = {
-      edit: false,
-      showToast: false,
-      error: '',
-      formData: {
-        detail: [{}, {}, {}]
-      },
-      date: '2016-09-01',
-      times: '2020-07-29 12:50',
-      // 时间选择器参数
-      years: [],
-      months: [],
-      days: [],
-      hours: [],
-      minutes: [],
-      second: [],
-      multiArray: [], // 选择范围
-      multiIndex: [0, 9, 16, 13, 17], // 选中值数组
-      choose_year: '',
-      yearIndex: 0,
-      id: null,
-      imgs1:[],
-      imgs2: [],
-      imgs3: []
+        edit: false,
+        showToast: false,
+        error: '',
+        formData: {
+            detail: [{}, {}, {}]
+        },
+        date: '2016-09-01',
+        times: '2020-07-29 12:50',
+        // 时间选择器参数
+        years: [],
+        months: [],
+        days: [],
+        hours: [],
+        minutes: [],
+        second: [],
+        multiArray: [], // 选择范围
+        multiIndex: [0, 9, 16, 13, 17], // 选中值数组
+        choose_year: '',
+        yearIndex: 0,
+        id: null,
+        imgs1: [],
+        imgs2: [],
+        imgs3: []
     };
     // 差一位补位
     timesFun (t) {
-      if (t < 10) return '0' + t
-      else return t
+        if (t < 10) return '0' + t;
+        else return t;
     }
     isPhone(str) {
-      const reg = /^[1][3,4,5,7,8][0-9]{9}$/;
-      return reg.test(str);
+        const reg = /^[1][3,4,5,7,8][0-9]{9}$/;
+        return reg.test(str);
     }
     // 设置初始值
     settimesDate() {
-      const date = new Date()
-      let _yearIndex = 0
-      // 默认设置
-      console.info(this.times)
-      let _defaultYear = this.times ? this.times.split('-')[0] : 0
-      // 获取年
-      for (let i = date.getFullYear(); i <= date.getFullYear() + 5; i++) {
-        this.years.push('' + i)
-        // 默认设置的年的位置
-        if (_defaultYear && i === parseInt(_defaultYear)) {
-          this.yearIndex = _yearIndex
-          this.choose_year = _defaultYear
+        const date = new Date();
+        let _yearIndex = 0;
+        // 默认设置
+        console.info(this.times);
+        let _defaultYear = this.times ? this.times.split('-')[0] : 0;
+        // 获取年
+        for (let i = date.getFullYear(); i <= date.getFullYear() + 5; i++) {
+            this.years.push('' + i);
+            // 默认设置的年的位置
+            if (_defaultYear && i === parseInt(_defaultYear)) {
+                this.yearIndex = _yearIndex;
+                this.choose_year = _defaultYear;
+            }
+            _yearIndex = _yearIndex + 1;
         }
-        _yearIndex = _yearIndex + 1
-      }
-      // 获取月份
-      for (let i = 1; i <= 12; i++) {
-        if (i < 10) {
-          i = '0' + i
+        // 获取月份
+        for (let i = 1; i <= 12; i++) {
+            if (i < 10) {
+                i = '0' + i;
+            }
+            this.months.push('' + i);
         }
-        this.months.push('' + i)
-      }
-      // 获取日期
-      for (let i = 1; i <= 31; i++) {
-        if (i < 10) {
-          i = '0' + i
+        // 获取日期
+        for (let i = 1; i <= 31; i++) {
+            if (i < 10) {
+                i = '0' + i;
+            }
+            this.days.push('' + i);
         }
-        this.days.push('' + i)
-      }
-      // // 获取小时
-      for (let i = 0; i < 24; i++) {
-         if (i < 10) {
-           i = '0' + i
-         }
-         this.hours.push('' + i)
-       }
-      // // 获取分钟
-      for (let i = 0; i < 60; i++) {
-        if (i < 10) {
-          i = '0' + i
+        // // 获取小时
+        for (let i = 0; i < 24; i++) {
+            if (i < 10) {
+                i = '0' + i;
+            }
+            this.hours.push('' + i);
         }
-        this.minutes.push('' + i)
-      }
-      // // 获取秒数
-      // for (let i = 0; i < 60; i++) {
-      //   if (i < 10) {
-      //     i = '0' + i
-      //   }
-      //   this.second.push('' + i)
-      // }
+        // // 获取分钟
+        for (let i = 0; i < 60; i++) {
+            if (i < 10) {
+                i = '0' + i;
+            }
+            this.minutes.push('' + i);
+        }
+        // // 获取秒数
+        // for (let i = 0; i < 60; i++) {
+        //   if (i < 10) {
+        //     i = '0' + i
+        //   }
+        //   this.second.push('' + i)
+        // }
     }
     // 返回月份的天数
     setDays(selectYear, selectMonth) {
-      let num = selectMonth
-      let temp = []
-      if (num === 1 || num === 3 || num === 5 || num === 7 || num === 8 || num === 10 || num === 12) {
-          // 判断31天的月份
-        for (let i = 1; i <= 31; i++) {
-          if (i < 10) {
-            i = '0' + i
-          }
-          temp.push('' + i)
-        }
-      } else if (num === 4 || num === 6 || num === 9 || num === 11) { // 判断30天的月份
-        for (let i = 1; i <= 30; i++) {
-          if (i < 10) {
-            i = '0' + i
-          }
-          temp.push('' + i)
-        }
-      } else if (num === 2) { // 判断2月份天数
-        let year = parseInt(selectYear)
-        console.log(year)
-        if (((year % 400 === 0) || (year % 100 !== 0)) && (year % 4 === 0)) {
-          for (let i = 1; i <= 29; i++) {
-            if (i < 10) {
-              i = '0' + i
+        let num = selectMonth;
+        let temp = [];
+        if (num === 1 || num === 3 || num === 5 || num === 7 || num === 8 || num === 10 || num === 12) {
+            // 判断31天的月份
+            for (let i = 1; i <= 31; i++) {
+                if (i < 10) {
+                    i = '0' + i;
+                }
+                temp.push('' + i);
             }
-            temp.push('' + i)
-          }
-        } else {
-          for (let i = 1; i <= 28; i++) {
-            if (i < 10) {
-              i = '0' + i
+        } else if (num === 4 || num === 6 || num === 9 || num === 11) { // 判断30天的月份
+            for (let i = 1; i <= 30; i++) {
+                if (i < 10) {
+                    i = '0' + i;
+                }
+                temp.push('' + i);
             }
-            temp.push('' + i)
-          }
+        } else if (num === 2) { // 判断2月份天数
+            let year = parseInt(selectYear);
+            console.log(year);
+            if (((year % 400 === 0) || (year % 100 !== 0)) && (year % 4 === 0)) {
+                for (let i = 1; i <= 29; i++) {
+                    if (i < 10) {
+                        i = '0' + i;
+                    }
+                    temp.push('' + i);
+                }
+            } else {
+                for (let i = 1; i <= 28; i++) {
+                    if (i < 10) {
+                        i = '0' + i;
+                    }
+                    temp.push('' + i);
+                }
+            }
         }
-      }
-      return temp
+        return temp;
     }
     // 设置默认值 格式2019-07-10 10:30
     setDefaulttimes() {
-      let allDateList = this.times.split(' ')
-      // 日期
-      let dateList = allDateList[0].split('-')
-      let month = parseInt(dateList[1]) - 1
-      let day = parseInt(dateList[2]) - 1
-      // 时间
-      let timesList = allDateList[1].split(':')
-      this.multiArray[2] = this.setDays(dateList[0], parseInt(dateList[1]))
+        let allDateList = this.times.split(' ');
+        // 日期
+        let dateList = allDateList[0].split('-');
+        let month = parseInt(dateList[1]) - 1;
+        let day = parseInt(dateList[2]) - 1;
+        // 时间
+        let timesList = allDateList[1].split(':');
+        this.multiArray[2] = this.setDays(dateList[0], parseInt(dateList[1]));
     }
     // 获取时间日期
     PickerChange(e) {
-      this.multiIndex = e.detail.value
-      const index = this.multiIndex
-      const year = this.multiArray[0][index[0]]
-      const month = this.multiArray[1][index[1]]
-      const day = this.multiArray[2][index[2]]
-      this.times = year + '-' + month + '-' + day
-      this.$apply()
-      return this.times
+        this.multiIndex = e.detail.value;
+        const index = this.multiIndex;
+        const year = this.multiArray[0][index[0]];
+        const month = this.multiArray[1][index[1]];
+        const day = this.multiArray[2][index[2]];
+        this.times = year + '-' + month + '-' + day;
+        this.$apply();
+        return this.times;
     }
     toast(error) {
-      this.showToast = true;
-      this.error = error;
-      var that = this;
-      setTimeout(() => {
-        that.showToast = false;
-      }, 2000);
+        this.showToast = true;
+        this.error = error;
+        var that = this;
+        setTimeout(() => {
+            that.showToast = false;
+        }, 2000);
     }
     isType(ary, type) {
-      for (let i = 0; i < ary.length; i++) {
-        const item = ary[i]
-        if (item === type) {
-          return i
+        for (let i = 0; i < ary.length; i++) {
+            const item = ary[i];
+            if (item === type) {
+                return i;
+            }
         }
-      }
     }
-    //接收$emit传过来的数据
+    // 接收$emit传过来的数据
 		events = {
-		  'toParent1':(...args) => {
-        this.imgs1 = args[0].map(i => i.imageUrl)
-      },
-      'toParent2':(...args) => {
-        this.imgs2 = args[0].map(i => i.imageUrl)
-        console.log(this.imgs2, 'this.imgs2')
-      },
-      'toParent3':(...args) => {
-        this.imgs3 = args[0].map(i => i.imageUrl)
+		  'toParent1': (...args) => {
+  		        this.imgs1 = args[0].map(i => i.imageUrl);
+  		    },
+  		    'toParent2': (...args) => {
+  		        this.imgs2 = args[0].map(i => i.imageUrl);
+  		        console.log(this.imgs2, 'this.imgs2');
+  		    },
+  		    'toParent3': (...args) => {
+  		        this.imgs3 = args[0].map(i => i.imageUrl);
 		  }
 		}
     methods = {
-          // 删除
-    delFun(e) {
-      var self = this;
-      wx.showModal({
-          title: "提示",
-          content: "是否确认删除当前实验数据?",
-          cancelText: "取消",
-          confirmText: "确认",
-          success: function(res) {
-            if (res.confirm) {
-              self.fetchDataPromise('wx/experiment/deleteExperimentRecordApi.json', {id: self.formData.id})
-              .then(function(data) {
-                self.formData = {}
-                //返回上上一页
-                wx.showToast({
-                  title: '删除成功'
-                });
-                setTimeout(() => {
-                  wx.navigateBack({
-                    delta: 1
-                  });
-                  self.$apply();
-                }, 1000);
-              })
-            }
-          },
-          fail: function(err) {}
-        });
-      },
-      // 监听picker的滚动事件
-      bindMultiPickerColumnChange(e) {
+        // 删除
+        delFun(e) {
+            var self = this;
+            wx.showModal({
+                title: '提示',
+                content: '是否确认删除当前实验数据?',
+                cancelText: '取消',
+                confirmText: '确认',
+                success: function(res) {
+                    if (res.confirm) {
+                        self.fetchDataPromise('wx/experiment/deleteExperimentRecordApi.json', {id: self.formData.id})
+                            .then(function(data) {
+                                self.formData = {};
+                                // 返回上上一页
+                                wx.showToast({
+                                    title: '删除成功'
+                                });
+                                setTimeout(() => {
+                                    wx.navigateBack({
+                                        delta: 1
+                                    });
+                                    self.$apply();
+                                }, 1000);
+                            });
+                    }
+                },
+                fail: function(err) {}
+            });
+        },
+        // 监听picker的滚动事件
+        bindMultiPickerColumnChange(e) {
         // 获取年份
-        if (e.detail.column === 0) {
-          this.choose_year = this.multiArray[e.detail.column][e.detail.value]
-          console.log(this.choose_year)
-        }
-        // console.log('修改的列为', e.detail.column, '，值为', e.detail.value);
-        // 设置月份数组
-        if (e.detail.column === 1) {
-          let num = parseInt(this.multiArray[e.detail.column][e.detail.value])
-          this.multiArray[2] = this.setDays(this.choose_year, num)
-        }
+            if (e.detail.column === 0) {
+                this.choose_year = this.multiArray[e.detail.column][e.detail.value];
+                console.log(this.choose_year);
+            }
+            // console.log('修改的列为', e.detail.column, '，值为', e.detail.value);
+            // 设置月份数组
+            if (e.detail.column === 1) {
+                let num = parseInt(this.multiArray[e.detail.column][e.detail.value]);
+                this.multiArray[2] = this.setDays(this.choose_year, num);
+            }
 
-        this.multiIndex[e.detail.column] = e.detail.value
-        this.$apply()
-      },
-      bindStartChange (e) {
-        this.formData.recordDate = this.PickerChange(e)
-      },
-      getName(e) { //获得会议名称
-        this.formData.recordUser = e.detail.value;
-        this.$apply()
-      },
-      getDis1(e) {
-        this.formData.detail[1].description = e.detail.value;
-        this.$apply()
-      },
-      getDis(e) {
-        this.formData.detail[0].description = e.detail.value;
-        this.$apply()
-      },
-      getDis2(e) {
-        this.formData.detail[2].description = e.detail.value;
-        this.$apply()
-      },
-      getpurpose(e) {
-        this.formData.temperature = e.detail.value;
-        this.$apply()
-      },
-      getwindDirection(e) { //获得全部内容
-        this.formData.windDirection = e.detail.value;
-        this.$apply()
-      },
-      getweather(e) {
-        this.formData.weather = e.detail.value;
-        this.$apply()
-      },
-      save() { //保存
-        var self = this;
-        console.log(self.imgs1.length)
-        if (!self.formData.recordUser || self.formData.recordUser == '') {
-          wx.showModal({
-            title: '提示',
-            content: '记录者必填',
-            showCancel: false
-          });
-          return;
-        } else if (!self.formData.recordDate || self.formData.recordDate == '') {
-          wx.showModal({
-            title: '提示',
-            content: '日期必填',
-            showCancel: false
-          });
-          return;
-        } else if (!self.formData.temperature || self.formData.temperature == '') {
-          wx.showModal({
-            title: '提示',
-            content: '温度必填',
-            showCancel: false
-          });
-          return;
-        } else if (!self.formData.windDirection || self.formData.windDirection == '') {
-          wx.showModal({
-            title: '提示',
-            content: '风向必填',
-            showCancel: false
-          });
-          return;
-        } else if (!self.formData.weather || self.formData.weather == '') {
-          wx.showModal({
-            title: '提示',
-            content: '天气必填',
-            showCancel: false
-          });
-          return;
-        }  else if (!self.formData.detail[0].description || self.formData.detail[0].description == '') {
-          wx.showModal({
-            title: '提示',
-            content: '实验数据简介01描述必填',
-            showCancel: false
-          });
-          return;
-        }  else if (!self.formData.detail[1].description || self.formData.detail[1].description == '') {
-          wx.showModal({
-            title: '提示',
-            content: '实验数据简介02描述必填',
-            showCancel: false
-          });
-          return;
-        }  else if (!self.formData.detail[2].description || self.formData.detail[2].description == '') {
-          wx.showModal({
-            title: '提示',
-            content: '实验数据简介03描述必填',
-            showCancel: false
-          });
-          return;
-        } else if (this.imgs1.length !== 3) {
-          wx.showModal({
-            title: '提示',
-            content: '实验数据01固定3张图片',
-            showCancel: false
-          });
-          return;
-        }  else if (this.imgs2.length !== 3) {
-          wx.showModal({
-            title: '提示',
-            content: '实验数据02固定3张图片',
-            showCancel: false
-          });
-          return;
-        }  else if (this.imgs3.length !== 3) {
-          wx.showModal({
-            title: '提示',
-            content: '实验数据03固定3张图片',
-            showCancel: false
-          });
-          return;
-        }
-        self.formData.detail[0].img1 = this.imgs1[0]
-        self.formData.detail[0].img2 = this.imgs1[1]
-        self.formData.detail[0].img3 = this.imgs1[2]
-        self.formData.detail[1].img1 = this.imgs2[0]
-        self.formData.detail[1].img2 = this.imgs2[1]
-        self.formData.detail[1].img3 = this.imgs2[2]
-        self.formData.detail[2].img1 = this.imgs3[0]
-        self.formData.detail[2].img2 = this.imgs3[1]
-        self.formData.detail[2].img3 = this.imgs3[2]
-        this.formData.experimentId = this.id
-        if (self.edit) {
-           this.formData.user = null
-          this.fetchDataPromise('wx/experiment/updateExperimentRecordApi.json', this.formData)
-            .then(function(data) {
-              self.formData = {}
-              //返回上上一页
-              wx.showToast({
-                title: '編輯成功'
-              });
-              setTimeout(() => {
-                wx.navigateBack({
-                  delta: 1
+            this.multiIndex[e.detail.column] = e.detail.value;
+            this.$apply();
+        },
+        bindStartChange (e) {
+            this.formData.recordDate = this.PickerChange(e);
+        },
+        getName(e) { // 获得会议名称
+            this.formData.recordUser = e.detail.value;
+            this.$apply();
+        },
+        getDis1(e) {
+            this.formData.detail[1].description = e.detail.value;
+            this.$apply();
+        },
+        getDis(e) {
+            this.formData.detail[0].description = e.detail.value;
+            this.$apply();
+        },
+        getDis2(e) {
+            this.formData.detail[2].description = e.detail.value;
+            this.$apply();
+        },
+        getpurpose(e) {
+            this.formData.temperature = e.detail.value;
+            this.$apply();
+        },
+        getwindDirection(e) { // 获得全部内容
+            this.formData.windDirection = e.detail.value;
+            this.$apply();
+        },
+        getweather(e) {
+            this.formData.weather = e.detail.value;
+            this.$apply();
+        },
+        save() { // 保存
+            var self = this;
+            console.log(self.imgs1.length);
+            if (!self.formData.recordUser || self.formData.recordUser == '') {
+                wx.showModal({
+                    title: '提示',
+                    content: '记录者必填',
+                    showCancel: false
                 });
-                self.$apply();
-              }, 1000);
-            })
-        }
-        else {
-          this.fetchDataPromise('wx/experiment/createExperimentRecordApi.json', this.formData)
-          .then(function(data) {
-            self.formData = {}
-            //返回上一页
-             wx.showToast({
-                title: '新增成功'
-             });
-            setTimeout(() => {
-              wx.navigateBack({
-                delta: 1
-              });
-              self.$apply();
-            }, 1000);
-          })
-        }
-      },
+                return;
+            } else if (!self.formData.recordDate || self.formData.recordDate == '') {
+                wx.showModal({
+                    title: '提示',
+                    content: '日期必填',
+                    showCancel: false
+                });
+                return;
+            } else if (!self.formData.temperature || self.formData.temperature == '') {
+                wx.showModal({
+                    title: '提示',
+                    content: '温度必填',
+                    showCancel: false
+                });
+                return;
+            } else if (!self.formData.windDirection || self.formData.windDirection == '') {
+                wx.showModal({
+                    title: '提示',
+                    content: '风向必填',
+                    showCancel: false
+                });
+                return;
+            } else if (!self.formData.weather || self.formData.weather == '') {
+                wx.showModal({
+                    title: '提示',
+                    content: '天气必填',
+                    showCancel: false
+                });
+                return;
+            } else if (!self.formData.detail[0].description || self.formData.detail[0].description == '') {
+                wx.showModal({
+                    title: '提示',
+                    content: '实验数据简介01描述必填',
+                    showCancel: false
+                });
+                return;
+            } else if (!self.formData.detail[1].description || self.formData.detail[1].description == '') {
+                wx.showModal({
+                    title: '提示',
+                    content: '实验数据简介02描述必填',
+                    showCancel: false
+                });
+                return;
+            } else if (!self.formData.detail[2].description || self.formData.detail[2].description == '') {
+                wx.showModal({
+                    title: '提示',
+                    content: '实验数据简介03描述必填',
+                    showCancel: false
+                });
+                return;
+            } else if (this.imgs1.length !== 3) {
+                wx.showModal({
+                    title: '提示',
+                    content: '实验数据01固定3张图片',
+                    showCancel: false
+                });
+                return;
+            } else if (this.imgs2.length !== 3) {
+                wx.showModal({
+                    title: '提示',
+                    content: '实验数据02固定3张图片',
+                    showCancel: false
+                });
+                return;
+            } else if (this.imgs3.length !== 3) {
+                wx.showModal({
+                    title: '提示',
+                    content: '实验数据03固定3张图片',
+                    showCancel: false
+                });
+                return;
+            }
+            self.formData.detail[0].img1 = this.imgs1[0];
+            self.formData.detail[0].img2 = this.imgs1[1];
+            self.formData.detail[0].img3 = this.imgs1[2];
+            self.formData.detail[1].img1 = this.imgs2[0];
+            self.formData.detail[1].img2 = this.imgs2[1];
+            self.formData.detail[1].img3 = this.imgs2[2];
+            self.formData.detail[2].img1 = this.imgs3[0];
+            self.formData.detail[2].img2 = this.imgs3[1];
+            self.formData.detail[2].img3 = this.imgs3[2];
+            this.formData.experimentId = this.id;
+            if (self.edit) {
+                this.formData.user = null;
+                this.fetchDataPromise('wx/experiment/updateExperimentRecordApi.json', this.formData)
+                    .then(function(data) {
+                        self.formData = {};
+                        // 返回上上一页
+                        wx.showToast({
+                            title: '編輯成功'
+                        });
+                        setTimeout(() => {
+                            wx.navigateBack({
+                                delta: 1
+                            });
+                            self.$apply();
+                        }, 1000);
+                    });
+            } else {
+                this.fetchDataPromise('wx/experiment/createExperimentRecordApi.json', this.formData)
+                    .then(function(data) {
+                        self.formData = {};
+                        // 返回上一页
+                        wx.showToast({
+                            title: '新增成功'
+                        });
+                        setTimeout(() => {
+                            wx.navigateBack({
+                                delta: 1
+                            });
+                            self.$apply();
+                        }, 1000);
+                    });
+            }
+        },
     }
     // endFun () {
     //   if (this.formData.endDate1) this.times = this.formData.endDate1
@@ -561,36 +560,36 @@
     //   if (this.formData.startDate1) this.times = this.formData.startDate1
     // }
     onLoad(options) {
-      // 获取经纬度
-      var that = this
-      if (options.id) {
-        this.id = options.id
-      } 
-      if (options.record) {
-        this.edit = true
-        this.formData = JSON.parse(options.record)
-        this.formData.detail = [{}, {}, {}]
-        this.formData.detail[0].description = this.formData.detailEntityList[0].description
-        this.formData.detail[1].description = this.formData.detailEntityList[1].description
-        this.formData.detail[2].description = this.formData.detailEntityList[2].description
-        const item = this.formData.detailEntityList
-        this.imgs1 = [item[0].img1, item[0].img2, item[0].img3]
-        this.imgs2 = [item[1].img1, item[1].img2, item[1].img3]
-        this.imgs3 = [item[2].img1, item[2].img2, item[2].img3]
-        this.$broadcast('index-broadcast',this.formData.detailEntityList)
-        wx.setNavigationBarTitle({
-          title: '编辑实验数据' 
-        })
-      }
-      this.settimesDate()
-      this.multiArray = [this.years, this.months, this.days]
-      this.$apply()
+        // 获取经纬度
+        var that = this;
+        if (options.id) {
+            this.id = options.id;
+        }
+        if (options.record) {
+            this.edit = true;
+            this.formData = JSON.parse(options.record);
+            this.formData.detail = [{}, {}, {}];
+            this.formData.detail[0].description = this.formData.detailEntityList[0].description;
+            this.formData.detail[1].description = this.formData.detailEntityList[1].description;
+            this.formData.detail[2].description = this.formData.detailEntityList[2].description;
+            const item = this.formData.detailEntityList;
+            this.imgs1 = [item[0].img1, item[0].img2, item[0].img3];
+            this.imgs2 = [item[1].img1, item[1].img2, item[1].img3];
+            this.imgs3 = [item[2].img1, item[2].img2, item[2].img3];
+            this.$broadcast('index-broadcast', this.formData.detailEntityList);
+            wx.setNavigationBarTitle({
+                title: '编辑实验数据'
+            });
+        }
+        this.settimesDate();
+        this.multiArray = [this.years, this.months, this.days];
+        this.$apply();
     }
     whenAppReadyShow() {
-      // 每次都刷新
-      wx.setStorageSync('uploadAppId', this.config.uploadAppId);
-      wx.setStorageSync('uploadUrl', this.config.uploadUrl);
-      this.$apply()
+        // 每次都刷新
+        wx.setStorageSync('uploadAppId', this.config.uploadAppId);
+        wx.setStorageSync('uploadUrl', this.config.uploadUrl);
+        this.$apply();
     }
   }
 </script>

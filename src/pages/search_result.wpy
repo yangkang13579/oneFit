@@ -219,13 +219,13 @@
         data = {
             currentIndex: 0,
             loadUser: true, // 需要登录信息
-            inputData: "",
-            schoolId: "",
+            inputData: '',
+            schoolId: '',
             id: '',
             catalogId: '',
-            filePath: "",
-            blueprintId: "",
-            downloadurl: "",
+            filePath: '',
+            blueprintId: '',
+            downloadurl: '',
             pageNumber1: 1,
             pageNumber2: 1,
             lastPage1: false,
@@ -236,69 +236,69 @@
         };
         methods = {
             othersTap(e) {
-                console.log(e)
+                console.log(e);
                 var self = this;
                 self.typeId = e.currentTarget.dataset.typeid;
                 self.downloadurl = e.currentTarget.dataset.downloadurl;
                 self.blueprintId = e.currentTarget.dataset.id;
                 this.fetchDataPromise('user/resourceInfo.do', {
-                        resourceId: self.blueprintId,
-                    })
+                    resourceId: self.blueprintId,
+                })
                     .then(function(data) {
                         console.log('预览22 ', data);
                         self.$apply();
-                    })
-                if (self.typeId === "video" || self.typeId === "class") {
-                    console.log("2222")
+                    });
+                if (self.typeId === 'video' || self.typeId === 'class') {
+                    console.log('2222');
                     wx.setStorageSync('video', self.downloadurl);
                     wx.navigateTo({
                         url: '/pages/movie'
                     });
-                } else if (self.typeId === "image") {
-                    self.imgUrl.push(self.downloadurl)
+                } else if (self.typeId === 'image') {
+                    self.imgUrl.push(self.downloadurl);
                     wx.previewImage({
                         current: self.downloadurl,
                         urls: self.imgUrl
-                    })
-                } else if (self.typeId === "ppt") {
-                    console.log("ppppppt")
-                    console.log("self.downloadurleee", self.downloadurl)
-                    wx.downloadFile({ 
+                    });
+                } else if (self.typeId === 'ppt') {
+                    console.log('ppppppt');
+                    console.log('self.downloadurleee', self.downloadurl);
+                    wx.downloadFile({
                         url: self.downloadurl,
-                           success: function(res) {
-                            console.log("resss", res)
-                            self.filePath = res.tempFilePath;   
-                            wx.openDocument({     
+                        success: function(res) {
+                            console.log('resss', res);
+                            self.filePath = res.tempFilePath;
+                            wx.openDocument({
                                 filePath: self.filePath,
-                                success: function(res) {      
-                                    console.log('打开文档成功', res)     
+                                success: function(res) {
+                                    console.log('打开文档成功', res);
                                 },
                                 fail: function(res) {
-                                    console.log('打开文档失败', res)  
-                                }    
-                            })   
-                        }  
-                    })
+                                    console.log('打开文档失败', res);
+                                }
+                            });
+                        }
+                    });
                 }
                 self.$apply();
             },
             schoolDetail(e) {
                 var self = this;
-                console.log(e)
+                console.log(e);
                 var self = this;
-                console.log(e)
+                console.log(e);
                 self.id = e.currentTarget.dataset.id;
                 wx.navigateTo({
                     url: '/pages/school_detail?id=' + self.id
                 });
             },
             addSeart(e) {
-                console.log(e)
+                console.log(e);
                 var self = this;
                 self.id = e.currentTarget.dataset.id;
                 this.fetchDataPromise('user/blueprintResourceInsert.do', {
-                        resourceId: self.id,
-                    })
+                    resourceId: self.id,
+                })
                     .then(function(data) {
                         console.log('资源 ', data);
                         // self.restList = data.items;
@@ -308,7 +308,7 @@
                             duration: 2000
                         });
                         self.$apply();
-                    })
+                    });
             },
             look(e) {
                 // console.log(e)
@@ -322,98 +322,98 @@
                 });
             },
             tabFun(index) {
-                console.log(index+'=========================')
-                this.pageNumber1 = 1
-                this.pageNumber2 = 1
-                this.lastPage1 = false
-                this.lastPage2 = false
-                this.restList = []
-                this.schoolList = []
-                var self = this
+                console.log(index + '=========================');
+                this.pageNumber1 = 1;
+                this.pageNumber2 = 1;
+                this.lastPage1 = false;
+                this.lastPage2 = false;
+                this.restList = [];
+                this.schoolList = [];
+                var self = this;
                 self.currentIndex = index;
-                console.log(self.currentIndex)
-                self.searchFun(self.currentIndex)
+                console.log(self.currentIndex);
+                self.searchFun(self.currentIndex);
             }
         };
         searchFun(index) {
             var self = this;
-           
+    
             if (index == 0) {
-                
-                console.log(self.pageNumber1)
+    
+                console.log(self.pageNumber1);
                 this.fetchDataPromise('schoolSearch.do', {
-                        k: self.inputData,
-                        pageNumber: self.pageNumber1,
-                        pageSize: 10,
-                        catalogId: self.catalogId
-                    })
+                    k: self.inputData,
+                    pageNumber: self.pageNumber1,
+                    pageSize: 10,
+                    catalogId: self.catalogId
+                })
                     .then(function(data) {
                         for (var i = 0; i < data.items.length; i++) {
                             self.schoolList.push(data.items[i]);
                         }
-                        console.log(self.schoolList)
+                        console.log(self.schoolList);
                         self.$apply();
-                        if (data.page.totalPage === self.pageNumber1) self.lastPage1 = true
+                        if (data.page.totalPage === self.pageNumber1) self.lastPage1 = true;
                         // self.schoolList = data.items;
-                    })
+                    });
             } else {
                 this.fetchDataPromise('resourceSearch.do', {
-                        k: self.inputData,
-                        pageNumber: self.pageNumber2,
-                        pageSize: 10,
-                        catalogId: self.catalogId
-                    })
+                    k: self.inputData,
+                    pageNumber: self.pageNumber2,
+                    pageSize: 10,
+                    catalogId: self.catalogId
+                })
                     .then(function(data) {
                         console.log('资源 ', data);
                         for (var i = 0; i < data.items.length; i++) {
                             self.restList.push(data.items[i]);
                         }
-                        if (data.page.totalPage === self.pageNumber2) self.lastPage2 = true
+                        if (data.page.totalPage === self.pageNumber2) self.lastPage2 = true;
                         // self.schoolList = data.items;
                         self.$apply();
-                    })
+                    });
             }
         }
         onLoad(e) {
-            console.log(e)
+            console.log(e);
             this.inputData = e.k;
             this.catalogId = e.catalogId;
-            this.pageNumber1 = 1
-            this.pageNumber2 = 1
-            this.lastPage1 = false
-            this.lastPage2 = false
-            this.restList = []
-            this.schoolList = []
+            this.pageNumber1 = 1;
+            this.pageNumber2 = 1;
+            this.lastPage1 = false;
+            this.lastPage2 = false;
+            this.restList = [];
+            this.schoolList = [];
         }
         onReachBottom() {
-            console.log(this.pageNumber1 + '-------------------')
+            console.log(this.pageNumber1 + '-------------------');
             if (this.currentIndex === 0 || this.currentIndex === '0') {
-                this.pageNumber1++
-                    if (this.lastPage1 === false) this.searchFun(this.currentIndex)
+                this.pageNumber1++;
+                if (this.lastPage1 === false) this.searchFun(this.currentIndex);
             } else {
-                this.pageNumber2++
-                    if (this.lastPage2 === false) this.searchFun(this.currentIndex)
+                this.pageNumber2++;
+                if (this.lastPage2 === false) this.searchFun(this.currentIndex);
             }
         }
         whenAppReadyShow() {
-        
-            this.pageNumber1 = 1
-            this.pageNumber2 = 1
-            this.lastPage1 = false
-            this.lastPage2 = false
-            this.restList = []
-            this.schoolList = []
-            wx.removeStorageSync("video")
-            wx.removeStorageSync("inputvalue")
-            wx.removeStorageSync("showTag")
+    
+            this.pageNumber1 = 1;
+            this.pageNumber2 = 1;
+            this.lastPage1 = false;
+            this.lastPage2 = false;
+            this.restList = [];
+            this.schoolList = [];
+            wx.removeStorageSync('video');
+            wx.removeStorageSync('inputvalue');
+            wx.removeStorageSync('showTag');
             var self = this;
             if (self.inputData === null) {
                 self.whenParamError();
-                return;
+    
             } else {
-                this.searchFun(this.currentIndex)
+                this.searchFun(this.currentIndex);
             }
-        }
+    }
     }
 </script>
         

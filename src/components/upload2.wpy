@@ -101,28 +101,28 @@ export default class Upload extends wepy.page {
     };
     mixins = [PageMixin];
     data = {
-        uploadIndex: 0, //上传的编号
+        uploadIndex: 0, // 上传的编号
         imgUpload: '../images/btn_add_img.png',
-        uploadItems: [], //上传的图片数组
-        uploading: false //是否正在上传
+        uploadItems: [], // 上传的图片数组
+        uploading: false // 是否正在上传
     };
-    events = { 
-      'index-broadcast': (...args) => {
-        console.log(args[0], 'args[0]')
-        const item = args[0][1]
-        this.uploadItems = [{imageUrl: item.img1, uploadUrl: item.img1, file: item.img1, uploaded: true}, {imageUrl: item.img2, file: item.img2, uploaded: true, uploadUrl: item.img2}, {imageUrl: item.img3, file: item.img3, uploaded: true, uploadUrl: item.img3}]
-      }
+    events = {
+        'index-broadcast': (...args) => {
+            console.log(args[0], 'args[0]');
+            const item = args[0][1];
+            this.uploadItems = [{imageUrl: item.img1, uploadUrl: item.img1, file: item.img1, uploaded: true}, {imageUrl: item.img2, file: item.img2, uploaded: true, uploadUrl: item.img2}, {imageUrl: item.img3, file: item.img3, uploaded: true, uploadUrl: item.img3}];
+        }
     }
     methods = {
-      delImg(e) {
-          this.uploadItems.splice(e.currentTarget.dataset.index, 1)
+        delImg(e) {
+            this.uploadItems.splice(e.currentTarget.dataset.index, 1);
         },
         preview(event) {
-          let currentUrl = event.currentTarget.dataset.src
-          wx.previewImage({
-            current: currentUrl, // 当前显示图片的http链接
-            urls: [currentUrl] // 需要预览的图片http链接列表
-          })
+            let currentUrl = event.currentTarget.dataset.src;
+            wx.previewImage({
+                current: currentUrl, // 当前显示图片的http链接
+                urls: [currentUrl] // 需要预览的图片http链接列表
+            });
         },
         chooseImage(e) {
             var self = this;
@@ -136,11 +136,11 @@ export default class Upload extends wepy.page {
                     for (var i = 0; i < tempFilePaths.length; i++) {
                         self.uploadItems.push({
                             index: self.uploadIndex++,
-                            file: tempFilePaths[i], //用于直接显示
+                            file: tempFilePaths[i], // 用于直接显示
                             progress: 0,
-                            uploaded: false, //是否上传完成
-                            uploadError: false, //上传失败
-                            url: '' //上传后的URL
+                            uploaded: false, // 是否上传完成
+                            uploadError: false, // 上传失败
+                            url: '' // 上传后的URL
                         });
                     }
                     self.startUpload();
@@ -156,7 +156,7 @@ export default class Upload extends wepy.page {
             //
         }
     };
-    //启动上传，一个一个上传，
+    // 启动上传，一个一个上传，
     startUpload() {
         var self = this;
         if (self.uploading) {
@@ -174,13 +174,13 @@ export default class Upload extends wepy.page {
         if (uploadItem != null) {
             self.uploading = true;
             self
-                .uploadFile(uploadItem, function(uploadItem){
+                .uploadFile(uploadItem, function(uploadItem) {
                     self.$apply();
                 })
                 .then(data => {
                     self.uploading = false;
-                    uploadItem.uploaded = true; //标记上传成功
-                    //uploadItem.imageUrl 就是上传后的值
+                    uploadItem.uploaded = true; // 标记上传成功
+                    // uploadItem.imageUrl 就是上传后的值
                     self.$apply();
                     self.startUpload();
                 })
@@ -190,9 +190,8 @@ export default class Upload extends wepy.page {
                     self.$apply();
                     self.startUpload();
                 });
-           
 
-           /** 新的 generator 写法
+            /** 新的 generator 写法
             this.app
                 .uploadFile(uploadItem, function(uploadItem) {
                     self.$apply();
@@ -213,13 +212,13 @@ export default class Upload extends wepy.page {
              */
         }
     }
-    //-------------  与上传服务器进行交互 -----------
+    // -------------  与上传服务器进行交互 -----------
     /* 传统模式promise 写法 */
     uploadFile(uploadItem, listener) {
         var self = this;
         wx.showLoading({
-          title: '上传中...'
-        })
+            title: '上传中...'
+        });
         console.log('startUpload:', uploadItem.index);
         return new Promise((resolve, reject) => {
             self
@@ -231,21 +230,21 @@ export default class Upload extends wepy.page {
                     return self._uploadFile(uploadItem, listener);
                 })
                 .then(data => {
-                    return self._uploadQueryCheck(uploadItem,listener);
+                    return self._uploadQueryCheck(uploadItem, listener);
                 })
                 .then(data => {
                     return self._uploadQueryResult(uploadItem);
                 })
                 .then(data => {
-                     console.log('上传结束:', data);
-                    //上传结束
+                    console.log('上传结束:', data);
+                    // 上传结束
                     if (data.files && data.files.length > 0) {
                         var imageUrl = data.files[0].images[0].url;
                         console.log('上传结果:' + imageUrl);
                         uploadItem.imageUrl = imageUrl;
                         resolve(uploadItem);
-                        self.$emit('toParent2', self.uploadItems)
-                        wx.hideLoading()
+                        self.$emit('toParent2', self.uploadItems);
+                        wx.hideLoading();
                     }
                 })
                 .catch(error => {
@@ -254,8 +253,8 @@ export default class Upload extends wepy.page {
             //
         });
     }
-    //获得一个上传地址
-    //https://staticservice.extremevalue.cn/upload.html?appId=qjd
+    // 获得一个上传地址
+    // https://staticservice.extremevalue.cn/upload.html?appId=qjd
     _newUpload() {
         var self = this;
         return new Promise((resolve, reject) => {
@@ -270,7 +269,7 @@ export default class Upload extends wepy.page {
                 },
                 success(res) {
                     var json = res.data;
-                    console.log('json11111',json)
+                    console.log('json11111', json);
                     if (json.code == 200) {
                         resolve(json.messages.data);
                     } else {
@@ -292,7 +291,7 @@ export default class Upload extends wepy.page {
             });
         });
     }
-    //上传文件的具体
+    // 上传文件的具体
     _uploadFile(uploadItem, listener) {
         var self = this;
         return new Promise((resolve, reject) => {
@@ -323,102 +322,98 @@ export default class Upload extends wepy.page {
                     reject(e);
                 }
             });
-            //监控上传进度
+            // 监控上传进度
             uploadTask.onProgressUpdate(res => {
                 if (listener != null) {
                     uploadItem.progress = res.progress;
                     if (uploadItem.progress > 99) {
-            uploadItem.progress = 99;
-          }
+                        uploadItem.progress = 99;
+                    }
                     listener(self, uploadItem);
                 }
 
-            
-            
-            
-    
                 console.log('上传进度', res.progress);
-                 
-                //console.log('已经上传的数据长度', res.totalBytesSent);
+
+                // console.log('已经上传的数据长度', res.totalBytesSent);
                 console.log(
                     '预期需要上传的数据总长度',
                     res.totalBytesExpectedToSend
                 );
-                
+
             });
         });
     }
     // 确认服务器已经收到所有数据
-  _uploadQueryCheck(uploadItem,listener) {
-    var uploadUrl = uploadItem.uploadUrl;
-    function checkFinished(resolve, reject) {
-      wx.request({
-        url: uploadUrl,
-        method: 'get',
-        success: function (res) {
-          var data = res.data;
-          console.log("check upload finished:", data);
-          if (data.status === 'finish') {
-            if (listener != null) {
-              uploadItem.progress = 100;
-              listener(uploadItem);
-            }
-            resolve(data);
-          } else {
-            setTimeout(function () {
-              checkFinished(resolve, reject);
-            }, 1000);
-          }
-        },
-        fail: function (res) {
-          var error = {
-            code: 'upload_error',
-            message: res.errMsg
-          };
-          console.log("query server error,will retry:", error);
-          setTimeout(function () {
+    _uploadQueryCheck(uploadItem, listener) {
+        var uploadUrl = uploadItem.uploadUrl;
+        function checkFinished(resolve, reject) {
+            wx.request({
+                url: uploadUrl,
+                method: 'get',
+                success: function (res) {
+                    var data = res.data;
+                    console.log('check upload finished:', data);
+                    if (data.status === 'finish') {
+                        if (listener != null) {
+                            uploadItem.progress = 100;
+                            listener(uploadItem);
+                        }
+                        resolve(data);
+                    } else {
+                        setTimeout(function () {
+                            checkFinished(resolve, reject);
+                        }, 1000);
+                    }
+                },
+                fail: function (res) {
+                    var error = {
+                        code: 'upload_error',
+                        message: res.errMsg
+                    };
+                    console.log('query server error,will retry:', error);
+                    setTimeout(function () {
+                        checkFinished(resolve, reject);
+                    }, 1000);
+                }
+            });
+        };
+        return new Promise((resolve, reject) => {
             checkFinished(resolve, reject);
-          }, 1000);
-        }
-      });
-    };
-    return new Promise((resolve, reject) => {
-      checkFinished(resolve, reject);
-    });
-  }
-  _uploadQueryResult(uploadItem) {
-    var self = this;
-    return new Promise((resolve, reject) => {
-      var uploadUrl = wx.getStorageSync('uploadUrl') + 'upload.do';
-      wx.request({
-        url: uploadUrl,
-        method: 'get',
-        data: {
-          action: 'query',
-          token: uploadItem.uploadToken
-        },
-        success: function (res) {
-          var json = res.data;
-          if (json.code === 200) {
-            resolve(json.messages.data);
-          } else {
-            const error = json.messages.error;
-            var e = new Error(error.message);
-            e.name = error.code;
-            reject(e);
-          }
-        },
-        fail: function (res) {
-          var error = {
-            code: 'upload_error',
-            message: res.errMsg
-          };
-          var e = new Error(error.message);
-          e.name = error.code;
-          reject(e);
-        }
-      });
-    });
-  }
+        });
+    }
+    _uploadQueryResult(uploadItem) {
+        var self = this;
+        return new Promise((resolve, reject) => {
+            var uploadUrl = wx.getStorageSync('uploadUrl') + 'upload.do';
+            wx.request({
+                url: uploadUrl,
+                method: 'get',
+                data: {
+                    action: 'query',
+                    token: uploadItem.uploadToken
+                },
+                success: function (res) {
+                    var json = res.data;
+                    if (json.code === 200) {
+                        resolve(json.messages.data);
+                    } else {
+                        const error = json.messages.error;
+                        var e = new Error(error.message);
+                        e.name = error.code;
+                        reject(e);
+                    }
+                },
+                fail: function (res) {
+                    var error = {
+                        code: 'upload_error',
+                        message: res.errMsg
+                    };
+                    var e = new Error(error.message);
+                    e.name = error.code;
+                    reject(e);
+                }
+            });
+        });
+    }
 }
 </script>

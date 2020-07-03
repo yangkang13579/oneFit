@@ -100,7 +100,7 @@ function findRange(num, type, limit) {
         throw new Error('[wxCharts] unvalid series data!');
     }
     limit = limit || 10;
-    type = type ? type : 'upper';
+    type = type || 'upper';
     var multiple = 1;
     while (limit < 1) {
         limit *= 10;
@@ -336,8 +336,6 @@ function getSeriesDataItem(series, index) {
     return data;
 }
 
-
-
 function getMaxTextListLength(list) {
     var lengthList = list.map(function (item) {
         return measureText(item);
@@ -531,7 +529,6 @@ function calCategoriesData(categories, opts, config) {
 
     // get max length of categories text
 
-
     var categoriesTextLenth = categories.map(function (item) {
         return measureText(item);
     });
@@ -722,7 +719,7 @@ function calYAxisData(series, opts, config) {
 
 function drawPointShape(points, color, shape, context) {
     context.beginPath();
-    context.setStrokeStyle("#ffffff");
+    context.setStrokeStyle('#ffffff');
     context.setLineWidth(1);
     context.setFillStyle(color);
 
@@ -1299,7 +1296,7 @@ function drawXAxis(categories, opts, config, context) {
     }
 
     context.beginPath();
-    context.setStrokeStyle(opts.xAxis.gridColor || "#cccccc");
+    context.setStrokeStyle(opts.xAxis.gridColor || '#cccccc');
 
     if (opts.xAxis.disableGrid !== true) {
         if (opts.xAxis.type === 'calibration') {
@@ -1377,7 +1374,7 @@ function drawYAxisGrid(opts, config, context) {
     points.push(config.padding + eachSpacing * config.yAxisSplit + 2);
 
     context.beginPath();
-    context.setStrokeStyle(opts.yAxis.gridColor || "#cccccc");
+    context.setStrokeStyle(opts.yAxis.gridColor || '#cccccc');
     context.setLineWidth(1);
     points.forEach(function (item, index) {
         context.moveTo(startX, item);
@@ -1458,40 +1455,40 @@ function drawLegend(series, opts, config, context) {
         context.setFontSize(config.fontSize);
         itemList.forEach(function (item) {
             switch (opts.type) {
-                case 'line':
-                    context.beginPath();
-                    context.setLineWidth(1);
-                    context.setStrokeStyle(item.color);
-                    context.moveTo(startX - 2, startY + 5);
-                    context.lineTo(startX + 17, startY + 5);
-                    context.stroke();
-                    context.closePath();
-                    context.beginPath();
-                    context.setLineWidth(1);
-                    context.setStrokeStyle('#ffffff');
-                    context.setFillStyle(item.color);
-                    context.moveTo(startX + 7.5, startY + 5);
-                    context.arc(startX + 7.5, startY + 5, 4, 0, 2 * Math.PI);
-                    context.fill();
-                    context.stroke();
-                    context.closePath();
-                    break;
-                case 'pie':
-                case 'ring':
-                    context.beginPath();
-                    context.setFillStyle(item.color);
-                    context.moveTo(startX + 7.5, startY + 5);
-                    context.arc(startX + 7.5, startY + 5, 7, 0, 2 * Math.PI);
-                    context.closePath();
-                    context.fill();
-                    break;
-                default:
-                    context.beginPath();
-                    context.setFillStyle(item.color);
-                    context.moveTo(startX, startY);
-                    context.rect(startX, startY, 15, 10);
-                    context.closePath();
-                    context.fill();
+            case 'line':
+                context.beginPath();
+                context.setLineWidth(1);
+                context.setStrokeStyle(item.color);
+                context.moveTo(startX - 2, startY + 5);
+                context.lineTo(startX + 17, startY + 5);
+                context.stroke();
+                context.closePath();
+                context.beginPath();
+                context.setLineWidth(1);
+                context.setStrokeStyle('#ffffff');
+                context.setFillStyle(item.color);
+                context.moveTo(startX + 7.5, startY + 5);
+                context.arc(startX + 7.5, startY + 5, 4, 0, 2 * Math.PI);
+                context.fill();
+                context.stroke();
+                context.closePath();
+                break;
+            case 'pie':
+            case 'ring':
+                context.beginPath();
+                context.setFillStyle(item.color);
+                context.moveTo(startX + 7.5, startY + 5);
+                context.arc(startX + 7.5, startY + 5, 7, 0, 2 * Math.PI);
+                context.closePath();
+                context.fill();
+                break;
+            default:
+                context.beginPath();
+                context.setFillStyle(item.color);
+                context.moveTo(startX, startY);
+                context.rect(startX, startY, 15, 10);
+                context.closePath();
+                context.fill();
             }
             startX += padding + shapeWidth;
             context.beginPath();
@@ -1592,7 +1589,7 @@ function drawRadarDataPoints(series, opts, config, context) {
     // draw grid
     context.beginPath();
     context.setLineWidth(1);
-    context.setStrokeStyle(radarOption.gridColor || "#cccccc");
+    context.setStrokeStyle(radarOption.gridColor || '#cccccc');
     coordinateAngle.forEach(function (angle) {
         var pos = convertCoordinateOrigin(radius * Math.cos(angle), radius * Math.sin(angle), centerPosition);
         context.moveTo(centerPosition.x, centerPosition.y);
@@ -1607,7 +1604,7 @@ function drawRadarDataPoints(series, opts, config, context) {
         var startPos = {};
         context.beginPath();
         context.setLineWidth(1);
-        context.setStrokeStyle(radarOption.gridColor || "#cccccc");
+        context.setStrokeStyle(radarOption.gridColor || '#cccccc');
         coordinateAngle.forEach(function (angle, index) {
             var pos = convertCoordinateOrigin(radius / config.radarGridCount * i * Math.cos(angle), radius / config.radarGridCount * i * Math.sin(angle), centerPosition);
             if (index === 0) {
@@ -1774,140 +1771,140 @@ function drawCharts(type, opts, config, context) {
     var duration = opts.animation ? 1000 : 0;
     this.animationInstance && this.animationInstance.stop();
     switch (type) {
-        case 'line':
-            this.animationInstance = new Animation({
-                timing: 'easeIn',
-                duration: duration,
-                onProcess: function onProcess(process) {
-                    drawYAxisGrid(opts, config, context);
+    case 'line':
+        this.animationInstance = new Animation({
+            timing: 'easeIn',
+            duration: duration,
+            onProcess: function onProcess(process) {
+                drawYAxisGrid(opts, config, context);
 
-                    var _drawLineDataPoints = drawLineDataPoints(series, opts, config, context, process),
-                        xAxisPoints = _drawLineDataPoints.xAxisPoints,
-                        calPoints = _drawLineDataPoints.calPoints,
-                        eachSpacing = _drawLineDataPoints.eachSpacing;
+                var _drawLineDataPoints = drawLineDataPoints(series, opts, config, context, process),
+                    xAxisPoints = _drawLineDataPoints.xAxisPoints,
+                    calPoints = _drawLineDataPoints.calPoints,
+                    eachSpacing = _drawLineDataPoints.eachSpacing;
 
-                    _this.chartData.xAxisPoints = xAxisPoints;
-                    _this.chartData.calPoints = calPoints;
-                    _this.chartData.eachSpacing = eachSpacing;
-                    drawXAxis(categories, opts, config, context);
-                    drawLegend(opts.series, opts, config, context);
-                    drawYAxis(series, opts, config, context);
-                    drawToolTipBridge(opts, config, context, process);
-                    drawCanvas(opts, context);
-                },
-                onAnimationFinish: function onAnimationFinish() {
-                    _this.event.trigger('renderComplete');
-                }
-            });
-            break;
-        case 'column':
-            this.animationInstance = new Animation({
-                timing: 'easeIn',
-                duration: duration,
-                onProcess: function onProcess(process) {
-                    drawYAxisGrid(opts, config, context);
+                _this.chartData.xAxisPoints = xAxisPoints;
+                _this.chartData.calPoints = calPoints;
+                _this.chartData.eachSpacing = eachSpacing;
+                drawXAxis(categories, opts, config, context);
+                drawLegend(opts.series, opts, config, context);
+                drawYAxis(series, opts, config, context);
+                drawToolTipBridge(opts, config, context, process);
+                drawCanvas(opts, context);
+            },
+            onAnimationFinish: function onAnimationFinish() {
+                _this.event.trigger('renderComplete');
+            }
+        });
+        break;
+    case 'column':
+        this.animationInstance = new Animation({
+            timing: 'easeIn',
+            duration: duration,
+            onProcess: function onProcess(process) {
+                drawYAxisGrid(opts, config, context);
 
-                    var _drawColumnDataPoints = drawColumnDataPoints(series, opts, config, context, process),
-                        xAxisPoints = _drawColumnDataPoints.xAxisPoints,
-                        eachSpacing = _drawColumnDataPoints.eachSpacing;
+                var _drawColumnDataPoints = drawColumnDataPoints(series, opts, config, context, process),
+                    xAxisPoints = _drawColumnDataPoints.xAxisPoints,
+                    eachSpacing = _drawColumnDataPoints.eachSpacing;
 
-                    _this.chartData.xAxisPoints = xAxisPoints;
-                    _this.chartData.eachSpacing = eachSpacing;
-                    drawXAxis(categories, opts, config, context);
-                    drawLegend(opts.series, opts, config, context);
-                    drawYAxis(series, opts, config, context);
-                    drawCanvas(opts, context);
-                },
-                onAnimationFinish: function onAnimationFinish() {
-                    _this.event.trigger('renderComplete');
-                }
-            });
-            break;
-        case 'area':
-            this.animationInstance = new Animation({
-                timing: 'easeIn',
-                duration: duration,
-                onProcess: function onProcess(process) {
-                    drawYAxisGrid(opts, config, context);
+                _this.chartData.xAxisPoints = xAxisPoints;
+                _this.chartData.eachSpacing = eachSpacing;
+                drawXAxis(categories, opts, config, context);
+                drawLegend(opts.series, opts, config, context);
+                drawYAxis(series, opts, config, context);
+                drawCanvas(opts, context);
+            },
+            onAnimationFinish: function onAnimationFinish() {
+                _this.event.trigger('renderComplete');
+            }
+        });
+        break;
+    case 'area':
+        this.animationInstance = new Animation({
+            timing: 'easeIn',
+            duration: duration,
+            onProcess: function onProcess(process) {
+                drawYAxisGrid(opts, config, context);
 
-                    var _drawAreaDataPoints = drawAreaDataPoints(series, opts, config, context, process),
-                        xAxisPoints = _drawAreaDataPoints.xAxisPoints,
-                        calPoints = _drawAreaDataPoints.calPoints,
-                        eachSpacing = _drawAreaDataPoints.eachSpacing;
+                var _drawAreaDataPoints = drawAreaDataPoints(series, opts, config, context, process),
+                    xAxisPoints = _drawAreaDataPoints.xAxisPoints,
+                    calPoints = _drawAreaDataPoints.calPoints,
+                    eachSpacing = _drawAreaDataPoints.eachSpacing;
 
-                    _this.chartData.xAxisPoints = xAxisPoints;
-                    _this.chartData.calPoints = calPoints;
-                    _this.chartData.eachSpacing = eachSpacing;
-                    drawXAxis(categories, opts, config, context);
-                    drawLegend(opts.series, opts, config, context);
-                    drawYAxis(series, opts, config, context);
-                    drawToolTipBridge(opts, config, context, process);
-                    drawCanvas(opts, context);
-                },
-                onAnimationFinish: function onAnimationFinish() {
-                    _this.event.trigger('renderComplete');
-                }
-            });
-            break;
-        case 'ring':
-        case 'pie':
-            this.animationInstance = new Animation({
-                timing: 'easeInOut',
-                duration: duration,
-                onProcess: function onProcess(process) {
-                    _this.chartData.pieData = drawPieDataPoints(series, opts, config, context, process);
-                    drawLegend(opts.series, opts, config, context);
-                    drawCanvas(opts, context);
-                },
-                onAnimationFinish: function onAnimationFinish() {
-                    _this.event.trigger('renderComplete');
-                }
-            });
-            break;
-        case 'radar':
-            this.animationInstance = new Animation({
-                timing: 'easeInOut',
-                duration: duration,
-                onProcess: function onProcess(process) {
-                    _this.chartData.radarData = drawRadarDataPoints(series, opts, config, context, process);
-                    drawLegend(opts.series, opts, config, context);
-                    drawCanvas(opts, context);
-                },
-                onAnimationFinish: function onAnimationFinish() {
-                    _this.event.trigger('renderComplete');
-                }
-            });
-            break;
+                _this.chartData.xAxisPoints = xAxisPoints;
+                _this.chartData.calPoints = calPoints;
+                _this.chartData.eachSpacing = eachSpacing;
+                drawXAxis(categories, opts, config, context);
+                drawLegend(opts.series, opts, config, context);
+                drawYAxis(series, opts, config, context);
+                drawToolTipBridge(opts, config, context, process);
+                drawCanvas(opts, context);
+            },
+            onAnimationFinish: function onAnimationFinish() {
+                _this.event.trigger('renderComplete');
+            }
+        });
+        break;
+    case 'ring':
+    case 'pie':
+        this.animationInstance = new Animation({
+            timing: 'easeInOut',
+            duration: duration,
+            onProcess: function onProcess(process) {
+                _this.chartData.pieData = drawPieDataPoints(series, opts, config, context, process);
+                drawLegend(opts.series, opts, config, context);
+                drawCanvas(opts, context);
+            },
+            onAnimationFinish: function onAnimationFinish() {
+                _this.event.trigger('renderComplete');
+            }
+        });
+        break;
+    case 'radar':
+        this.animationInstance = new Animation({
+            timing: 'easeInOut',
+            duration: duration,
+            onProcess: function onProcess(process) {
+                _this.chartData.radarData = drawRadarDataPoints(series, opts, config, context, process);
+                drawLegend(opts.series, opts, config, context);
+                drawCanvas(opts, context);
+            },
+            onAnimationFinish: function onAnimationFinish() {
+                _this.event.trigger('renderComplete');
+            }
+        });
+        break;
     }
 }
 
 // simple event implement
 
 function Event() {
-	this.events = {};
+    this.events = {};
 }
 
 Event.prototype.addEventListener = function (type, listener) {
-	this.events[type] = this.events[type] || [];
-	this.events[type].push(listener);
+    this.events[type] = this.events[type] || [];
+    this.events[type].push(listener);
 };
 
 Event.prototype.trigger = function () {
-	for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-		args[_key] = arguments[_key];
-	}
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+        args[_key] = arguments[_key];
+    }
 
-	var type = args[0];
-	var params = args.slice(1);
-	if (!!this.events[type]) {
-		this.events[type].forEach(function (listener) {
-			try {
-				listener.apply(null, params);
-			} catch (e) {
-				console.error(e);
-			}
-		});
-	}
+    var type = args[0];
+    var params = args.slice(1);
+    if (this.events[type]) {
+        this.events[type].forEach(function (listener) {
+            try {
+                listener.apply(null, params);
+            } catch (e) {
+                console.error(e);
+            }
+        });
+    }
 };
 
 var Charts = function Charts(opts) {
@@ -1916,8 +1913,8 @@ var Charts = function Charts(opts) {
     opts.yAxis = opts.yAxis || {};
     opts.xAxis = opts.xAxis || {};
     opts.extra = opts.extra || {};
-    opts.legend = opts.legend === false ? false : true;
-    opts.animation = opts.animation === false ? false : true;
+    opts.legend = opts.legend !== false;
+    opts.animation = opts.animation !== false;
     var config$$1 = assign({}, config);
     config$$1.yAxisTitleWidth = opts.yAxis.disabled !== true && opts.yAxis.title ? config$$1.yAxisTitleWidth : 0;
     config$$1.pieChartLinePadding = opts.dataLabel === false ? 0 : config$$1.pieChartLinePadding;

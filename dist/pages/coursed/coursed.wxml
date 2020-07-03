@@ -7,6 +7,15 @@
       <view class="{{tab==1 ? 'active':''}}">精品团课</view>
       <view class="{{tab==2 ? 'active':''}}">私教预约</view>
     </view>
+
+    <view class="times">
+      <view class="time">
+        <view class="block"  wx:for="{{date}}" wx:for-item="item">
+          <view class="date">{{item.date}}</view>
+          <view class="week">{{item.isWeek ? item.week : item.month}}</view>
+        </view>
+      </view>
+    </view>
     <view class="tabSelect">
       <view bindtap="tap_ch" class="selectOne">
         <view>OneFit运动训练中心</view>

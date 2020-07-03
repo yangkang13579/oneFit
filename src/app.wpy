@@ -12,9 +12,9 @@ import 'wepy-async-function';
 export default class extends wepy.app {
   config = {
       pages: [
+          'pages/coursed/coursed',
           'pages/home/home',
           'pages/user/user',
-          'pages/coursed/coursed',
           'pages/coursed/coach',
           'pages/coursed/member',
           'pages/coursed/card',
@@ -48,51 +48,51 @@ export default class extends wepy.app {
           navigationBarBackgroundColor: '#fefefe',
           navigationBarTitleText: '首页',
           navigationBarTextStyle: 'black',
-          navigationStyle: "custom",
+          navigationStyle: 'custom',
       },
-       tabBar: {
-        color: "#5e5e5e",
-        selectedColor: "#e82511",
-        backgroundColor: "#343434",
-        borderStyle: "black",
-        list: [
-          {
-            pagePath: "pages/home/home",
-            text: "首页",
-            iconPath: "images/home.png",
-            selectedIconPath: "images/home_select.png"
-          },
-          {
-            pagePath: "pages/coursed/coursed",
-            text: "课程",
-            iconPath: "images/course.png",
-            selectedIconPath: "images/course_select.png"
-          },
-          {
-            pagePath: "pages/user/user",
-            text: "我的",
-            iconPath: "images/user.png",
-            selectedIconPath: "images/user_selet.png"
+      tabBar: {
+          color: '#5e5e5e',
+          selectedColor: '#e82511',
+          backgroundColor: '#343434',
+          borderStyle: 'black',
+          list: [
+              {
+                  pagePath: 'pages/home/home',
+                  text: '首页',
+                  iconPath: 'images/home.png',
+                  selectedIconPath: 'images/home_select.png'
+              },
+              {
+                  pagePath: 'pages/coursed/coursed',
+                  text: '课程',
+                  iconPath: 'images/course.png',
+                  selectedIconPath: 'images/course_select.png'
+              },
+              {
+                  pagePath: 'pages/user/user',
+                  text: '我的',
+                  iconPath: 'images/user.png',
+                  selectedIconPath: 'images/user_selet.png'
+              }
+          ]
+      },
+      'permission': {
+          'scope.userLocation': {
+              'desc': '您的位置信息将用于寻找附近的检测点'
           }
-        ]
-    },
-    "permission": {
-      "scope.userLocation": {
-        "desc": "您的位置信息将用于寻找附近的检测点"
-      }
-    },
-   
-  }; 
-  globalData = { 
-      //中化作物
+      },
+
+  };
+  globalData = {
+      // 中化作物
       appId: 'wx59fd07ac9d84ef04',
       appType: 'sinochem_xcx',
       wxId: 'gh_3d0d25c141db',
       passportUrl: 'https://passport.lingtaodata.com/passport/', // 认证服务器
       dataUrl: 'https://sinochem.lingtaodata.com/data/', // 数据服务器
-      uploadUrl: "https://www.lingtaodata.com/",
+      uploadUrl: 'https://www.lingtaodata.com/',
 
-      //灵韬作物
+      // 灵韬作物
       // appId: 'wx5cef6b57858f3941',
       // appType: 'qr_xcx',
       // wxId: 'gh_db8177eb7a0b',
@@ -102,7 +102,7 @@ export default class extends wepy.app {
   };
   constructor() {
       super();
-      this.use('promisify'); 
+      this.use('promisify');
   }
   onLaunch(options) {
       // 初始化都是异步的

@@ -185,7 +185,29 @@ page {
 .c-state1{  
   transform: rotate(0deg) scale(1) translate(75%,0%);   
   -webkit-transform: rotate(0deg) scale(1) translate(75%,0%);   
-}  
+} 
+.times{
+  height:100rpx;
+  background:#010101;
+  width:100%;
+  overflow:auto;
+  display:flex;
+  overflow-y:hidden;
+  .time{
+    flex-shrink: 0;
+    .block{
+      float:left;
+      color:#fff;
+      font-size:30rpx;
+      width:100rpx;
+      text-align:center;
+      margin:3rpx 0;
+      .date{
+        margin-bottom:15rpx;
+      }
+    }
+  }
+} 
 </style>
 
 <template lang="wxml">
@@ -196,6 +218,15 @@ page {
     <view @tap="tabs" class="tab">
       <view class="{{tab==1 ? 'active':''}}">精品团课</view>
       <view class="{{tab==2 ? 'active':''}}">私教预约</view>
+    </view>
+
+    <view class='times'>
+      <view class="time">
+        <view class="block" wx:for="{{date}}" wx:for-item="item">
+          <view class="date">{{item.date}}</view>
+          <view class="week">{{item.isWeek ? item.week : item.month}}</view>
+        </view>
+      </view>
     </view>
     <view class="tabSelect">
       <view @tap="tap_ch" class="selectOne">
@@ -323,6 +354,7 @@ page {
 <script>
 /* global wx */
 import wepy from "wepy";
+import dayjs from 'dayjs'
 import PageMixin from "../../mixins/page";
 export default class Course extends wepy.page {
   // mixins = [PageMixin];
@@ -335,7 +367,8 @@ export default class Course extends wepy.page {
     loadUser: true,
     isShow: true,
     open:false,
-    tab: 1
+    tab: 1,
+    date: []
   };
   methods = {
     goCoach(){
@@ -350,7 +383,7 @@ export default class Course extends wepy.page {
       }else{
        this.open = true;
       }
-  },
+    },
     btn() {
       this.isShow = !this.isShow;
       this.$apply();
@@ -363,12 +396,11 @@ export default class Course extends wepy.page {
         this.tab = 1;
       }
       this.$apply();
-    }
+    },
   };
-
   onReachBottom() {}
-
   whenAppReadyShow() {
+    
     this.fetchDataPromise("user/userInfo.json", {})
       .then(data => {
         const userInfo = data;
@@ -381,7 +413,51 @@ export default class Course extends wepy.page {
       .catch(function(error) {});
   }
   onShow() {
-    // wx.hideTabBar()
+    this.date = []
+    this.returnDate(this.mGetDate(dayjs().subtract(1, 'month').year(), dayjs().subtract(1, 'month').month()), dayjs().date(), dayjs().subtract(1, 'month').month(), dayjs().subtract(1, 'month').year())
+    this.returnDate(this.mGetDate(dayjs().subtract(0, 'month').year(), dayjs().subtract(0, 'month').month()), 0, dayjs().subtract(0, 'month').month(), dayjs().subtract(0, 'month').year())
+    this.returnDate(this.mGetDate(dayjs().year(), dayjs().month()), 0, dayjs().month() + 1, dayjs().year())
+  }
+  mGetDate(year, month){
+    var d = new Date(year, month, 0);
+    return d.getDate();
+  }
+  returnDate(ary, date, month, year) {
+    console.log(dayjs().add(14, 'day').format('YYYY-MM-DD'), dayjs().subtract(7, 'day').format('YYYY-MM-DD'), '111')
+    for(let i = 1 + date; i <= ary; i++) { 
+      this.date.push({
+        date: i,
+        month: month + '月',
+        week: '周' + this.returnWeek(dayjs(year + '-' + month + '-' + i).day()),
+        isWeek: dayjs(year + '-' + month + '-' + i).valueOf() < dayjs().subtract(8, 'day').valueOf()
+        || dayjs(year + '-' + month + '-' + i).valueOf() > dayjs().add(14, 'day').valueOf() ? false : true
+      })
+    }
+  }
+  returnWeek(week) {
+    switch(week) {
+     case 0:
+        return '日'
+        break;
+     case 1:
+        return '一'
+        break;
+     case 2:
+        return '二'
+        break;
+      case 3:
+        return '三'
+        break;
+      case 4:
+        return '四'
+        break;
+      case 5:
+        return '五'
+        break;
+      case 6:
+        return '六'
+        break;
+     } 
   }
   onShareAppMessage(res) {}
   regionchange(e) {

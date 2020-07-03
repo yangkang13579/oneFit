@@ -347,266 +347,266 @@
   export default class SchemeDetail extends wepy.page {
     mixins = [PageMixin];
     config = {
-      navigationBarBackgroundColor: '#000000',
-      navigationBarTitleText: '方案查看'
+        navigationBarBackgroundColor: '#000000',
+        navigationBarTitleText: '方案查看'
     };
     components = {
-      // tabbar: Tabbar
+        // tabbar: Tabbar
     };
     data = {
-      blueprintId: '',
-      loadUser: true, // 需要登录信息
-      showTag: null,
-      detailList: [],
-      resList: [],
-      currentIndex: null,
-      resourceId: '',
-      passId: "",
-      id: '',
-      downloadurl: "",
-      imgUrl: [],
-      dond: '',
-      fileType: "",
-      typeId: "",
-      downloadUrlzone: ""
+        blueprintId: '',
+        loadUser: true, // 需要登录信息
+        showTag: null,
+        detailList: [],
+        resList: [],
+        currentIndex: null,
+        resourceId: '',
+        passId: '',
+        id: '',
+        downloadurl: '',
+        imgUrl: [],
+        dond: '',
+        fileType: '',
+        typeId: '',
+        downloadUrlzone: ''
     }
     methods = {
-      // 整体方案下载
-      onDone(e) {
-        console.log(e)
-        var self = this;
-        self.dond = e.currentTarget.dataset.dond;
-        this.fetchDataPromise('user/blueprintInfoDownload.do', {
-            blueprintId: self.dond,
-          })
-          .then(function(data) {
-            console.log('总方案 ', data);
-            self.downloadUrlzone = data.downloadUrl;
-            console.log("xxxxxx", self.downloadUrlzone)
-            wx.downloadFile({ 
-              url: self.downloadUrlzone,
-                 success: function(res) {
-                console.log("resss", res)
-                self.filePath = res.tempFilePath;   
-                wx.openDocument({     
-                  filePath: self.filePath,
-                  success: function(res) {      
-                    console.log('打开文档成功', res)     
-                  },
-                  fail: function(res) {
-                    console.log('打开文档失败', res)  
-                  }    
-                })   
-              }  
+        // 整体方案下载
+        onDone(e) {
+            console.log(e);
+            var self = this;
+            self.dond = e.currentTarget.dataset.dond;
+            this.fetchDataPromise('user/blueprintInfoDownload.do', {
+                blueprintId: self.dond,
             })
-            // wx.downloadFile({ 
-            //   url: self.downloadUrlzone,
-            //      success: function(res) {
-            //     console.log("resss", res)
-            //     self.filePath = res.tempFilePath;   
-            //     wx.openDocument({     
-            //       filePath: self.filePath,
-            //       success: function(res) {      
-            //         console.log('打开文档成功', res)     
-            //       },
-            //       fail: function(res) {
-            //         console.log('打开文档失败', res)  
-            //       }    
-            //     })   
-            //     wx.saveFile({
-            //       tempFilePath: self.filePath,
-            //       success: function(res) {
-            //         console.log('res', res.savedFilePath)
-            //         wx.showToast({
-            //           title: '方案下载成功',
-            //           icon: 'success',
-            //           duration: 2000
-            //         })
-            //       }
-            //     })
-            //   },
-            //   fail: function(res) {
-            //     console.log('下载文档失败', res)  
-            //   }  
-            // })
-            self.$apply();
-          })
-      },
-      // 单个下载
-      onDown(e) {
-        var self = this;
-        console.log(e)
-        self.typeId = e.currentTarget.dataset.typeid;
-        self.downloadurl = e.currentTarget.dataset.downloadurl;
-        self.fileType = e.currentTarget.dataset.filetype;
-        console.log("self.fileType", self.fileType)
-        console.log("self.typeId", self.typeId)
-        if (self.typeId == "image") {
-          wx.downloadFile({
-            url: self.downloadurl,
-            success: function(res) {
-              console.log("ressss", res)
-              wx.saveImageToPhotosAlbum({
-                filePath: res.tempFilePath,
-                success(result) {
-                  console.log(result)
-                }
-              })
-              wx.saveFile({
-                tempFilePath: res.tempFilePath,
-                success: function(res) {
-                  console.log(res.savedFilePath)
-                  wx.showToast({
-                    title: '图片下载成功',
-                    icon: 'success',
-                    duration: 2000
-                  })
-                }
-              })
-            }
-          })
-        } else if (self.typeId == "class" || self.typeId == "video") {
-          wx.showToast({
-            title: '视频不支持下载噢',
-            icon: 'success',
-            duration: 2000
-          })
-        } else {
-          wx.downloadFile({ 
-            url: self.downloadurl,
-            success: function(res) {
-              console.log("ccc", res)
-              self.filePath = res.tempFilePath;  
-              wx.saveFile({
-                tempFilePath: res.tempFilePath,
-                success: function(res) {
-                  console.log(res.savedFilePath)
-                  wx.showToast({
-                    title: '文件下载成功',
-                    icon: 'success',
-                    duration: 2000
-                  })
-                  wx.getSavedFileList({
+                .then(function(data) {
+                    console.log('总方案 ', data);
+                    self.downloadUrlzone = data.downloadUrl;
+                    console.log('xxxxxx', self.downloadUrlzone);
+                    wx.downloadFile({
+                        url: self.downloadUrlzone,
+                        success: function(res) {
+                            console.log('resss', res);
+                            self.filePath = res.tempFilePath;
+                            wx.openDocument({
+                                filePath: self.filePath,
+                                success: function(res) {
+                                    console.log('打开文档成功', res);
+                                },
+                                fail: function(res) {
+                                    console.log('打开文档失败', res);
+                                }
+                            });
+                        }
+                    });
+                    // wx.downloadFile({
+                    //   url: self.downloadUrlzone,
+                    //      success: function(res) {
+                    //     console.log("resss", res)
+                    //     self.filePath = res.tempFilePath;
+                    //     wx.openDocument({
+                    //       filePath: self.filePath,
+                    //       success: function(res) {
+                    //         console.log('打开文档成功', res)
+                    //       },
+                    //       fail: function(res) {
+                    //         console.log('打开文档失败', res)
+                    //       }
+                    //     })
+                    //     wx.saveFile({
+                    //       tempFilePath: self.filePath,
+                    //       success: function(res) {
+                    //         console.log('res', res.savedFilePath)
+                    //         wx.showToast({
+                    //           title: '方案下载成功',
+                    //           icon: 'success',
+                    //           duration: 2000
+                    //         })
+                    //       }
+                    //     })
+                    //   },
+                    //   fail: function(res) {
+                    //     console.log('下载文档失败', res)
+                    //   }
+                    // })
+                    self.$apply();
+                });
+        },
+        // 单个下载
+        onDown(e) {
+            var self = this;
+            console.log(e);
+            self.typeId = e.currentTarget.dataset.typeid;
+            self.downloadurl = e.currentTarget.dataset.downloadurl;
+            self.fileType = e.currentTarget.dataset.filetype;
+            console.log('self.fileType', self.fileType);
+            console.log('self.typeId', self.typeId);
+            if (self.typeId == 'image') {
+                wx.downloadFile({
+                    url: self.downloadurl,
                     success: function(res) {
-                      console.log('zzz', res.fileList)
+                        console.log('ressss', res);
+                        wx.saveImageToPhotosAlbum({
+                            filePath: res.tempFilePath,
+                            success(result) {
+                                console.log(result);
+                            }
+                        });
+                        wx.saveFile({
+                            tempFilePath: res.tempFilePath,
+                            success: function(res) {
+                                console.log(res.savedFilePath);
+                                wx.showToast({
+                                    title: '图片下载成功',
+                                    icon: 'success',
+                                    duration: 2000
+                                });
+                            }
+                        });
                     }
-                  })
-                }
-              }) 
-              // wx.openDocument({     
-              //   filePath: self.filePath,
-              //   fileType: self.fileType,
-              //   success: function(res) {      
-              //     console.log('打开文档成功', res)     
-              //   },
-              //   fail: function(res) {
-              //     console.log('打开文档失败', res)  
-              //   }    
-              // })   
-            },
-            fail: function(res) {
-              console.log('下载文档失败', res)  
-            }  
-          })
-        }
-        self.$apply();
-      },
-      othersTap(e) {
-        console.log(e)
-        var self = this;
-        self.typeId = e.currentTarget.dataset.typeid;
-        self.downloadurl = e.currentTarget.dataset.downloadurl;
-        self.resourceId = e.currentTarget.dataset.id;
-        this.fetchDataPromise('user/resourceInfo.do', {
-            resourceId: self.resourceId,
-          })
-          .then(function(data) {
-            console.log('预览22 ', data);
+                });
+            } else if (self.typeId == 'class' || self.typeId == 'video') {
+                wx.showToast({
+                    title: '视频不支持下载噢',
+                    icon: 'success',
+                    duration: 2000
+                });
+            } else {
+                wx.downloadFile({
+                    url: self.downloadurl,
+                    success: function(res) {
+                        console.log('ccc', res);
+                        self.filePath = res.tempFilePath;
+                        wx.saveFile({
+                            tempFilePath: res.tempFilePath,
+                            success: function(res) {
+                                console.log(res.savedFilePath);
+                                wx.showToast({
+                                    title: '文件下载成功',
+                                    icon: 'success',
+                                    duration: 2000
+                                });
+                                wx.getSavedFileList({
+                                    success: function(res) {
+                                        console.log('zzz', res.fileList);
+                                    }
+                                });
+                            }
+                        });
+                        // wx.openDocument({
+                        //   filePath: self.filePath,
+                        //   fileType: self.fileType,
+                        //   success: function(res) {
+                        //     console.log('打开文档成功', res)
+                        //   },
+                        //   fail: function(res) {
+                        //     console.log('打开文档失败', res)
+                        //   }
+                        // })
+                    },
+                    fail: function(res) {
+                        console.log('下载文档失败', res);
+                    }
+                });
+            }
             self.$apply();
-          })
-        if (self.typeId === "video" || self.typeId === "class") {
-          console.log("2222")
-          self.downloadurl = e.currentTarget.dataset.downloadurl;
-          wx.setStorageSync('video', self.downloadurl);
-          wx.navigateTo({
-            url: '/pages/movie'
-          });
-        } else if (self.typeId === "ppt") {
-          console.log("ppppppt")
-          console.log("self.downloadurleee", self.downloadurl)
-          wx.downloadFile({ 
-            url: self.downloadurl,
-               success: function(res) {
-              console.log("resss", res)
-              self.filePath = res.tempFilePath;   
-              wx.openDocument({     
-                filePath: self.filePath,
-                success: function(res) {      
-                  console.log('打开文档成功', res)     
-                },
-                fail: function(res) {
-                  console.log('打开文档失败', res)  
-                }    
-              })   
-            }  
-          })
-        } else if (self.typeId === "image") {
-          self.imgUrl.push(self.downloadurl)
-          wx.previewImage({
-            current: self.downloadurl,
-            urls: self.imgUrl
-          })
-        }
-        self.$apply();
-      },
+        },
+        othersTap(e) {
+            console.log(e);
+            var self = this;
+            self.typeId = e.currentTarget.dataset.typeid;
+            self.downloadurl = e.currentTarget.dataset.downloadurl;
+            self.resourceId = e.currentTarget.dataset.id;
+            this.fetchDataPromise('user/resourceInfo.do', {
+                resourceId: self.resourceId,
+            })
+                .then(function(data) {
+                    console.log('预览22 ', data);
+                    self.$apply();
+                });
+            if (self.typeId === 'video' || self.typeId === 'class') {
+                console.log('2222');
+                self.downloadurl = e.currentTarget.dataset.downloadurl;
+                wx.setStorageSync('video', self.downloadurl);
+                wx.navigateTo({
+                    url: '/pages/movie'
+                });
+            } else if (self.typeId === 'ppt') {
+                console.log('ppppppt');
+                console.log('self.downloadurleee', self.downloadurl);
+                wx.downloadFile({
+                    url: self.downloadurl,
+                    success: function(res) {
+                        console.log('resss', res);
+                        self.filePath = res.tempFilePath;
+                        wx.openDocument({
+                            filePath: self.filePath,
+                            success: function(res) {
+                                console.log('打开文档成功', res);
+                            },
+                            fail: function(res) {
+                                console.log('打开文档失败', res);
+                            }
+                        });
+                    }
+                });
+            } else if (self.typeId === 'image') {
+                self.imgUrl.push(self.downloadurl);
+                wx.previewImage({
+                    current: self.downloadurl,
+                    urls: self.imgUrl
+                });
+            }
+            self.$apply();
+        },
     };
     onLoad(e) {
-      console.log('333', e)
-      this.blueprintId = e.blueprintId;
-      this.$apply();
+        console.log('333', e);
+        this.blueprintId = e.blueprintId;
+        this.$apply();
     }
     whenAppReadyShow() {
-      wx.removeStorageSync("video")
-      var self = this;
-      this.fetchDataPromise('user/blueprintInfo.do', {
-          blueprintId: self.blueprintId,
+        wx.removeStorageSync('video');
+        var self = this;
+        this.fetchDataPromise('user/blueprintInfo.do', {
+            blueprintId: self.blueprintId,
         })
-        .then(function(data) {
-          console.log('hao ', data);
-          self.detailList = data.blueprint;
-          console.log('self.detailList', self.detailList)
-          self.passId = data.blueprint.id
-          // self.resList = self.detailList.resources;
-          self.$apply();
-        })
+            .then(function(data) {
+                console.log('hao ', data);
+                self.detailList = data.blueprint;
+                console.log('self.detailList', self.detailList);
+                self.passId = data.blueprint.id;
+                // self.resList = self.detailList.resources;
+                self.$apply();
+            });
     }
     onShareAppMessage(res) {
-      return this.whenAppShare({
-        title: '安全教育资源地图'
-      });
+        return this.whenAppShare({
+            title: '安全教育资源地图'
+        });
     }
     onShareAppMessage() {
-      var self = this;
-      return {
-        title: self.detailList.catalogName,
-        path: "pages/share?blueprintId=" + self.blueprintId,
-        success: function(res) {
-          // 转发成功
-          console.log('转发成功');
-        },
-        fail: function(res) {
-          // 转发失败
-        }
-      }
+        var self = this;
+        return {
+            title: self.detailList.catalogName,
+            path: 'pages/share?blueprintId=' + self.blueprintId,
+            success: function(res) {
+                // 转发成功
+                console.log('转发成功');
+            },
+            fail: function(res) {
+                // 转发失败
+            }
+        };
     }
     regionchange(e) {
-      console.log(e.type);
+        console.log(e.type);
     }
     markertap(e) {
-      console.log(e.markerId);
+        console.log(e.markerId);
     }
     controltap(e) {
-      console.log(e.controlId);
+        console.log(e.controlId);
     }
   }
 </script>

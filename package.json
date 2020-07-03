@@ -3,11 +3,13 @@
     "scripts": {
         "postbuild": "node ./version.js",
         "build": "cross-env NODE_ENV=production wepy build --no-cache",
-        "test": "echo \"Error: no test specified\" && exit 1"
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "lint": "eslint --fix --ext .js,.wpy src"
     },
     "author": "",
     "license": "MIT",
     "dependencies": {
+        "dayjs": "^1.8.29",
         "md5": "^2.2.1",
         "wepy": "^1.7.2",
         "wepy-async-function": "^1.4.6",

@@ -102,39 +102,39 @@
   export default class Car extends wepy.page {
     mixins = [PageMixin];
     config = {
-      navigationBarTitleText: '我的签到',
-      navigationBarBackgroundColor: '#fff'
+        navigationBarTitleText: '我的签到',
+        navigationBarBackgroundColor: '#fff'
     };
     components = {
     };
     data = {
-      list: [],
+        list: [],
     };
     timeFormat (timeStr) {
-      var dataOne = timeStr.split('T')[0];
-      var dataTwo = timeStr.split('T')[1];
-      var dataThree = dataTwo.split('+')[0];
-      var newTimeStr = dataOne + ' ' + dataThree
-      return newTimeStr;
+        var dataOne = timeStr.split('T')[0];
+        var dataTwo = timeStr.split('T')[1];
+        var dataThree = dataTwo.split('+')[0];
+        var newTimeStr = dataOne + ' ' + dataThree;
+        return newTimeStr;
     }
 
     getList () {
-      var self = this
-      this.fetchDataPromise('meeting/wechat/querySignRecordApi.json', {}, {})
-      .then(function(data) {
-        self.list = data.list.map(item => {
-          let obj = item
-          obj.createDate = self.timeFormat(obj.createDate)
-          return obj
-        })
-        self.$apply()
-      })
+        var self = this;
+        this.fetchDataPromise('meeting/wechat/querySignRecordApi.json', {}, {})
+            .then(function(data) {
+                self.list = data.list.map(item => {
+                    let obj = item;
+                    obj.createDate = self.timeFormat(obj.createDate);
+                    return obj;
+                });
+                self.$apply();
+            });
     }
     methods = {
     }
   
     whenAppReadyShow() {
-      this.getList()
+        this.getList();
     }
   }
 </script>

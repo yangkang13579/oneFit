@@ -131,76 +131,76 @@
   export default class AddressBook extends wepy.page {
     mixins = [PageMixin];
     config = {
-      navigationBarTitleText: '田间实验',
-      navigationBarBackgroundColor: '#fff'
+        navigationBarTitleText: '田间实验',
+        navigationBarBackgroundColor: '#fff'
     };
     components = {
     };
     data = {
-      list: [],
-      delItem: null,
-      showToast: false,
-      error: '',
-      user: this.user,
-      pageSize: 10,
-      totalPage: 0,
-      indexPage: 0
+        list: [],
+        delItem: null,
+        showToast: false,
+        error: '',
+        user: this.user,
+        pageSize: 10,
+        totalPage: 0,
+        indexPage: 0
     };
     onReachBottom() {
-      if (this.indexPage >= this.totalPage) {
-        this.toast('无更多数据')
-        return
-      }
-      this.indexPage++
-      // 下拉触底，先判断是否有请求正在进行中
-      // 以及检查当前请求页数是不是小于数据总页数，如符合条件，则发送请求
-      this.getList()
+        if (this.indexPage >= this.totalPage) {
+            this.toast('无更多数据');
+            return;
+        }
+        this.indexPage++;
+        // 下拉触底，先判断是否有请求正在进行中
+        // 以及检查当前请求页数是不是小于数据总页数，如符合条件，则发送请求
+        this.getList();
     }
     // 获取列表
     getList () {
-      const self = this
-      this.fetchDataPromise('wx/experiment/queryExperimentApi.json', {
-        pageSize: this.pageSize,
-        indexPage: this.indexPage
-      }, {})
-      .then(function(data) {
-        data.list = data.list.map(item => {
-          let obj = item
-          obj.createDates = obj.createDate.split('T')[0].split('-')
-          console.log(obj.createDates)
-          obj.createDate = obj.createDates[0] + '年' + obj.createDates[1] + '月' + obj.createDates[2] + '月'
-          return obj
-        })
-        self.totalPage = data.queryParam.totalPage
-        self.list = self.list.concat(data.list)
-        self.$apply()
-      })
+        const self = this;
+        this.fetchDataPromise('wx/experiment/queryExperimentApi.json', {
+            pageSize: this.pageSize,
+            indexPage: this.indexPage
+        }, {})
+            .then(function(data) {
+                data.list = data.list.map(item => {
+                    let obj = item;
+                    obj.createDates = obj.createDate.split('T')[0].split('-');
+                    console.log(obj.createDates);
+                    obj.createDate = obj.createDates[0] + '年' + obj.createDates[1] + '月' + obj.createDates[2] + '月';
+                    return obj;
+                });
+                self.totalPage = data.queryParam.totalPage;
+                self.list = self.list.concat(data.list);
+                self.$apply();
+            });
     }
     toast (error) {
-      this.showToast = true
-      this.error = error
-      var that = this
-      setTimeout(() => {
-        that.showToast = false
-      }, 2000);
+        this.showToast = true;
+        this.error = error;
+        var that = this;
+        setTimeout(() => {
+            that.showToast = false;
+        }, 2000);
     }
     methods = {
-      createFun() {
-        wx.navigateTo({
-          url: '/pages/createTest'
-        });
-      },
-      go(e) {
-        wx.navigateTo({
-          url: '/pages/textDetails?id=' + e.currentTarget.dataset.id
-        });
-      }
+        createFun() {
+            wx.navigateTo({
+                url: '/pages/createTest'
+            });
+        },
+        go(e) {
+            wx.navigateTo({
+                url: '/pages/textDetails?id=' + e.currentTarget.dataset.id
+            });
+        }
     }
     onLoad () {
     }
     whenAppReadyShow() {
-      this.list = []
-      this.getList()
+        this.list = [];
+        this.getList();
     }
   }
 </script>

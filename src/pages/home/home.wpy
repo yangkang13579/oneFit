@@ -72,66 +72,66 @@ swiper,
 
 <script>
 /* global wx */
-import wepy from "wepy";
-import PageMixin from "../../mixins/page";
+import wepy from 'wepy';
+import PageMixin from '../../mixins/page';
 export default class Home extends wepy.page {
   // mixins = [PageMixin];
   config = {
-    navigationBarTitleText: "OneFit运动训练中心",
-    navigationBarBackgroundColor: "#000"
+      navigationBarTitleText: 'OneFit运动训练中心',
+      navigationBarBackgroundColor: '#000'
   };
   components = {};
   data = {
-    imgUrls: ["../../images/1.jpg", "../../images/2.jpg", "../../images/3.jpg"],
-    boxImg: [
-      '../../images/4.jpg',
-      '../../images/5.jpg',
-      '../../images/9.jpg',
-      '../../images/7.jpg',
-      '../../images/8.jpg'
-    ],
-    loadUser: true,
-    indicatorDots: true,
-    vertical: false,
-    autoplay: false,
-    interval: 2000,
-    duration: 500
+      imgUrls: ['../../images/1.jpg', '../../images/2.jpg', '../../images/3.jpg'],
+      boxImg: [
+          '../../images/4.jpg',
+          '../../images/5.jpg',
+          '../../images/9.jpg',
+          '../../images/7.jpg',
+          '../../images/8.jpg'
+      ],
+      loadUser: true,
+      indicatorDots: true,
+      vertical: false,
+      autoplay: false,
+      interval: 2000,
+      duration: 500
   };
   methods = {};
 
   onReachBottom() {}
 
   whenAppReadyShow() {
-    this.fetchDataPromise("user/userInfo.json", {})
-      .then(data => {
-        const userInfo = data;
-        this.$apply();
-        wx.setStorage({
-          key: "userInfo",
-          data: JSON.stringify(userInfo)
-        });
-      })
-      .catch(function(error) {});
-    wx.hideTabBar();
-    // console.log('this.currentIndex', this.currentIndex)
-    // this.tabFunSecah(this.currentIndex)
-    this.initData();
-    this.init();
-    this.$apply();
-    this.it();
+      this.fetchDataPromise('user/userInfo.json', {})
+          .then(data => {
+              const userInfo = data;
+              this.$apply();
+              wx.setStorage({
+                  key: 'userInfo',
+                  data: JSON.stringify(userInfo)
+              });
+          })
+          .catch(function(error) {});
+      wx.hideTabBar();
+      // console.log('this.currentIndex', this.currentIndex)
+      // this.tabFunSecah(this.currentIndex)
+      this.initData();
+      this.init();
+      this.$apply();
+      this.it();
   }
   onShow() {
-    // wx.hideTabBar()
+      // wx.hideTabBar()
   }
   onShareAppMessage(res) {}
   regionchange(e) {
-    console.log(e.type);
+      console.log(e.type);
   }
   markertap(e) {
-    console.log(e.markerId);
+      console.log(e.markerId);
   }
   controltap(e) {
-    console.log(e.controlId);
+      console.log(e.controlId);
   }
 }
 </script>

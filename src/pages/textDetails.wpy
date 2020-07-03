@@ -471,132 +471,132 @@
 
 
 <script>
-import wepy from "wepy";
-import PageMixin from "../mixins/page";
+import wepy from 'wepy';
+import PageMixin from '../mixins/page';
 export default class TextDetails extends wepy.page {
   mixins = [PageMixin];
   config = {
-    navigationBarTitleText: "田间实验",
-    navigationBarBackgroundColor: "#fff"
+      navigationBarTitleText: '田间实验',
+      navigationBarBackgroundColor: '#fff'
   };
   data = {
-    uploadIndex: 0, //上传的编号
-    uploadItems: [], //上传的图片数组
-    uploading: false, //是否正在上传
-    list: [{}, {}],
-    delItem: null,
-    showToast: false,
-    error: "",
-    user: this.user,
-    id: null,
-    isOpen: false,
-    details: {}
+      uploadIndex: 0, // 上传的编号
+      uploadItems: [], // 上传的图片数组
+      uploading: false, // 是否正在上传
+      list: [{}, {}],
+      delItem: null,
+      showToast: false,
+      error: '',
+      user: this.user,
+      id: null,
+      isOpen: false,
+      details: {}
   };
   // 获取实验详情
   getDeails(id) {
-    const that = this
-    this.fetchDataPromise('wx/experiment/queryExperimentRecordApi.json', {experimentId: id}, {})
-    .then(function(data) {
-      that.details = data.list[0]
-      that.$apply();
-    })
+      const that = this;
+      this.fetchDataPromise('wx/experiment/queryExperimentRecordApi.json', {experimentId: id}, {})
+          .then(function(data) {
+              that.details = data.list[0];
+              that.$apply();
+          });
   }
   toast(error) {
-    this.showToast = true;
-    this.error = error;
-    var that = this;
-    setTimeout(() => {
-      that.showToast = false;
-    }, 2000);
+      this.showToast = true;
+      this.error = error;
+      var that = this;
+      setTimeout(() => {
+          that.showToast = false;
+      }, 2000);
   }
   methods = {
-    preview(event) {
-      let currentUrl = event.currentTarget.dataset.src
-      wx.previewImage({
-        current: currentUrl, // 当前显示图片的http链接
-        urls: [currentUrl] // 需要预览的图片http链接列表
-      })
-    },
-    editRecord(e) {
-      wx.navigateTo({
-        url: '/pages/addRecord?id=' + this.id + '&record=' + JSON.stringify(e.currentTarget.dataset.id)
-      });
-    },
-    // 打开增加实验
-    open() {
-      wx.navigateTo({
-        url: '/pages/addRecord?id=' + this.id
-      });
-    },
-    getUser(e) {
-      this.formData.recordUser = e.detail.value;
-      this.$apply()
-    },
-    // 编辑实验信息
-    editFun() {
-      wx.navigateTo({
-        url: '/pages/createTest?item=' + JSON.stringify(this.details)
-      });
-    },
-    chooseImage(e) {
-      var self = this;
-      wx.chooseImage({
-        count: 2,
-        sizeType: ["original", "compressed"],
-        sourceType: ["album", "camera"],
-        success(res) {
-          // tempFilePath可以作为img标签的src属性显示图片
-          const tempFilePaths = res.tempFilePaths;
-          for (var i = 0; i < tempFilePaths.length; i++) {
-            self.uploadItems.push({
-              index: self.uploadIndex++,
-              file: tempFilePaths[i], //用于直接显示
-              progress: 0,
-              uploaded: false, //是否上传完成
-              uploadError: false, //上传失败
-              url: "" //上传后的URL
-            });
-          }
-          self.startUpload();
-          self.$apply();
-        },
-        fail(error) {
-        }
-      });
-    },
-    // 删除
-    delFun(e) {
-      var self = this;
-      wx.showModal({
-        title: "提示",
-        content: "是否确认删除当前实验数据?",
-        cancelText: "取消",
-        confirmText: "确认",
-        success: function(res) {
-          if (res.confirm) {
-            self.fetchDataPromise('wx/experiment/deleteExperimentRecordApi.json', {id: e.target.dataset.id})
-            .then(function(data) {
-              self.formData = {}
-              //返回上上一页
-              wx.showToast({
-                title: '删除成功'
-              });
-              self.getDeails(self.id)
-            })
-          }
-        },
-        fail: function(err) {}
-      });
-    }
+      preview(event) {
+          let currentUrl = event.currentTarget.dataset.src;
+          wx.previewImage({
+              current: currentUrl, // 当前显示图片的http链接
+              urls: [currentUrl] // 需要预览的图片http链接列表
+          });
+      },
+      editRecord(e) {
+          wx.navigateTo({
+              url: '/pages/addRecord?id=' + this.id + '&record=' + JSON.stringify(e.currentTarget.dataset.id)
+          });
+      },
+      // 打开增加实验
+      open() {
+          wx.navigateTo({
+              url: '/pages/addRecord?id=' + this.id
+          });
+      },
+      getUser(e) {
+          this.formData.recordUser = e.detail.value;
+          this.$apply();
+      },
+      // 编辑实验信息
+      editFun() {
+          wx.navigateTo({
+              url: '/pages/createTest?item=' + JSON.stringify(this.details)
+          });
+      },
+      chooseImage(e) {
+          var self = this;
+          wx.chooseImage({
+              count: 2,
+              sizeType: ['original', 'compressed'],
+              sourceType: ['album', 'camera'],
+              success(res) {
+                  // tempFilePath可以作为img标签的src属性显示图片
+                  const tempFilePaths = res.tempFilePaths;
+                  for (var i = 0; i < tempFilePaths.length; i++) {
+                      self.uploadItems.push({
+                          index: self.uploadIndex++,
+                          file: tempFilePaths[i], // 用于直接显示
+                          progress: 0,
+                          uploaded: false, // 是否上传完成
+                          uploadError: false, // 上传失败
+                          url: '' // 上传后的URL
+                      });
+                  }
+                  self.startUpload();
+                  self.$apply();
+              },
+              fail(error) {
+              }
+          });
+      },
+      // 删除
+      delFun(e) {
+          var self = this;
+          wx.showModal({
+              title: '提示',
+              content: '是否确认删除当前实验数据?',
+              cancelText: '取消',
+              confirmText: '确认',
+              success: function(res) {
+                  if (res.confirm) {
+                      self.fetchDataPromise('wx/experiment/deleteExperimentRecordApi.json', {id: e.target.dataset.id})
+                          .then(function(data) {
+                              self.formData = {};
+                              // 返回上上一页
+                              wx.showToast({
+                                  title: '删除成功'
+                              });
+                              self.getDeails(self.id);
+                          });
+                  }
+              },
+              fail: function(err) {}
+          });
+      }
   };
   onLoad(options) {
-    this.id = options.id
+      this.id = options.id;
   }
   whenAppReadyShow() {
-    // this.getList()
-    this.getDeails(this.id)
-    
-    // 每次都刷新
+      // this.getList()
+      this.getDeails(this.id);
+
+      // 每次都刷新
   }
 }
 </script>

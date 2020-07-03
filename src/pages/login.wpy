@@ -41,7 +41,7 @@
             message: 'unknown'
         };
         methods = {
-            wxLogin(e) {     
+            wxLogin(e) {
                 if (e.detail.iv && e.detail.encryptedData) {
                     wx.showLoading({
                         title: '正在登录...'
@@ -55,7 +55,7 @@
                                 icon: 'success',
                                 duration: 2000
                             });
-                           
+    
                             setTimeout(function() {
                                 wx.navigateBack();
                             }, 500);
@@ -68,10 +68,10 @@
                                 duration: 2000
                             });
                         });
-                }else{
-                  wx.switchTab({
-                    url: '/pages/list'
-                  });
+                } else {
+                    wx.switchTab({
+                        url: '/pages/list'
+                    });
                 }
             },
             cancel() {

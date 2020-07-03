@@ -182,3 +182,25 @@ page {
   transform: rotate(0deg) scale(1) translate(75%, 0%);
   -webkit-transform: rotate(0deg) scale(1) translate(75%, 0%);
 }
+.times {
+  height: 100rpx;
+  background: #010101;
+  width: 100%;
+  overflow: auto;
+  display: flex;
+  overflow-y: hidden;
+}
+.times .time {
+  flex-shrink: 0;
+}
+.times .time .block {
+  float: left;
+  color: #fff;
+  font-size: 30rpx;
+  width: 100rpx;
+  text-align: center;
+  margin: 3rpx 0;
+}
+.times .time .block .date {
+  margin-bottom: 15rpx;
+}

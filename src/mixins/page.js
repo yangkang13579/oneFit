@@ -159,12 +159,12 @@ export default class PageMixin extends wepy.mixin {
     whenAppReadyShow() {
         console.log('whenAppReadyShow...');
     }
-    time(timeStr){
+    time(timeStr) {
         var dataOne = timeStr.split('T')[0];
         var dataTwo = timeStr.split('T')[1];
         var dataThree = dataTwo.split('+')[0];
-        var newTimeStr = dataOne + ' ' + dataThree
-        return newTimeStr; 
+        var newTimeStr = dataOne + ' ' + dataThree;
+        return newTimeStr;
     }
     /** 当页面发起转发 */
     whenAppShare(options) {
@@ -237,7 +237,7 @@ export default class PageMixin extends wepy.mixin {
         //
         // 在所有请求里加入userId
         if (this.passport) {
-            console.log('this.passport', this.passport)
+            console.log('this.passport', this.passport);
             params.passport = this.passport;
         }
         // 增加程序信息

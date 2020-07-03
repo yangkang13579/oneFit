@@ -10,8 +10,8 @@
 
     <view class="times">
       <view class="time">
-        <view class="block"  wx:for="{{date}}" wx:for-item="item">
-          <view class="date">{{item.date}}</view>
+        <view class="block"  wx:for="{{date}}" wx:for-item="item" wx:for-index="idx" data-index="{{idx}}" bindtap="getDate">
+          <view class="{{currentIndex === idx ? 'hover date' : 'date'}}">{{item.date}}</view>
           <view class="week">{{item.isWeek ? item.week : item.month}}</view>
         </view>
       </view>

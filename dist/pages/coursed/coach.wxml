@@ -10,7 +10,7 @@
     <view class="study">课程时长：60分钟</view>
     <view class="code">约课得1积分</view>
   </view>
-  <view class="time">
+  <view class="time select">
     <view class="timename">选择时间</view>
     <view class="times">
       <view class="time1">
@@ -23,7 +23,7 @@
   </view>
 
   <view class="time">
-    <view class="timename">课程时长60分钟(请选择起始时间)</view>
+    <view class="timename two">课程时长60分钟(请选择起始时间)</view>
     <view class="dateTime">
       <view class="block">
         <view class="items"  wx:for="{{times}}">{{item}}</view>

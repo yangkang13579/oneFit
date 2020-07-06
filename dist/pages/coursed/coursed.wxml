@@ -80,51 +80,25 @@
 
     </view>
 
-     <!-- <view class="list">
+    <view class="list">
       <view class="list-top">
          <view class="list-left">
           <view class="accname">
-            <image src="../../images/11.jpg"></image>
+            <image src="../../images/11.jpg"/>
           </view>
           <view class="names">OneFit赵家交</view>
         </view>
-        <view bindtap="btn" class="list-right">
-          <view class="btnshow {{isShow==true ? 'show':'hide'}}">所售课种</view>
-          <view class="btnhide {{isShow==true ? 'hide':'show'}}">收起</view>
+        <view bindtap="goCoach" class="list-right">
+          <view class="btnshow">￥500购买</view>
+          
         </view>
 
       </view>
-       <view class="list-bot {{isShow==true ? 'hide':'show'}}">
-        <view class="item-list">
-          <view class='item-left'>
-            <image src="../../images/11.jpg"></image>
-            <text>孕产训练</text>
-          </view>
-          <view class="item-right">
-            预约
-          </view>
-        </view>
-         <view class="item-list">
-          <view class='item-left'>
-            <image src="../../images/11.jpg"></image>
-            <text>孕产训练</text>
-          </view>
-          <view class="item-right">
-            预约
-          </view>
-        </view>
-         <view class="item-list">
-          <view class='item-left'>
-            <image src="../../images/11.jpg"></image>
-            <text>孕产训练</text>
-          </view>
-          <view class="item-right">
-            预约
-          </view>
-        </view>
-      </view>
+      
 
-    </view> -->
+    </view>
+
+    
     
 
 

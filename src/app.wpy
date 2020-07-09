@@ -14,7 +14,10 @@ export default class extends wepy.app {
       pages: [
           'pages/home/home',
           'pages/coursed/coach',
+          'pages/coursed/lesson',
+          'pages/coursed/coachDetail',
           'pages/coursed/coursed',
+          'pages/coursed/reserve',
           'pages/user/user',
           'pages/coursed/member',
           'pages/coursed/card',

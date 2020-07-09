@@ -40,7 +40,7 @@
           <view class="accname">
             <image src="../../images/11.jpg"/>
           </view>
-          <view class="names">OneFit赵家交</view>
+          <view bindtap="detail" class="names">OneFit赵家交</view>
         </view>
         <view bindtap="btn" class="list-right">
           <view class="btnshow {{isShow==true ? 'show':'hide'}}">所售课种</view>
@@ -109,4 +109,11 @@
     wwwww
 
 
+  </view>
+
+  <view class="floating">
+     <button open-type="share">
+       <image class="share" src="../../images/fenxiang.png"/>
+    </button>
+    <image bindtap="tolesson" class="ke" src="../../images/ke.png"/>
   </view>

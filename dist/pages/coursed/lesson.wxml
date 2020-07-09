@@ -1,0 +1,80 @@
+
+  <view class="nav">
+      <image bindtap="back" class="back" src="../../images/toback.png"/>
+      <view bindtap="tabs" class="tab">
+          <view style="border-radius:10rpx 0 0 10rpx" class="{{tab==1 ? 'active':''}}">添加课程</view>
+          <view style="border-radius:0 10rpx 10rpx 0" class="{{tab==2 ? 'active':''}}">复制课程</view>
+      </view>
+  </view>
+  <view class="con">
+    <view class="listBox">
+      <view class="list">
+        <text>课程模板</text>
+        <view>
+          <input bindtap="inputText" disabled bindinput="bindKeyInput" value="{{model}}" placeholder="请选择"/>
+          <image src="../../images/rightwo.png"/>
+        </view>
+      </view>
+       <view class="list">
+        <text>课程时间</text>
+        <view>
+          <input disabled bindinput="bindKeyInput" placeholder="请选择"/>
+          <image src="../../images/rightwo.png"/>
+        </view>
+      </view>
+       <view class="list">
+        <text>选择教练</text>
+        <view>
+          <input bindtap="inputPeople" disabled bindinput="bindKeyInput" value="{{modelpeople}}" placeholder="请选择"/>
+          <image src="../../images/rightwo.png"/>
+        </view>
+      </view>
+
+
+    </view>
+
+
+  </view>
+  <view  wx:if="{{hide}}" bindtap="hide" class="shadown"/>
+  <view  wx:if="{{hide}}" class="box">
+    <view class="title">选择课程模板</view>
+    <view class="boxlist">
+      <block wx:for="{{list}}">
+          <view class="item">
+             <view class="itemleft">
+              <text>{{item.name}}</text>
+            </view>
+            <view bindtap="selcet" data-item="{{item}}" class="itemImg">
+              <image wx:if="{{item.check==0}}" src="../../images/yuan.png"/>
+              <image wx:if="{{item.check==1}}" src="../../images/gou.png"/>
+            </view>
+          </view>
+      </block>
+    </view>
+    <view bindtap="btnkc" class="btn">+添加课程模板</view>
+
+  </view>
+
+  <view  wx:if="{{hideTwo}}" bindtap="hideTwo" class="shadown"/>
+  <view  wx:if="{{hideTwo}}" class="box">
+    <view class="title">选择教练</view>
+    <view class="boxlist">
+      <block wx:for="{{people}}">
+          <view class="item">
+            <view class="itemleft">
+              <image src="../../images/11.jpg"/>
+              <text>{{item.name}}</text>
+            </view>
+            
+            <view bindtap="selcetPle" data-item="{{item}}" class="itemImg">
+              <image wx:if="{{item.check==0}}" src="../../images/yuan.png"/>
+              <image wx:if="{{item.check==1}}" src="../../images/gou.png"/>
+            </view>
+          </view>
+      </block>
+    </view>
+    <view bindtap="btnjl" class="btn">+添加教练</view>
+
+  </view>
+
+  <view bindtap="save" class="save">保存</view>

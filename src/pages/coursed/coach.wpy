@@ -4,6 +4,13 @@ page{
   width: 100%;
   height: 100%;
 }
+.back{
+  position: fixed;
+  top: 50rpx;
+  left: 20rpx;
+  width: 35rpx;
+  height: 35rpx;
+}
 .banner{
   width: 100%;
   height: 425rpx;
@@ -145,6 +152,7 @@ page{
 </style>
 
 <template lang="wxml">
+  <image @tap="back"  class="back" src="../../images/toback.png"></image>
   <view class="banner">
     <image src="../../images/13.jpg"></image>
   </view>
@@ -189,9 +197,9 @@ import PageMixin from '../../mixins/page';
 export default class Coach extends wepy.page {
   // mixins = [PageMixin];
   config = {
-      navigationBarTitleText: '预约',
+      // navigationBarTitleText: '预约',
       // navigationBarBackgroundColor: '#fff',
-      navigationStyle:'default'
+
   };
   components = {};
   data = {
@@ -200,6 +208,11 @@ export default class Coach extends wepy.page {
     times: []
   };
   methods = {
+    back(){
+      wx.navigateBack({
+        delta: 1
+      })
+    },
       goBuy() {
           wx.navigateTo({
               url: 'member'

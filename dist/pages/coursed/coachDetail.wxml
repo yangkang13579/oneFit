@@ -1,0 +1,48 @@
+
+ <image bindtap="back" class="back" src="../../images/toback.png"/>
+  <view class="top">
+    <image class="banner" src="../../images/20.jpg"/>
+    <view class="coach">
+      <image src="../../images/11.jpg"/>
+      <view class="name">OneFit赵家交</view>
+      <view class="study">
+        累计118课时
+      </view>
+    </view>
+    <view class="eait">
+      <view class="bianji">编辑</view>
+      <view class="guanli">预约管理</view>
+    </view>
+
+  </view>
+  <view class="con">
+    <view class="contop">
+      <view class="title">简练简介</view>
+      <view class="text">OneFit徐汇店教练</view>
+      <view class="text">OneFit体能教练</view>
+       <view class="text">OneFit体能教练</view>
+       <view class="text">OneFit体能教练</view>
+      <view class="text">OneFit体能教练</view>
+    </view>
+    <view class="concot">
+      <view class="title">简练简介</view>
+      <view class="conbox">
+        <image src="../../images/21.jpg"/>
+        <view class="conright">
+            <view class="one">一对一私教</view>
+            <view class="two">课程时长：60分钟</view>
+            <view class="three">￥550元</view>
+        </view>
+      </view>
+    </view>
+
+     <view class="conbot">
+      <view class="title">教练详情</view>
+      <view class="conbox">
+        <image src="../../images/22.jpg"/>
+        
+      </view>
+    </view>
+   
+
+  </view>

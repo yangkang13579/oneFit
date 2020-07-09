@@ -1,0 +1,268 @@
+<style lang="less">
+page{
+  background: #f4f4f4;
+  width: 100%;
+  height: 100%;
+}
+.back{
+  position: fixed;
+  top: 50rpx;
+  left: 20rpx;
+  width: 35rpx;
+  height: 35rpx;
+  z-index: 5;
+}
+.top{
+  width: 100%;
+  height: 480rpx;
+  .banner{
+    position: relative;
+    width: 100%;
+    height: 480rpx;
+  }
+  .coach{
+    position: absolute;
+    top: 130rpx;
+    left: 20rpx;
+    z-index: 2;
+    display: flex;
+    width: 400rpx;
+    padding: 10rpx 0;
+    flex-direction: column;
+    justify-content: flex-start;
+    image{
+      width: 130rpx;
+      height: 130rpx;
+      border-radius: 50%;
+    }
+    .name{
+      font-size: 32rpx;
+      color: #fff;
+      margin-top: 20rpx;
+    }
+    .study{
+      font-size: 26rpx;
+      margin-top: 20rpx;
+      color: #fff;
+    }
+  }
+  .eait{
+    position: absolute;
+    top: 350rpx;
+    right: 20rpx;
+    z-index: 2;
+    display: flex;
+    width: 300rpx;
+    padding: 10rpx 0;
+    justify-content: space-between;
+    .bianji{
+      width: 120rpx;
+      height: 50rpx;
+      border-radius: 25rpx;
+      text-align: center;
+      line-height: 50rpx;
+      background: #bfbfbf;
+      color: #464646;
+      font-size: 26rpx;
+    }
+    .guanli{
+      font-size: 26rpx;
+      width: 160rpx;
+      height: 50rpx;
+      border-radius: 25rpx;
+      text-align: center;
+      line-height: 50rpx;
+      background: #e5464a;
+      color: #fff;
+    }
+  }
+}
+.con{
+  width: 710rpx;
+  padding: 50rpx 20rpx;
+  background: #fff;
+  border-radius: 50rpx 50rpx 0 0;
+  margin-top: -40rpx;
+  z-index: 4;
+  .contop{
+    width: 100%;
+    .title{
+      width: 100%;
+      font-size: 32rpx;
+      margin-bottom: 20rpx;
+    }
+    .text{
+      width: 100%;
+      font-size: 28rpx;
+    }
+  }
+  .concot{
+     width: 100%;
+     margin-top: 40rpx;
+    .title{
+      width: 100%;
+      font-size: 32rpx;
+      margin-bottom: 20rpx;
+    }
+    .conbox{
+      width: 100%;
+      height: 210rpx;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      image{
+        width: 270rpx;
+        height: 180rpx;
+        margin-right: 20rpx;
+      }
+      .conright{
+        display: flex;
+        height: 170rpx;
+        padding: 20rpx 0;
+        flex-direction: column;
+        justify-content: space-between;
+        .one{
+          font-size: 28rpx;
+          color: #000;
+        }
+        .two{
+           font-size: 26rpx;
+          color: #818181;
+        }
+        .three{
+          font-size: 30rpx;
+          color: #e5464a;
+        }
+      }
+    }
+  }
+  .conbot{
+     width: 100%;
+     margin-top: 40rpx;
+    .title{
+      width: 100%;
+      font-size: 32rpx;
+      margin-bottom: 20rpx;
+    }
+    .conbox{
+      image{
+        width: 100%;
+      }
+    }
+  }
+}
+
+</style>
+
+<template lang="wxml">
+ <image @tap="back"  class="back" src="../../images/toback.png"></image>
+  <view class="top">
+    <image class="banner" src="../../images/20.jpg"></image>
+    <view class="coach">
+      <image src="../../images/11.jpg"></image>
+      <view class="name">OneFit赵家交</view>
+      <view class="study">
+        累计118课时
+      </view>
+    </view>
+    <view class="eait">
+      <view class="bianji">编辑</view>
+      <view class="guanli">预约管理</view>
+    </view>
+
+  </view>
+  <view class="con">
+    <view class="contop">
+      <view class="title">简练简介</view>
+      <view class="text">OneFit徐汇店教练</view>
+      <view class="text">OneFit体能教练</view>
+       <view class="text">OneFit体能教练</view>
+       <view class="text">OneFit体能教练</view>
+      <view class="text">OneFit体能教练</view>
+    </view>
+    <view class="concot">
+      <view class="title">简练简介</view>
+      <view class="conbox">
+        <image src="../../images/21.jpg"></image>
+        <view class="conright">
+            <view class="one">一对一私教</view>
+            <view class="two">课程时长：60分钟</view>
+            <view class="three">￥550元</view>
+        </view>
+      </view>
+    </view>
+
+     <view class="conbot">
+      <view class="title">教练详情</view>
+      <view class="conbox">
+        <image src="../../images/22.jpg"></image>
+        
+      </view>
+    </view>
+   
+
+  </view>
+
+</template>
+
+<script>
+/* global wx */
+import wepy from 'wepy';
+import dayjs from 'dayjs'
+import PageMixin from '../../mixins/page';
+export default class CoachDetail extends wepy.page {
+  // mixins = [PageMixin];
+  config = {
+      // navigationBarTitleText: '预约',
+      // navigationBarBackgroundColor: '#fff',
+
+  };
+  components = {};
+  data = {
+    date: [],
+    currentIndex: null,
+    times: []
+  };
+  methods = {
+    back(){
+      wx.navigateBack({
+        delta: 1
+      })
+    },
+      goBuy() {
+          wx.navigateTo({
+              url: 'member'
+          });
+      }
+  };
+
+  onReachBottom() {}
+
+  whenAppReadyShow() {
+      this.fetchDataPromise('user/userInfo.json', {})
+          .then(data => {
+              const userInfo = data;
+              this.$apply();
+              wx.setStorage({
+                  key: 'userInfo',
+                  data: JSON.stringify(userInfo)
+              });
+          })
+          .catch(function(error) {});
+  }
+  onShow() {
+    
+  }
+ 
+  onShareAppMessage(res) {}
+  regionchange(e) {
+      console.log(e.type);
+  }
+  markertap(e) {
+      console.log(e.markerId);
+  }
+  controltap(e) {
+      console.log(e.controlId);
+  }
+}
+</script>

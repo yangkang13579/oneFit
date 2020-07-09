@@ -1,4 +1,5 @@
 
+  <image bindtap="back" class="back" src="../../images/toback.png"/>
   <view class="banner">
     <image src="../../images/13.jpg"/>
   </view>

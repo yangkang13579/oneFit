@@ -1,0 +1,167 @@
+page {
+  background: #f4f4f4;
+  width: 100%;
+  height: 100%;
+}
+.nav {
+  width: 100%;
+  padding: 45rpx 0 20rpx 0;
+  position: fixed;
+  left: 0;
+  top: 0;
+  background: #e12911;
+  display: flex;
+  justify-content: flex-start;
+}
+.nav .back {
+  width: 40rpx;
+  height: 40rpx;
+  margin-left: 30rpx;
+  margin-top: 15rpx;
+}
+.nav .tab {
+  margin-left: 150rpx;
+  width: 310rpx;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  border-radius: 5rpx;
+}
+.nav .tab view {
+  border: 1rpx solid #fff;
+  color: #fff;
+  width: 50%;
+  height: 61rpx;
+  font-size: 26rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.nav .tab .active {
+  border: 1rpx solid #fff;
+  background: #fff;
+  color: #e12911;
+}
+.con {
+  width: 100%;
+  margin-top: 160rpx;
+  background: #fff;
+}
+.con .listBox {
+  width: 710rpx;
+  margin-left: 20rpx;
+}
+.con .listBox .list {
+  width: 100%;
+  height: 100rpx;
+  border-bottom: 4rpx solid #f4f4f4;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.con .listBox .list text {
+  font-size: 28rpx;
+  color: #000;
+}
+.con .listBox .list view {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.con .listBox .list view input {
+  text-align: right;
+  color: #b6b6b6;
+  font-size: 28rpx;
+}
+.con .listBox .list view image {
+  margin-left: 20rpx;
+  width: 30rpx;
+  height: 30rpx;
+}
+.shadown {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  background: #000;
+  left: 0;
+  top: 0;
+  z-index: 55;
+  opacity: .7;
+}
+.box {
+  width: 540rpx;
+  border-radius: 20rpx;
+  margin-left: -310rpx;
+  margin-top: -450rpx;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  background: #fff;
+  z-index: 66;
+  padding: 40rpx 40rpx;
+}
+.box .title {
+  width: 100%;
+  font-size: 32rpx;
+  text-align: center;
+  margin-bottom: 20rpx;
+}
+.box .boxlist {
+  width: 100%;
+  height: 580rpx;
+  padding-bottom: 20rpx;
+  overflow-y: scroll;
+}
+.box .boxlist .item {
+  width: 100%;
+  height: 90rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.box .boxlist .item .itemleft {
+  display: flex;
+  align-items: center;
+}
+.box .boxlist .item .itemleft image {
+  width: 50rpx;
+  height: 50rpx;
+  border-radius: 50%;
+  margin-right: 20rpx;
+}
+.box .boxlist .item .itemleft text {
+  font-size: 28rpx;
+}
+.box .boxlist .item .itemImg {
+  width: 40rpx;
+  height: 40rpx;
+}
+.box .boxlist .item .itemImg image {
+  width: 40rpx;
+  height: 40rpx;
+}
+.box .btn {
+  width: 100%;
+  height: 80rpx;
+  text-align: center;
+  margin-top: 20rpx;
+  line-height: 80rpx;
+  border-radius: 40rpx;
+  background: #e12911;
+  font-size: 30rpx;
+  color: #fff;
+}
+.save {
+  width: 710rpx;
+  height: 90rpx;
+  background: #e12911;
+  color: #fff;
+  text-align: center;
+  line-height: 90rpx;
+  border-radius: 45rpx;
+  font-size: 30rpx;
+  position: fixed;
+  left: 20rpx;
+  bottom: 50rpx;
+  z-index: 45;
+}

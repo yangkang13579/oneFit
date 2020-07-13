@@ -2,6 +2,19 @@
 page {
   background: #2e2c2d;
 }
+button::after {
+border: none;
+}
+
+button {
+background-color: transparent;
+padding-left: 0;
+padding-right: 0;
+line-height:inherit;
+}
+button {
+border-radius:0;
+}
 .box {
   width: 100%;
   height: 350rpx;
@@ -56,6 +69,10 @@ page {
       font-size: 28rpx;
       color: #fff;
     }
+    button{
+      font-size: 28rpx;
+      color: #fff;
+    }
     image{
       width: 35rpx;
       height: 35rpx;
@@ -97,9 +114,9 @@ page {
         </view>
         <view class="center">
             <view>
-              <image src="../../images/admin-bg.png"></image>
+              <image src="{{userInfo.avatar}}"></image>
             </view>
-            <view class="name">酒杯酒</view>
+            <view class="name">{{userInfo.nickName}}</view>
         </view>
         <view class="right">
           <view class="num">0</view>
@@ -107,7 +124,8 @@ page {
         </view>
       </view>
       <view class="call">
-        <text>未绑定手机号</text>
+        <button wx:if="{{userInfo.mobile==''}}" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">未绑定手机号</button>
+        <text wx:if="{{userInfo.mobile!=''}}">{{userInfo.mobile}}</text>
         <image src="../../images/tel.png"></image>
       </view>
     </view>
@@ -174,16 +192,48 @@ page {
 import wepy from 'wepy';
 import PageMixin from '../../mixins/page';
 export default class User extends wepy.page {
-  // mixins = [PageMixin];
+  mixins = [PageMixin];
   config = {
       navigationBarTitleText: '我的',
       navigationBarBackgroundColor: '#fff'
   };
   components = {};
   data = {
-      userInfo: null
+      userInfo: null,
+      passportSessionId:null
   };
   methods = {
+     getPhoneNumber(e) {
+      console.log(e);
+          if (e.detail.iv && e.detail.encryptedData) {
+              var self = this;
+              console.log('self.passport',self.passport)
+              self.app
+                  .bindMobilePromise(e.detail.iv, e.detail.encryptedData,self.passport)
+                  .then(function(data) {
+                    console.log("data2",data)
+                      wx.showToast({
+                          title: '绑定成功',
+                          icon: 'success',
+                          duration: 2000
+                      });
+                      setTimeout(function() {
+                          wx.navigateBack();
+                      }, 500);
+                  })
+                  .catch(function(reason) {
+                      console.log('绑定失败:', reason);
+                      wx.showToast({
+                          title: '绑定失败,请重试！',
+                          icon: 'success',
+                          duration: 2000
+                      });
+                  });
+          }
+      },
+      cancel() {
+          wx.navigateBack();
+      },
       shangchuan() {
           wx.navigateTo({
               url: '/pages/upload'
@@ -257,12 +307,17 @@ export default class User extends wepy.page {
           });
       }
   };
-  onLoad() {}
+  onLoad() {
+
+  }
   whenAppReadyShow() {
+    console.log('this.passport',this.passport)
       this.fetchDataPromise('user/userInfo.json', {})
           .then(data => {
+            console.log("data",data)
               this.isUser = data.userType;
               this.userInfo = data;
+             
               this.$apply();
               wx.setStorage({
                   key: 'userInfo',

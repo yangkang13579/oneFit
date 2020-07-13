@@ -13,6 +13,7 @@ export default class extends wepy.app {
   config = {
       pages: [
           'pages/home/home',
+          'pages/coursed/appointDetail',
           'pages/coursed/coach',
           'pages/coursed/lesson',
           'pages/coursed/coachDetail',
@@ -50,7 +51,7 @@ export default class extends wepy.app {
           backgroundColor: '#fefefe',
           navigationBarBackgroundColor: '#fefefe',
           navigationBarTitleText: '首页',
-          navigationBarTextStyle: 'black',
+          navigationBarTextStyle: 'white',
           navigationStyle: 'custom',
       },
       tabBar: {
@@ -88,20 +89,12 @@ export default class extends wepy.app {
   };
   globalData = {
       // 中化作物
-      appId: 'wx59fd07ac9d84ef04',
-      appType: 'sinochem_xcx',
-      wxId: 'gh_3d0d25c141db',
-      passportUrl: 'https://passport.lingtaodata.com/passport/', // 认证服务器
-      dataUrl: 'https://sinochem.lingtaodata.com/data/', // 数据服务器
-      uploadUrl: 'https://www.lingtaodata.com/',
-
-      // 灵韬作物
-      // appId: 'wx5cef6b57858f3941',
-      // appType: 'qr_xcx',
-      // wxId: 'gh_db8177eb7a0b',
-      // passportUrl: 'https://passport.lingtaodata.com/passport/', // 认证服务器
-      // dataUrl: 'https://dev.lingtaodata.com/data/', // 数据服务器
-      // uploadUrl: "https://www.lingtaodata.com/",
+      appId: 'wx2597963c30f20afd',
+      appType: 'xcx',
+      wxId: 'gh_b69825f64e58',
+      passportUrl: 'https://onefit-passport.jteam.cn/passport/', // 认证服务器
+      dataUrl: 'https://onefit.jteam.cn/data/', // 数据服务器
+      uploadUrl: 'https://up.jteam.cn/',
   };
   constructor() {
       super();

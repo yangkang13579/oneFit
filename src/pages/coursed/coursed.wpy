@@ -107,9 +107,33 @@ page {
         }
       }
       .names {
+        margin-left: 20rpx;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
         font-size: 28rpx;
         color: #fff;
-        margin-left: 20rpx;
+        .name-top{
+          width: 100%;
+          white-space:nowrap;
+          overflow:hidden;
+          text-overflow:ellipsis;
+          font-size: 28rpx;
+          color: #fff;
+        }
+        .name-bot{
+          width: 240rpx;
+          display: flex;
+          justify-content: space-between;
+          .name-bot-time{
+            font-size: 24rpx;
+            color: #e12911;
+          }
+          .name-bot-fen{
+            font-size: 24rpx;
+            color: #fff;
+          }
+        }
       }
     }
     .list-right {
@@ -134,7 +158,6 @@ page {
         line-height: 55rpx;
       }
     }
-   
   }
   .list-bot {
     width: 100%;
@@ -176,59 +199,58 @@ page {
     }
   }
 }
- .show {
-      display: block;
-    }
-    .hide {
-      display: none;
-    }
-.side{
-    position:fixed;
-    background:#091e3e;
-    width:440rpx;
-    height:100%;
-    left:-440px;
-    z-index: 200;
-    color: #ffffff;
+.show {
+  display: block;
 }
-.c-state1{  
-  transform: rotate(0deg) scale(1) translate(75%,0%);   
-  -webkit-transform: rotate(0deg) scale(1) translate(75%,0%);   
+.hide {
+  display: none;
 }
-.hover{
+.side {
+  position: fixed;
+  background: #091e3e;
+  width: 440rpx;
+  height: 100%;
+  left: -440px;
+  z-index: 200;
+  color: #ffffff;
+}
+.c-state1 {
+  transform: rotate(0deg) scale(1) translate(75%, 0%);
+  -webkit-transform: rotate(0deg) scale(1) translate(75%, 0%);
+}
+.hover {
   background: red;
-  
-} 
-.times{
-  height:130rpx;
-  background:#010101;
-  width:100%;
-  overflow:auto;
-  display:flex;
-  overflow-y:hidden;
-  .time{
+}
+.times {
+  height: 130rpx;
+  background: #010101;
+  width: 100%;
+  overflow: auto;
+  display: flex;
+  overflow-y: hidden;
+  .time {
     flex-shrink: 0;
-    .block{
-      float:left;
-      color:#fff;
-      font-size:32rpx;
-      width:110rpx;
-      text-align:center;
-      margin:5rpx 0;
-      .date{
-        width:50rpx;
-        border-radius:50%;
-        margin-left:30rpx;
-        display:flex;
-        align-items:center;
-        justify-content:center;
-        height:50rpx;
-        margin-bottom:15rpx;
+    .block {
+      float: left;
+      color: #fff;
+      font-size: 32rpx;
+      width: 110rpx;
+      text-align: center;
+      margin: 5rpx 0;
+      .date {
+        width: 50rpx;
+        border-radius: 50%;
+        margin-left: 30rpx;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 50rpx;
+        margin-bottom: 15rpx;
       }
     }
   }
-} 
-.floating{
+}
+.floating {
   position: fixed;
   right: 30rpx;
   bottom: 100rpx;
@@ -237,7 +259,7 @@ page {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  button{
+  button {
     padding: 0;
     border: 0;
     margin: 0;
@@ -246,13 +268,13 @@ page {
     height: 90rpx;
     line-height: 0;
 
-    image{
+    image {
       width: 90rpx;
       height: 90rpx;
     }
   }
-  .ke{
-     width: 90rpx;
+  .ke {
+    width: 90rpx;
     height: 90rpx;
   }
 }
@@ -294,82 +316,104 @@ page {
   </view>
 
   <view class="cont">
-    <view class="list">
-      <view class="list-top">
-         <view class="list-left">
-          <view class="accname">
-            <image src="../../images/11.jpg"></image>
+    <!-- 精品团课 -->
+     <view wx:if="{{tab==1}}">
+         <view class="list">
+          <view  class="list-top">
+            <view @tap="goReserve" class="list-left">
+              <view class="accname">
+                <image src="../../images/11.jpg"></image>
+              </view>
+              <view class="names">
+                <view class="name-top">
+                   OneFit赵家交
+                </view>
+                <view class="name-bot">
+                  <text class="name-bot-time">20:00-21:00</text>
+                  <text class="name-bot-fen">1/10</text>
+                </view>
+               
+              </view>
+            </view>
+            <view @tap="go" class="list-right">
+              <view class="btnshow">￥500购买</view>
+            </view>
           </view>
-          <view @tap="detail" class="names">OneFit赵家交</view>
         </view>
-        <view @tap="btn" class="list-right">
-          <view class="btnshow {{isShow==true ? 'show':'hide'}}">所售课种</view>
-          <view class="btnhide {{isShow==true ? 'hide':'show'}}">收起</view>
-        </view>
+     </view>
+     <!-- 私教预约 -->
+      <view wx:if="{{tab==2}}">
+          <view class="list">
+              <view class="list-top">
+                <view class="list-left">
+                  <view class="accname">
+                    <image src="../../images/11.jpg"></image>
+                  </view>
+                  <view  @tap="godetail" class="names">OneFit赵家交</view>
+                </view>
+                <view @tap="btn" class="list-right">
+                  <view class="btnshow {{isShow==true ? 'show':'hide'}}">所售课种</view>
+                  <view class="btnhide {{isShow==true ? 'hide':'show'}}">收起</view>
+                </view>
+              </view>
+              <view class="list-bot {{isShow==true ? 'hide':'show'}}">
+                <view class="item-list">
+                  <view class='item-left'>
+                    <image src="../../images/11.jpg"></image>
+                    <text>孕产训练</text>
+                  </view>
+                  <view @tap="goCoach" class="item-right">
+                    预约
+                  </view>
+                </view>
+                <view class="item-list">
+                  <view class='item-left'>
+                    <image src="../../images/11.jpg"></image>
+                    <text>孕产训练</text>
+                  </view>
+                  <view @tap="goCoach" class="item-right">
+                    预约
+                  </view>
+                </view>
+                <view class="item-list">
+                  <view class='item-left'>
+                    <image src="../../images/11.jpg"></image>
+                    <text>孕产训练</text>
+                  </view>
+                  <view @tap="goCoach" class="item-right">
+                    预约
+                  </view>
+                </view>
+              </view>
+          </view>
 
+          <view class="list">
+            <view class="list-top">
+              <view class="list-left">
+                <view class="accname">
+                  <image src="../../images/11.jpg"></image>
+                </view>
+                <view class="names">OneFit赵家交</view>
+              </view>
+              <view @tap="goCoach" class="list-right">
+                <view class="btnshow">￥500购买</view>
+              </view>
+
+            </view>
+            
+
+          </view>
+
+
+        <!-- 截止    -->
       </view>
-       <view class="list-bot {{isShow==true ? 'hide':'show'}}">
-        <view class="item-list">
-          <view class='item-left'>
-            <image src="../../images/11.jpg"></image>
-            <text>孕产训练</text>
-          </view>
-          <view @tap="goCoach" class="item-right">
-            预约
-          </view>
-        </view>
-         <view class="item-list">
-          <view class='item-left'>
-            <image src="../../images/11.jpg"></image>
-            <text>孕产训练</text>
-          </view>
-          <view @tap="goCoach" class="item-right">
-            预约
-          </view>
-        </view>
-         <view class="item-list">
-          <view class='item-left'>
-            <image src="../../images/11.jpg"></image>
-            <text>孕产训练</text>
-          </view>
-          <view @tap="goCoach" class="item-right">
-            预约
-          </view>
-        </view>
-      </view>
-
-    </view>
-
-    <view class="list">
-      <view class="list-top">
-         <view class="list-left">
-          <view class="accname">
-            <image src="../../images/11.jpg"></image>
-          </view>
-          <view class="names">OneFit赵家交</view>
-        </view>
-        <view @tap="goCoach" class="list-right">
-          <view class="btnshow">￥500购买</view>
-          
-        </view>
-
-      </view>
-      
-
-    </view>
-
-    
-    
-
-
-
   </view>
 
-  <view class="side {{open ? 'c-state1' : ''}}">
+  <!-- <view class="side {{open ? 'c-state1' : ''}}">
     wwwww
 
 
-  </view>
+  </view> -->
 
   <view class="floating">
      <button open-type='share'>
@@ -383,10 +427,10 @@ page {
 <script>
 /* global wx */
 import wepy from "wepy";
-import dayjs from 'dayjs'
+import dayjs from "dayjs";
 import PageMixin from "../../mixins/page";
 export default class Course extends wepy.page {
-  // mixins = [PageMixin];
+  mixins = [PageMixin];
   config = {
     navigationBarTitleText: "首页",
     navigationBarBackgroundColor: "#fff"
@@ -395,47 +439,50 @@ export default class Course extends wepy.page {
   data = {
     loadUser: true,
     isShow: true,
-    open:false,
+    open: false,
     tab: 1,
     date: [],
     currentIndex: null
   };
   methods = {
-    // detail(){
-    //   wx.navigateTo({
-    //     url: 'reserve'
-    //   })
-    // },
-     detail(){
+    //跳转预约页面
+    goReserve(){
       wx.navigateTo({
-        url: 'coachDetail'
+        url: 'reserve'
       })
     },
-    tolesson(){
+    //跳转教练详情
+    godetail() {
       wx.navigateTo({
-        url: 'lesson'
-      })
+        url: "coachDetail"
+      });
     },
-    btnTo(){
-
+     //跳转模板选择
+    tolesson() {
+      wx.navigateTo({
+        url: "lesson"
+      });
     },
-    goCoach(){
-        wx.navigateTo({
-          url: 'coach'
-        });
+    btnTo() {},
+    goCoach() {
+      wx.navigateTo({
+        url: "coach"
+      });
     },
     tap_ch() {
-      console.log("777")
-      if(this.data.open){
+      console.log("777");
+      if (this.data.open) {
         this.open = false;
-      }else{
-       this.open = true;
+      } else {
+        this.open = true;
       }
     },
+    // 显示下拉框
     btn() {
       this.isShow = !this.isShow;
       this.$apply();
     },
+    // 顶部导航栏切换
     tabs() {
       console.log("this.tab", this.tab);
       if (this.tab == 1) {
@@ -446,12 +493,11 @@ export default class Course extends wepy.page {
       this.$apply();
     },
     getDate(e) {
-      this.currentIndex = e.currentTarget.dataset.index
-    },
+      this.currentIndex = e.currentTarget.dataset.index;
+    }
   };
   onReachBottom() {}
   whenAppReadyShow() {
-    
     this.fetchDataPromise("user/userInfo.json", {})
       .then(data => {
         const userInfo = data;
@@ -464,54 +510,115 @@ export default class Course extends wepy.page {
       .catch(function(error) {});
   }
   onShow() {
-    this.date = []
-    this.returnDate(this.mGetDate(dayjs().subtract(1, 'month').year(), dayjs().subtract(1, 'month').month()), dayjs().date(), dayjs().subtract(1, 'month').month(), dayjs().subtract(1, 'month').year())
-    this.returnDate(this.mGetDate(dayjs().subtract(0, 'month').year(), dayjs().subtract(0, 'month').month()), 0, dayjs().subtract(0, 'month').month(), dayjs().subtract(0, 'month').year())
-    this.returnDate(this.mGetDate(dayjs().year(), dayjs().month() + 1), 0, dayjs().month() + 1, dayjs().year())
-    this.returnDate(1, 0, dayjs().add(2, 'month').month(), dayjs().add(2, 'month').year())
+    this.date = [];
+    this.returnDate(
+      this.mGetDate(
+        dayjs()
+          .subtract(1, "month")
+          .year(),
+        dayjs()
+          .subtract(1, "month")
+          .month()
+      ),
+      dayjs().date(),
+      dayjs()
+        .subtract(1, "month")
+        .month(),
+      dayjs()
+        .subtract(1, "month")
+        .year()
+    );
+    this.returnDate(
+      this.mGetDate(
+        dayjs()
+          .subtract(0, "month")
+          .year(),
+        dayjs()
+          .subtract(0, "month")
+          .month()
+      ),
+      0,
+      dayjs()
+        .subtract(0, "month")
+        .month(),
+      dayjs()
+        .subtract(0, "month")
+        .year()
+    );
+    this.returnDate(
+      this.mGetDate(dayjs().year(), dayjs().month() + 1),
+      0,
+      dayjs().month() + 1,
+      dayjs().year()
+    );
+    this.returnDate(
+      1,
+      0,
+      dayjs()
+        .add(2, "month")
+        .month(),
+      dayjs()
+        .add(2, "month")
+        .year()
+    );
   }
-  mGetDate(year, month){
+  mGetDate(year, month) {
     var d = new Date(year, month, 0);
     return d.getDate();
   }
   returnDate(ary, date, month, year) {
-    for(let i = 1 + date; i <= ary; i++) { 
+    for (let i = 1 + date; i <= ary; i++) {
       this.date.push({
         date: i,
-        month: month + '月',
-        week: '周' + this.returnWeek(dayjs(year + '-' + month + '-' + i).day()),
-        isWeek: dayjs(year + '-' + month + '-' + i).valueOf() < dayjs().subtract(8, 'day').valueOf()
-        || dayjs(year + '-' + month + '-' + i).valueOf() > dayjs().add(14, 'day').valueOf() ? false : true
-      })
-      if (dayjs(year + '-' + month + '-' + i).isSame(dayjs(dayjs().year() + '-' + (dayjs().month() + 1) + '-' + dayjs().date()))) {
-        this.currentIndex = this.date.length - 1
+        month: month + "月",
+        week: "周" + this.returnWeek(dayjs(year + "-" + month + "-" + i).day()),
+        isWeek:
+          dayjs(year + "-" + month + "-" + i).valueOf() <
+            dayjs()
+              .subtract(8, "day")
+              .valueOf() ||
+          dayjs(year + "-" + month + "-" + i).valueOf() >
+            dayjs()
+              .add(14, "day")
+              .valueOf()
+            ? false
+            : true
+      });
+      if (
+        dayjs(year + "-" + month + "-" + i).isSame(
+          dayjs(
+            dayjs().year() + "-" + (dayjs().month() + 1) + "-" + dayjs().date()
+          )
+        )
+      ) {
+        this.currentIndex = this.date.length - 1;
       }
     }
   }
   returnWeek(week) {
-    switch(week) {
-     case 0:
-        return '日'
+    switch (week) {
+      case 0:
+        return "日";
         break;
-     case 1:
-        return '一'
+      case 1:
+        return "一";
         break;
-     case 2:
-        return '二'
+      case 2:
+        return "二";
         break;
       case 3:
-        return '三'
+        return "三";
         break;
       case 4:
-        return '四'
+        return "四";
         break;
       case 5:
-        return '五'
+        return "五";
         break;
       case 6:
-        return '六'
+        return "六";
         break;
-     } 
+    }
   }
   onShareAppMessage(res) {}
   regionchange(e) {

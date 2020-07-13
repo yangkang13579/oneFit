@@ -1,111 +1,203 @@
 <style lang="less">
-page {
+page{
   background: #f4f4f4;
-}
-.banner{
   width: 100%;
-  height: 500rpx;
-  background: #fff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  image{
-    width: 650rpx;
-    height: 410rpx;
-  }
+  height: 100%;
 }
-.title{
-  width: 700rpx;
-  background: #fff;
-  padding:25rpx;
-  .textName{
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    font-size: 35rpx;
-    color: #000;
-  }
-  .price{
-    height: 80rpx;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    .new{
-      color: #e84644;
-      font-size: 35rpx;
-    }
-    .order{
-      text-decoration:line-through;
-      font-size: 28rpx;
-      color: #878787;
-      margin-top: 10rpx;
-    }
-  }
-}
-.jianjie{
-  margin-top: 20rpx;
-  background: #fff;
-  width: 700rpx;
-  padding: 30rpx 25rpx;
-  .jian-title{
-    font-size: 32rpx;
-  }
-  .jian-text{
-     font-size: 28rpx;
-    color: #878787;
-  }
-}
-.buyName{
-  margin-top: 20rpx;
-  background: #fff;
-  margin-bottom: 200rpx;
-  width: 700rpx;
-  padding: 30rpx 25rpx;
-  .buy-title{
-    font-size: 32rpx;
-    margin-bottom: 20rpx;
-  }
-  .buy-text{
-    display: flex;
-    justify-content: flex-start;
-    .qixian{
-      width: 200rpx;
-      color: #878787;
-      font-size: 28rpx;
-    }
-    .tian{
-      color: #676767;
-      font-size: 28rpx;
-    }
-  }
-}
-.fixed{
+.back{
   position: fixed;
+  top: 50rpx;
+  left: 20rpx;
+  width: 35rpx;
+  height: 35rpx;
+  z-index: 5;
+}
+.top{
+  width: 100%;
+  height: 400rpx;
+  .banner{
+    width: 100%;
+    height: 400rpx;
+  }
+}
+.con{
+  width: 730rpx;
+  height: auto;
   background: #fff;
+  margin-left: 10rpx;
+  .title{
+    width: 690rpx;
+    padding: 30rpx 20rpx;
+    border-bottom:2rpx solid #f4f4f4;
+    display: flex;
+    justify-content: space-between;
+    .title-left{
+      width: 550rpx;
+      view{
+         width: 550rpx;
+         font-size: 32rpx;
+         color: #000;
+         margin-bottom: 20rpx;
+      }
+      text{
+        font-size: 26rpx;
+        color: #b6b6b6;
+      }
+    }
+    .title-right{
+      display: flex;
+      height: 40rpx;
+      justify-content: flex-start;
+      align-items: flex-end;
+      .one{
+        font-size: 24rpx;
+        color: #e5464a;
+      }
+      .two{
+        font-size: 28rpx;
+        font-weight: bolder;
+        color: #e5464a;
+      }
+      .three{
+        font-size: 24rpx;
+        color: #e5464a;
+      }
+    }
+  }
+  .name{
+    width: 690rpx;
+    position: relative;
+    padding: 30rpx 20rpx;
+    border-bottom:2rpx solid #f4f4f4;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    .name-img{
+      width: 120rpx;
+      height: 120rpx;
+      border-radius: 50%;
+    }
+    .name-text{
+      width: 550rpx;
+      margin-left: 20rpx;
+      .name-title{
+        font-size: 32rpx;
+        color: #000;
+        margin-bottom: 30rpx;
+      }
+      .name-list{
+        width: 100%;
+        font-size: 26rpx;
+        color: #b6b6b6;
+        white-space:nowrap;
+        overflow:hidden;
+        text-overflow:ellipsis;
+      }
+      .name-detail{
+        width: 100%;
+        font-size: 26rpx;
+        color: #b6b6b6;
+        white-space:nowrap;
+        overflow:hidden;
+        text-overflow:ellipsis;
+      }
+    }
+    .position{
+      position: absolute;
+      width: 30rpx;
+      height: 30rpx;
+      right: 5rpx;
+      top: 85rpx;
+    }
+  }
+  .lei{
+    width: 690rpx;
+    padding: 30rpx 20rpx;
+    border-bottom:2rpx solid #f4f4f4;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    .time,.adress,.tel{
+      display: flex;
+      height: 60rpx;
+      justify-content: flex-start;
+      align-items: center;
+      image{
+        width: 35rpx;
+        height: 35rpx;
+        margin-right: 30rpx;
+      }
+      text{
+        color: #7c7c7c;
+        font-size: 26rpx;
+      }
+    }
+  }
+  .people{
+    width: 690rpx;
+    padding: 30rpx 20rpx;
+    border-bottom:2rpx solid #f4f4f4;
+    .people-title{
+      display: flex;
+      justify-content: flex-start;
+      margin-bottom: 30rpx;
+      image{
+        width: 35rpx;
+        height: 35rpx;
+        margin-right: 30rpx;
+      }
+      text{
+        
+        color: #7c7c7c;
+        font-size: 28rpx;
+      }
+    }
+    .people-list{
+      width: 100%;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      image{
+        width: 70rpx;
+        height: 70rpx;
+        border-radius: 50%;
+        margin-right: 20rpx;
+      }
+    }
+  }
+}
+.bottom{
+  width: 710rpx;
+  padding: 0 20rpx;
+  height: 120rpx;
+  background: #fff;
+  position: fixed;
   left: 0;
   bottom: 0;
-  width: 100%;
-  padding: 20rpx 0;
-  .buy{
-    width: 710rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  .btnres{
+    width: 340rpx;
     height: 90rpx;
-    border-radius: 45rpx;
-    background: #e84644;
+    background: #e5464a;
     text-align: center;
     line-height: 90rpx;
-    font-size: 32rpx;
+    font-size: 30rpx;
+    font-weight: bolder;
     color: #fff;
-    margin-left: 20rpx;
+    border-radius: 45rpx;
   }
-  .bot{
-    width: 100%;
-    height: 80rpx;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text{
-      font-size: 28rpx;
-    }
+  .btnbuy{
+    width: 340rpx;
+    height: 90rpx;
+    background: #e5464a;
+    text-align: center;
+    line-height: 90rpx;
+    font-size: 30rpx;
+    font-weight: bolder;
+    color: #fff;
+    border-radius: 45rpx;
   }
 }
 
@@ -114,7 +206,64 @@ page {
 </style>
 
 <template lang="wxml">
-  
+   <image @tap="back"  class="back" src="../../images/toback.png"></image>
+    <view class="top">
+      <image class="banner" src="../../images/20.jpg"></image>
+    </view>
+    <view class='con'>
+      <view class="title">
+        <view class="title-left">
+          <view>广发银行企业团课找法警+路漂亮</view>
+          <text>10人小团课 (满1人开课)</text>
+        </view>
+        <view class="title-right">
+          <text class="one">￥</text>
+          <text class="two">1200</text>
+          <text class="three">/节</text>
+        </view>
+      </view>
+      
+      <view class="name">
+        <image class="name-img" src="../../images/11.jpg"></image>
+        <view class="name-text">
+           <view class="name-title">OneFit赵发静Leo</view>
+           <view class="name-list">OneFit徐汇店体能教练</view>
+           <view class="name-detail">擅长：提升运动表现路，增加瑙鲁，减脂，塑性等一系列体育教程</view>
+        </view>
+        <image src="../../images/rightwo.png" class="position"></image>
+      </view>
+
+      <view class="lei">
+        <view class="time">
+          <image src="../../images/time1.png"></image>
+          <text>时间：2020-07-08 18:01:00</text>
+        </view>
+        <view class="adress">
+          <image src="../../images/adress1.png"></image>
+          <text>地点：上海市徐汇区凯旋南路208临</text>
+        </view>
+        <view class="tel">
+          <image src="../../images/tel1.png"></image>
+          <text>电话：0216457899</text>
+        </view>
+      </view>
+
+      <view class="people">
+        <view class="people-title">
+            <image src="../../images/people.png"></image>
+            <text>当前已约课会员（1/10）</text>
+        </view>
+        <view class="people-list">
+            <image src="../../images/11.jpg"></image>
+        </view>
+
+      </view>
+    </view>
+
+    <view class="bottom">
+      <view @tap="btnres" class="btnres">预约</view>
+      <view @tap="btnbuy" class="btnbuy">购买会员卡</view>
+    </view>
 
 
   
@@ -129,15 +278,28 @@ import PageMixin from '../../mixins/page';
 export default class Reserve extends wepy.page {
   // mixins = [PageMixin];
   config = {
-      navigationBarTitleText: '预约详情',
-      navigationStyle: 'default',
-      navigationBarBackgroundColor: '#e84644'
+  
   };
   components = {};
   data = {
   };
   methods = {
-
+    btnbuy(){
+      wx.navigateTo({
+        url: "member"
+      });
+    },
+    back(){
+      wx.navigateBack({
+        delta: 1
+      })
+    },
+    //跳转支付页面
+    btnres(){
+      wx.navigateTo({
+        url: "appointDetail"
+      });
+    }
   };
 
   onReachBottom() {}

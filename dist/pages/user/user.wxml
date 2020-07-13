@@ -8,9 +8,9 @@
         </view>
         <view class="center">
             <view>
-              <image src="../../images/admin-bg.png"/>
+              <image src="{{userInfo.avatar}}"/>
             </view>
-            <view class="name">酒杯酒</view>
+            <view class="name">{{userInfo.nickName}}</view>
         </view>
         <view class="right">
           <view class="num">0</view>
@@ -18,7 +18,8 @@
         </view>
       </view>
       <view class="call">
-        <text>未绑定手机号</text>
+        <button  wx:if="{{userInfo.mobile==''}}" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">未绑定手机号</button>
+        <text  wx:if="{{userInfo.mobile!=''}}">{{userInfo.mobile}}</text>
         <image src="../../images/tel.png"/>
       </view>
     </view>

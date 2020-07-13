@@ -1,6 +1,18 @@
 page {
   background: #2e2c2d;
 }
+button::after {
+  border: none;
+}
+button {
+  background-color: transparent;
+  padding-left: 0;
+  padding-right: 0;
+  line-height: inherit;
+}
+button {
+  border-radius: 0;
+}
 .box {
   width: 100%;
   height: 350rpx;
@@ -56,6 +68,10 @@ page {
   align-items: center;
 }
 .box .call text {
+  font-size: 28rpx;
+  color: #fff;
+}
+.box .call button {
   font-size: 28rpx;
   color: #fff;
 }

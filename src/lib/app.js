@@ -201,7 +201,7 @@ var App = {
         if (options.user) {
             const error = {
                 code: 'user_login',
-                message: '需要登录'
+                // message: ''
             };
             if (this.passportData === null) {
                 throw this.throwError(error);
@@ -375,13 +375,14 @@ var App = {
         var self = this;
         return new Promise((resolve, reject) => {
             var code = wx.getStorageSync('wx_code');
-
+            
             function wxCode() {
                 wx.login({
                     success: function (res) {
                         console.log('code', code);
                         if (res.code) {
                             code = res.code;
+                            wx.setStorageSync("codes", code);
                             var json = {};
                             json.clientType = self.config.appType;
                             json.clientId = self.config.appId;
@@ -527,56 +528,100 @@ var App = {
     listenMessage(callback) {
         this.messageCallback = callback;
     },
+    // E47B21153F96DE963AC04E3F22473E1928BCD2B497A066E4D9867E5662694AAA
+    // bindMobilePromise(iv, encryptedData, passportSessionId) {
+    //     // 手机绑定
+    //     var self = this;
+    //     var code = null;
+    //     // 登录交换passportId
+    //     function loginMobile(resolve, reject) {
+    //         var json = {};
+    //         json.clientType = self.config.appType;
+    //         json.clientId = self.config.appId;
+    //         json.key = code;
+    //         json.encryptedData = encryptedData;
+    //         json.encryptedIV = iv;
+    //         json.loginType = 'mobile';
+    //         json.link = true;
+    //         json.linkForce = true;
+    //         json.remember = 365;
+    //         // 绑定到当前用户
+    //         json.passport = passportSessionId;
+    //         /**  */
+    //         self.fetchData(
+    //             self.config.passportUrl + 'loginMobile.do',
+    //             json,
+    //             function(json) {
+    //                 if (json.code === 200) {
+    //                     // console.log('loginPassport=' + JSON.stringify(json))
+    //                     // wx.setStorageSync("passport", json.messages.data.session.id);
+    //                     resolve(json.messages.data);
+    //                 } else {
+    //                     reject(json.messages.error);
+    //                 }
+    //             }
+    //         );
+    //     }
+    //     return new Promise((resolve, reject) => {
+    //         new Promise((resolve, reject) => {
+    //             self._getWxCode(resolve, reject);
+    //         })
+    //             .then(function(data) {
+    //                 code = data;
+    //                 return new Promise((resolve, reject) => {
+    //                     loginMobile(resolve, reject);
+    //                 });
+    //             })
+    //             .then(function(passportData) {
+    //                 resolve(passportData);
+    //             })
+    //             .catch(function(reason) {
+    //                 reject(reason);
+    //             });
+    //     });
+    // },
     bindMobilePromise(iv, encryptedData, passportSessionId) {
     // 手机绑定
         var self = this;
         var code = null;
         // 登录交换passportId
-        function loginMobile(resolve, reject) {
-            var json = {};
-            json.clientType = self.config.appType;
-            json.clientId = self.config.appId;
-            json.key = code;
-            json.encryptedData = encryptedData;
-            json.encryptedIV = iv;
-            json.loginType = 'mobile';
-            json.link = true;
-            json.linkForce = true;
-            json.remember = 365;
-            // 绑定到当前用户
-            json.passport = passportSessionId;
-            /**  */
-            self.fetchData(
-                self.config.passportUrl + 'loginMobile.do',
-                json,
-                function (json) {
-                    if (json.code === 200) {
-                        // console.log('loginPassport=' + JSON.stringify(json))
-                        // wx.setStorageSync("passport", json.messages.data.session.id);
-                        resolve(json.messages.data);
-                    } else {
-                        reject(json.messages.error);
+            wx.login({
+                success: function (res) {
+                    console.log('res', res);
+                    if (res.code) {
+                        var json = {};
+                        json.key =  wx.getStorageSync('wx_code');
+                        json.clientType = self.config.appType;
+                        json.clientId = self.config.appId;
+                        json.encryptedData = encryptedData;
+                        json.encryptedIV = iv;
+                        json.loginType = 'mobile';
+                        json.link = true;
+                        json.country= 'CN';
+                        json.linkForce = true;
+                        json.remember = 365;
+                        // 绑定到当前用户
+                        json.passport = passportSessionId;
+                        console.log("传值",json)
+                        
+                        /**  */
+                        self.fetchData(
+                            self.config.passportUrl + 'loginMobile.do',
+                            json,
+                            function (json) {
+                                console.log("json",json)
+                                if (json.code === 200) {
+                                    // console.log('loginPassport=' + JSON.stringify(json))
+                                    // wx.setStorageSync("passport", json.messages.data.session.id);
+                                    resolve(json.messages.data);
+                                } else {
+                                    reject(json.messages.error);
+                                }
+                            }
+                        );
                     }
-                }
-            );
-        }
-        return new Promise((resolve, reject) => {
-            new Promise((resolve, reject) => {
-                self._getWxCode(resolve, reject);
-            })
-                .then(function (data) {
-                    code = data;
-                    return new Promise((resolve, reject) => {
-                        loginMobile(resolve, reject);
-                    });
+                 }
                 })
-                .then(function (passportData) {
-                    resolve(passportData);
-                })
-                .catch(function (reason) {
-                    reject(reason);
-                });
-        });
     },
     uploadFile(uploadItem, listener) {
         return co(this._wxUploadFile(uploadItem, listener));

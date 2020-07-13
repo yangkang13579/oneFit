@@ -109,9 +109,33 @@ page {
   border-radius: 50%;
 }
 .list .list-top .list-left .names {
+  margin-left: 20rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   font-size: 28rpx;
   color: #fff;
-  margin-left: 20rpx;
+}
+.list .list-top .list-left .names .name-top {
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 28rpx;
+  color: #fff;
+}
+.list .list-top .list-left .names .name-bot {
+  width: 240rpx;
+  display: flex;
+  justify-content: space-between;
+}
+.list .list-top .list-left .names .name-bot .name-bot-time {
+  font-size: 24rpx;
+  color: #e12911;
+}
+.list .list-top .list-left .names .name-bot .name-bot-fen {
+  font-size: 24rpx;
+  color: #fff;
 }
 .list .list-top .list-right .btnshow {
   background: #e12911;

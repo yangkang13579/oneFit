@@ -1,0 +1,87 @@
+
+  <view class="order">
+    <view class="order-top">
+      <image src="../../images/19.jpg"/>
+      <view class="order-title">
+        <view class="name">广发银行企广发银行企业团课找法警+路漂亮</view>
+        <view class="price">
+          <text class="one">￥</text>
+          <text class="two">1200</text>
+          <text class="three">/节</text>
+        </view>
+      </view>
+    </view>
+     <view class="lei">
+       <view class="coach">
+          <image src="../../images/people.png"/>
+          <text>教练：OneFit 吕漂亮</text>
+        </view>
+        <view class="time">
+          <image src="../../images/time1.png"/>
+          <text>时间：2020-07-08 18:01:00</text>
+        </view>
+        <view class="adress">
+          <image src="../../images/adress1.png"/>
+          <text>地点：上海市徐汇区凯旋南路208临</text>
+        </view>
+        <view class="tel">
+          <image src="../../images/tel1.png"/>
+          <text>电话：0216457899</text>
+        </view>
+      </view>
+    
+  </view>
+
+  <view class="number">
+    <view class="num-top">
+      <view class="numb">人数：</view>
+      <view class="box">
+        <view class="box-item">
+          <view  wx:for="{{list}}" class="list {{item.check==true ? 'active':''}}">{{item.num}}人</view>
+        </view>
+      </view>
+    </view>
+    <view class="pay">
+      <view class="pay-title">
+        支付方式
+      </view>
+      <view class="pay-list">
+        <view class="pay-top">
+          <view class="top-left">
+             <image src="../../images/23.png"/>
+             <text>会员卡支付</text>
+          </view>
+          <view class="top-right">
+             <text>购5次享316每节</text>
+             <image src="../../images/rightwo.png"/>
+          </view>
+        </view>
+        <view class="pay-bot">
+          <view class="bot-left">
+             <image src="../../images/24.png"/>
+             <text>微信支付</text>
+          </view>
+          <view bindtap="right" class="bot-right">
+             <image  wx:if="{{tab==0}}" src="../../images/yuan.png"/>
+             <image wx:if="{{tab==1}}" src="../../images/gou.png"/>
+          </view>
+        </view>
+      </view>
+
+    </view>
+  </view>
+
+  <view class="fot">
+    温馨提示：开课前60分钟内不允许取消预约
+  </view>
+
+  <view class="footer">
+    <view class="money">
+      <text class="mone">实付金额:</text>
+      <text class="mtwo">￥</text>
+      <text class="mthree">1200.00</text>
+    </view>
+    <view class="payMoney">
+      确认预约
+    </view>
+  </view>

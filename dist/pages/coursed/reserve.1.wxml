@@ -54,6 +54,6 @@
     </view>
 
     <view class="bottom">
-      <view bindtap="btnres" class="btnres">预约</view>
-      <view bindtap="btnbuy" class="btnbuy">购买会员卡</view>
+      <view class="btnres">预约</view>
+      <view class="btnbuy">购买会员卡</view>
     </view>

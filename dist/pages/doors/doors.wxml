@@ -1,0 +1,21 @@
+
+<view>
+  <view class="header" style="height: {{height*2 + 20}}px;line-height:{{(height*2 + 44)}}px">
+    <text>OneFit健身</text>
+  </view>
+  <image src="../../images/icon53.png" class="icon41" style="margin-top:{{(height*2 + 25)}}px"/>
+  <view class="p">
+    <text>立即约课</text>
+    <image src="../../images/icon44.png" class="icon44"/>
+  </view>
+  <image src="../../images/icon26.png" class="icon26"/>
+
+  <view class="items" bindtap="goDoor">
+    <image src="https://cdn.sunjoypai.com/images/5838/1239/4271/632cdc626038c929e4f2af8ca727266b_0_0.png" class="icon11"/>
+    <view class="text">
+      <view>ONEFIT 华东（上海）培训基地</view>
+      <text>上海杨浦区长阳路1687号7号楼7110（星巴克旁）</text>
+    </view>
+  </view>
+  
+</view>

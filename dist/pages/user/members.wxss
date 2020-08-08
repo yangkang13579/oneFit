@@ -1,0 +1,97 @@
+@import "./../../components/headers.wxss";
+page {
+  background: #111111;
+}
+.search {
+  width: 526rpx;
+  height: 80rpx;
+  background: #fff;
+  border-radius: 50rpx;
+  margin-left: 54rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.search input {
+  width: 526rpx;
+  height: 80rpx;
+  outline: none;
+  font-size: #333;
+  margin-left: 47rpx;
+  font-size: 36rpx;
+}
+.search image {
+  width: 57rpx;
+  height: 44rpx;
+  margin-right: 40rpx;
+}
+.tit {
+  width: 100%;
+  height: 60rpx;
+  line-height: 60rpx;
+  font-size: 26rpx;
+  color: #fff;
+  margin-top: 31rpx;
+  background: #2d2d2d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.tit view {
+  width: 33.33%;
+  text-align: center;
+  height: 60rpx;
+  line-height: 60rpx;
+  position: relative;
+}
+.tit view image {
+  width: 33rpx;
+  height: 26rpx;
+  position: absolute;
+  bottom: -8rpx;
+  left: 120rpx;
+}
+.tit .hover {
+  color: #e02510;
+}
+.item-list {
+  margin-top: 55rpx;
+}
+.item-list .list {
+  height: 184rpx;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+.item-list .list image {
+  width: 142rpx;
+  height: 142rpx;
+  margin: 0 43rpx;
+  border-radius: 50%;
+}
+.item-list .list text {
+  font-size: 30rpx;
+  color: #fff;
+}
+.item-list .list .icon26 {
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  height: 4rpx;
+  position: absolute;
+}
+.item-list .list .details {
+  width: 164rpx;
+  height: 42rpx;
+  border-radius: 30rpx;
+  position: absolute;
+  right: 43rpx;
+  bottom: 75rpx;
+  font-size: 24rpx;
+  text-align: center;
+  background: #e02510;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+}

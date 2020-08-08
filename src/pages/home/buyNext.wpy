@@ -1,0 +1,220 @@
+<style lang="less">
+page {
+  background: #111111;
+}
+.icon34 {
+  position: fixed;
+  top: 165rpx;
+  left: 0;
+  width: 100%;
+  height: 151rpx;
+}
+.info-top {
+  margin-top: 165rpx;
+  position: relative;
+  z-index: 333;
+  height: 151rpx;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  .icon35 {
+    width: 492rpx;
+    height: 52rpx;
+  }
+}
+
+.btn {
+  width: 500rpx;
+  height: 70rpx;
+  border-radius: 40rpx;
+  background: #e02510;
+  color: #fff;
+  text-align: center;
+  line-height: 70rpx;
+  font-size: 32rpx;
+  font-weight: bold;
+  position: relative;
+  z-index: 7777;
+  margin-left: 125rpx;
+  margin-top: 85rpx;
+}
+.icon33 {
+  width: 52rpx;
+  height: 27rpx;
+  margin: 12rpx 349rpx;
+}
+.item-list {
+  .item {
+    margin: 0 26rpx;
+    background: #2d2d2d;
+    margin-bottom: 25rpx;
+    height: 160rpx;
+    display: flex;
+    align-items: center;
+    position: relative;
+    .hover-bg {
+      position: absolute;
+      background: #e02510;
+      opacity: 0.2;
+      z-index: 2;
+      width: 700rpx;
+      height: 160rpx;
+      left: 0;
+      top: 0;
+    }
+    .hover-right {
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: 100rpx;
+      height: 160rpx;
+      z-index: 3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #e02510;
+      image {
+        width: 40rpx;
+        height: 40rpx;
+      }
+    }
+    .logo {
+      width: 140rpx;
+      height: 140rpx;
+      margin: 0 49rpx 0 33rpx;
+    }
+    .icon29 {
+      width: 160rpx;
+      height: 50rpx;
+      position: absolute;
+      right: 0;
+      bottom: 33rpx;
+    }
+    .name {
+      .name-tips {
+        font-size: 36rpx;
+        font-weight: bold;
+        color: #fff;
+        margin-bottom: 31rpx;
+      }
+      .tips {
+        color: #acacac;
+        font-size: 24rpx;
+        text {
+          margin-right: 15rpx;
+        }
+      }
+    }
+    .hover {
+      .name-tips {
+        color: #e02510;
+      }
+      .tips {
+        color: #e02510;
+      }
+    }
+  }
+}
+</style>
+
+<template lang="wxml">
+  <view class="top">
+    <image src="../../images/icon34.png" class="icon34"/>
+    <header /> 
+    <view class="info-top">
+      <image src="../../images/icon35.png" class="icon35">
+    </view>
+    <image src="../../images/icon33.png" class="icon33" />
+    <view class="item-list">
+      <view class="item" wx:for="{{list.items}}" wx:for-index="idx" data-index="{{idx}}" @tap="currentFun">
+        <image src="../../images/icon10.png" class="logo"/>
+        <view class="name hover">
+          <view class="name-tips">{{item.name}}</view>
+          <view class="tips">
+            <text>{{item.introduce}}</text>
+          </view>
+        </view>
+        <view class="hover" wx:if="{{currentIndex === idx}}">
+          <view class="hover-bg" />
+          <view class="hover-right">
+            <image src="../../images/icon32.png" class="icon32">
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="btn" @tap='next'>下一步</view>
+  </view>
+</template>
+
+<script>
+/* global wx */
+import wepy from "wepy";
+import PageMixin from "../../mixins/page";
+import header from "../../components/headers";
+export default class Course extends wepy.page {
+  mixins = [PageMixin];
+  config = {
+    navigationBarBackgroundColor: "#fff"
+  };
+  components = {
+    header
+  };
+  data = {
+    currentIndex: null,
+    height: "",
+    branchId: null,
+    list: {},
+    cardId: null
+  };
+  whenAppReadyShow(options) {
+    var that = this;
+    this.fetchDataPromise("user/userFit.json", {
+      action: "coachs",
+      branchId: this.branchId
+    }).then(data => {
+      this.list = data;
+      for (let i = 0; i < this.list.items.length; i++) {
+        if (this.list.items[i].id === this.list.current.id) {
+          this.currentIndex = i;
+          this.coachId = this.list.items[i].id;
+        }
+      }
+      this.$apply();
+    });
+  }
+  methods = {
+    currentFun(e) {
+      this.currentIndex = e.currentTarget.dataset.index;
+    },
+    next() {
+      wx.navigateTo({
+        url:
+          "/pages/home/buyMoney?cardId=" +
+          this.cardId +
+          "&branchId=" +
+          this.branchId +
+          "&coachId=" +
+          this.list.items[this.currentIndex].id
+      });
+    }
+  };
+  onLoad(options) {
+    console.log(options, "options");
+    this.branchId = options.branchId;
+    this.cardId = options.carId;
+  }
+  onShow() {
+    wx.getSystemInfo({
+      success: res => {
+        this.height = res.statusBarHeight;
+        this.$broadcast("index-broadcast", {
+          height: this.height,
+          text: "OneFit健身"
+        });
+      }
+    });
+  }
+}
+</script>

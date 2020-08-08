@@ -1,0 +1,202 @@
+@import "./../../components/headers.wxss";
+page {
+  background: #111111;
+}
+.doorsDetails {
+  width: 100%;
+  height: 420rpx;
+}
+.doorsDetails swiper {
+  width: 100%;
+  height: 420rpx;
+}
+.doorsDetails image {
+  width: 100%;
+  height: 420rpx;
+  vertical-align: middle;
+}
+.buyCorse {
+  width: 750rpx;
+  height: 100rpx;
+  position: relative;
+  margin-top: 53rpx;
+}
+.buyCorse .icon28 {
+  position: absolute;
+  width: 750rpx;
+  height: 100rpx;
+  left: 0;
+  top: 0;
+}
+.buyCorse .text {
+  line-height: 100rpx;
+  font-size: 30rpx;
+  color: #acacac;
+  position: absolute;
+  z-index: 1;
+}
+.buyCorse .text text {
+  font-weight: bold;
+  font-size: 36rpx;
+  color: #fff;
+  margin-left: 62rpx;
+  margin-right: 18rpx;
+}
+.buyCorse .icon29 {
+  width: 160rpx;
+  height: 50rpx;
+  position: absolute;
+  bottom: 25rpx;
+  right: 41rpx;
+}
+.buyCorse1 {
+  margin-top: 11rpx;
+}
+.address {
+  width: 620rpx;
+  height: 180rpx;
+  background: #2d2d2d;
+  margin-top: 80rpx;
+  position: relative;
+  margin-left: 64rpx;
+}
+.address .tit {
+  width: 220rpx;
+  background: #e02510;
+  height: 50rpx;
+  position: absolute;
+  top: -13px;
+  border-radius: 45rpx 45rpx 0 0;
+  color: #fff;
+  font-size: 36rpx;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  left: 205rpx;
+}
+.address .size {
+  font-size: 26rpx;
+  color: #fff;
+  line-height: 1.5;
+  padding: 32rpx;
+}
+.express {
+  margin-top: 62rpx;
+  width: 100%;
+  height: 150rpx;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 59rpx;
+  font-weight: bold;
+}
+.express text {
+  width: 100%;
+  height: 150rpx;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  color: #fff;
+}
+.express image {
+  width: 100%;
+  height: 150rpx;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+.icon33 {
+  width: 52rpx;
+  height: 27rpx;
+  margin: 13rpx 349rpx 21rpx 349rpx;
+}
+.banner {
+  width: 662rpx;
+  margin: 0 44rpx;
+  height: 221rpx;
+  display: flex;
+  align-items: center;
+}
+.banner .icon17 {
+  width: 33rpx;
+  height: 63rpx;
+  float: left;
+  transform: rotate(0);
+}
+.banner .icon18 {
+  transform: rotate(180deg);
+}
+.banner swiper {
+  height: 221rpx;
+  width: 572rpx;
+  margin: 0 12rpx;
+}
+.banner swiper swiper-item {
+  width: 194rpx !important;
+  height: 221rpx !important;
+  position: relative;
+}
+.banner swiper swiper-item image {
+  width: 182rpx !important;
+  height: 221rpx !important;
+}
+.banner swiper swiper-item .opacity {
+  width: 182rpx !important;
+  height: 221rpx !important;
+  position: absolute;
+  background: 0;
+  left: 0;
+  top: 0;
+}
+.banner swiper swiper-item .hover {
+  background: rgba(0, 0, 0, 0.75);
+}
+.items-list {
+  width: 700rpx;
+  height: 160rpx;
+  margin-left: 25rpx;
+}
+.items-list .list {
+  margin-bottom: 21rpx;
+  border-radius: 10rpx;
+  width: 700rpx;
+  position: relative;
+  height: 160rpx;
+}
+.items-list .list .icon11 {
+  position: absolute;
+  width: 700rpx;
+  left: 0;
+  top: 0;
+  height: 160rpx;
+}
+.items-list .list .icon27 {
+  width: 495rpx;
+  height: 75rpx;
+  left: 0;
+  bottom: 20rpx;
+  position: absolute;
+}
+.items-list .list .text {
+  width: 495rpx;
+  height: 75rpx;
+  left: 0;
+  bottom: 20rpx;
+  position: absolute;
+  padding-left: 20rpx;
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #fff;
+  line-height: 75rpx;
+}
+.items-list .list .icon13 {
+  width: 249rpx;
+  height: 38rpx;
+  position: absolute;
+  top: 20rpx;
+  right: 0;
+}

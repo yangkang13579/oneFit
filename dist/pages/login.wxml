@@ -1,37 +1,21 @@
 
-    <!-- <view class="weui-msg">
-        <view class="icon-box">
-            <image src="../images/logo.svg" />
-            <view class="icon-box__ctn">
-                <view class="icon-box__title">需要登录</view>
-            </view>
-        </view>
-        <view class="weui-msg__opr-area">
-            <view class="weui-btn-area">
-                <button class="weui-btn weui-btn-primary" lang="zh_CN" open-type="getUserInfo" bindgetuserinfo="wxLogin">微信登录</button>
-                <button class="weui-btn" type="default" bindtap="cancel">取消登录</button>
-            </view>
-        </view>
-        <view class="weui-msg__extra-area">
-        </view>
-    </view> -->
-    <view>
-        <image class="banner" src="../images/25.png"/>
-        <view class="title">
-            OneFit运动训练中心
-        </view>
-        <view class="new">
-            <view class="first">请确认授权以下信息</view>
-            <view class="last">获取您的公开信息 ( 昵称、头像等 )</view>
-        </view>
-
-        <view class="btn">
-            <button class="btnUser" lang="zh_CN" open-type="getUserInfo" bindgetuserinfo="wxLogin">微信登录</button>
-            <button class="btnBack" type="default" bindtap="cancel">取消登录</button>
-        </view>
-        
-
-
-
-
+  <view>
+    <image class="banner" src="../images/icon1.png"/>
+    <view class="header" style="height: {{height*2 + 20}}px;">
+      <text>OneFit健身</text>
     </view>
+
+    <view class="center">
+      <image src="../images/icon2.png" class="icon2"/>
+      <image src="../images/icon3.png" class="icon3"/>
+    </view>
+    <view class="new">
+      <view class="first">请确认授权以下信息</view>
+      <view class="last">获取您的公开信息 ( 昵称、头像等 )</view>
+    </view>
+
+    <view class="btn">
+      <button class="btnUser" lang="zh_CN" open-type="getUserInfo" bindgetuserinfo="wxLogin">授权微信登录</button>
+      <button class="btnBack" type="default" bindtap="cancel">暂不授权登录</button>
+    </view>
+  </view>

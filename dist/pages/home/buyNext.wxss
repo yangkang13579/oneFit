@@ -1,0 +1,112 @@
+@import "./../../components/headers.wxss";
+page {
+  background: #111111;
+}
+.icon34 {
+  position: fixed;
+  top: 165rpx;
+  left: 0;
+  width: 100%;
+  height: 151rpx;
+}
+.info-top {
+  margin-top: 165rpx;
+  position: relative;
+  z-index: 333;
+  height: 151rpx;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+}
+.info-top .icon35 {
+  width: 492rpx;
+  height: 52rpx;
+}
+.btn {
+  width: 500rpx;
+  height: 70rpx;
+  border-radius: 40rpx;
+  background: #e02510;
+  color: #fff;
+  text-align: center;
+  line-height: 70rpx;
+  font-size: 32rpx;
+  font-weight: bold;
+  position: relative;
+  z-index: 7777;
+  margin-left: 125rpx;
+  margin-top: 85rpx;
+}
+.icon33 {
+  width: 52rpx;
+  height: 27rpx;
+  margin: 12rpx 349rpx;
+}
+.item-list .item {
+  margin: 0 26rpx;
+  background: #2d2d2d;
+  margin-bottom: 25rpx;
+  height: 160rpx;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+.item-list .item .hover-bg {
+  position: absolute;
+  background: #e02510;
+  opacity: 0.2;
+  z-index: 2;
+  width: 700rpx;
+  height: 160rpx;
+  left: 0;
+  top: 0;
+}
+.item-list .item .hover-right {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 100rpx;
+  height: 160rpx;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #e02510;
+}
+.item-list .item .hover-right image {
+  width: 40rpx;
+  height: 40rpx;
+}
+.item-list .item .logo {
+  width: 140rpx;
+  height: 140rpx;
+  margin: 0 49rpx 0 33rpx;
+}
+.item-list .item .icon29 {
+  width: 160rpx;
+  height: 50rpx;
+  position: absolute;
+  right: 0;
+  bottom: 33rpx;
+}
+.item-list .item .name .name-tips {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #fff;
+  margin-bottom: 31rpx;
+}
+.item-list .item .name .tips {
+  color: #acacac;
+  font-size: 24rpx;
+}
+.item-list .item .name .tips text {
+  margin-right: 15rpx;
+}
+.item-list .item .hover .name-tips {
+  color: #e02510;
+}
+.item-list .item .hover .tips {
+  color: #e02510;
+}

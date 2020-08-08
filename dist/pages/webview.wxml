@@ -1,5 +1,0 @@
-
-	<view class="carPay">
-	 <!-- <web-view  src='https://sinochem.creacree.com/herbicidesec.html'></web-view> -->
-   <web-view src="https://sinochem.creacree.com/herbicidesec.html"/>
-	</view>

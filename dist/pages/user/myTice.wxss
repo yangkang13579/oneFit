@@ -1,0 +1,85 @@
+@import "./../../components/headers.wxss";
+page {
+  background: #111111;
+}
+.item-list {
+  width: 700rpx;
+  min-height: 900rpx;
+  background: #2d2d2d;
+  margin-left: 25rpx;
+  padding-top: 33rpx;
+  border-radius: 10rpx;
+}
+.item-list .item {
+  width: 640rpx;
+  border-radius: 10rpx;
+  margin: 0 26rpx;
+  border: 1rpx solid #e02510;
+  background: #2d2d2d;
+  height: 82rpx;
+  display: flex;
+  align-items: center;
+  position: relative;
+  margin-bottom: 25rpx;
+}
+.item-list .item .hover-bg {
+  position: absolute;
+  background: #e02510;
+  opacity: 0.2;
+  z-index: 2;
+  width: 640rpx;
+  height: 82rpx;
+  border-radius: 10rpx;
+  left: 0;
+  top: 0;
+}
+.item-list .item .hover-right {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 113rpx;
+  height: 82rpx;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #e02510;
+  border-radius: 0 10rpx 0 0;
+}
+.item-list .item .hover-right image {
+  width: 40rpx;
+  height: 40rpx;
+}
+.item-list .item .logo {
+  width: 140rpx;
+  height: 140rpx;
+  margin: 0 49rpx 0 33rpx;
+}
+.item-list .item .icon29 {
+  width: 160rpx;
+  height: 50rpx;
+  position: absolute;
+  right: 0;
+  bottom: 33rpx;
+}
+.item-list .item .name .name-tips {
+  width: 640rpx;
+  font-size: 36rpx;
+  line-height: 82rpx;
+  text-align: center;
+  font-weight: bold;
+  color: #fff;
+}
+.item-list .item .name .tips {
+  color: #acacac;
+  font-size: 24rpx;
+}
+.item-list .item .name .tips text {
+  margin-right: 15rpx;
+}
+.item-list .hover .name-tips {
+  color: #e02510;
+}
+.item-list .hover .tips {
+  color: #e02510;
+}

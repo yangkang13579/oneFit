@@ -1,0 +1,55 @@
+
+  <view class="top">
+    
+<view class="header" style="height: {{$header$height*2 + 20}}px;line-height:{{($header$height*2 + 44)}}px">
+  <image bindtap="$header$goBack" src="../../images/icon44.png" class="icon44" style="margin-top:{{($header$height*2 + 26)/2}}px"/>
+  <text>{{$header$text}}</text>
+</view>
+
+    <view class="center" style="margin-top:{{(height*2 + 25)}}px">
+      <image src="../../images/icon2.png" class="icon2"/>
+      <image src="../../images/icon3.png" class="icon3"/>
+    </view>
+    <view class="name">OneFit王伟</view>
+    <view class="info">
+      <view class="info-item">
+        <image src="../../images/icon26.png" class="icon26"/>
+        <view class="item">
+          <text>姓名</text>
+          <image src="../../images/icon19.png" class="icon19"/>
+        </view>
+      </view>
+      <view class="info-item">
+        <image src="../../images/icon26.png" class="icon26"/>
+        <view class="item">
+          <text>性别</text>
+          <!-- <image src="../../images/icon19.png" class="icon19"/> -->
+          <view class="icon19">111</view>
+        </view>
+      </view>
+      <view class="info-item">
+        <image src="../../images/icon26.png" class="icon26"/>
+        <view class="item">
+          <text>生日</text>
+          <image src="../../images/icon19.png" class="icon19"/>
+        </view>
+      </view>
+
+      <view class="info-item">
+        <image src="../../images/icon26.png" class="icon26"/>
+        <view class="item">
+          <text>星座</text>
+          <image src="../../images/icon19.png" class="icon19"/>
+        </view>
+      </view>
+
+      <view class="info-item">
+        <image src="../../images/icon26.png" class="icon26"/>
+        <view class="item">
+          <text>手机</text>
+          <image src="../../images/icon19.png" class="icon19"/>
+        </view>
+        <image src="../../images/icon26.png" class="icon26"/>
+      </view>
+    </view>
+  </view>

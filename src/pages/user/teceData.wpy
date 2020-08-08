@@ -1,0 +1,189 @@
+<style lang="less">
+page {
+  background: #111111;
+}
+.data {
+  width: 700rpx;
+  padding: 35rpx 0;
+  background: #2d2d2d;
+  margin: 0 25rpx;
+  border-radius: 10rpx;
+  .data-top {
+    padding: 0 21rpx;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 36rpx;
+    color: #e02510;
+    image {
+      width: 158rpx;
+      height: 33rpx;
+    }
+  }
+}
+.icon26 {
+  width: 100%;
+  height: 4rpx;
+  margin-top: 39rpx;
+}
+.inputs {
+  margin-top: 39rpx;
+  padding: 0 21rpx;
+  clear: both;
+  overflow: hidden;
+  .inputs-left {
+    float: left;
+    font-size: 26rpx;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20rpx;
+    text {
+      width: 85rpx;
+      text-align: left;
+      margin-left: 20rpx;
+    }
+    input {
+      width: 220rpx;
+      height: 50rpx;
+      border: 1rpx solid #acacac;
+      border-radius: 10rpx;
+    }
+  }
+  .inputs-last {
+    margin-bottom: 0;
+    text {
+      width: 122rpx;
+    }
+    input {
+      width: 504rpx;
+    }
+  }
+}
+.items {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 25rpx;
+  .item {
+    margin-left: 20rpx;
+    width: 210rpx;
+    font-size: 30rpx;
+    color: #fff;
+    text-align: center;
+    font-weight: bold;
+    image {
+      width: 210rpx;
+      height: 280rpx;
+      margin-bottom: 16rpx;
+    }
+  }
+}
+</style>
+
+<template lang="wxml">
+  <view class="top">
+    <header />
+    <view class="data"  style="margin-top:{{(height*2 + 25)}}px">
+      <view class="data-top">
+        <text>2020-08-30 体侧数据</text>
+        <image src="../../images/icon13.png" />
+      </view>
+      <image src="../../images/icon26.png" class="icon26">
+      <view class="inputs">
+        <view class="inputs-left">
+          <text>体脂率</text>
+          <input />
+        </view>
+
+        <view class="inputs-left">
+          <text>身高</text>
+          <input />
+        </view>
+
+        <view class="inputs-left">
+          <text>肌肉</text>
+          <input />
+        </view>
+
+        <view class="inputs-left">
+          <text>体重</text>
+          <input />
+        </view>
+
+        <view class="inputs-left">
+          <text>脂肪</text>
+          <input />
+        </view>
+
+        <view class="inputs-left">
+          <text>腰围</text>
+          <input />
+        </view>
+
+        <view class="inputs-left">
+          <text>腰围</text>
+          <input />
+        </view>
+
+        <view class="inputs-left">
+          <text>臂围</text>
+          <input />
+        </view>
+
+        <view class="inputs-left inputs-last">
+          <text>基础代谢</text>
+          <input />
+        </view>
+      </view>
+      <image src="../../images/icon26.png" class="icon26">
+
+      <view class="items">
+        <view class="item">
+          <image src="../../images/icon14.png" />
+          <view>正面对比照</view>
+        </view>
+        <view class="item">
+          <image src="../../images/icon14.png" />
+          <view>正面对比照</view>
+        </view>
+        <view class="item">
+          <image src="../../images/icon14.png" />
+          <view>正面对比照</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</template>
+
+<script>
+/* global wx */
+import wepy from "wepy";
+import PageMixin from "../../mixins/page";
+import header from "../../components/headers";
+export default class Course extends wepy.page {
+  mixins = [PageMixin];
+  config = {
+    navigationBarBackgroundColor: "#fff"
+  };
+  components = {
+    header
+  };
+  data = {
+    height: ""
+  };
+  methods = {};
+  onShow() {
+    wx.getSystemInfo({
+      success: res => {
+        this.height = res.statusBarHeight;
+        this.$broadcast("index-broadcast", {
+          height: this.height,
+          text: "体测数据"
+        });
+      }
+    });
+  }
+}
+</script>

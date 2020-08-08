@@ -1,0 +1,57 @@
+
+  <view class="top">
+    
+<view class="header" style="height: {{$header$height*2 + 20}}px;line-height:{{($header$height*2 + 44)}}px">
+  <image bindtap="$header$goBack" src="../../images/icon44.png" class="icon44" style="margin-top:{{($header$height*2 + 26)/2}}px"/>
+  <text>{{$header$text}}</text>
+</view>
+
+    <view class="headers" style="margin-top:{{(height*2 + 25)}}px">
+      <image src="../../images/icon15.png"/>
+      <view class="headers-top">
+        <view class="tit">OneFit王伟</view>
+      </view>
+    </view>
+    <view class="items">
+      <view class="item-list">
+        <image src="../../images/icon15.png"/>
+        <view>
+          <text>2020-08-30</text>
+          <text>OneFit杨浦店</text>
+        </view>
+      </view>
+      <view class="item-list">
+        <image src="../../images/icon15.png"/>
+        <view>
+          <text>2020-08-30</text>
+          <text>OneFit杨浦店</text>
+        </view>
+      </view>
+      <view class="item-list">
+        <image src="../../images/icon15.png"/>
+        <view>
+          <text>2020-08-30</text>
+          <text>OneFit杨浦店</text>
+        </view>
+      </view>
+      <view class="item-list">
+        <image src="../../images/icon15.png"/>
+        <view>
+          <text>2020-08-30</text>
+          <text>OneFit杨浦店</text>
+        </view>
+      </view>
+      <view class="ticeTime">打卡时间：
+        <picker class="text3" bindchange="bindPickerChange" range="{{array}}">
+          <view class="picker">
+            111
+          </view>
+          <view class="right">
+            <image src="../../images/icon45.png" class="icon45"/>
+          </view>
+        </picker>
+      </view>
+      </view>
+      
+    </view>
+    <view class="btn">上传</view>

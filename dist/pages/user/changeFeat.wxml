@@ -1,0 +1,61 @@
+
+  <view class="top">
+    
+<view class="header" style="height: {{$header$height*2 + 20}}px;line-height:{{($header$height*2 + 44)}}px">
+  <image bindtap="$header$goBack" src="../../images/icon44.png" class="icon44" style="margin-top:{{($header$height*2 + 26)/2}}px"/>
+  <text>{{$header$text}}</text>
+</view>
+
+    <!-- <view class="header" style='height: {{height*2 + 20}}px;'>
+      <image bindtap="goBack" src="../../images/icon44.png" class="icon44" />
+      <text>我的课程</text> -->
+    <view class="center" style="margin-top:{{(height*2 + 25)}}px">
+      <image src="../../images/icon2.png" class="icon2"/>
+      <image src="../../images/icon3.png" class="icon3"/>
+    </view>
+    <view class="name">OneFit王伟</view>
+
+    <view class="item-list">
+      <view class="item">
+        <image src="../../images/icon10.png" class="logo"/>
+        <view class="name2">
+          <view class="name-tips">您目前的专属私教</view>
+          <view class="tips">
+            <text>陈蕴 Jordan</text>
+          </view>
+          <image src="../../images/icon13.png" class="right"/>
+        </view>
+      </view>
+    </view>
+
+    <view class="change">
+      <view class="tit">更换您的专属私教</view>
+
+      <view class="items">
+        <view class="left">
+          <text>选择门店</text>
+          <picker bindchange="bindPickerChange" range="{{array}}">
+            <view class="picker">
+              当前选择：111
+            </view>
+            <view class="right">
+              <image src="../../images/icon45.png" class="icon45"/>
+            </view>
+          </picker>
+        </view>
+        <view class="left">
+          <text>选择教练</text>
+          <picker bindchange="bindPickerChange" range="{{array}}">
+            <view class="picker">
+              当前选择：111
+            </view>
+            <view class="right">
+              <image src="../../images/icon45.png" class="icon45"/>
+            </view>
+          </picker>
+        </view>
+
+        <view class="btn">提交</view>
+      </view>
+    </view>
+  </view>

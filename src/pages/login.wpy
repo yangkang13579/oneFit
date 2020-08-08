@@ -1,183 +1,170 @@
 <style lang="less">
 button::after {
-border: none;
-}
-
-button {
-background-color: transparent;
-padding-left: 0;
-padding-right: 0;
-line-height:inherit;
+  border: none;
 }
 button {
-border-radius:0;
+  background-color: transparent;
+  padding-left: 0;
+  padding-right: 0;
+  line-height: inherit;
 }
-
-    // .button-hover {
-    //     background-color: #3087c9;
-    // }
-    // .icon-box image{
-    //     width:300rpx;
-    //     height:300rpx;
-    // }
-    page{
-        width: 100%;
-        height: 100%;
-        background: #fff;
-    }
-    .banner{
-        width: 200rpx;
-        height: 163rpx;
-        margin: 200rpx 0 60rpx 275rpx;
-    }
-    .title{
-        width: 100%;
-        text-align: center;
-        color: #343434;
-        font-size: 30rpx;
-        font-weight: bolder;
-    }
-    .new{
-        width: 100%;
-        margin: 120rpx 0 70rpx 0;
-        .first{
-            width: 550rpx;
-            margin-left: 100rpx;
-            font-size: 30rpx;
-            font-weight: bolder;
-            margin-bottom: 50rpx;
-        }
-        .last{
-            color: #9f9f9f;
-            width: 500rpx;
-            margin-left: 100rpx;
-            font-size: 26rpx;
-        }
-    }
-    .btn{
-        width: 550rpx;
-        margin-left: 100rpx;
-        .btnUser{
-            width:550rpx;
-            height: 90rpx;
-            background:#e84644;
-            color: #fff;
-            font-size: 28rpx;
-            text-align: center;
-            line-height: 90rpx;
-            border-radius: 45rpx;
-            padding: 0;
-            border: 0;
-        }
-        .btnBack{
-            margin-top: 30rpx;
-            width:550rpx;
-            height: 90rpx;
-            background:#f2f2f2;
-            color: #545454;
-            font-size: 28rpx;
-            text-align: center;
-            line-height: 90rpx;
-            border-radius: 45rpx;
-            padding: 0;
-            border: 0;
-        }
-    }
+button {
+  border-radius: 0;
+}
+.banner {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+.header {
+  font-size: 30rpx;
+  color: #fff;
+  width: 100%;
+  position: fixed;
+  z-index: 1;
+  text {
+    position: absolute;
+    bottom: 5rpx;
+    left: 15rpx;
+  }
+}
+.center {
+  position: fixed;
+  top: 23%;
+  z-index: 2;
+  width: 100%;
+  .icon2 {
+    width: 444rpx;
+    height: 444rpx;
+    position: absolute;
+    margin-left: 143rpx;
+  }
+  .icon3 {
+    width: 320rpx;
+    height: 320rpx;
+    position: absolute;
+    margin-left: 204rpx;
+    margin-top: 62rpx;
+  }
+}
+.btn {
+  position: fixed;
+  top: 61%;
+  width: 500rpx;
+  margin-left: 125rpx;
+  .btnUser {
+    width: 500rpx;
+    height: 70rpx;
+    background: #e02510;
+    color: #fff;
+    font-size: 28rpx;
+    text-align: center;
+    line-height: 70rpx;
+    border-radius: 45rpx;
+    padding: 0;
+    border: 0;
+  }
+  .btnBack {
+    margin-top: 30rpx;
+    width: 500rpx;
+    height: 70rpx;
+    border: 1rpx solid #e02510;
+    color: #fff;
+    background: 0;
+    font-size: 28rpx;
+    text-align: center;
+    line-height: 70rpx;
+    border-radius: 45rpx;
+    padding: 0;
+  }
+}
 </style>
 
 <template>
-    <!-- <view class="weui-msg">
-        <view class="icon-box">
-            <image src="../images/logo.svg" />
-            <view class="icon-box__ctn">
-                <view class="icon-box__title">需要登录</view>
-            </view>
-        </view>
-        <view class="weui-msg__opr-area">
-            <view class="weui-btn-area">
-                <button class="weui-btn weui-btn-primary" lang="zh_CN" open-type="getUserInfo" bindgetuserinfo="wxLogin">微信登录</button>
-                <button class="weui-btn" type="default" @tap="cancel">取消登录</button>
-            </view>
-        </view>
-        <view class="weui-msg__extra-area">
-        </view>
-    </view> -->
-    <view>
-        <image class="banner" src="../images/25.png"></image>
-        <view class="title">
-            OneFit运动训练中心
-        </view>
-        <view class="new">
-            <view class="first">请确认授权以下信息</view>
-            <view class="last">获取您的公开信息 ( 昵称、头像等 )</view>
-        </view>
-
-        <view class="btn">
-            <button class="btnUser" lang="zh_CN" open-type="getUserInfo" bindgetuserinfo="wxLogin">微信登录</button>
-            <button class="btnBack"  type="default" @tap="cancel">取消登录</button>
-        </view>
-        
-
-
-
-
+  <view>
+    <image class="banner" src="../images/icon1.png" />
+    <view class="header" style='height: {{height*2 + 20}}px;'>
+      <text>OneFit健身</text>
     </view>
-</template>
 
+    <view class="center">
+      <image src="../images/icon2.png" class="icon2"/>
+      <image src="../images/icon3.png" class="icon3">
+    </view>
+    <view class="new">
+      <view class="first">请确认授权以下信息</view>
+      <view class="last">获取您的公开信息 ( 昵称、头像等 )</view>
+    </view>
+
+    <view class="btn">
+      <button class="btnUser" lang="zh_CN" open-type="getUserInfo" bindgetuserinfo="wxLogin">授权微信登录</button>
+      <button class="btnBack"  type="default" @tap="cancel">暂不授权登录</button>
+    </view>
+  </view>
+</template>
 <script>
-    /* global wx */
-    import wepy from 'wepy';
-    import PageMixin from '../mixins/page';
-    export default class Login extends wepy.page {
-        mixins = [PageMixin];
-        config = {
-            navigationBarBackgroundColor: '#e84644'
-        };
-        data = {
-            code: 'unknown',
-            message: 'unknown'
-        };
-        methods = {
-            wxLogin(e) {
-                if (e.detail.iv && e.detail.encryptedData) {
-                    wx.showLoading({
-                        title: '正在登录...'
-                    });
-                    var self = this;
-                    console.log('self.app',self.app.loginWX)
-                    self.app
-                        .loginWX(e.detail.iv, e.detail.encryptedData)
-                        .then(function(data) {
-                            wx.showToast({
-                                title: '登录成功',
-                                icon: 'success',
-                                duration: 2000
-                            });
-    
-                            setTimeout(function() {
-                                wx.navigateBack();
-                            }, 500);
-                        })
-                        .catch(function(error) {
-                            console.log('登录失败:', error);
-                            wx.showToast({
-                                title: '登录失败,请重试！' + error.message,
-                                icon: 'success',
-                                duration: 2000
-                            });
-                        });
-                } else {
-                    wx.switchTab({
-                        url: '/pages/list'
-                    });
-                }
-            },
-            cancel() {
-                wx.switchTab({
-                    url: '/pages/home/home'
-                });
-            }
-        };
-        onLoad() {}
+/* global wx */
+import wepy from "wepy";
+import PageMixin from "../mixins/page";
+export default class Login extends wepy.page {
+  mixins = [PageMixin];
+  config = {
+    navigationBarBackgroundColor: "#e84644"
+  };
+  data = {
+    code: "unknown",
+    message: "unknown",
+    height: null
+  };
+  methods = {
+    wxLogin(e) {
+      if (e.detail.iv && e.detail.encryptedData) {
+        wx.showLoading({
+          title: "正在登录..."
+        });
+        var self = this;
+        console.log("self.app", self.app.loginWX);
+        self.app
+          .loginWX(e.detail.iv, e.detail.encryptedData)
+          .then(function(data) {
+            wx.showToast({
+              title: "登录成功",
+              icon: "success",
+              duration: 2000
+            });
+
+            setTimeout(function() {
+              wx.navigateBack();
+            }, 500);
+          })
+          .catch(function(error) {
+            console.log("登录失败:", error);
+            wx.showToast({
+              title: "登录失败,请重试！" + error.message,
+              icon: "success",
+              duration: 2000
+            });
+          });
+      } else {
+        wx.switchTab({
+          url: "/pages/list"
+        });
+      }
+    },
+    cancel() {
+      wx.switchTab({
+        url: "/pages/home/home"
+      });
     }
+  };
+  onLoad() {
+    wx.getSystemInfo({
+      success: res => {
+        this.height = res.statusBarHeight;
+      }
+    });
+  }
+}
 </script>

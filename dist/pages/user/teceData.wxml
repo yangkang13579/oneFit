@@ -1,0 +1,78 @@
+
+  <view class="top">
+    
+<view class="header" style="height: {{$header$height*2 + 20}}px;line-height:{{($header$height*2 + 44)}}px">
+  <image bindtap="$header$goBack" src="../../images/icon44.png" class="icon44" style="margin-top:{{($header$height*2 + 26)/2}}px"/>
+  <text>{{$header$text}}</text>
+</view>
+
+    <view class="data" style="margin-top:{{(height*2 + 25)}}px">
+      <view class="data-top">
+        <text>2020-08-30 体侧数据</text>
+        <image src="../../images/icon13.png"/>
+      </view>
+      <image src="../../images/icon26.png" class="icon26"/>
+      <view class="inputs">
+        <view class="inputs-left">
+          <text>体脂率</text>
+          <input/>
+        </view>
+
+        <view class="inputs-left">
+          <text>身高</text>
+          <input/>
+        </view>
+
+        <view class="inputs-left">
+          <text>肌肉</text>
+          <input/>
+        </view>
+
+        <view class="inputs-left">
+          <text>体重</text>
+          <input/>
+        </view>
+
+        <view class="inputs-left">
+          <text>脂肪</text>
+          <input/>
+        </view>
+
+        <view class="inputs-left">
+          <text>腰围</text>
+          <input/>
+        </view>
+
+        <view class="inputs-left">
+          <text>腰围</text>
+          <input/>
+        </view>
+
+        <view class="inputs-left">
+          <text>臂围</text>
+          <input/>
+        </view>
+
+        <view class="inputs-left inputs-last">
+          <text>基础代谢</text>
+          <input/>
+        </view>
+      </view>
+      <image src="../../images/icon26.png" class="icon26"/>
+
+      <view class="items">
+        <view class="item">
+          <image src="../../images/icon14.png"/>
+          <view>正面对比照</view>
+        </view>
+        <view class="item">
+          <image src="../../images/icon14.png"/>
+          <view>正面对比照</view>
+        </view>
+        <view class="item">
+          <image src="../../images/icon14.png"/>
+          <view>正面对比照</view>
+        </view>
+      </view>
+    </view>
+  </view>

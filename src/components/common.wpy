@@ -1,0 +1,141 @@
+<style lang="less">
+.teacher {
+  margin-top: 75rpx;
+  position: relative;
+  .icon8 {
+    position: absolute;
+    width: 100%;
+    height: 466rpx;
+    left: 0;
+    top: 0;
+  }
+  .icon10 {
+    position: absolute;
+    width: 294rpx;
+    height: 466rpx;
+    left: 0;
+    top: 0;
+  }
+  .teacher-name {
+    position: relative;
+    right: 0;
+    top: 0;
+    width: 100%;
+    height: 466rpx;
+    font-size: 20rpx;
+    color: #fff;
+    line-height: 62rpx;
+    text-align: right;
+    image {
+      width: 300rpx;
+      height: 62rpx;
+      right: 57rpx;
+      bottom: 130rpx;
+      position: absolute;
+      transform: rotate(180deg);
+    }
+    view {
+      position: absolute;
+      // width: 300rpx;
+      height: 62rpx;
+      right: 57rpx;
+      bottom: 130rpx;
+      z-index: 2;
+    }
+    text {
+      margin-right: 10rpx;
+      font-weight: bold;
+      text-align: right;
+      line-height: 62rpx;
+    }
+    .name {
+      font-size: 24rpx;
+    }
+  }
+  .teacher-name2 {
+    position: absolute;
+    image {
+      bottom: 45rpx;
+    }
+    view {
+      bottom: 45rpx;
+    }
+  }
+  .center {
+    position: absolute;
+    z-index: 2;
+    right: 57rpx;
+    top: 55rpx;
+    width: 153rpx;
+    height: 153rpx;
+    text {
+      position: absolute;
+      right: 174rpx;
+      height: 153rpx;
+      line-height: 153rpx;
+      color: #fff;
+      margin-top: 15rpx;
+      font-size: 26rpx;
+      font-weight: bold;
+      width: 300rpx;
+      text-align: right;
+    }
+    .icon2 {
+      width: 153rpx;
+      height: 153rpx;
+      position: absolute;
+    }
+    .icon3 {
+      width: 111rpx;
+      height: 111rpx;
+      position: absolute;
+      margin-left: 21rpx;
+      margin-top: 21rpx;
+      border-radius: 50%;
+    }
+  }
+}
+</style>
+<template>
+<view>
+  <view class="teacher">
+    <view class="center">
+      <text>{{branch.user.nickName}}</text>
+      <image src="../images/icon2.png" class="icon2"/>
+      <image src="{{branch.user.avatar}}" class="icon3">
+    </view>
+    <image src="../images/icon8.png" class="icon8"/>
+    <image src="../images/icon10.png" class="icon10">
+    <view class="teacher-name">
+      <image src="../images/icon9.png" class="icon9" />
+      <view>
+        <text>您的专属教练：</text>
+        <text class="name">{{branch.name}}</text>
+      </view>
+    </view>
+    <view class="teacher-name teacher-name2">
+      <image src="../images/icon9.png" class="icon9" />
+      <view>
+        <text></text>
+        <text class="name">{{branch.branchs[0].name}}</text>
+      </view>
+    </view>
+  </view>
+</view>
+</template>
+<script>
+import wepy from "wepy";
+export default class common extends wepy.component {
+  props = {};
+  data = {
+    branch: []
+  };
+  watch = {};
+  onLoad() {}
+  events = {
+    "index-broadcast": (...args) => {
+      this.branch = args[0];
+    }
+  };
+}
+</script>

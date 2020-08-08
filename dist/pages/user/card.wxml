@@ -1,0 +1,42 @@
+
+  <view class="top">
+    
+<view class="header" style="height: {{$header$height*2 + 20}}px;line-height:{{($header$height*2 + 44)}}px">
+  <image bindtap="$header$goBack" src="../../images/icon44.png" class="icon44" style="margin-top:{{($header$height*2 + 26)/2}}px"/>
+  <text>{{$header$text}}</text>
+</view>
+
+    <image src="../../images/icon41.png" class="icon8" style="margin-top:{{(height*2 + 25)}}px"/>
+    <view class="item">
+      <view class="list">
+        <image src="../../images/icon40.png"/>
+        <view class="content">
+          <view class="left">
+            <text class="text">私教体验券</text>
+            <view class="weight">¥100</view>
+            <text class="grey">有效期至：2020-08-30（剩余30天）</text>
+          </view>
+          <view class="right">
+            <view>去使用</view>
+            <text>查看使用范围
+            </text>
+          </view>
+        </view>
+      </view>
+      <view class="list">
+        <image src="../../images/icon40.png"/>
+        <view class="content">
+          <view class="left">
+            <text class="text">私教体验券</text>
+            <view class="weight">¥100</view>
+            <text class="grey">有效期至：2020-08-30（剩余30天）</text>
+          </view>
+          <view class="right">
+            <view>去使用</view>
+            <text>查看使用范围
+            </text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>

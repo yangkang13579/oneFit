@@ -1,0 +1,39 @@
+
+  <view class="top">
+    
+<view class="header" style="height: {{$header$height*2 + 20}}px;line-height:{{($header$height*2 + 44)}}px">
+  <image bindtap="$header$goBack" src="../../images/icon44.png" class="icon44" style="margin-top:{{($header$height*2 + 26)/2}}px"/>
+  <text>{{$header$text}}</text>
+</view>
+
+    <view class="items" style="margin-top:{{(height*2 + 25)}}px">
+      <view class="item-list">
+        <image src="../../images/icon15.png"/>
+        <view>
+          <text>2020-08-30</text>
+          <text>OneFit杨浦店</text>
+        </view>
+      </view>
+      <view class="item-list">
+        <image src="../../images/icon15.png"/>
+        <view>
+          <text>2020-08-30</text>
+          <text>OneFit杨浦店</text>
+        </view>
+      </view>
+      <view class="item-list">
+        <image src="../../images/icon15.png"/>
+        <view>
+          <text>2020-08-30</text>
+          <text>OneFit杨浦店</text>
+        </view>
+      </view>
+      <view class="item-list">
+        <image src="../../images/icon15.png"/>
+        <view>
+          <text>2020-08-30</text>
+          <text>OneFit杨浦店</text>
+        </view>
+      </view>
+      </view>
+    </view>

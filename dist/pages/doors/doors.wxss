@@ -1,0 +1,72 @@
+page {
+  background: #111111;
+}
+.header {
+  font-size: 30rpx;
+  color: #fff;
+  width: 100%;
+  position: fixed;
+  background: #111111;
+  z-index: 1;
+}
+.header text {
+  position: absolute;
+  left: 15rpx;
+}
+.icon41 {
+  width: 750rpx;
+  height: 420rpx;
+}
+.p {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 30rpx;
+}
+.p image {
+  width: 45rpx;
+  height: 45rpx;
+  transform: rotate(90deg);
+  margin-left: 15rpx;
+}
+.icon26 {
+  width: 100%;
+  height: 4rpx;
+  margin-top: 11rpx;
+  display: block;
+  margin-bottom: 17rpx;
+}
+.items {
+  width: 700rpx;
+  height: 160rpx;
+  position: relative;
+  margin-left: 25rpx;
+  margin-bottom: 20rpx;
+  border-radius: 10rpx;
+}
+.items image {
+  width: 700rpx;
+  height: 160rpx;
+  position: absolute;
+  left: 0;
+  top: 0;
+  border-radius: 10rpx;
+}
+.items .text {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 700rpx;
+  height: 160rpx;
+  color: #fff;
+  text-align: center;
+}
+.items .text view {
+  width: 100%;
+  font-weight: bold;
+  margin-top: 24rpx;
+}
+.items .text text {
+  font-size: 24rpx;
+}

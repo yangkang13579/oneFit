@@ -1,0 +1,156 @@
+@import "./../../components/headers.wxss";
+page {
+  background: #111111;
+}
+.center {
+  margin-top: 23%;
+  z-index: 2;
+  height: 340rpx;
+  width: 100%;
+}
+.center .icon2 {
+  width: 340rpx;
+  height: 340rpx;
+  position: absolute;
+  margin-left: 205rpx;
+}
+.center .icon3 {
+  width: 244rpx;
+  height: 244rpx;
+  position: absolute;
+  margin-left: 253rpx;
+  margin-top: 48rpx;
+}
+.name {
+  width: 100%;
+  margin-top: 48rpx;
+  text-align: center;
+  font-size: 30rpx;
+  color: #fff;
+}
+.item-list {
+  margin-top: 53rpx;
+}
+.item-list .item {
+  margin: 0 26rpx;
+  background: #2d2d2d;
+  margin-bottom: 25rpx;
+  height: 160rpx;
+  display: flex;
+  align-items: center;
+  position: relative;
+  border-radius: 10rpx;
+}
+.item-list .item .logo {
+  width: 140rpx;
+  height: 140rpx;
+  margin: 10rpx 49rpx 0 33rpx;
+  border-radius: 50%;
+}
+.item-list .item .icon29 {
+  width: 160rpx;
+  height: 50rpx;
+  position: absolute;
+  right: 0;
+  bottom: 33rpx;
+}
+.item-list .item .name2 .name-tips {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #e02510;
+  margin-bottom: 31rpx;
+}
+.item-list .item .name2 .tips {
+  color: #acacac;
+  font-size: 24rpx;
+}
+.item-list .item .name2 .tips text {
+  margin-right: 15rpx;
+}
+.item-list .item .name2 .right {
+  width: 162rpx;
+  height: 51rpx;
+  position: absolute;
+  bottom: 22rpx;
+  right: 0;
+}
+.change {
+  width: 700rpx;
+  height: 316rpx;
+  position: relative;
+  border-radius: 10rpx;
+  background: #2d2d2d;
+  margin-left: 25rpx;
+  margin-top: 66rpx;
+  clear: both;
+}
+.change .tit {
+  position: absolute;
+  width: 424rpx;
+  height: 50rpx;
+  border-radius: 55rpx 55rpx 0 0;
+  background: #e02510;
+  left: 138rpx;
+  top: -15rpx;
+  color: #fff;
+  font-size: 32rpx;
+  font-weight: bold;
+  line-height: 50rpx;
+  text-align: center;
+}
+.change .items {
+  padding: 0 31rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.change .items .left {
+  padding-top: 67rpx;
+}
+.change .items .left text {
+  font-size: 36rpx;
+  color: #e02510;
+  font-weight: bold;
+}
+.change .items .left picker {
+  width: 281rpx;
+  height: 51rpx;
+  border: 1rpx solid #acacac;
+  position: relative;
+}
+.change .items .left picker .picker {
+  color: #fff;
+  font-size: 26rpx;
+  line-height: 51rpx;
+  padding-left: 10rpx;
+}
+.change .items .left picker .right {
+  position: absolute;
+  right: -1rpx;
+  top: -1rpx;
+  width: 51rpx;
+  height: 54rpx;
+  bottom: 0;
+  background: #e02510;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.change .items .left picker .right image {
+  width: 30rpx;
+  height: 30rpx;
+}
+.change .btn {
+  width: 310rpx;
+  height: 70rpx;
+  position: absolute;
+  bottom: 27rpx;
+  left: 195rpx;
+  background: #e02510;
+  font-size: 32rpx;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 40rpx;
+}

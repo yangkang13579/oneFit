@@ -1,0 +1,50 @@
+
+  <view class="top">
+    
+<view class="header" style="height: {{$header$height*2 + 20}}px;line-height:{{($header$height*2 + 44)}}px">
+  <image bindtap="$header$goBack" src="../../images/icon44.png" class="icon44" style="margin-top:{{($header$height*2 + 26)/2}}px"/>
+  <text>{{$header$text}}</text>
+</view>
+
+    <view class="content" style="margin-top:{{(height*2 + 25)}}px">
+      <view class="item">
+        <view class="tit">2020-06-08 今日约课6节
+          <image src="../../images/icon29.png"/>
+        </view>
+        <view class="item-list">
+          <view class="item">
+            <image src="../../images/icon14.png" class="icon14"/>
+            <view class="center">
+              <view class="top">11:00-12:00</view>
+              <view class="bottom">确认并编写训练计划/饮食计划</view>
+            </view>
+            <view class="cancle">取消</view>
+
+            <image src="../../images/icon26.png" class="icon26"/>
+          </view>
+
+          <view class="item">
+            <image src="../../images/icon14.png" class="icon14"/>
+            <view class="center">
+              <view class="top">11:00-12:00</view>
+              <view class="bottom">确认并编写训练计划/饮食计划</view>
+            </view>
+            <view class="cancle">取消</view>
+
+            <image src="../../images/icon26.png" class="icon26"/>
+          </view>
+
+          <view class="item">
+            <image src="../../images/icon14.png" class="icon14"/>
+            <view class="center">
+              <view class="top">11:00-12:00</view>
+              <view class="bottom">确认并编写训练计划/饮食计划</view>
+            </view>
+            <view class="cancle">取消</view>
+
+            <image src="../../images/icon26.png" class="icon26"/>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>

@@ -1,0 +1,378 @@
+<style lang="less">
+page {
+  background: #111111;
+}
+.headers {
+  height: 160rpx;
+  width: 700rpx;
+  margin-left: 25rpx;
+  background: #2d2d2d;
+  border-radius: 10rpx;
+  display: flex;
+  align-items: center;
+  image {
+    width: 142rpx;
+    height: 142rpx;
+    border-radius: 50%;
+    margin: 0 38rpx 0 22rpx;
+  }
+  .headers-top {
+    width: 350rpx;
+    text-align: center;
+    .tit {
+      font-size: 36rpx;
+      color: rgba(224, 37, 16, 1);
+      font-weight: bold;
+      margin-bottom: 16rpx;
+    }
+    view {
+      font-size: 26rpx;
+      color: #acacac;
+      text {
+        margin-right: 10rpx;
+      }
+    }
+  }
+}
+.center {
+  padding: 44rpx 0 9rpx 0;
+  background: #2d2d2d;
+  border-radius: 20rpx;
+  width: 700rpx;
+  margin-left: 25rpx;
+  margin-top: 21rpx;
+  > view {
+    width: 654rpx;
+    display: flex;
+    align-items: center;
+    margin: 0 23rpx;
+    color: rgba(224, 37, 16, 1);
+    font-weight: bold;
+    margin: 0 23rpx;
+    margin-bottom: 33rpx;
+    text {
+      text-align: center;
+      margin-right: 11rpx;
+      width: 144rpx;
+    }
+    .text1 {
+      width: 162rpx;
+    }
+    .text2 {
+      width: 200rpx;
+    }
+    .text3 {
+      width: 141rpx;
+    }
+    .text4 {
+      width: 141rpx;
+    }
+    .text6,
+    .text5 {
+      width: 236rpx;
+    }
+    .bg {
+      background: #e02510;
+      color: #fff;
+      text-align: left;
+      border-radius: 10rpx;
+      padding-left: 14rpx;
+      width: 162rpx;
+      font-size: 26rpx;
+      height: 52rpx;
+      margin-right: 11rpx;
+      line-height: 52rpx;
+    }
+    picker {
+      margin-right: 11rpx;
+      height: 52rpx;
+      border: 1rpx solid #acacac;
+      position: relative;
+      .picker {
+        color: #fff;
+        font-size: 26rpx;
+        line-height: 52rpx;
+        padding-left: 10rpx;
+      }
+      .right {
+        position: absolute;
+        right: -1rpx;
+        top: -1rpx;
+        width: 51rpx;
+        height: 54rpx;
+        bottom: 0;
+        background: #e02510;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        image {
+          width: 30rpx;
+          height: 30rpx;
+        }
+      }
+    }
+  }
+}
+.btn {
+  width: 500rpx;
+  height: 70rpx;
+  margin-left: 125rpx;
+  background: #e02510;
+  font-size: 32rpx;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 40rpx;
+  margin-top: 85rpx;
+}
+.change {
+  width: 700rpx;
+  height: 316rpx;
+  position: relative;
+  border-radius: 10rpx;
+  background: #2d2d2d;
+  margin-left: 25rpx;
+  margin-top: 66rpx;
+  clear: both;
+  .tit {
+    position: absolute;
+    width: 230rpx;
+    height: 50rpx;
+    border-radius: 55rpx 55rpx 0 0;
+    background: #e02510;
+    left: 236rpx;
+    top: -15rpx;
+    color: #fff;
+    font-size: 32rpx;
+    font-weight: bold;
+    line-height: 50rpx;
+    text-align: center;
+  }
+  .text {
+    font-size: 30rpx;
+    color: #fff;
+    padding: 40rpx 20rpx 40rpx 20rpx;
+  }
+  .content {
+    padding-top: 35rpx;
+    width: 100%;
+    .content-tit {
+      height: 56rpx;
+      line-height: 56rpx;
+      width: 100%;
+      position: relative;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-bottom: 1rpx solid #e02510;
+      view {
+        width: 33%;
+        text-align: center;
+        font-size: 26rpx;
+      }
+      image {
+        width: 33rpx;
+        height: 26rpx;
+        position: absolute;
+        bottom: -8rpx;
+        left: 105rpx;
+      }
+    }
+    .text {
+      font-size: 30rpx;
+      color: #fff;
+      padding: 40rpx 20rpx 40rpx 20rpx;
+    }
+  }
+}
+</style>
+
+<template lang="wxml">
+  <view class="top">
+    <header />
+    <view class="headers"  style="margin-top:{{(height*2 + 25)}}px">
+      <image src="../../images/icon15.png" />
+      <view class="headers-top">
+        <view class="tit">会员饮食计划编写</view>
+        <view>
+          <text>2020-06-08</text>
+          11:00-12:00
+        </view>
+      </view>
+    </view>
+
+    <view class="center">
+      <view>
+        <text class="text1">环节</text>
+        <text class="text2">动作</text>
+        <text class="text3">动作</text>
+        <text class="text4">负荷</text>
+      </view>
+
+      <view>
+        <view class="text1 bg">动态伸展</view>
+        <picker bindchange="bindPickerChange" class="text2" range="{{array}}">
+          <view class="picker">
+            111
+          </view>
+          <view class="right">
+            <image src="../../images/icon45.png" class="icon45" />
+          </view>
+        </picker>
+        <picker class="text3" bindchange="bindPickerChange" range="{{array}}">
+          <view class="picker">
+            111
+          </view>
+          <view class="right">
+            <image src="../../images/icon45.png" class="icon45" />
+          </view>
+        </picker>
+        <picker class="text4" bindchange="bindPickerChange" range="{{array}}">
+          <view class="picker">
+            111
+          </view>
+          <view class="right">
+            <image src="../../images/icon45.png" class="icon45" />
+          </view>
+        </picker>
+      </view>
+
+      <view>
+        <view class="text1 bg">动态伸展</view>
+        <picker bindchange="bindPickerChange" class="text2" range="{{array}}">
+          <view class="picker">
+            111
+          </view>
+          <view class="right">
+            <image src="../../images/icon45.png" class="icon45" />
+          </view>
+        </picker>
+        <picker class="text3" bindchange="bindPickerChange" range="{{array}}">
+          <view class="picker">
+            111
+          </view>
+          <view class="right">
+            <image src="../../images/icon45.png" class="icon45" />
+          </view>
+        </picker>
+        <picker class="text4" bindchange="bindPickerChange" range="{{array}}">
+          <view class="picker">
+            111
+          </view>
+          <view class="right">
+            <image src="../../images/icon45.png" class="icon45" />
+          </view>
+        </picker>
+      </view>
+    </view>
+
+    <view class="center">
+      <view>
+        <text class="text1">类型</text>
+        <text class="text5">明细</text>
+        <text class="text6">单位</text>
+      </view>
+
+      <view>
+        <view class="text1 bg">动态伸展</view>
+        <picker bindchange="bindPickerChange" class="text5" range="{{array}}">
+          <view class="picker">
+            111
+          </view>
+          <view class="right">
+            <image src="../../images/icon45.png" class="icon45" />
+          </view>
+        </picker>
+        <picker class="text6" bindchange="bindPickerChange" range="{{array}}">
+          <view class="picker">
+            111
+          </view>
+          <view class="right">
+            <image src="../../images/icon45.png" class="icon45" />
+          </view>
+        </picker>
+      </view>
+
+      <view>
+        <view class="text1 bg">动态伸展</view>
+        <picker bindchange="bindPickerChange" class="text5" range="{{array}}">
+          <view class="picker">
+            111
+          </view>
+          <view class="right">
+            <image src="../../images/icon45.png" class="icon45" />
+          </view>
+        </picker>
+        <picker class="text6" bindchange="bindPickerChange" range="{{array}}">
+          <view class="picker">
+            111
+          </view>
+          <view class="right">
+            <image src="../../images/icon45.png" class="icon45" />
+          </view>
+        </picker>
+      </view>
+    </view>
+    <view class="change">
+      <view class="tit">我的评论</view>
+      <view class="text">评论评论评论评论</view>
+    </view>
+
+    <view class="change" style="margin-bottom:32rpx;">
+      <view class="tit">教练反馈</view>
+      <view class=content>
+        <view class="content-tit">
+           <view wx:for="{{tit}}">
+              {{item}}
+              <image src="../../images/icon55.png" class="icon55">
+           </view>
+        </view>
+
+        <view class="text">教练反馈教练反馈教练反馈教练反馈</view>
+      </view>
+    </view>
+  </view>
+</template>
+
+<script>
+/* global wx */
+import wepy from "wepy";
+import PageMixin from "../../mixins/page";
+import header from "../../components/headers";
+export default class Course extends wepy.page {
+  mixins = [PageMixin];
+  config = {
+    navigationBarBackgroundColor: "#fff"
+  };
+  components = {
+    header
+  };
+  data = {
+    currentIndex: null,
+    height: null,
+    array: [1],
+    tit: ["优点", "改善", "状态"]
+  };
+  methods = {
+    details(e) {
+      this.currentIndex = e.currentTarget.dataset.index;
+      wx.navigateTo({
+        url: "/pages/user/teceData"
+      });
+    }
+  };
+  onShow() {
+    wx.getSystemInfo({
+      success: res => {
+        this.height = res.statusBarHeight;
+        this.$broadcast("index-broadcast", {
+          height: this.height,
+          text: "会员训练计划"
+        });
+      }
+    });
+  }
+}
+</script>

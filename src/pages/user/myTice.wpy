@@ -1,0 +1,150 @@
+<style lang="less">
+page {
+  background: #111111;
+}
+.item-list {
+  width: 700rpx;
+  min-height: 900rpx;
+  background: #2d2d2d;
+  margin-left: 25rpx;
+  padding-top: 33rpx;
+  border-radius: 10rpx;
+  .item {
+    width: 640rpx;
+    border-radius: 10rpx;
+    margin: 0 26rpx;
+    border: 1rpx solid #e02510;
+    background: #2d2d2d;
+    margin-bottom: 25rpx;
+    height: 82rpx;
+    display: flex;
+    align-items: center;
+    position: relative;
+    margin-bottom: 25rpx;
+    .hover-bg {
+      position: absolute;
+      background: #e02510;
+      opacity: 0.2;
+      z-index: 2;
+      width: 640rpx;
+      height: 82rpx;
+      border-radius: 10rpx;
+      left: 0;
+      top: 0;
+    }
+    .hover-right {
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: 113rpx;
+      height: 82rpx;
+      z-index: 3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #e02510;
+      border-radius: 0 10rpx 0 0;
+      image {
+        width: 40rpx;
+        height: 40rpx;
+      }
+    }
+    .logo {
+      width: 140rpx;
+      height: 140rpx;
+      margin: 0 49rpx 0 33rpx;
+    }
+    .icon29 {
+      width: 160rpx;
+      height: 50rpx;
+      position: absolute;
+      right: 0;
+      bottom: 33rpx;
+    }
+    .name {
+      .name-tips {
+        width: 640rpx;
+        font-size: 36rpx;
+        line-height: 82rpx;
+        text-align: center;
+        font-weight: bold;
+        color: #fff;
+      }
+      .tips {
+        color: #acacac;
+        font-size: 24rpx;
+        text {
+          margin-right: 15rpx;
+        }
+      }
+    }
+  }
+  .hover {
+    .name-tips {
+      color: #e02510;
+    }
+    .tips {
+      color: #e02510;
+    }
+  }
+}
+</style>
+
+<template lang="wxml">
+  <view class="top">
+    <header />
+    <view class="item-list" style="margin-top:{{(height*2 + 25)}}px">
+      <view wx:for="{{datas}}" wx:for-index="idx"  data-index="{{idx}}"  class="item {{currentIndex === idx ? 'hover' : ''}}" @tap="details">
+        <view class="name">
+          <view class="name-tips">2020-08-30 体侧数据</view>
+        </view>
+        <view class="hover" wx:if="{{currentIndex === idx}}">
+          <view class="hover-bg" />
+          <view class="hover-right">
+            <image src="../../images/icon32.png" class="icon32">
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</template>
+
+<script>
+/* global wx */
+import wepy from "wepy";
+import PageMixin from "../../mixins/page";
+import header from "../../components/headers";
+export default class Course extends wepy.page {
+  mixins = [PageMixin];
+  config = {
+    navigationBarBackgroundColor: "#fff"
+  };
+  components = {
+    header
+  };
+  data = {
+    height: "",
+    datas: [1, 2],
+    currentIndex: null
+  };
+  methods = {
+    details(e) {
+      this.currentIndex = e.currentTarget.dataset.index;
+      wx.navigateTo({
+        url: "/pages/user/teceData"
+      });
+    }
+  };
+  onShow() {
+    wx.getSystemInfo({
+      success: res => {
+        this.height = res.statusBarHeight;
+        this.$broadcast("index-broadcast", {
+          height: this.height,
+          text: "体测数据"
+        });
+      }
+    });
+  }
+}
+</script>

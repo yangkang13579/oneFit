@@ -1,0 +1,81 @@
+@import "./../../components/headers.wxss";
+page {
+  background: #111111;
+}
+.doorsDetails {
+  width: 100%;
+  height: 420rpx;
+}
+.doorsDetails swiper {
+  width: 100%;
+  height: 420rpx;
+}
+.doorsDetails image {
+  width: 100%;
+  height: 420rpx;
+  vertical-align: middle;
+}
+.item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 644rpx;
+  margin: 27rpx 25rpx;
+  background: #2d2d2d;
+  border-radius: 10rpx;
+  height: 100rpx;
+  padding: 0 28rpx;
+}
+.item text {
+  font-size: 40rpx;
+  color: #e02510;
+  font-weight: bold;
+}
+.item view {
+  font-size: 26rpx;
+  color: #fff;
+}
+.video {
+  padding: 27rpx 25rpx;
+  width: 644rpx;
+  background: #2d2d2d;
+  position: relative;
+  margin-left: 25rpx;
+}
+.video .icon27 {
+  position: absolute;
+  width: 232rpx;
+  height: 51rpx;
+  top: 26rpx;
+  left: 0;
+}
+.video .icon46 {
+  position: absolute;
+  top: 27rpx;
+  width: 49rpx;
+  height: 49rpx;
+  left: 248rpx;
+}
+.video video {
+  width: 644rpx;
+  height: 363rpx;
+  margin-top: 105rpx;
+}
+.video .text {
+  font-size: 26rpx;
+  line-height: 1.6;
+  color: #acacac;
+}
+.bottom {
+  width: 500rpx;
+  height: 70rpx;
+  text-align: center;
+  font-size: 32rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  margin: 65rpx 124rpx 50rpx 124rpx;
+  background: #e02510;
+  border-radius: 40rpx;
+}

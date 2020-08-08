@@ -26,7 +26,8 @@ var App = {
             throw new Error('app.init can be invoked only once');
         }
         this.launchOption = wxOptions;
-        this.config = { ...this.config,
+        this.config = {
+            ...this.config,
             ...globalOptions
         };
         console.log('App Inited:', this.config, this.launchOption);
@@ -38,7 +39,7 @@ var App = {
                 var url = data;
                 wx.request({
                     url: url,
-                    success: function (res) {},
+                    success: function (res) { },
                     fail: function (error) {
                         console.log('preload failed:', url, error);
                     }
@@ -63,15 +64,16 @@ var App = {
             useCache: false, // 使用开启缓存，如果是则会把数据缓存到storage
             expireTime: 60 // 默认缓存时间60秒，如果设置为0，立即失效
         };
-        const options = { ...defaultOptions,
+        const options = {
+            ...defaultOptions,
             ...fetchOptions
         };
         var cacheKey = null;
         var cache = null;
         if (options.useCache) {
             cacheKey =
-        options.cacheKey ||
-        md5(this.config.versionInfo.version + '_' + url); // 跟一个版本号
+                options.cacheKey ||
+                md5(this.config.versionInfo.version + '_' + url); // 跟一个版本号
             cache = wx.getStorageSync('cache_' + cacheKey);
             try {
                 if (cache === '' || cache.length === 0) {
@@ -82,8 +84,8 @@ var App = {
                     let now = new Date().getTime();
                     if (
                         isNaN(cache.expired) ||
-            now > cache.expired ||
-            options.expireTime === 0
+                        now > cache.expired ||
+                        options.expireTime === 0
                     ) {
                         console.log('cache expired');
                         wx.removeStorageSync(cacheKey);
@@ -154,7 +156,7 @@ var App = {
         });
     },
     fetchDataPromise(url, params, options) {
-    // console.log("fectchData from " + url + ",params=", params);
+        // console.log("fectchData from " + url + ",params=", params);
         var self = this;
         return new Promise((resolve, reject) => {
             self.fetchData(
@@ -243,7 +245,8 @@ var App = {
                 .then(data => {
                     if (data.global) {
                         // 合并global
-                        self.config = { ...self.config,
+                        self.config = {
+                            ...self.config,
                             ...data.global
                         };
                         console.log(
@@ -293,7 +296,7 @@ var App = {
                     var passport = wx.getStorageSync('passport');
                     if (passport) {
                         var checkSSOUrl =
-              self.config.passportUrl + 'checkSSO.do';
+                            self.config.passportUrl + 'checkSSO.do';
                         var checkSSOParams = {
                             passport: passport
                         };
@@ -375,7 +378,7 @@ var App = {
         var self = this;
         return new Promise((resolve, reject) => {
             var code = wx.getStorageSync('wx_code');
-            
+
             function wxCode() {
                 wx.login({
                     success: function (res) {
@@ -581,47 +584,47 @@ var App = {
     //     });
     // },
     bindMobilePromise(iv, encryptedData, passportSessionId) {
-    // 手机绑定
+        // 手机绑定
         var self = this;
         var code = null;
         // 登录交换passportId
-            wx.login({
-                success: function (res) {
-                    console.log('res', res);
-                    if (res.code) {
-                        var json = {};
-                        json.key =  wx.getStorageSync('wx_code');
-                        json.clientType = self.config.appType;
-                        json.clientId = self.config.appId;
-                        json.encryptedData = encryptedData;
-                        json.encryptedIV = iv;
-                        json.loginType = 'mobile';
-                        json.link = true;
-                        json.country= 'CN';
-                        json.linkForce = true;
-                        json.remember = 365;
-                        // 绑定到当前用户
-                        json.passport = passportSessionId;
-                        console.log("传值",json)
-                        
-                        /**  */
-                        self.fetchData(
-                            self.config.passportUrl + 'loginMobile.do',
-                            json,
-                            function (json) {
-                                console.log("json",json)
-                                if (json.code === 200) {
-                                    // console.log('loginPassport=' + JSON.stringify(json))
-                                    // wx.setStorageSync("passport", json.messages.data.session.id);
-                                    resolve(json.messages.data);
-                                } else {
-                                    reject(json.messages.error);
-                                }
+        wx.login({
+            success: function (res) {
+                console.log('res', res);
+                if (res.code) {
+                    var json = {};
+                    json.key = wx.getStorageSync('wx_code');
+                    json.clientType = self.config.appType;
+                    json.clientId = self.config.appId;
+                    json.encryptedData = encryptedData;
+                    json.encryptedIV = iv;
+                    json.loginType = 'mobile';
+                    json.link = true;
+                    json.country = 'CN';
+                    json.linkForce = true;
+                    json.remember = 365;
+                    // 绑定到当前用户
+                    json.passport = passportSessionId;
+                    console.log("传值", json)
+
+                    /**  */
+                    self.fetchData(
+                        self.config.passportUrl + 'loginMobile.do',
+                        json,
+                        function (json) {
+                            console.log("json", json)
+                            if (json.code === 200) {
+                                // console.log('loginPassport=' + JSON.stringify(json))
+                                // wx.setStorageSync("passport", json.messages.data.session.id);
+                                resolve(json.messages.data);
+                            } else {
+                                reject(json.messages.error);
                             }
-                        );
-                    }
-                 }
-                })
+                        }
+                    );
+                }
+            }
+        })
     },
     uploadFile(uploadItem, listener) {
         return co(this._wxUploadFile(uploadItem, listener));
@@ -644,7 +647,7 @@ var App = {
         return uploadItem;
     },
     _newUpload() {
-    // 获得一个上传地址
+        // 获得一个上传地址
         var self = this;
         return new Promise((resolve, reject) => {
             var uploadUrl = self.config.uploadUrl + 'upload.do';

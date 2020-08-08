@@ -1,0 +1,99 @@
+<style lang="less">
+page {
+  background: #111111;
+}
+.items {
+  margin: 165rpx 25rpx 0 25rpx;
+  width: 700rpx;
+  min-height: 908rpx;
+  background: #2d2d2d;
+  clear: both;
+  overflow: hidden;
+  .item-list {
+    margin-left: 20rpx;
+    margin-top: 20rpx;
+    margin-bottom: 15rpx;
+    float: left;
+    image {
+      width: 320rpx;
+      height: 240rpx;
+    }
+    view {
+      font-size: 20rpx;
+      color: #acacac;
+      text {
+        margin-left: 15rpx;
+      }
+    }
+  }
+}
+</style>
+
+<template lang="wxml">
+  <view class="top">
+    <header />
+    <view class="items" style="margin-top:{{(height*2 + 25)}}px">
+      <view class="item-list">
+        <image src="../../images/icon15.png" />
+        <view>
+          <text>2020-08-30</text>
+          <text>OneFit杨浦店</text>
+        </view>
+      </view>
+      <view class="item-list">
+        <image src="../../images/icon15.png" />
+        <view>
+          <text>2020-08-30</text>
+          <text>OneFit杨浦店</text>
+        </view>
+      </view>
+      <view class="item-list">
+        <image src="../../images/icon15.png" />
+        <view>
+          <text>2020-08-30</text>
+          <text>OneFit杨浦店</text>
+        </view>
+      </view>
+      <view class="item-list">
+        <image src="../../images/icon15.png" />
+        <view>
+          <text>2020-08-30</text>
+          <text>OneFit杨浦店</text>
+        </view>
+      </view>
+      </view>
+    </view>
+  </view>
+</template>
+
+<script>
+/* global wx */
+import wepy from "wepy";
+import PageMixin from "../../mixins/page";
+import header from "../../components/headers";
+export default class Course extends wepy.page {
+  mixins = [PageMixin];
+  config = {
+    navigationBarBackgroundColor: "#fff"
+  };
+  components = {
+    header
+  };
+  data = {
+    height: "",
+    text: ""
+  };
+  methods = {};
+  onShow() {
+    wx.getSystemInfo({
+      success: res => {
+        this.height = res.statusBarHeight;
+        this.$broadcast("index-broadcast", {
+          height: this.height,
+          text: "我的成长之路"
+        });
+      }
+    });
+  }
+}
+</script>

@@ -1,0 +1,35 @@
+
+  <view class="top">
+    
+<view class="header" style="height: {{$header$height*2 + 20}}px;line-height:{{($header$height*2 + 44)}}px">
+  <image bindtap="$header$goBack" src="../../images/icon44.png" class="icon44" style="margin-top:{{($header$height*2 + 26)/2}}px"/>
+  <text>{{$header$text}}</text>
+</view>
+
+    <view class="doorsDetails" style="margin-top:{{(height*2 + 25)}}px">
+      <swiper>
+        <block  wx:for="{{datas}}" wx:key="">
+          <swiper-item>
+            <image src="https://cdn.sunjoypai.com/images/5838/1239/4271/632cdc626038c929e4f2af8ca727266b_0_0.png" class="slide-image"/>
+          </swiper-item>
+        </block>
+      </swiper>
+    </view>
+
+    <view class="item">
+      <text>减脂私教</text>
+      <view>¥450/节</view>
+    </view>
+
+    <view class="video">
+      <image src="../../images/icon27.png" class="icon27"/>
+      <image src="../../images/icon46.png" class="icon46"/>
+      <video/>
+      <view class="text">
+        是非成败转头空，青山依旧在，惯看秋月春风。一壶浊酒喜相逢，古今多少事，滚滚长江东逝水，浪花淘尽英雄。 几度夕阳红。白发渔樵江渚上，都付笑谈中。
+        滚滚长江东逝水，浪花淘尽英雄。是非成败转头空，青山依旧在，几度夕阳红。白发渔樵江渚上，惯看秋月春风。一壶浊酒喜相逢，古今多少事，都付笑谈中。
+        是非成败转头空，青山依旧在，惯看秋月春风。一壶浊酒喜相逢，古今多少事，滚滚长江东逝水，浪花淘尽英                       
+      </view>
+    </view>
+    <view class="bottom">点击购课</view>
+  </view>

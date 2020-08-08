@@ -1,0 +1,121 @@
+@import "./../../components/headers.wxss";
+.icon18 {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.info-top {
+  margin-top: 165rpx;
+  position: relative;
+  z-index: 333;
+  height: 200rpx;
+  width: 100%;
+  color: #fff;
+}
+.info-top image {
+  width: 100%;
+  height: 200rpx;
+}
+.info-top .view {
+  font-size: 59rpx;
+  font-weight: bold;
+  width: 100%;
+  position: absolute;
+  text-align: center;
+  top: 20rpx;
+}
+.info-top .view1 {
+  font-size: 59rpx;
+  font-weight: bold;
+  width: 100%;
+  position: absolute;
+  text-align: center;
+  bottom: 23rpx;
+}
+.info {
+  margin-top: 125rpx;
+  position: relative;
+}
+.info .info-item .icon26 {
+  width: 100%;
+  height: 3rpx;
+  position: absolute;
+  z-index: 666;
+}
+.info .info-item .item {
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding: 38rpx 0;
+}
+.info .info-item .item .icon21 {
+  width: 62rpx;
+  height: 25rpx;
+  margin-right: 30rpx;
+  margin-left: 77rpx;
+}
+.info .info-item .item .icon22 {
+  width: 46rpx;
+  height: 48rpx;
+  margin-right: 46rpx;
+  margin-left: 77rpx;
+}
+.info .info-item .item .icon23 {
+  width: 76rpx;
+  height: 43rpx;
+  margin-right: 16rpx;
+  margin-left: 77rpx;
+}
+.info .info-item .item .icon24 {
+  width: 53rpx;
+  height: 58rpx;
+  margin-right: 39rpx;
+  margin-left: 77rpx;
+}
+.info .info-item .item .icon25 {
+  width: 61rpx;
+  height: 38rpx;
+  margin-right: 29rpx;
+  margin-left: 77rpx;
+}
+.info .info-item .item text {
+  font-size: 30rpx;
+  color: #fff;
+}
+.info .info-item .item .icon19,
+.info .info-item .item picker {
+  position: absolute;
+  right: 0;
+  width: 56rpx;
+  height: 56rpx;
+  margin-right: 88rpx;
+  color: #fff;
+  font-size: 30rpx;
+}
+.info .info-item .item input {
+  text-align: right;
+  position: absolute;
+  right: 0;
+  width: 256rpx;
+  height: 56rpx;
+  margin-right: 88rpx;
+  color: #fff;
+  font-size: 30rpx;
+}
+.btn {
+  width: 500rpx;
+  height: 70rpx;
+  border-radius: 40rpx;
+  background: #e02510;
+  color: #fff;
+  text-align: center;
+  line-height: 70rpx;
+  font-size: 32rpx;
+  font-weight: bold;
+  position: relative;
+  z-index: 7777;
+  margin-left: 125rpx;
+  margin-top: 85rpx;
+}

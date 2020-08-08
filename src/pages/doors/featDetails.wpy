@@ -1,0 +1,96 @@
+<style lang="less">
+page {
+  background: #111111;
+}
+.bottom {
+  width: 500rpx;
+  height: 70rpx;
+  text-align: center;
+  font-size: 32rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  margin: 65rpx 124rpx 50rpx 124rpx;
+  background: #e02510;
+  border-radius: 40rpx;
+}
+.video {
+  width: 700rpx;
+  margin: 25rpx;
+  background: #2d2d2d;
+  height: 480rpx;
+  border-radius: 10rpx;
+  position: relative;
+  clear: both;
+  overflow: hidden;
+  .tit {
+    width: 350rpx;
+    background: #e02510;
+    height: 50rpx;
+    margin-top: 22rpx;
+    border-radius: 45rpx 45rpx 0 0;
+    color: #fff;
+    font-size: 36rpx;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 176rpx;
+  }
+  video {
+    width: 644rpx;
+    height: 363rpx;
+    margin-left: 28rpx;
+    margin-top: 20rpx;
+  }
+}
+</style>
+
+<template lang="wxml">
+  <view class="top">
+    <header />
+    <view style="margin-top:{{(height*2 + 25)}}px">
+      <common />
+    </view>
+    <view class="video">
+     <view class="tit">教练视频展示</view>
+     <video />
+    </view>
+    <view class="bottom">购买TA的私教课</view>
+  </view>
+</template>
+
+<script>
+/* global wx */
+import wepy from "wepy";
+import PageMixin from "../../mixins/page";
+import header from "../../components/headers";
+import common from "../../components/common";
+export default class Course extends wepy.page {
+  mixins = [PageMixin];
+  config = {
+    navigationBarBackgroundColor: "#fff"
+  };
+  components = {
+    header,
+    common
+  };
+  data = {
+    height: "",
+    datas: [1, 2, 3, 4]
+  };
+  methods = {};
+  onShow() {
+    wx.getSystemInfo({
+      success: res => {
+        this.height = res.statusBarHeight;
+        this.$broadcast("index-broadcast", {
+          height: this.height,
+          text: "OneFit健身"
+        });
+      }
+    });
+  }
+}
+</script>

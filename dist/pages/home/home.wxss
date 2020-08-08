@@ -1,307 +1,205 @@
 page {
-  background: #333534;
+  background: #111111;
 }
-.hua {
-  width: 100%;
-}
-.title {
-  background: #333436;
-  width: 100%;
-  height: 130rpx;
-  text-align: center;
-  line-height: 170rpx;
-  color: #fff;
+.header {
   font-size: 30rpx;
-  font-weight: bolder;
-}
-.banner {
+  color: #fff;
   width: 100%;
-  height: 285rpx;
+  position: fixed;
+  z-index: 1;
 }
-.banner swiper,
-.banner .swiper-item {
-  width: 100%;
-  height: 285rpx;
+.header text {
+  position: absolute;
+  bottom: 5rpx;
+  left: 15rpx;
 }
-.banner swiper image,
-.banner .swiper-item image {
-  width: 100%;
-  height: 285rpx;
-}
-.box {
-  width: 730rpx;
-  margin: 20rpx 0 0 10rpx;
-}
-.box .item {
-  width: 100%;
-  height: 320rpx;
-  margin-bottom: 15rpx;
-}
-.box .item image {
-  width: 100%;
-  height: 320rpx;
-}
-.store {
-  width: 100%;
-}
-.store .storeBanner {
-  width: 100%;
-  height: 320rpx;
-}
-.store .storeBanner image {
-  width: 100%;
-  height: 320rpx;
-}
-.store .store-lei {
-  width: 710rpx;
-  margin-top: 30rpx;
-  margin-left: 20rpx;
-}
-.store .store-lei .store-one,
-.store .store-lei .store-two {
-  margin-bottom: 30rpx;
-  border-radius: 10rpx;
+.times {
+  height: 130rpx;
   background: #010101;
-  width: 690rpx;
-  padding: 15rpx 10rpx;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.store .store-lei .store-one .s-left,
-.store .store-lei .store-two .s-left {
-  width: 560rpx;
-}
-.store .store-lei .store-one .s-left .s-top,
-.store .store-lei .store-two .s-left .s-top {
-  font-size: 26rpx;
-  color: #fff;
-}
-.store .store-lei .store-one .s-left .s-bot,
-.store .store-lei .store-two .s-left .s-bot {
-  font-size: 24rpx;
-  color: #fff;
-}
-.store .store-lei .store-one .s-right,
-.store .store-lei .store-two .s-right {
-  border-radius: 10rpx;
-  margin-right: 10rpx;
-  width: 110rpx;
-  height: 50rpx;
-  background: #e82511;
-  font-size: 24rpx;
-  color: #fff;
-  text-align: center;
-  line-height: 50rpx;
-}
-.store .people {
-  width: 710rpx;
-  margin-left: 20rpx;
-  margin-top: 10rpx;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-}
-.store .people .s-item {
-  width: 160rpx;
-  background: #262626;
-  margin-right: 20rpx;
-  border-radius: 10rpx;
-  padding: 10rpx 10rpx 20rpx 10rpx;
-}
-.store .people .s-item .s-img {
-  width: 160rpx;
-  height: 160rpx;
-  border-radius: 50%;
-}
-.store .people .s-item .s-img image {
-  width: 160rpx;
-  height: 160rpx;
-  border-radius: 50%;
-}
-.store .people .s-item .s-name {
-  margin-top: 10rpx;
-  text-align: center;
-  font-size: 24rpx;
-  color: #fff;
   width: 100%;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  padding: 35rpx 0;
+}
+.times .time {
   white-space: nowrap;
 }
-.store .people .s-item .s-jj {
-  margin-top: 10rpx;
+.times .time .block {
+  color: #fff;
+  font-size: 32rpx;
+  width: 130rpx;
   text-align: center;
-  font-size: 25rpx;
-  color: #fff;
-  width: 100%;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  margin: 5rpx 0;
+  display: inline-block;
 }
-.store .adress {
-  width: 710rpx;
-  margin-left: 20rpx;
-  margin-top: 30rpx;
-}
-.store .adress .top {
-  width: 690rpx;
-  border-radius: 10rpx  10rpx  0px  0px;
-  padding: 0 10rpx;
-  height: 80rpx;
+.times .time .block .date {
+  width: 60rpx;
+  border-radius: 50%;
+  margin-left: 35rpx;
   display: flex;
   align-items: center;
-  background: #010101;
-}
-.store .adress .top image {
-  width: 40rpx;
-  height: 40rpx;
-}
-.store .adress .top text {
-  font-size: 28rpx;
-  margin-left: 20rpx;
-  color: #fff;
-}
-.store .adress .bot {
-  width: 690rpx;
-  padding: 0 10rpx;
-  border-radius: 0px  0px  10rpx  10rpx;
-  height: 110rpx;
-  background: #262626;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-}
-.store .adress .bot view {
-  font-size: 24rpx;
-  color: #fff;
-}
-.store .adress .bot .red {
-  color: #bb4f43;
-  font-size: 24rpx;
-  margin-left: 20rpx;
-}
-.store .discount {
-  width: 710rpx;
-  margin-left: 20rpx;
-  margin-top: 30rpx;
-}
-.store .discount .top {
-  width: 690rpx;
-  border-radius: 10rpx  10rpx  0px  0px;
-  padding: 0 10rpx;
-  height: 80rpx;
-  display: flex;
-  align-items: center;
-  background: #010101;
-}
-.store .discount .top image {
-  width: 40rpx;
-  height: 40rpx;
-}
-.store .discount .top text {
-  font-size: 28rpx;
-  margin-left: 20rpx;
-  color: #fff;
-}
-.store .discount .bot {
-  width: 690rpx;
-  padding: 0 10rpx;
-  border-radius: 0px  0px  10rpx  10rpx;
-  height: 110rpx;
-  background: #262626;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.store .discount .bot .bot-left {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-}
-.store .discount .bot .bot-left image {
-  width: 120rpx;
-  height: 70rpx;
-}
-.store .discount .bot .bot-left text {
-  margin-left: 10rpx;
-  color: #fff;
-  font-size: 26rpx;
-}
-.store .discount .bot .bot-right .new-price {
-  font-size: 26rpx;
-  color: #fff;
-}
-.store .discount .bot .bot-right .old-price {
-  font-size: 26rpx;
-  color: #7e7e7e;
-}
-.store .member {
-  width: 710rpx;
-  margin-left: 20rpx;
-  margin-top: 30rpx;
-  margin-bottom: 60rpx;
-}
-.store .member .top {
-  width: 690rpx;
-  border-radius: 10rpx  10rpx  0px  0px;
-  padding: 0 10rpx;
-  height: 80rpx;
-  display: flex;
-  align-items: center;
-  background: #010101;
-}
-.store .member .top image {
-  width: 40rpx;
-  height: 40rpx;
-}
-.store .member .top text {
-  font-size: 28rpx;
-  margin-left: 20rpx;
-  color: #fff;
-}
-.store .member .bot {
-  width: 690rpx;
-  padding: 0 10rpx;
-  border-radius: 0px  0px  10rpx  10rpx;
-  border-bottom: 1rpx solid #242424;
-  height: 110rpx;
-  background: #262626;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.store .member .bot .bot-left {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-}
-.store .member .bot .bot-left image {
-  width: 120rpx;
-  height: 70rpx;
-}
-.store .member .bot .bot-left text {
-  margin-left: 10rpx;
-  color: #fff;
-  font-size: 26rpx;
-}
-.store .member .bot .bot-right .new-price {
-  font-size: 26rpx;
-  color: #fff;
-}
-.store .member .bot .bot-right .old-price {
-  font-size: 26rpx;
-  color: #7e7e7e;
-}
-.store .member .last {
-  width: 690rpx;
-  padding: 0 10rpx;
-  border-radius: 0px  0px  10rpx  10rpx;
-  height: 110rpx;
-  background: #262626;
-  display: flex;
   justify-content: center;
+  height: 50rpx;
+  margin-bottom: 15rpx;
+  color: #acacac;
+}
+.times .time .block .week {
+  width: 60rpx;
+  height: 60rpx;
+  margin-left: 35rpx;
+  text-align: center;
+  line-height: 60rpx;
+  font-size: 30rpx;
+  border-radius: 50%;
+  color: #acacac;
+  border: 1rpx solid #acacac;
+}
+.times .time .block .hover {
+  background: #e02510;
+  color: #fff;
+  border: 1rpx solid #e02510;
+}
+.times .time .block .color {
+  color: #fff;
+}
+.times-point {
+  margin-top: 30rpx;
+  font-size: 34rpx;
+  font-weight: bold;
+  color: #e02510;
+  margin-left: 20rpx;
+}
+.times-point .point-tit {
+  display: flex;
   align-items: center;
-  color: #7e7e7e;
-  font-size: 28rpx;
+}
+.times-point image {
+  width: 42rpx;
+  height: 52rpx;
+  margin-left: 20rpx;
+}
+.point {
+  margin-top: 20rpx;
+  width: 100%;
+  height: 80rpx;
+  white-space: nowrap;
+  background: #2d2d2d;
+}
+.point .block {
+  display: inline-block;
+}
+.point .block view {
+  padding: 0 10rpx;
+  color: #acacac;
+  height: 41rpx;
+  margin-top: 19rpx;
+  font-size: 26rpx;
+  line-height: 41rpx;
+}
+.btn {
+  margin-top: 69rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.btn view {
+  width: 240rpx;
+  height: 70rpx;
+  border-radius: 35rpx;
+  text-align: center;
+  line-height: 70rpx;
+  font-size: 32rpx;
+}
+.btn .btn-left {
+  background: #e02510;
+  color: #fff;
+  margin-right: 75rpx;
+}
+.btn .btn-right {
+  border: 1rpx solid #e02510;
+  color: #fff;
+}
+.teacher {
+  margin-top: 75rpx;
+  position: relative;
+  margin-left: 25rpx;
+}
+.teacher .icon8 {
+  position: absolute;
+  width: 702rpx;
+  height: 450rpx;
+  left: 0;
+  top: 0;
+}
+.teacher .icon10 {
+  position: absolute;
+  width: 294rpx;
+  height: 451rpx;
+  left: 0;
+  top: 0;
+}
+.teacher .teacher-name {
+  position: absolute;
+  right: 94rpx;
+  top: 131rpx;
+  width: 300rpx;
+  height: 62rpx;
+  font-size: 40rpx;
+  color: #fff;
+  line-height: 62rpx;
+}
+.teacher .teacher-name image {
+  width: 300rpx;
+  height: 62rpx;
+  position: absolute;
+}
+.teacher .teacher-name text {
+  margin-left: 10rpx;
+  font-weight: bold;
+  position: absolute;
+  z-index: 2;
+}
+.teacher .introduce {
+  width: 372rpx;
+  position: absolute;
+  right: 46rpx;
+  top: 224rpx;
+  line-height: 2;
+  font-size: 24rpx;
+  color: #fff;
+}
+.item-list {
+  margin-top: 26rpx;
+}
+.item-list .item {
+  margin: 0 26rpx;
+  background: #2d2d2d;
+  margin-bottom: 25rpx;
+  height: 160rpx;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+.item-list .item .logo {
+  width: 140rpx;
+  height: 140rpx;
+  margin: 0 49rpx 0 33rpx;
+}
+.item-list .item .icon29 {
+  width: 160rpx;
+  height: 50rpx;
+  position: absolute;
+  right: 0;
+  bottom: 33rpx;
+}
+.item-list .item .name .name-tips {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #fff;
+  margin-bottom: 31rpx;
+}
+.item-list .item .name .tips {
+  color: #acacac;
+  font-size: 24rpx;
+}
+.item-list .item .name .tips text {
+  margin-right: 15rpx;
 }

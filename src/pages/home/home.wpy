@@ -1,582 +1,608 @@
 <style lang="less">
 page {
-  background: #333534;
-  // height: 100%;
+  background: #111111;
 }
-.hua {
-  width: 100%;
-  // height: 100vh;
-  // // padding-bottom: 100rpx;
-}
-.title {
-  background: #333436;
-  width: 100%;
-  height: 130rpx;
-  text-align: center;
-  line-height: 170rpx;
-  color: #fff;
+.header {
   font-size: 30rpx;
-  font-weight: bolder;
-}
-
-.banner {
+  color: #fff;
   width: 100%;
-  height: 285rpx;
-  swiper,
-  .swiper-item {
-    width: 100%;
-    height: 285rpx;
-    image {
-      width: 100%;
-      height: 285rpx;
-    }
+  position: fixed;
+  z-index: 1;
+  text {
+    position: absolute;
+    bottom: 5rpx;
+    left: 15rpx;
   }
 }
-.box {
-  width: 730rpx;
-  margin: 20rpx 0 0 10rpx;
-  .item {
-    width: 100%;
-    height: 320rpx;
-    margin-bottom: 15rpx;
-    image {
-      width: 100%;
-      height: 320rpx;
-    }
-  }
-}
-.store {
+.times {
+  height: 130rpx;
+  background: #010101;
   width: 100%;
-
-  .storeBanner {
-    width: 100%;
-    height: 320rpx;
-    image {
-      width: 100%;
-      height: 320rpx;
-    }
-  }
-  .store-lei {
-    width: 710rpx;
-    margin-top: 30rpx;
-    margin-left: 20rpx;
-    .store-one,
-    .store-two {
-      margin-bottom: 30rpx;
-      border-radius: 10rpx;
-      background: #010101;
-      width: 690rpx;
-      padding: 15rpx 10rpx;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      .s-left {
-        width: 560rpx;
-        .s-top {
-          font-size: 26rpx;
-          color: #fff;
-        }
-        .s-bot {
-          font-size: 24rpx;
-          color: #fff;
-        }
-      }
-      .s-right {
-        border-radius: 10rpx;
-        margin-right: 10rpx;
-        width: 110rpx;
-        height: 50rpx;
-        background: #e82511;
-        font-size: 24rpx;
-        color: #fff;
-        text-align: center;
-        line-height: 50rpx;
-      }
-    }
-  }
-  .people {
-    width: 710rpx;
-    margin-left: 20rpx;
-    margin-top: 10rpx;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    .s-item {
-      width: 160rpx;
-      background: #262626;
-      margin-right: 20rpx;
-      border-radius: 10rpx;
-      padding: 10rpx 10rpx 20rpx 10rpx;
-      .s-img {
-        width: 160rpx;
-        height: 160rpx;
+  padding: 35rpx 0;
+  // overflow: auto;
+  // display: flex;
+  // overflow-y: hidden;
+  .time {
+    white-space: nowrap;
+    .block {
+      color: #fff;
+      font-size: 32rpx;
+      width: 130rpx;
+      text-align: center;
+      margin: 5rpx 0;
+      display: inline-block;
+      .date {
+        width: 60rpx;
         border-radius: 50%;
-        image {
-          width: 160rpx;
-          height: 160rpx;
-          border-radius: 50%;
-        }
-      }
-      .s-name {
-        margin-top: 10rpx;
-        width: 100%;
-        text-align: center;
-        font-size: 24rpx;
-        color: #fff;
-        width: 100%;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-      }
-      .s-jj {
-        margin-top: 10rpx;
-        width: 100%;
-        text-align: center;
-        font-size: 25rpx;
-        color: #fff;
-        width: 100%;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-      }
-    }
-  }
-  .adress{
-    width: 710rpx;
-    margin-left: 20rpx;
-    margin-top: 30rpx;
-    .top{
-      width: 690rpx;
-      border-radius:10rpx  10rpx  0px  0px;
-      padding: 0 10rpx;
-      height: 80rpx;
-      display: flex;
-      align-items: center;
-      background: #010101;
-      image{
-        width: 40rpx;
-        height: 40rpx;
-      }
-      text{
-        font-size: 28rpx;
-        margin-left: 20rpx;
-        color: #fff;
-      }
-
-    }
-    .bot{
-      width: 690rpx;
-      padding: 0 10rpx;
-      border-radius:0px  0px  10rpx  10rpx;
-      height: 110rpx;
-      background: #262626;
-      display: flex;
-      justify-content: flex-start;
-      align-items: center;
-      view{
-        font-size: 24rpx;
-        color: #fff;
-      }
-      .red{
-        color: #bb4f43;
-        font-size: 24rpx;
-        margin-left: 20rpx;
-      }
-    }
-  }
-  .discount{
-    width: 710rpx;
-    margin-left: 20rpx;
-    margin-top: 30rpx;
-    .top{
-      width: 690rpx;
-      border-radius:10rpx  10rpx  0px  0px;
-      padding: 0 10rpx;
-      height: 80rpx;
-      display: flex;
-      align-items: center;
-      background: #010101;
-      image{
-        width: 40rpx;
-        height: 40rpx;
-      }
-      text{
-        font-size: 28rpx;
-        margin-left: 20rpx;
-        color: #fff;
-      }
-
-    }
-    .bot{
-      width: 690rpx;
-      padding: 0 10rpx;
-      border-radius:0px  0px  10rpx  10rpx;
-      height: 110rpx;
-      background: #262626;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      .bot-left{
+        margin-left: 35rpx;
         display: flex;
-        justify-content: flex-start;
         align-items: center;
-        image{
-          width: 120rpx;
-          height: 70rpx;
-        }
-        text{
-          margin-left: 10rpx;
-          color: #fff;
-          font-size: 26rpx;
-        }
+        justify-content: center;
+        height: 50rpx;
+        margin-bottom: 15rpx;
+        color: #acacac;
       }
-     .bot-right{
-       .new-price{
-         font-size: 26rpx;
-         color: #fff;
-       }
-       .old-price{
-          font-size: 26rpx;
-          color: #7e7e7e;
-       }
-     }
-    }
-  }
-  .member{
-    width: 710rpx;
-    margin-left: 20rpx;
-    margin-top: 30rpx;
-    margin-bottom: 60rpx;
-    .top{
-      width: 690rpx;
-      border-radius:10rpx  10rpx  0px  0px;
-      padding: 0 10rpx;
-      height: 80rpx;
-      display: flex;
-      align-items: center;
-      background: #010101;
-      image{
-        width: 40rpx;
-        height: 40rpx;
+      .week {
+        width: 60rpx;
+        height: 60rpx;
+        margin-left: 35rpx;
+        text-align: center;
+        line-height: 60rpx;
+        font-size: 30rpx;
+        border-radius: 50%;
+        color: #acacac;
+        border: 1rpx solid #acacac;
       }
-      text{
-        font-size: 28rpx;
-        margin-left: 20rpx;
+      .hover {
+        background: #e02510;
+        color: #fff;
+        border: 1rpx solid #e02510;
+      }
+      .color {
         color: #fff;
       }
-
-    }
-    .bot{
-      width: 690rpx;
-      padding: 0 10rpx;
-      border-radius:0px  0px  10rpx  10rpx;
-      border-bottom: 1rpx solid #242424;
-      height: 110rpx;
-      background: #262626;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      .bot-left{
-        display: flex;
-        justify-content: flex-start;
-        align-items: center;
-        image{
-          width: 120rpx;
-          height: 70rpx;
-        }
-        text{
-          margin-left: 10rpx;
-          color: #fff;
-          font-size: 26rpx;
-        }
-      }
-     .bot-right{
-       .new-price{
-         font-size: 26rpx;
-         color: #fff;
-       }
-       .old-price{
-          font-size: 26rpx;
-          color: #7e7e7e;
-       }
-     }
-    }
-    .last{
-      width: 690rpx;
-      padding: 0 10rpx;
-      border-radius:0px  0px  10rpx  10rpx;
-      height: 110rpx;
-      background: #262626;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      color: #7e7e7e;
-      font-size: 28rpx;
     }
   }
-
+}
+.times-point {
+  margin-top: 30rpx;
+  font-size: 34rpx;
+  font-weight: bold;
+  color: #e02510;
+  margin-left: 20rpx;
+  .point-tit {
+    display: flex;
+    align-items: center;
+  }
+  image {
+    width: 42rpx;
+    height: 52rpx;
+    margin-left: 20rpx;
+  }
+}
+.point {
+  margin-top: 20rpx;
+  width: 100%;
+  height: 80rpx;
+  white-space: nowrap;
+  background: #2d2d2d;
+  .block {
+    display: inline-block;
+    view {
+      padding: 0 10rpx;
+      color: #acacac;
+      height: 41rpx;
+      margin-top: 19rpx;
+      font-size: 26rpx;
+      line-height: 41rpx;
+    }
+  }
+}
+.btn {
+  margin-top: 69rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  view {
+    width: 240rpx;
+    height: 70rpx;
+    border-radius: 35rpx;
+    text-align: center;
+    line-height: 70rpx;
+    font-size: 32rpx;
+  }
+  .btn-left {
+    background: #e02510;
+    color: #fff;
+    margin-right: 75rpx;
+  }
+  .btn-right {
+    border: 1rpx solid #e02510;
+    color: #fff;
+  }
+}
+.teacher {
+  margin-top: 75rpx;
+  position: relative;
+  margin-left: 25rpx;
+  .icon8 {
+    position: absolute;
+    width: 702rpx;
+    height: 450rpx;
+    left: 0;
+    top: 0;
+  }
+  .icon10 {
+    position: absolute;
+    width: 294rpx;
+    height: 451rpx;
+    left: 0;
+    top: 0;
+  }
+  .teacher-name {
+    position: absolute;
+    right: 94rpx;
+    top: 131rpx;
+    width: 300rpx;
+    height: 62rpx;
+    font-size: 40rpx;
+    color: #fff;
+    line-height: 62rpx;
+    image {
+      width: 300rpx;
+      height: 62rpx;
+      position: absolute;
+    }
+    text {
+      margin-left: 10rpx;
+      font-weight: bold;
+      position: absolute;
+      z-index: 2;
+    }
+  }
+  .introduce {
+    width: 372rpx;
+    position: absolute;
+    right: 46rpx;
+    top: 224rpx;
+    line-height: 2;
+    font-size: 24rpx;
+    color: #fff;
+  }
+}
+.item-list {
+  margin-top: 26rpx;
+  .item {
+    margin: 0 26rpx;
+    background: #2d2d2d;
+    margin-bottom: 25rpx;
+    height: 160rpx;
+    display: flex;
+    align-items: center;
+    position: relative;
+    .logo {
+      width: 140rpx;
+      height: 140rpx;
+      margin: 0 49rpx 0 33rpx;
+    }
+    .icon29 {
+      width: 160rpx;
+      height: 50rpx;
+      position: absolute;
+      right: 0;
+      bottom: 33rpx;
+    }
+    .name {
+      .name-tips {
+        font-size: 36rpx;
+        font-weight: bold;
+        color: #fff;
+        margin-bottom: 31rpx;
+      }
+      .tips {
+        color: #acacac;
+        font-size: 24rpx;
+        text {
+          margin-right: 15rpx;
+        }
+      }
+    }
+  }
 }
 </style>
 
 <template lang="wxml">
-  <swiper class="hua" vertical="true" style="height: {{clientHeight?clientHeight+'px':'auto'}}">
-    <swiper-item>
-      <scroll-view scroll-y="{{true}}" style="height: {{clientHeight?clientHeight+'px':'auto'}}">
-      <view class="title">
-          OneFit运动训练中心
-      </view>
-      <view class="banner">
-        <swiper
-          indicator-dots="{{indicatorDots}}"
-          autoplay="{{autoplay}}"
-          interval="{{interval}}"
-          duration="{{duration}}"
-        >
-          <block wx:for="{{imgUrls}}" wx:key="">
-            <swiper-item>
-              <image src="{{item}}" class="slide-image" width="355" height="150" />
-            </swiper-item>
-          </block>
-        </swiper>
-      </view>
-      <view class="box">
-        <block wx:for="{{boxImg}}" wx:key="{{index}}">
-          <view class="item">
-            <image src="{{item}}"></image>
-          </view>
-
-        </block>
-        
-
-      </view>
+  <view class="top">
+    <view class="header" style='height: {{height*2 + 20}}px;'>
+      <text>OneFit健身</text>
+    </view>
+    <view class='times' style="margin-top:{{height*2 + 20}}px">
+      <scroll-view scroll-x="true" scroll-into-view="id_{{currentIndex}}" class="time">
+        <view class="block" wx:for="{{date}}" wx:for-item="item" wx:for-index="idx" data-index="{{idx}}" id="id_{{idx}}" bindtap='getDate'>
+          <view class="{{currentIndex === idx ? 'color date' : 'date'}}">{{item.date}}</view>
+          <view  class="{{currentIndex === idx ? 'hover week' : 'week'}}">{{item.isWeek ? item.week : item.month + '月'}}</view>
+        </view>
       </scroll-view>
-    </swiper-item>  
-    <swiper-item>
-      <scroll-view scroll-y="{{true}}" style="height: {{clientHeight?clientHeight+'px':'auto'}}">
-         <view class="store">
-           <view class="storeBanner">
-              <image src="../../images/17.jpg"></image>
-           </view>
-           <view class="store-lei">
-             <view class="store-one">
-               <view class="s-left">
-                 <view class="s-top">课程</view>
-                 <view class="s-bot">多种多样的课程设计,让你享受更多运动乐趣</view>
-               </view>
-               <view @tap="goto" class="s-right">约课</view>
-             </view>
-             <view class="store-two">
-                <view class="s-left">
-                 <view class="s-top">私教</view>
-                 <view class="s-bot">为您私人订制1v1训练计划</view>
-               </view>
-               <view @tap="goto" class="s-right">查看</view>
-             </view>
-           </view>
+    </view>
+    <view class="times-point">
+      <view class="point-tit">
+        <text>请选择时间段</text>
+        <image src="../../images/icon7.png" class="icon7"/>
+      </view>
+    </view>
 
-            <view class="people">
-              <view class="s-item">
-                <view class="s-img">
-                  <image src="../../images/11.jpg"></image>
-                </view>
-                <view class="s-name">黄丹路</view>
-                <view class="s-jj">擅长：产后恢复</view>
-              </view>
+    <view class="point">
+      <scroll-view scroll-x="true" class="point-time">
+        <view class="block" wx:for="{{leftData}}" wx:for-item="item" wx:for-index="idx" data-index="{{idx}}" id="id_{{idx}}" bindtap='getDate'>
+          <view>{{item.name}}</view>
+        </view>
+      </scroll-view>
+    </view>
 
-               <view class="s-item">
-                <view class="s-img">
-                  <image src="../../images/11.jpg"></image>
-                </view>
-                <view class="s-name">黄丹路</view>
-                <view class="s-jj">擅长：产后恢复</view>
-              </view>
-
-               <view class="s-item">
-                <view class="s-img">
-                  <image src="../../images/11.jpg"></image>
-                </view>
-                <view class="s-name">黄丹路</view>
-                <view class="s-jj">擅长：产后恢复</view>
-              </view>
-            </view>
-
-            <view class="adress">
-              <view class="top">
-                <image src="../../images/adress.png"></image>
-                <text>场馆地址</text>
-              </view>
-              <view class="bot">
-                <view>四川成都市武侯区</view>
-                <view class="red">查看地图</view>
-              </view>
-            </view>
-
-            <view class="adress">
-              <view class="top">
-                <image src="../../images/iphone.png"></image>
-                <text>场馆电话</text>
-              </view>
-              <view class="bot">
-                <view>02135351800</view>
-                <view class="red">点击拨号</view>
-              </view>
-            </view>
-
-             <view class="adress">
-              <view class="top">
-                <image src="../../images/iphone.png"></image>
-                <text>场馆介绍</text>
-              </view>
-              <view class="bot">
-                <view>ONEFIT杨浦店</view>
-              </view>
-            </view>
-
-
-             <view class="discount">
-              <view class="top">
-                <image src="../../images/zhekou.png"></image>
-                <text>新人折扣</text>
-              </view>
-              <view class="bot">
-                <view class="bot-left">
-                  <image src="../../images/18.jpg"></image>
-                  <text>私教入门(5课次)</text>
-                </view>
-                <view class="bot-right">
-                  <view class="new-price">
-                    新人价：￥1580.00
-                  </view>
-                  <view class="old-price">
-                    原价：￥3000.00
-                  </view>
-                </view>
-              </view>
-            </view>
-
-             <view class="member">
-              <view class="top">
-                <image src="../../images/calb.png"></image>
-                <text>会员卡</text>
-              </view>
-              <view class="bot">
-                <view class="bot-left">
-                  <image src="../../images/18.jpg"></image>
-                  <text>私教入门(5课次)</text>
-                </view>
-                <view class="bot-right">
-                  <view class="new-price">
-                    新人价：￥1580.00
-                  </view>
-                  <view class="old-price">
-                    原价：￥3000.00
-                  </view>
-                </view>
-              </view>
-              <view class="bot">
-                <view class="bot-left">
-                  <image src="../../images/18.jpg"></image>
-                  <text>私教入门(5课次)</text>
-                </view>
-                <view class="bot-right">
-                  <view class="new-price">
-                    新人价：￥1580.00
-                  </view>
-                  <view class="old-price">
-                    原价：￥3000.00
-                  </view>
-                </view>
-              </view>
-              <view class="bot">
-                <view class="bot-left">
-                  <image src="../../images/18.jpg"></image>
-                  <text>私教入门(5课次)</text>
-                </view>
-                <view class="bot-right">
-                  <view class="new-price">
-                    新人价：￥1580.00
-                  </view>
-                  <view class="old-price">
-                    原价：￥3000.00
-                  </view>
-                </view>
-              </view>
-              
-               <view @tap="more" class="last">
-                 查看全部>>
-              </view>
-
-            </view>
-
-
-         </view>
-       </scroll-view>
-    </swiper-item>
-    </swiper>
-
+    <!-- <view class="btn">
+      <view class="btn-left">立即约课</view>
+      <view class="btn-right">预约其他教练</view>
+    </view> -->
+    <view class="item-list">
+      <view class="item">
+        <image src="../../images/icon10.png" class="logo"/>
+        <view class="name">
+          <view class="name-tips">陈蕴 Jordan</view>
+          <view class="tips">
+            <text>塑性</text>
+          </view>
+        </view>
+        <image src="../../images/icon29.png" class="icon29">
+      </view>
+      <view class="item">
+        <image src="../../images/icon10.png" class="logo"/>
+        <view class="name">
+          <view class="name-tips">陈蕴 Jordan</view>
+          <view class="tips">
+            <text>塑性</text>
+          </view>
+        </view>
+        <image src="../../images/icon29.png" class="icon29">
+      </view>
+      <view class="item">
+        <image src="../../images/icon10.png" class="logo"/>
+        <view class="name">
+          <view class="name-tips">陈蕴 Jordan</view>
+          <view class="tips">
+            <text>塑性</text>
+          </view>
+        </view>
+        <image src="../../images/icon29.png" class="icon29">
+      </view>
+    </view>
+    <!-- <view class="teacher">
+      <image src="../../images/icon8.png" class="icon8"/>
+      <image src="../../images/icon10.png" class="icon10">
+      <view class="teacher-name">
+        <image src="../../images/icon9.png" class="icon9" />
+        <text>陈蕴 Jordan</text>
+      </view>
+      <view class="introduce">
+          OneFit创始人
+          UNDERARMOUR中国首位品牌大使
+          alandv运动营养品牌大使
+          JOINFIT品牌顾问
+          AQ护具品牌顾问
+      </view>
+    </view> -->
+  </view>
 </template>
 
 <script>
 /* global wx */
 import wepy from "wepy";
+import dayjs from "dayjs";
 import PageMixin from "../../mixins/page";
-export default class Home extends wepy.page {
-  // mixins = [PageMixin];
+export default class Course extends wepy.page {
+  mixins = [PageMixin];
   config = {
-    navigationBarTitleText: "OneFit运动训练中心",
-    navigationBarBackgroundColor: "#000"
+    navigationBarBackgroundColor: "#fff"
   };
   components = {};
   data = {
-    imgUrls: ["../../images/1.jpg", "../../images/2.jpg", "../../images/3.jpg"],
-    boxImg: [
-      "../../images/4.jpg",
-      "../../images/5.jpg",
-      "../../images/9.jpg",
-      "../../images/7.jpg",
-      "../../images/8.jpg"
-    ],
+    loadUser: true, // 需要登录信息
+    height: "",
+    current: null,
     loadUser: true,
-    indicatorDots: true,
-    vertical: false,
-    autoplay: false,
-    interval: 2000,
-    duration: 500,
-    clientHeight: ""
+    isShow: true,
+    date: [],
+    currentIndex: null,
+    timeIndex: null,
+    leftData: [
+      { name: "00:00-09:00", id: 1 },
+      { name: "09:00-15:00", id: 2 },
+      { name: "15:00-18:00", id: 3 },
+      { name: "18:00-21:00", id: 4 },
+      { name: "21:00-24:00", id: 5 }
+    ]
   };
   methods = {
-    more(){
-      wx.switchTab({
-         url: '/pages/coursed/coursed'
-       });
+    // 确认选择
+    sureFun() {
+      if (this.current === "1") {
+        console.log(this.doorsIndex, "this.doorsIndex");
+        this.branchId = this.leftData[this.doorsIndex].id;
+        this.getDeatils(this.branchId);
+        this.getCourse("info");
+      }
+      this.isLeftShow = false;
+      console.log(this.branchItem, "branchItem");
     },
-    goto(){
-      wx.switchTab({
-         url: '/pages/coursed/coursed'
-       });
+    // 重置
+    resetFun() {
+      if (this.current === "1") {
+      } else if (this.current === "2") {
+      } else {
+      }
+    },
+    courseFun(e) {
+      this.courseIndex = e.currentTarget.dataset.index;
+    },
+    doorsFun(e) {
+      this.doorsIndex = e.currentTarget.dataset.index;
+    },
+    timeFun(e) {
+      this.timeIndex = e.currentTarget.dataset.index;
+    },
+    isHidden() {
+      this.isLeftShow = false;
+    },
+    go() {
+      wx.navigateTo({
+        url: "appointDetail"
+      });
+    },
+    //跳转预约页面
+    goReserve() {
+      wx.navigateTo({
+        url: "reserve"
+      });
+    },
+    //跳转教练详情
+    godetail() {
+      wx.navigateTo({
+        url: "coachDetail"
+      });
+    },
+    //跳转模板选择
+    tolesson() {
+      wx.navigateTo({
+        url: "lesson"
+      });
+    },
+    btnTo() {},
+    goCoach() {
+      wx.navigateTo({
+        url: "coach"
+      });
+    },
+    tap_ch(e) {
+      this.current = e.currentTarget.dataset.index;
+      var that = this;
+      if (e.currentTarget.dataset.index === "1") {
+        this.leftData = JSON.parse(wx.getStorageSync("branchs"));
+        this.isLeftShow = true;
+        this.$apply();
+        return;
+      } else if (e.currentTarget.dataset.index === "2") {
+        that.leftData = [{ name: "全部课程" }].concat(
+          this.branchDetails.courses
+        );
+      } else {
+        that.leftData = [
+          { name: "全部时段", id: 0 },
+          { name: "00:00-09:00", id: 1 },
+          { name: "09:00-15:00", id: 2 },
+          { name: "15:00-18:00", id: 3 },
+          { name: "18:00-21:00", id: 4 },
+          { name: "21:00-24:00", id: 5 }
+        ];
+      }
+      this.isLeftShow = true;
+    },
+    // 显示下拉框
+    btn() {
+      this.isShow = !this.isShow;
+      this.$apply();
+    },
+    // 顶部导航栏切换
+    tabs() {
+      console.log("this.tab", this.tab);
+      if (this.tab == 1) {
+        this.tab = 2;
+      } else {
+        this.tab = 1;
+      }
+      this.getCourse("reserve");
+      this.$apply();
+    },
+    getDate(e) {
+      this.currentIndex = e.currentTarget.dataset.index;
+      console.log(this.date[this.currentIndex]);
+      if (this.tab === 2) {
+        this.fetchDataPromise("page/calendar.json", {
+          date: this.date[this.currentIndex].dates,
+          action: "info"
+        }).then(res => {
+          this.$apply();
+        });
+      } else {
+        this.getCourse("info");
+      }
     }
   };
-
+  // 查询教练和课程
+  getCourse(type) {
+    this.fetchDataPromise("page/calendar.json", {
+      action: type,
+      branchId: this.branchId ? this.branchId : 6,
+      date: this.date[this.currentIndex].dates,
+      time: this.timeIndex
+    }).then(res => {
+      console.log(res);
+      this.courseList = res.items.map(item => {
+        const obj = item;
+        obj.times =
+          obj.time === 1
+            ? "00:00-09:00"
+            : obj.time === 2
+              ? "09:00-15:00"
+              : obj.time === 3
+                ? "15:00-18:00"
+                : obj.time === 4
+                  ? "18:00-21:00"
+                  : obj.time === 5 ? "21:00-24:00" : "";
+        return obj;
+      });
+      this.$apply();
+    });
+  }
+  // 根据门店场馆id查询场馆详情
+  getDeatils(id, callBack) {
+    wx.request({
+      url: this.$parent.globalData.dataUrl + "page/branch.json",
+      data: {
+        branchId: id
+      },
+      header: {
+        "content-type": "application/x-www-form-urlencoded" // 默认值
+      },
+      success: res => {
+        if (callBack) callBack();
+        this.branchDetails = res.data.messages.data;
+        this.$apply();
+      },
+      fail: function(error) {}
+    });
+  }
   onReachBottom() {}
-
-  whenAppReadyShow() {
-    console.log("9999999");
-
-    //   this.$apply();
-  }
-  onLoad() {
-    console.log("88888888");
-  }
+  whenAppReadyShow() {}
   onShow() {
-    var that = this;
     wx.getSystemInfo({
-      success: function(res) {
-        console.log("res", res);
-        that.clientHeight = res.windowHeight;
-        that.$apply();
-        console.log("this.clientHeight", that.clientHeight);
+      success: res => {
+        this.height = res.statusBarHeight;
       }
     });
+    this.date = [];
+    this.returnDate(
+      this.mGetDate(
+        dayjs()
+          .subtract(1, "month")
+          .year(),
+        dayjs()
+          .subtract(1, "month")
+          .month()
+      ),
+      dayjs().date(),
+      dayjs()
+        .subtract(1, "month")
+        .month(),
+      dayjs()
+        .subtract(1, "month")
+        .year()
+    );
+    this.returnDate(
+      this.mGetDate(
+        dayjs()
+          .subtract(0, "month")
+          .year(),
+        dayjs()
+          .subtract(0, "month")
+          .month()
+      ),
+      0,
+      dayjs()
+        .subtract(0, "month")
+        .month(),
+      dayjs()
+        .subtract(0, "month")
+        .year()
+    );
+    this.returnDate(
+      this.mGetDate(dayjs().year(), dayjs().month() + 1),
+      0,
+      dayjs().month() + 1,
+      dayjs().year()
+    );
+    this.returnDate(
+      1,
+      0,
+      dayjs()
+        .add(2, "month")
+        .month(),
+      dayjs()
+        .add(2, "month")
+        .year()
+    );
+  }
+  mGetDate(year, month) {
+    var d = new Date(year, month, 0);
+    return d.getDate();
+  }
+  returnDate(ary, date, month, year) {
+    for (let i = 1 + date; i <= ary; i++) {
+      this.date.push({
+        dates:
+          year +
+          "-" +
+          (month < 10 ? "0" + month : month) +
+          "-" +
+          (i < 10 ? "0" + i : i),
+        date: i,
+        month: month,
+        week: this.returnWeek(dayjs(year + "-" + month + "-" + i).day()),
+        isWeek:
+          dayjs(year + "-" + month + "-" + i).valueOf() <
+            dayjs()
+              .subtract(8, "day")
+              .valueOf() ||
+          dayjs(year + "-" + month + "-" + i).valueOf() >
+            dayjs()
+              .add(14, "day")
+              .valueOf()
+            ? false
+            : true
+      });
+      if (
+        dayjs(year + "-" + month + "-" + i).isSame(
+          dayjs(
+            dayjs().year() + "-" + (dayjs().month() + 1) + "-" + dayjs().date()
+          )
+        )
+      ) {
+        this.currentIndex = this.date.length - 1;
+      }
+    }
+  }
+  returnWeek(week) {
+    switch (week) {
+      case 0:
+        return "日";
+        break;
+      case 1:
+        return "一";
+        break;
+      case 2:
+        return "二";
+        break;
+      case 3:
+        return "三";
+        break;
+      case 4:
+        return "四";
+        break;
+      case 5:
+        return "五";
+        break;
+      case 6:
+        return "六";
+        break;
+    }
   }
   onShareAppMessage(res) {}
   regionchange(e) {

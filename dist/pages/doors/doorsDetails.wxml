@@ -1,0 +1,73 @@
+
+  <view class="top">
+    
+<view class="header" style="height: {{$header$height*2 + 20}}px;line-height:{{($header$height*2 + 44)}}px">
+  <image bindtap="$header$goBack" src="../../images/icon44.png" class="icon44" style="margin-top:{{($header$height*2 + 26)/2}}px"/>
+  <text>{{$header$text}}</text>
+</view>
+
+    <view class="doorsDetails" style="margin-top:{{(height*2 + 25)}}px">
+      <swiper>
+        <block  wx:for="{{datas}}" wx:key="">
+          <swiper-item>
+            <image src="https://cdn.sunjoypai.com/images/5838/1239/4271/632cdc626038c929e4f2af8ca727266b_0_0.png" class="slide-image"/>
+          </swiper-item>
+        </block>
+      </swiper>
+    </view>
+    <view class="buyCorse">
+      <image src="../../images/icon49.png" class="icon28"/>
+      <view class="text">
+        <text>课程预约</text>
+        TESTING LESSON
+      </view>
+      <image src="../../images/icon29.png" class="icon29"/>
+    </view>
+    <view class="buyCorse buyCorse1">
+      <image src="../../images/icon49.png" class="icon28"/>
+      <view class="text">
+        <text>课程购买</text>
+        COURSE PURCHASE
+      </view>
+      <image src="../../images/icon29.png" class="icon29"/>
+    </view>
+
+    <view class="address">
+      <view class="tit">门店地址</view>
+      <view class="size">上海上海上海上海上海上海上海上海</view>
+    </view>
+
+    <view class="express">
+      <image src="../../images/icon50.png"/>
+    </view>
+
+    <image src="../../images/icon33.png" class="icon33"/>
+
+    <view class="banner">
+      <image src="../../images/icon17.png" class="icon17"/>
+      <swiper current="{{currentIndex}}" bindchange="change" circular="true">
+        <block  wx:for="{{datas}}" wx:for-index="idx" wx:key="">
+          <swiper-item>
+            <image bindtap="buyFeat" src="../../images/icon10.png" class="slide-image"/>
+            <view bindtap="buyFeat" class="opacity {{currentIndex2 !== idx ? 'hover' : ''}}"/>
+          </swiper-item>
+        </block>
+      </swiper>
+      <image src="../../images/icon17.png" class="icon17 icon18"/>
+    </view>
+
+    <view class="express">
+      <image src="../../images/icon48.png"/>
+    </view>
+
+    <image src="../../images/icon33.png" class="icon33"/>
+
+    <view class="items-list">
+      <view class="list" bindtap="buyCorse">
+         <image src="https://cdn.sunjoypai.com/images/5838/1239/4271/632cdc626038c929e4f2af8ca727266b_0_0.png" class="icon11"/>
+         <image src="../../images/icon51.png" class="icon27"/>
+         <view class="text">减脂私教</view>
+         <image src="../../images/icon47.png" class="icon13"/>
+      </view>
+    </view>
+  </view>

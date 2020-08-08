@@ -1,0 +1,19 @@
+.header {
+  font-size: 30rpx;
+  color: #fff;
+  width: 100%;
+  position: fixed;
+  background: #111111;
+  z-index: 1222222;
+}
+.header text {
+  position: absolute;
+  left: 80rpx;
+}
+.header image {
+  position: absolute;
+  left: 25rpx;
+  width: 42rpx;
+  height: 40rpx;
+  transform: rotate(180deg);
+}

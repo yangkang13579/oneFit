@@ -1,0 +1,240 @@
+<style lang="less">
+page {
+  background: #111111;
+}
+.headers {
+  height: 160rpx;
+  width: 700rpx;
+  margin-left: 25rpx;
+  background: #2d2d2d;
+  border-radius: 10rpx;
+  display: flex;
+  align-items: center;
+  image {
+    width: 142rpx;
+    height: 142rpx;
+    border-radius: 50%;
+    margin: 0 64rpx 0 22rpx;
+  }
+  .headers-top {
+    text-align: center;
+    .tit {
+      font-size: 36rpx;
+      color: rgba(224, 37, 16, 1);
+      font-weight: bold;
+      margin-bottom: 16rpx;
+    }
+  }
+}
+.item {
+  width: 700rpx;
+  margin: 41rpx 25rpx 35rpx 25rpx;
+  background: #2d2d2d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 238rpx;
+  position: relative;
+  view {
+    height: 139rpx;
+    text-align: center;
+    width: 50%;
+    .text {
+      font-size: 30rpx;
+      color: #acacac;
+      margin-top: -15rpx;
+      height: 22rpx;
+    }
+    view {
+      font-size: 110rpx;
+      font-weight: bold;
+      color: #fff;
+      width: 100%;
+      text-align: center;
+    }
+  }
+  .left {
+    border-right: 2rpx solid #e02510;
+  }
+}
+.item2 {
+  margin-top: 0;
+  picker-view {
+    width: 131rpx;
+    height: 139rpx;
+    border-right: 2rpx solid #e02510;
+    overflow: hidden;
+    position: relative;
+  }
+  picker-view-column {
+    height: 200rpx;
+    width: 60rpx;
+    color: #fff;
+    view {
+      width: 100%;
+    }
+  }
+  .opacity {
+    position: absolute;
+    width: 100%;
+    height: 139rpx;
+    top: 0;
+    right: 0;
+    z-index: 22;
+    background: #2d2d2d;
+  }
+  .times {
+    width: 593rpx;
+    display: flex;
+    align-items: center;
+    > view {
+      .times-text {
+        font-size: 24rpx;
+        color: #acacac;
+        height: 20rpx;
+      }
+      .times-num {
+        font-size: 90rpx;
+        color: #fff;
+        font-weight: bold;
+      }
+    }
+  }
+}
+.btn {
+  margin-top: 70rpx;
+  clear: both;
+  overflow: hidden;
+  view {
+    width: 276rpx;
+    height: 70rpx;
+    border: 1rpx solid #e02510;
+    border-radius: 40rpx;
+    margin-left: 66rpx;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 31rpx;
+    font-size: 32rpx;
+    float: left;
+    font-weight: bold;
+  }
+}
+.hover {
+  background: 0;
+}
+</style>
+
+<template lang="wxml">
+  <view class="top">
+    <header />
+    <view class="headers"  style="margin-top:{{(height*2 + 25)}}px">
+      <image src="../../images/icon15.png" />
+      <view class="headers-top">
+        <view class="tit">OneFit王伟</view>
+      </view>
+    </view>
+    <view class="item">
+      <view class="left">
+        <view class="text">累计训练时长(min)</view>
+        <view>158</view>
+      </view>
+      <view class="right">
+        <view class="text">累计训练课时（hour）</view>
+        <view>158</view>
+      </view>
+    </view>
+    <view class="item item2">
+      
+      <picker-view value="{{value}}" indicator-style="color:#fff" mask-style="background-image: linear-gradient( rgb(255, 255, 255, 0),rgba(255, 255, 255, 0))" @change="bindChange" indicator-class="hover">
+        <picker-view-column>
+          <view wx:for="{{months}}" style="height:28px;line-height:28px;" wx:key="{{months}}">{{item}}月</view>
+        </picker-view-column>
+      </picker-view>
+
+      <view class="times">
+        <view>
+          <view class="times-text">训练次数</view>
+          <view class="times-num">8</view>
+        </view>
+        <view>
+          <view class="times-text">训练时长</view>
+          <view class="times-num">8</view>
+        </view>
+        <view>
+          <view class="times-text">训练天数</view>
+          <view class="times-num">8</view>
+        </view>
+      </view>
+      
+    </view>
+    <view class="btn">
+      <view @tap="ticeData">上传体侧数据</view>
+      <view @tap="memberImage">上传会员照片</view>
+      <view @tap="expressPlan">查看训练计划</view>
+      <view @tap="eatPlan">查看饮食计划</view>
+    </view>
+  </view>
+</template>
+
+<script>
+/* global wx */
+import wepy from "wepy";
+import PageMixin from "../../mixins/page";
+import header from "../../components/headers";
+export default class Course extends wepy.page {
+  mixins = [PageMixin];
+  config = {
+    navigationBarBackgroundColor: "#fff"
+  };
+  components = {
+    header
+  };
+  data = {
+    height: "",
+    value: null,
+    months: []
+  };
+  methods = {
+    goBack() {
+      wx.navigateBack();
+    },
+    ticeData() {
+      wx.navigateTo({
+        url: "/pages/user/membersNext1"
+      });
+    },
+    memberImage() {
+      wx.navigateTo({
+        url: "/pages/user/membersNext2"
+      });
+    },
+    expressPlan() {
+      wx.navigateTo({
+        url: "/pages/user/membersNext3"
+      });
+    },
+    eatPlan() {
+      wx.navigateTo({
+        url: "/pages/user/membersNext4"
+      });
+    }
+  };
+  onShow() {
+    this.months = [];
+    for (let i = 1; i <= 12; i++) {
+      this.months.push(i);
+    }
+    wx.getSystemInfo({
+      success: res => {
+        this.height = res.statusBarHeight;
+        this.$broadcast("index-broadcast", {
+          height: this.height,
+          text: "会员详情"
+        });
+      }
+    });
+  }
+}
+</script>

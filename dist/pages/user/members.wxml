@@ -1,0 +1,38 @@
+
+  <view class="top">
+    
+<view class="header" style="height: {{$header$height*2 + 20}}px;line-height:{{($header$height*2 + 44)}}px">
+  <image bindtap="$header$goBack" src="../../images/icon44.png" class="icon44" style="margin-top:{{($header$height*2 + 26)/2}}px"/>
+  <text>{{$header$text}}</text>
+</view>
+
+    <view class="members" style="margin-top:{{(height*2 + 25)}}px">
+      <view class="search">
+        <input type="text" placeholder="搜索会员"/>
+        <image src="../../images/icon56.png"/>
+      </view>
+
+      <view class="tit">
+        <view  wx:for="{{tit}}" bindtap="tabFun" wx:for-index="idx" data-index="{{idx}}" class="tit-1 {{ currentIndex ===  idx ? 'hover' : ''}}">
+          {{item}}
+          <image wx:if="{{currentIndex ===  idx}}" src="../../images/icon55.png"/>
+        </view>
+      </view>
+
+      <view class="item-list">
+        <view class="list">
+          <image src="../../images/icon15.png" class="icon15"/>
+          <text>OneFit王伟</text>
+          <view class="details">查看详情</view>
+          <image src="../../images/icon26.png" class="icon26"/>
+        </view>
+
+        <view class="list">
+          <image src="../../images/icon15.png" class="icon15"/>
+          <text>OneFit王伟</text>
+          <view class="details" bindtap="detailsFun">查看详情</view>
+          <image src="../../images/icon26.png" class="icon26"/>
+        </view>
+      </view>
+    </view>
+  </view>

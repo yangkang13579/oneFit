@@ -1,0 +1,147 @@
+<style lang="less">
+page {
+  background: #111111;
+}
+.doorsDetails {
+  width: 100%;
+  height: 420rpx;
+  swiper {
+    width: 100%;
+    height: 420rpx;
+  }
+  image {
+    width: 100%;
+    height: 420rpx;
+    vertical-align: middle;
+  }
+}
+.item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 644rpx;
+  margin: 27rpx 25rpx;
+  background: #2d2d2d;
+  border-radius: 10rpx;
+  height: 100rpx;
+  padding: 0 28rpx;
+  text {
+    font-size: 40rpx;
+    color: #e02510;
+    font-weight: bold;
+  }
+  view {
+    font-size: 26rpx;
+    color: #fff;
+  }
+}
+.video {
+  padding: 27rpx 25rpx;
+  width: 644rpx;
+  background: #2d2d2d;
+  position: relative;
+  margin-left: 25rpx;
+  .icon27 {
+    position: absolute;
+    width: 232rpx;
+    height: 51rpx;
+    top: 26rpx;
+    left: 0;
+  }
+  .icon46 {
+    position: absolute;
+    top: 27rpx;
+    width: 49rpx;
+    height: 49rpx;
+    left: 248rpx;
+  }
+  video {
+    width: 644rpx;
+    height: 363rpx;
+    margin-top: 105rpx;
+  }
+  .text {
+    font-size: 26rpx;
+    line-height: 1.6;
+    color: #acacac;
+  }
+}
+.bottom {
+  width: 500rpx;
+  height: 70rpx;
+  text-align: center;
+  font-size: 32rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  margin: 65rpx 124rpx 50rpx 124rpx;
+  background: #e02510;
+  border-radius: 40rpx;
+}
+</style>
+
+<template lang="wxml">
+  <view class="top">
+    <header />
+    <view class="doorsDetails"  style="margin-top:{{(height*2 + 25)}}px">
+      <swiper
+      >
+        <block wx:for="{{datas}}" wx:key="">
+          <swiper-item>
+            <image src="https://cdn.sunjoypai.com/images/5838/1239/4271/632cdc626038c929e4f2af8ca727266b_0_0.png" class="slide-image" />
+          </swiper-item>
+        </block>
+      </swiper>
+    </view>
+
+    <view class="item">
+      <text>减脂私教</text>
+      <view>¥450/节</view>
+    </view>
+
+    <view class="video">
+      <image src="../../images/icon27.png" class="icon27" />
+      <image src="../../images/icon46.png" class="icon46"/>
+      <video />
+      <view class="text">
+        是非成败转头空，青山依旧在，惯看秋月春风。一壶浊酒喜相逢，古今多少事，滚滚长江东逝水，浪花淘尽英雄。 几度夕阳红。白发渔樵江渚上，都付笑谈中。
+        滚滚长江东逝水，浪花淘尽英雄。是非成败转头空，青山依旧在，几度夕阳红。白发渔樵江渚上，惯看秋月春风。一壶浊酒喜相逢，古今多少事，都付笑谈中。
+        是非成败转头空，青山依旧在，惯看秋月春风。一壶浊酒喜相逢，古今多少事，滚滚长江东逝水，浪花淘尽英                       
+      </view>
+    </view>
+    <view class="bottom">点击购课</view>
+  </view>
+</template>
+
+<script>
+/* global wx */
+import wepy from "wepy";
+import PageMixin from "../../mixins/page";
+import header from "../../components/headers";
+export default class Course extends wepy.page {
+  mixins = [PageMixin];
+  config = {
+    navigationBarBackgroundColor: "#fff"
+  };
+  components = {
+    header
+  };
+  data = {
+    height: "",
+    datas: [1, 2, 3, 4]
+  };
+  methods = {};
+  onShow() {
+    wx.getSystemInfo({
+      success: res => {
+        this.height = res.statusBarHeight;
+        this.$broadcast("index-broadcast", {
+          height: this.height,
+          text: "OneFit健身"
+        });
+      }
+    });
+  }
+}
+</script>

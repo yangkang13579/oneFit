@@ -5,107 +5,104 @@
 <script>
 /* global wx */
 // 在Page页面实例中，可以通过this.$parent来访问App实例。
-import wepy from 'wepy';
-import app from './lib/app';
-import 'wepy-async-function';
+import wepy from "wepy";
+import app from "./lib/app";
+import "wepy-async-function";
 
 export default class extends wepy.app {
   config = {
-      pages: [
-          'pages/home/home',
-          'pages/coursed/appointDetail',
-          'pages/coursed/coach',
-          'pages/coursed/lesson',
-          'pages/coursed/coachDetail',
-          'pages/coursed/coursed',
-          'pages/coursed/reserve',
-          'pages/user/user',
-          'pages/coursed/member',
-          'pages/coursed/card',
-          'pages/done',
-          'pages/addRecord',
-          'pages/createTest',
-          'pages/addressBook',
-          'pages/textDetails',
-          'pages/list',
-          'pages/editAddress',
-          'pages/productDetail',
-          'pages/car',
-          'pages/user',
-          'pages/payMoney',
-          'pages/upload',
-          'pages/login',
-          'pages/order',
-          'pages/sign',
-          'pages/gitSample',
-          'pages/sampleDetail',
-          'pages/form',
-          'pages/meMaple',
-          'pages/webview',
-          'pages/webview1',
-          'pages/webview2',
-          'pages/webview3',
-          'pages/zhonghua'
-      ],
-      window: {
-          backgroundColor: '#fefefe',
-          navigationBarBackgroundColor: '#fefefe',
-          navigationBarTitleText: '首页',
-          navigationBarTextStyle: 'white',
-          navigationStyle: 'custom',
-      },
-      tabBar: {
-          color: '#5e5e5e',
-          selectedColor: '#e82511',
-          backgroundColor: '#343434',
-          borderStyle: 'black',
-          list: [
-              {
-                  pagePath: 'pages/home/home',
-                  text: '首页',
-                  iconPath: 'images/home.png',
-                  selectedIconPath: 'images/home_select.png'
-              },
-              {
-                  pagePath: 'pages/coursed/coursed',
-                  text: '课程',
-                  iconPath: 'images/course.png',
-                  selectedIconPath: 'images/course_select.png'
-              },
-              {
-                  pagePath: 'pages/user/user',
-                  text: '我的',
-                  iconPath: 'images/user.png',
-                  selectedIconPath: 'images/user_selet.png'
-              }
-          ]
-      },
-      'permission': {
-          'scope.userLocation': {
-              'desc': '您的位置信息将用于寻找附近的检测点'
-          }
-      },
-
+    pages: [
+      "pages/home/home1",
+      "pages/home/home",
+      "pages/user/user",
+      "pages/user/membersNext4",
+      "pages/user/membersNext3",
+      "pages/user/membersNext2",
+      "pages/user/membersNext1",
+      "pages/user/membersNext",
+      "pages/user/members",
+      "pages/user/yuekeNext",
+      "pages/user/yueNext",
+      "pages/user/yueKe",
+      "pages/doors/doors",
+      "pages/doors/featDetails",
+      "pages/doors/corseDetails",
+      "pages/doors/doorsDetails",
+      "pages/user/changeFeat",
+      "pages/user/myInfo",
+      "pages/user/myCorse",
+      "pages/user/myTice",
+      "pages/user/teceData",
+      "pages/user/myGroup",
+      "pages/user/card",
+      "pages/home/buyMoney",
+      "pages/home/buyNext",
+      "pages/home/buy",
+      "pages/home/appointment",
+      "pages/login"
+    ],
+    window: {
+      backgroundColor: "#fefefe",
+      navigationBarBackgroundColor: "#fefefe",
+      navigationBarTitleText: "首页",
+      navigationBarTextStyle: "white",
+      navigationStyle: "custom"
+    },
+    tabBar: {
+      color: "#878787",
+      selectedColor: "#fff",
+      backgroundColor: "#343434",
+      borderStyle: "black",
+      list: [
+        {
+          pagePath: "pages/home/home1",
+          text: "首页",
+          iconPath: "images/icon43.png",
+          selectedIconPath: "images/icon4.png"
+        },
+        {
+          pagePath: "pages/doors/doors",
+          text: "课程",
+          iconPath: "images/icon5.png",
+          selectedIconPath: "images/icon54.png"
+        },
+        {
+          pagePath: "pages/user/user",
+          text: "我的",
+          iconPath: "images/icon6.png",
+          selectedIconPath: "images/icon31.png"
+        }
+      ]
+    },
+    permission: {
+      "scope.userLocation": {
+        desc: "您的位置信息将用于寻找附近的检测点"
+      }
+    }
   };
   globalData = {
-      // 中化作物
-      appId: 'wx2597963c30f20afd',
-      appType: 'xcx',
-      wxId: 'gh_b69825f64e58',
-      passportUrl: 'https://onefit-passport.jteam.cn/passport/', // 认证服务器
-      dataUrl: 'https://onefit.jteam.cn/data/', // 数据服务器
-      uploadUrl: 'https://up.jteam.cn/',
+    // 中化作物
+    appId: "wx2597963c30f20afd",
+    appType: "xcx",
+    wxId: "gh_b69825f64e58",
+    passportUrl: "https://onefit-passport.jteam.cn/passport/", // 认证服务器
+    dataUrl: "https://onefit.jteam.cn/data/", // 数据服务器
+    uploadUrl: "https://up.jteam.cn/",
+    isCoach: null //是否是教练
   };
   constructor() {
-      super();
-      this.use('promisify');
+    super();
+    this.use("promisify");
   }
   onLaunch(options) {
-      // 初始化都是异步的
-      //  wx.navigateTo({
-      //         url: '/pages/animate'
-      //     });
-      app.init(this.globalData, options);
+    // 初始化都是异步的
+    //  wx.navigateTo({
+    //         url: '/pages/animate'
+    //     });
+    app.init(this.globalData, options);
+    wepy.showShareMenu({
+      withShareTicket: true
+    });
   }
 }
 </script>

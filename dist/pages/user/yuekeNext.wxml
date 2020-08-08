@@ -1,0 +1,85 @@
+
+  <view class="top">
+    
+<view class="header" style="height: {{$header$height*2 + 20}}px;line-height:{{($header$height*2 + 44)}}px">
+  <image bindtap="$header$goBack" src="../../images/icon44.png" class="icon44" style="margin-top:{{($header$height*2 + 26)/2}}px"/>
+  <text>{{$header$text}}</text>
+</view>
+
+    <view class="headers" style="margin-top:{{(height*2 + 25)}}px">
+      <image src="../../images/icon15.png"/>
+      <view class="headers-top">
+        <view class="tit">会员饮食计划编写</view>
+        <view>
+          <text>2020-06-08</text>
+          11:00-12:00
+        </view>
+      </view>
+    </view>
+
+    <view class="center">
+      <view>
+        <text class="text1">环节</text>
+        <text class="text2">动作</text>
+        <text class="text3">动作</text>
+        <text class="text4">负荷</text>
+      </view>
+
+      <view>
+        <view class="text1 bg">动态伸展</view>
+        <picker bindchange="bindPickerChange" class="text2" range="{{array}}">
+          <view class="picker">
+            111
+          </view>
+          <view class="right">
+            <image src="../../images/icon45.png" class="icon45"/>
+          </view>
+        </picker>
+        <picker class="text3" bindchange="bindPickerChange" range="{{array}}">
+          <view class="picker">
+            111
+          </view>
+          <view class="right">
+            <image src="../../images/icon45.png" class="icon45"/>
+          </view>
+        </picker>
+        <picker class="text4" bindchange="bindPickerChange" range="{{array}}">
+          <view class="picker">
+            111
+          </view>
+          <view class="right">
+            <image src="../../images/icon45.png" class="icon45"/>
+          </view>
+        </picker>
+      </view>
+
+      <view>
+        <view class="text1 bg">动态伸展</view>
+        <picker bindchange="bindPickerChange" class="text2" range="{{array}}">
+          <view class="picker">
+            111
+          </view>
+          <view class="right">
+            <image src="../../images/icon45.png" class="icon45"/>
+          </view>
+        </picker>
+        <picker class="text3" bindchange="bindPickerChange" range="{{array}}">
+          <view class="picker">
+            111
+          </view>
+          <view class="right">
+            <image src="../../images/icon45.png" class="icon45"/>
+          </view>
+        </picker>
+        <picker class="text4" bindchange="bindPickerChange" range="{{array}}">
+          <view class="picker">
+            111
+          </view>
+          <view class="right">
+            <image src="../../images/icon45.png" class="icon45"/>
+          </view>
+        </picker>
+      </view>
+    </view>
+    <view class="btn">发送会员</view>
+  </view>

@@ -1,0 +1,43 @@
+
+  <view class="top">
+    
+<view class="header" style="height: {{$header$height*2 + 20}}px;line-height:{{($header$height*2 + 44)}}px">
+  <image bindtap="$header$goBack" src="../../images/icon44.png" class="icon44" style="margin-top:{{($header$height*2 + 26)/2}}px"/>
+  <text>{{$header$text}}</text>
+</view>
+
+    <view style="margin-top:{{(height*2 + 25)}}px">
+      
+<view>
+  <view class="teacher">
+    <view class="center">
+      <text>{{$common$branch.user.nickName}}</text>
+      <image src="../../images/icon2.png" class="icon2"/>
+      <image src="{{$common$branch.user.avatar}}" class="icon3"/>
+    </view>
+    <image src="../../images/icon8.png" class="icon8"/>
+    <image src="../../images/icon10.png" class="icon10"/>
+    <view class="teacher-name">
+      <image src="../../images/icon9.png" class="icon9"/>
+      <view>
+        <text>您的专属教练：</text>
+        <text class="name">{{$common$branch.name}}</text>
+      </view>
+    </view>
+    <view class="teacher-name teacher-name2">
+      <image src="../../images/icon9.png" class="icon9"/>
+      <view>
+        <text/>
+        <text class="name">{{$common$branch.branchs[0].name}}</text>
+      </view>
+    </view>
+  </view>
+</view>
+
+    </view>
+    <view class="video">
+     <view class="tit">教练视频展示</view>
+     <video/>
+    </view>
+    <view class="bottom">购买TA的私教课</view>
+  </view>

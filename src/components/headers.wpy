@@ -1,0 +1,50 @@
+<style lang="less">
+.header {
+  font-size: 30rpx;
+  color: #fff;
+  width: 100%;
+  position: fixed;
+  background: #111111;
+  z-index: 1222222;
+  text {
+    position: absolute;
+    left: 80rpx;
+  }
+  image {
+    position: absolute;
+    left: 25rpx;
+    width: 42rpx;
+    height: 40rpx;
+    transform: rotate(180deg);
+  }
+}
+</style>
+<template>
+<view class="header" style='height: {{height*2 + 20}}px;line-height:{{(height*2 + 44)}}px'>
+  <image @tap="goBack" src="../images/icon44.png" class="icon44" style="margin-top:{{(height*2 + 26)/2}}px"/>
+  <text>{{text}}</text>
+</view>
+</template>
+<script>
+import wepy from "wepy";
+export default class common extends wepy.component {
+  props = {};
+  data = {
+    height: "",
+    text: ""
+  };
+  watch = {};
+  events = {
+    "index-broadcast": (...args) => {
+      this.height = args[0].height;
+      this.text = args[0].text;
+    }
+  };
+  onLoad() {}
+  methods = {
+    goBack() {
+      wx.navigateBack();
+    }
+  };
+}
+</script>

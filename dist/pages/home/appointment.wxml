@@ -1,0 +1,74 @@
+
+  <view class="top">
+    <image src="https://cdn.sunjoypai.com/images/5838/1239/4271/632cdc626038c929e4f2af8ca727266b_0_0.png" class="icon18"/>
+    
+<view class="header" style="height: {{$header$height*2 + 20}}px;line-height:{{($header$height*2 + 44)}}px">
+  <image bindtap="$header$goBack" src="../../images/icon44.png" class="icon44" style="margin-top:{{($header$height*2 + 26)/2}}px"/>
+  <text>{{$header$text}}</text>
+</view>
+ 
+    <view class="info-top">
+      <view class="view"> 输入信息</view>
+      <view class="view1">获得专属私教体验</view>
+    </view>
+
+    <view class="info">
+      <view class="info-item">
+        <image src="../../images/icon26.png" class="icon26"/>
+        <view class="item">
+          <image src="../../images/icon21.png" class="icon21"/>
+          <text>您的身高</text>
+          <input value="{{formData.height}}" bindblur="getHeight" bindconfirm="getHeight" focus="{{isHeight}}" type="text" placeholder="请输入您的身高"  wx:if="{{isHeight}}"/>
+          <image  wx:if="{{!isHeight}}" src="../../images/icon19.png" class="icon19" bindtap="heightTrue"/>
+        </view>
+      </view>
+      <view class="info-item">
+        <image src="../../images/icon26.png" class="icon26"/>
+        <view class="item">
+          <image src="../../images/icon22.png" class="icon22"/>
+          <text>您的体重</text>
+          <input value="{{formData.weight}}" bindblur="getWeight" bindconfirm="getWeight" focus="{{isWeight}}" type="text" placeholder="请输入您的体重" wx:if="{{isWeight}}"/>
+          <image wx:if="{{!isWeight}}" src="../../images/icon19.png" class="icon19" bindtap="weightTrue"/>
+          <!-- <view class="icon19">111</view> -->
+        </view>
+      </view>
+      <view class="info-item">
+        <image src="../../images/icon26.png" class="icon26"/>
+        <view class="item">
+          <image src="../../images/icon23.png" class="icon23"/>
+          <text>您的性别</text>
+          <picker range="{{sex}}" bindchange="sexFun">
+            <image style="margin-right:0" wx:if="{{!formData.gender}}" src="../../images/icon19.png" class="icon19"/>
+            <text wx:else>{{formData.gender}}</text>
+          </picker>
+        </view>
+      </view>
+
+      <view class="info-item">
+        <image src="../../images/icon26.png" class="icon26"/>
+        <view class="item">
+          <image src="../../images/icon24.png" class="icon24"/>
+          <text>您的健身需求</text>
+          <input value="{{formData.requirement}}" bindblur="getRequirement" bindconfirm="getRequirement" focus="{{xuqiu}}" type="text" placeholder="请输入您的健身需求" wx:if="{{xuqiu}}"/>
+          <image wx:if="{{!xuqiu}}" src="../../images/icon19.png" class="icon19" bindtap="xuqiuTrue"/>
+        </view>
+      </view>
+
+      <view class="info-item">
+        <image src="../../images/icon26.png" class="icon26"/>
+        <view class="item">
+          <image src="../../images/icon25.png" class="icon25"/>
+          <text>您是否有训练基础</text>
+
+          <picker range="{{xuqiuArray}}" bindchange="xuqiuFun">
+            <image wx:if="{{!formData.fitBase}}" style="margin-right:0" src="../../images/icon19.png" class="icon19"/>
+            <text wx:else>{{formData.fitBase}}</text>
+          </picker>
+          
+        </view>
+        <image src="../../images/icon26.png" class="icon26"/>
+      </view>
+    </view>
+
+    <view class="btn" bindtap="submit">点击提交</view>
+  </view>

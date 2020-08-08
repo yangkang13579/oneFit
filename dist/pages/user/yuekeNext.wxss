@@ -1,0 +1,123 @@
+@import "./../../components/headers.wxss";
+page {
+  background: #111111;
+}
+.headers {
+  height: 160rpx;
+  width: 700rpx;
+  margin-left: 25rpx;
+  background: #2d2d2d;
+  border-radius: 10rpx;
+  display: flex;
+  align-items: center;
+}
+.headers image {
+  width: 142rpx;
+  height: 142rpx;
+  border-radius: 50%;
+  margin: 0 38rpx 0 22rpx;
+}
+.headers .headers-top {
+  width: 350rpx;
+  text-align: center;
+}
+.headers .headers-top .tit {
+  font-size: 36rpx;
+  color: #e02510;
+  font-weight: bold;
+  margin-bottom: 16rpx;
+}
+.headers .headers-top view {
+  font-size: 26rpx;
+  color: #acacac;
+}
+.headers .headers-top view text {
+  margin-right: 10rpx;
+}
+.center {
+  padding: 44rpx 0 9rpx 0;
+  background: #2d2d2d;
+  border-radius: 20rpx;
+  width: 700rpx;
+  margin-left: 25rpx;
+  margin-top: 21rpx;
+}
+.center > view {
+  width: 654rpx;
+  display: flex;
+  align-items: center;
+  color: #e02510;
+  font-weight: bold;
+  margin: 0 23rpx;
+  margin-bottom: 33rpx;
+}
+.center > view text {
+  text-align: center;
+  margin-right: 11rpx;
+  width: 144rpx;
+}
+.center > view .text1 {
+  width: 132rpx;
+}
+.center > view .text2 {
+  width: 200rpx;
+}
+.center > view .text3 {
+  width: 141rpx;
+}
+.center > view .text4 {
+  width: 141rpx;
+}
+.center > view .bg {
+  background: #e02510;
+  color: #fff;
+  text-align: left;
+  border-radius: 10rpx;
+  padding-left: 14rpx;
+  width: 116rpx;
+  font-size: 26rpx;
+  height: 52rpx;
+  margin-right: 11rpx;
+  line-height: 52rpx;
+}
+.center > view picker {
+  margin-right: 11rpx;
+  height: 52rpx;
+  border: 1rpx solid #acacac;
+  position: relative;
+}
+.center > view picker .picker {
+  color: #fff;
+  font-size: 26rpx;
+  line-height: 52rpx;
+  padding-left: 10rpx;
+}
+.center > view picker .right {
+  position: absolute;
+  right: -1rpx;
+  top: -1rpx;
+  width: 51rpx;
+  height: 54rpx;
+  bottom: 0;
+  background: #e02510;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.center > view picker .right image {
+  width: 30rpx;
+  height: 30rpx;
+}
+.btn {
+  width: 500rpx;
+  height: 70rpx;
+  margin-left: 125rpx;
+  background: #e02510;
+  font-size: 32rpx;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 40rpx;
+  margin-top: 85rpx;
+}

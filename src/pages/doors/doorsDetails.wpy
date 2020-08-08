@@ -1,0 +1,328 @@
+<style lang="less">
+page {
+  background: #111111;
+}
+.doorsDetails {
+  width: 100%;
+  height: 420rpx;
+  swiper {
+    width: 100%;
+    height: 420rpx;
+  }
+  image {
+    width: 100%;
+    height: 420rpx;
+    vertical-align: middle;
+  }
+}
+.buyCorse {
+  width: 750rpx;
+  height: 100rpx;
+  position: relative;
+  margin-top: 53rpx;
+  .icon28 {
+    position: absolute;
+    width: 750rpx;
+    height: 100rpx;
+    left: 0;
+    top: 0;
+  }
+  .text {
+    line-height: 100rpx;
+    font-size: 30rpx;
+    color: #acacac;
+    position: absolute;
+    z-index: 1;
+    text {
+      font-weight: bold;
+      font-size: 36rpx;
+      color: #fff;
+      margin-left: 62rpx;
+      margin-right: 18rpx;
+    }
+  }
+  .icon29 {
+    width: 160rpx;
+    height: 50rpx;
+    position: absolute;
+    bottom: 25rpx;
+    right: 41rpx;
+  }
+}
+.buyCorse1 {
+  margin-top: 11rpx;
+}
+.address {
+  width: 620rpx;
+  height: 180rpx;
+  background: #2d2d2d;
+  margin-top: 80rpx;
+  position: relative;
+  margin-left: 64rpx;
+  .tit {
+    width: 220rpx;
+    background: #e02510;
+    height: 50rpx;
+    position: absolute;
+    top: -13px;
+    border-radius: 45rpx 45rpx 0 0;
+    color: #fff;
+    font-size: 36rpx;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    left: 205rpx;
+  }
+  .size {
+    font-size: 26rpx;
+    color: #fff;
+    line-height: 1.5;
+    padding: 32rpx;
+  }
+}
+.express {
+  margin-top: 62rpx;
+  width: 100%;
+  height: 150rpx;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 59rpx;
+  font-weight: bold;
+  text {
+    width: 100%;
+    height: 150rpx;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+    color: #fff;
+  }
+  image {
+    width: 100%;
+    height: 150rpx;
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+}
+.icon33 {
+  width: 52rpx;
+  height: 27rpx;
+  margin: 13rpx 349rpx 21rpx 349rpx;
+}
+.banner {
+  width: 662rpx;
+  margin: 0 44rpx;
+  height: 221rpx;
+  display: flex;
+  align-items: center;
+  .icon17 {
+    width: 33rpx;
+    height: 63rpx;
+    float: left;
+    transform: rotate(0);
+  }
+  .icon18 {
+    transform: rotate(180deg);
+  }
+  swiper {
+    height: 221rpx;
+    width: 572rpx;
+    margin: 0 12rpx;
+    swiper-item {
+      width: 194rpx !important;
+      height: 221rpx !important;
+      position: relative;
+      image {
+        width: 182rpx !important;
+        height: 221rpx !important;
+      }
+      .opacity {
+        width: 182rpx !important;
+        height: 221rpx !important;
+        position: absolute;
+        background: 0;
+        left: 0;
+        top: 0;
+      }
+      .hover {
+        background: rgba(0, 0, 0, 0.75);
+      }
+    }
+  }
+}
+.items-list {
+  width: 700rpx;
+  height: 160rpx;
+  margin-left: 25rpx;
+  .list {
+    margin-bottom: 21rpx;
+    border-radius: 10rpx;
+    width: 700rpx;
+    position: relative;
+    height: 160rpx;
+    .icon11 {
+      position: absolute;
+      width: 700rpx;
+      left: 0;
+      top: 0;
+      height: 160rpx;
+    }
+    .icon27 {
+      width: 495rpx;
+      height: 75rpx;
+      left: 0;
+      bottom: 20rpx;
+      position: absolute;
+    }
+    .text {
+      width: 495rpx;
+      height: 75rpx;
+      left: 0;
+      bottom: 20rpx;
+      position: absolute;
+      padding-left: 20rpx;
+      font-size: 36rpx;
+      font-weight: bold;
+      color: #fff;
+      line-height: 75rpx;
+    }
+    .icon13 {
+      width: 249rpx;
+      height: 38rpx;
+      position: absolute;
+      top: 20rpx;
+      right: 0;
+    }
+  }
+}
+</style>
+
+<template lang="wxml">
+  <view class="top">
+    <header />
+    <view class="doorsDetails"  style="margin-top:{{(height*2 + 25)}}px">
+      <swiper
+      >
+        <block wx:for="{{datas}}" wx:key="">
+          <swiper-item>
+            <image src="https://cdn.sunjoypai.com/images/5838/1239/4271/632cdc626038c929e4f2af8ca727266b_0_0.png" class="slide-image" />
+          </swiper-item>
+        </block>
+      </swiper>
+    </view>
+    <view class="buyCorse">
+      <image src="../../images/icon49.png" class="icon28"/>
+      <view class="text">
+        <text>课程预约</text>
+        TESTING LESSON
+      </view>
+      <image src="../../images/icon29.png" class="icon29" />
+    </view>
+    <view class="buyCorse buyCorse1">
+      <image src="../../images/icon49.png" class="icon28"/>
+      <view class="text">
+        <text>课程购买</text>
+        COURSE PURCHASE
+      </view>
+      <image src="../../images/icon29.png" class="icon29" />
+    </view>
+
+    <view class="address">
+      <view class="tit">门店地址</view>
+      <view class="size">上海上海上海上海上海上海上海上海</view>
+    </view>
+
+    <view class="express">
+      <image src="../../images/icon50.png" />
+    </view>
+
+    <image src="../../images/icon33.png" class="icon33"/>
+
+    <view class="banner">
+      <image src="../../images/icon17.png" class="icon17"/>
+      <swiper
+      current="{{currentIndex}}"
+      @change="change"
+      circular="true"
+      >
+        <block wx:for="{{datas}}" wx:for-index="idx"  wx:key="">
+          <swiper-item>
+            <image  @tap="buyFeat" src="../../images/icon10.png" class="slide-image" />
+            <view  @tap="buyFeat" class="opacity {{currentIndex2 !== idx ? 'hover' : ''}}" />
+          </swiper-item>
+        </block>
+      </swiper>
+      <image src="../../images/icon17.png" class="icon17 icon18"/>
+    </view>
+
+    <view class="express">
+      <image src="../../images/icon48.png" />
+    </view>
+
+    <image src="../../images/icon33.png" class="icon33"/>
+
+    <view class="items-list">
+      <view class="list"  @tap="buyCorse">
+         <image src="https://cdn.sunjoypai.com/images/5838/1239/4271/632cdc626038c929e4f2af8ca727266b_0_0.png" class="icon11" />
+         <image src="../../images/icon51.png" class="icon27"/>
+         <view class="text">减脂私教</view>
+         <image src="../../images/icon47.png" class="icon13"/>
+      </view>
+    </view>
+  </view>
+</template>
+
+<script>
+/* global wx */
+import wepy from "wepy";
+import PageMixin from "../../mixins/page";
+import header from "../../components/headers";
+export default class Course extends wepy.page {
+  mixins = [PageMixin];
+  config = {
+    navigationBarBackgroundColor: "#fff"
+  };
+  components = {
+    header
+  };
+  data = {
+    height: "",
+    datas: [1, 2, 3, 4],
+    currentIndex: 0,
+    currentIndex2: 1
+  };
+  methods = {
+    change(e) {
+      this.currentIndex2 =
+        e.detail.current + 1 === this.datas.length ? 0 : e.detail.current + 1;
+      console.log(this.currentIndex2);
+    },
+    buyFeat() {
+      wx.navigateTo({
+        url: "/pages/doors/featDetails"
+      });
+    },
+    buyCorse() {
+      wx.navigateTo({
+        url: "/pages/doors/corseDetails"
+      });
+    }
+  };
+  onShow() {
+    wx.getSystemInfo({
+      success: res => {
+        this.height = res.statusBarHeight;
+        this.$broadcast("index-broadcast", {
+          height: this.height,
+          text: "OneFit健身"
+        });
+      }
+    });
+  }
+}
+</script>

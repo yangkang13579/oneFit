@@ -1,0 +1,259 @@
+<style lang="less">
+page {
+  background: #111111;
+}
+.center {
+  margin-top: 23%;
+  z-index: 2;
+  height: 340rpx;
+  width: 100%;
+  .icon2 {
+    width: 340rpx;
+    height: 340rpx;
+    position: absolute;
+    margin-left: 205rpx;
+  }
+  .icon3 {
+    width: 244rpx;
+    height: 244rpx;
+    position: absolute;
+    margin-left: 253rpx;
+    margin-top: 48rpx;
+  }
+}
+.name {
+  width: 100%;
+  margin-top: 48rpx;
+  text-align: center;
+  font-size: 30rpx;
+  color: #fff;
+}
+.item-list {
+  margin-top: 53rpx;
+  .item {
+    margin: 0 26rpx;
+    background: #2d2d2d;
+    margin-bottom: 25rpx;
+    height: 160rpx;
+    display: flex;
+    align-items: center;
+    position: relative;
+    border-radius: 10rpx;
+    .logo {
+      width: 140rpx;
+      height: 140rpx;
+      margin: 10rpx 49rpx 0 33rpx;
+      border-radius: 50%;
+    }
+    .icon29 {
+      width: 160rpx;
+      height: 50rpx;
+      position: absolute;
+      right: 0;
+      bottom: 33rpx;
+    }
+    .name2 {
+      .name-tips {
+        font-size: 36rpx;
+        font-weight: bold;
+        color: #e02510;
+        margin-bottom: 31rpx;
+      }
+      .tips {
+        color: #acacac;
+        font-size: 24rpx;
+        text {
+          margin-right: 15rpx;
+        }
+      }
+      .right {
+        width: 162rpx;
+        height: 51rpx;
+        position: absolute;
+        bottom: 22rpx;
+        right: 0;
+      }
+    }
+  }
+}
+.change {
+  width: 700rpx;
+  height: 316rpx;
+  position: relative;
+  border-radius: 10rpx;
+  background: #2d2d2d;
+  margin-left: 25rpx;
+  margin-top: 66rpx;
+  clear: both;
+  .tit {
+    position: absolute;
+    width: 424rpx;
+    height: 50rpx;
+    border-radius: 55rpx 55rpx 0 0;
+    background: #e02510;
+    left: 138rpx;
+    top: -15rpx;
+    color: #fff;
+    font-size: 32rpx;
+    font-weight: bold;
+    line-height: 50rpx;
+    text-align: center;
+  }
+  .items {
+    padding: 0 31rpx;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .left {
+      padding-top: 67rpx;
+      text {
+        font-size: 36rpx;
+        color: #e02510;
+        font-weight: bold;
+      }
+      picker {
+        width: 281rpx;
+        height: 51rpx;
+        border: 1rpx solid #acacac;
+        position: relative;
+        .picker {
+          color: #fff;
+          font-size: 26rpx;
+          line-height: 51rpx;
+          padding-left: 10rpx;
+        }
+        .right {
+          position: absolute;
+          right: -1rpx;
+          top: -1rpx;
+          width: 51rpx;
+          height: 54rpx;
+          bottom: 0;
+          background: #e02510;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          image {
+            width: 30rpx;
+            height: 30rpx;
+          }
+        }
+      }
+    }
+  }
+  .btn {
+    width: 310rpx;
+    height: 70rpx;
+    position: absolute;
+    bottom: 27rpx;
+    left: 195rpx;
+    background: #e02510;
+    font-size: 32rpx;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 40rpx;
+  }
+}
+</style>
+
+<template lang="wxml">
+  <view class="top">
+    <header />
+    <!-- <view class="header" style='height: {{height*2 + 20}}px;'>
+      <image @tap="goBack" src="../../images/icon44.png" class="icon44" />
+      <text>我的课程</text> -->
+    <view class="center" style="margin-top:{{(height*2 + 25)}}px">
+      <image src="../../images/icon2.png" class="icon2"/>
+      <image src="../../images/icon3.png" class="icon3">
+    </view>
+    <view class="name">OneFit王伟</view>
+
+    <view class="item-list">
+      <view class="item">
+        <image src="../../images/icon10.png" class="logo"/>
+        <view class="name2">
+          <view class="name-tips">您目前的专属私教</view>
+          <view class="tips">
+            <text>陈蕴 Jordan</text>
+          </view>
+          <image src="../../images/icon13.png" class="right"/>
+        </view>
+      </view>
+    </view>
+
+    <view class="change">
+      <view class="tit">更换您的专属私教</view>
+
+      <view class="items">
+        <view class="left">
+          <text>选择门店</text>
+          <picker bindchange="bindPickerChange" range="{{array}}">
+            <view class="picker">
+              当前选择：111
+            </view>
+            <view class="right">
+              <image src="../../images/icon45.png" class="icon45" />
+            </view>
+          </picker>
+        </view>
+        <view class="left">
+          <text>选择教练</text>
+          <picker bindchange="bindPickerChange" range="{{array}}">
+            <view class="picker">
+              当前选择：111
+            </view>
+            <view class="right">
+              <image src="../../images/icon45.png" class="icon45" />
+            </view>
+          </picker>
+        </view>
+
+        <view class="btn">提交</view>
+      </view>
+    </view>
+  </view>
+</template>
+
+<script>
+/* global wx */
+import wepy from "wepy";
+import PageMixin from "../../mixins/page";
+import header from "../../components/headers";
+export default class Course extends wepy.page {
+  mixins = [PageMixin];
+  config = {
+    navigationBarBackgroundColor: "#fff"
+  };
+  components = {
+    header
+  };
+  data = {
+    height: "",
+    value: null,
+    months: [],
+    array: [1, 2, 4]
+  };
+  methods = {
+    goBack() {
+      wx.navigateBack();
+    }
+  };
+  onShow() {
+    this.months = [];
+    for (let i = 1; i <= 12; i++) {
+      this.months.push(i);
+    }
+    wx.getSystemInfo({
+      success: res => {
+        this.height = res.statusBarHeight;
+        this.$broadcast("index-broadcast", {
+          height: this.height,
+          text: "OneFit健身"
+        });
+      }
+    });
+  }
+}
+</script>

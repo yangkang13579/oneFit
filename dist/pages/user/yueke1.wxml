@@ -1,0 +1,18 @@
+
+  <view class="top">
+    
+<view class="header" style="height: {{$header$height*2 + 20}}px;line-height:{{($header$height*2 + 44)}}px">
+  <image bindtap="$header$goBack" src="../../images/icon44.png" class="icon44" style="margin-top:{{($header$height*2 + 26)/2}}px"/>
+  <text>{{$header$text}}</text>
+</view>
+
+    <view class="headers" style="margin-top:{{(height*2 + 25)}}px">
+      <image src="../../images/icon15.png"/>
+      <view class="headers-top">
+        <text class="tit">会员训练计划编写</text>
+        <view>
+          2020-06-08 11:00-12:00
+        </view>
+      </view>
+    </view>
+  </view>

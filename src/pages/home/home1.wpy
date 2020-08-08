@@ -1,0 +1,743 @@
+<style lang="less">
+page {
+  background: #111111;
+}
+.header {
+  font-size: 30rpx;
+  color: #fff;
+  width: 100%;
+  position: fixed;
+  background: #111111;
+  z-index: 222;
+  text {
+    position: absolute;
+    left: 15rpx;
+  }
+}
+.common {
+  margin-top: 165rpx;
+}
+.content {
+  width: 100%;
+  height: 331rpx;
+  position: relative;
+  .icon11 {
+    width: 100%;
+    height: 300rpx;
+    position: absolute;
+    top: 15rpx;
+    left: 0;
+  }
+  .icon12 {
+    width: 359rpx;
+    height: 180rpx;
+    right: 87rpx;
+    bottom: 85rpx;
+    z-index: 2;
+    position: absolute;
+  }
+  .icon13 {
+    width: 200rpx;
+    height: 50rpx;
+    bottom: 67rpx;
+    right: 0;
+    position: absolute;
+    z-index: 3;
+  }
+}
+.swiper {
+  width: 100%;
+  height: 251rpx;
+  swiper-item {
+    position: relative;
+    image {
+      width: 246rpx;
+      height: 251rpx;
+    }
+    image:nth-of-type(2) {
+      margin: 0 9rpx;
+    }
+    .icon17 {
+      width: 33rpx;
+      height: 62rpx;
+      position: absolute;
+      left: 200rpx;
+      top: 95rpx;
+      z-index: 3;
+    }
+    .icon17-1 {
+      width: 33rpx;
+      height: 62rpx;
+      position: absolute;
+      right: 200rpx;
+      top: 95rpx;
+      z-index: 3;
+      transform: rotate(180deg);
+    }
+    .act {
+      position: absolute;
+      width: 100%;
+      height: 251rpx;
+      text-align: center;
+      line-height: 251rpx;
+      font-size: 41rpx;
+      font-weight: bold;
+      top: 0;
+      left: 0;
+      color: #fff;
+    }
+    .tips {
+      position: absolute;
+      width: 100%;
+      height: 251rpx;
+      text-align: center;
+      line-height: 337rpx;
+      font-size: 20rpx;
+      top: 0;
+      left: 0;
+      color: #e02510;
+    }
+  }
+}
+.has-info {
+  width: 100%;
+  height: 426rpx;
+  position: relative;
+  .icon27 {
+    width: 190rpx;
+    height: 50rpx;
+    position: absolute;
+    left: 0;
+    top: 182rpx;
+  }
+  .icon30 {
+    position: absolute;
+    right: 0;
+    top: 182rpx;
+    width: 189rpx;
+    height: 50rpx;
+  }
+  .canvas {
+    width: 333rpx;
+    height: 333rpx;
+    position: absolute;
+    top: 50rpx;
+    left: 219rpx;
+    z-index: 2222;
+  }
+  .content-cavas {
+    width: 296rpx;
+    height: 296rpx;
+    text-align: center;
+    color: #fff;
+    font-size: 24rpx;
+    position: absolute;
+    top: 65rpx;
+    left: 235rpx;
+    z-index: 2223;
+    color: #acacac;
+    border: 4rpx solid #acacac;
+    border-radius: 50%;
+    z-index: 0;
+    .b {
+      font-weight: bold;
+      font-size: 128rpx;
+      color: #fff;
+      margin: -20rpx 0;
+    }
+  }
+}
+.info-bottom {
+  width: 100%;
+  height: 150rpx;
+  position: relative;
+  image {
+    width: 100%;
+    height: 150rpx;
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+  view {
+    width: 100%;
+    height: 150rpx;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 2;
+    text-align: center;
+    color: #fff;
+    .text-top {
+      font-size: 30rpx;
+      margin-top: 33rpx;
+      width: 100%;
+      font-weight: bold;
+      display: block;
+    }
+    view {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 33rpx;
+    }
+    .text-left {
+      font-size: 24rpx;
+      float: left;
+    }
+    .text-right {
+      float: left;
+      margin-left: 107rpx;
+      font-size: 24rpx;
+    }
+  }
+}
+.none {
+  display: none;
+}
+.block {
+  display: block;
+}
+.myList {
+  padding-bottom: 50rpx;
+  .item1 {
+    .tit {
+      margin: 0 63rpx;
+      display: flex;
+      align-items: center;
+      width: 624rpx;
+      position: relative;
+      text {
+        font-size: 36rpx;
+        font-weight: bold;
+        color: #e02510;
+      }
+      .icon60 {
+        width: 49rpx;
+        height: 56rpx;
+        margin-left: 20rpx;
+      }
+      .icon58 {
+        width: 44rpx;
+        height: 43rpx;
+      }
+      .icon59 {
+        width: 49rpx;
+        height: 54rpx;
+      }
+      .icon57 {
+        position: absolute;
+        right: 0;
+        width: 158rpx;
+        height: 33rpx;
+      }
+    }
+    .icon26 {
+      width: 100%;
+      height: 4rpx;
+      margin-top: 10rpx;
+      display: block;
+      margin-top: 20rpx;
+      margin-bottom: 20rpx;
+    }
+    .myList-content {
+      height: 51rpx;
+      display: flex;
+      margin: 0 63rpx;
+      width: 624rpx;
+      align-items: center;
+      justify-content: center;
+      view {
+        width: 33%;
+        text-align: center;
+        height: 51rpx;
+        border-right: 1rpx solid #e02510;
+        color: #fff;
+        font-size: 26rpx;
+      }
+      .last {
+        border-right: 0;
+      }
+    }
+    .plan-content {
+      width: 700rpx;
+      margin: 15rpx 25rpx;
+      background: #2d2d2d;
+      padding-top: 35rpx;
+      clear: both;
+      overflow: hidden;
+      border-radius: 10rpx;
+      > view {
+        width: 654rpx;
+        display: flex;
+        align-items: center;
+        margin: 0 23rpx;
+        color: rgba(224, 37, 16, 1);
+        font-weight: bold;
+        margin-bottom: 33rpx;
+        text {
+          text-align: center;
+          margin-right: 11rpx;
+          width: 144rpx;
+        }
+        .text1 {
+          width: 132rpx;
+        }
+        .text2 {
+          width: 200rpx;
+        }
+        .text3 {
+          width: 141rpx;
+        }
+        .text4 {
+          width: 141rpx;
+        }
+        .bg {
+          background: #e02510;
+          color: #fff;
+          text-align: left;
+          border-radius: 10rpx;
+          padding-left: 14rpx;
+          width: 116rpx;
+          font-size: 26rpx;
+          height: 52rpx;
+          margin-right: 11rpx;
+          line-height: 52rpx;
+        }
+        picker {
+          margin-right: 11rpx;
+          height: 52rpx;
+          border: 1rpx solid #acacac;
+          position: relative;
+          .picker {
+            color: #fff;
+            font-size: 26rpx;
+            line-height: 52rpx;
+            padding-left: 10rpx;
+          }
+          .right {
+            position: absolute;
+            right: -1rpx;
+            top: -1rpx;
+            width: 51rpx;
+            height: 54rpx;
+            bottom: 0;
+            background: #e02510;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            image {
+              width: 30rpx;
+              height: 30rpx;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+</style>
+
+<template lang="wxml">
+  <view class="top">
+    <view class="header"  style='height: {{height*2 + 20}}px;line-height:{{(height*2 + 44)}}px'>
+      <text>OneFit健身</text>
+    </view>
+    <view class="common"   style="margin-top:{{(height*2 + 25)}}px">
+      <common />
+    </view>
+    <view class="content {{!userInfo.isNewUser ? 'block' : 'none'}}">
+      <image src="https://cdn.sunjoypai.com/images/0651/4783/3675/d08963760ea4c32ce2246534c78f56e4_0_0.png" class="icon11" />
+      <image src="../../images/icon12.png" class="icon12" />
+      <image src="../../images/icon13.png" class="icon13" @tap='corse'/>
+    </view>
+    <swiper class="swiper {{!userInfo.isNewUser ? 'block' : 'none'}}" current={{current}}>
+      <block wx:for="{{imgUrls}}" wx:key="">
+        <swiper-item>
+          <image src="../../images/icon14.png" class="slide-image" />
+          <image src="../../images/icon15.png" class="slide-image" />
+          <image src="../../images/icon15.png" class="slide-image" />
+          <text class="act">活动展示</text>
+          <text class="tips">左右滑动</text>
+          <image src="../../images/icon17.png" class="icon17" @tap="leftFun"/>
+          <image src="../../images/icon17.png" class="icon17-1" @tap="rightFun"/>
+        </swiper-item>
+      </block>
+    </swiper>
+
+    <view  class="has-info display:{{userInfo.isNewUser ? 'block' : 'none'}}">
+      <image src="../../images/icon27.png" class="icon27" />
+      <view class="cavas">
+        <canvas canvas-id="runCanvas" id="runCanvas" class='canvas'></canvas>
+        <view class="content-cavas">
+          <view style="margin-top:32rpx;">剩余课时</view>
+          <view class="b">158</view>
+          <view>
+            购买课时量：200
+          </view>
+        </view>
+      </view>
+      <image src="../../images/icon30.png" class="icon30" @tap="buy"/>
+    </view>
+
+    <!-- <view class="info-bottom {{userInfo.isNewUser ? 'block' : 'none'}}">
+      <image src="../../images/icon28.png" />
+      <view>
+        <text class="text-top">您已成功预约私教体验课，我们将尽快与您联系</text>
+        <view>
+          <text class="text-left">门店：OneFit杨浦店</text>
+          <text class="text-right">教练：陈蕴 Jordan</text>
+        </view>
+      </view>
+    </view> -->
+
+    <view class="myList">
+      <view class="item1">
+        <view class="tit">
+          <text>我的预约</text>
+          <image src="../../images/icon60.png" class="icon60"/>
+          <image src="../../images/icon57.png" class="icon57" />
+        </view>
+        <image src="../../images/icon26.png" class="icon26">
+        <view class="myList-content">
+          <view>2020-06-08</view>
+          <view>11:00-12:00</view>
+          <view class="last">陈 蕴</view>
+        </view>
+        <image src="../../images/icon26.png" class="icon26">
+      </view>
+    </view>
+
+    <view class="myList">
+      <view class="item1">
+        <view class="tit">
+          <text>我的训练计划</text>
+          <image src="../../images/icon58.png" class="icon60 icon58"/>
+          <image src="../../images/icon57.png" class="icon57" />
+        </view>
+        <view class="plan-content">
+          <view>
+            <view class="text1 bg">动态伸展</view>
+            <picker bindchange="bindPickerChange" class="text2" range="{{array}}">
+              <view class="picker">
+                111
+              </view>
+              <view class="right">
+                <image src="../../images/icon45.png" class="icon45" />
+              </view>
+            </picker>
+            <picker class="text3" bindchange="bindPickerChange" range="{{array}}">
+              <view class="picker">
+                111
+              </view>
+              <view class="right">
+                <image src="../../images/icon45.png" class="icon45" />
+              </view>
+            </picker>
+            <picker class="text4" bindchange="bindPickerChange" range="{{array}}">
+              <view class="picker">
+                111
+              </view>
+              <view class="right">
+                <image src="../../images/icon45.png" class="icon45" />
+              </view>
+            </picker>
+          </view>
+
+          <view>
+            <view class="text1 bg">动态伸展</view>
+            <picker bindchange="bindPickerChange" class="text2" range="{{array}}">
+              <view class="picker">
+                111
+              </view>
+              <view class="right">
+                <image src="../../images/icon45.png" class="icon45" />
+              </view>
+            </picker>
+            <picker class="text3" bindchange="bindPickerChange" range="{{array}}">
+              <view class="picker">
+                111
+              </view>
+              <view class="right">
+                <image src="../../images/icon45.png" class="icon45" />
+              </view>
+            </picker>
+            <picker class="text4" bindchange="bindPickerChange" range="{{array}}">
+              <view class="picker">
+                111
+              </view>
+              <view class="right">
+                <image src="../../images/icon45.png" class="icon45" />
+              </view>
+            </picker>
+          </view>
+
+          <view>
+            <view class="text1 bg">动态伸展</view>
+            <picker bindchange="bindPickerChange" class="text2" range="{{array}}">
+              <view class="picker">
+                111
+              </view>
+              <view class="right">
+                <image src="../../images/icon45.png" class="icon45" />
+              </view>
+            </picker>
+            <picker class="text3" bindchange="bindPickerChange" range="{{array}}">
+              <view class="picker">
+                111
+              </view>
+              <view class="right">
+                <image src="../../images/icon45.png" class="icon45" />
+              </view>
+            </picker>
+            <picker class="text4" bindchange="bindPickerChange" range="{{array}}">
+              <view class="picker">
+                111
+              </view>
+              <view class="right">
+                <image src="../../images/icon45.png" class="icon45" />
+              </view>
+            </picker>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class="myList">
+      <view class="item1">
+        <view class="tit">
+          <text>我的饮食计划</text>
+          <image src="../../images/icon59.png" class="icon60 icon59"/>
+          <image src="../../images/icon57.png" class="icon57" />
+        </view>
+        <view class="plan-content">
+          <view>
+            <view class="text1 bg">动态伸展</view>
+            <picker bindchange="bindPickerChange" class="text2" range="{{array}}">
+              <view class="picker">
+                111
+              </view>
+              <view class="right">
+                <image src="../../images/icon45.png" class="icon45" />
+              </view>
+            </picker>
+            <picker class="text3" bindchange="bindPickerChange" range="{{array}}">
+              <view class="picker">
+                111
+              </view>
+              <view class="right">
+                <image src="../../images/icon45.png" class="icon45" />
+              </view>
+            </picker>
+            <picker class="text4" bindchange="bindPickerChange" range="{{array}}">
+              <view class="picker">
+                111
+              </view>
+              <view class="right">
+                <image src="../../images/icon45.png" class="icon45" />
+              </view>
+            </picker>
+          </view>
+
+          <view>
+            <view class="text1 bg">动态伸展</view>
+            <picker bindchange="bindPickerChange" class="text2" range="{{array}}">
+              <view class="picker">
+                111
+              </view>
+              <view class="right">
+                <image src="../../images/icon45.png" class="icon45" />
+              </view>
+            </picker>
+            <picker class="text3" bindchange="bindPickerChange" range="{{array}}">
+              <view class="picker">
+                111
+              </view>
+              <view class="right">
+                <image src="../../images/icon45.png" class="icon45" />
+              </view>
+            </picker>
+            <picker class="text4" bindchange="bindPickerChange" range="{{array}}">
+              <view class="picker">
+                111
+              </view>
+              <view class="right">
+                <image src="../../images/icon45.png" class="icon45" />
+              </view>
+            </picker>
+          </view>
+
+          <view>
+            <view class="text1 bg">动态伸展</view>
+            <picker bindchange="bindPickerChange" class="text2" range="{{array}}">
+              <view class="picker">
+                111
+              </view>
+              <view class="right">
+                <image src="../../images/icon45.png" class="icon45" />
+              </view>
+            </picker>
+            <picker class="text3" bindchange="bindPickerChange" range="{{array}}">
+              <view class="picker">
+                111
+              </view>
+              <view class="right">
+                <image src="../../images/icon45.png" class="icon45" />
+              </view>
+            </picker>
+            <picker class="text4" bindchange="bindPickerChange" range="{{array}}">
+              <view class="picker">
+                111
+              </view>
+              <view class="right">
+                <image src="../../images/icon45.png" class="icon45" />
+              </view>
+            </picker>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</template>
+
+<script>
+/* global wx */
+import wepy from "wepy";
+import PageMixin from "../../mixins/page";
+import common from "../../components/common";
+export default class Course extends wepy.page {
+  mixins = [PageMixin];
+  config = {
+    navigationBarBackgroundColor: "#fff"
+  };
+  components = {
+    common
+  };
+  data = {
+    loadUser: true, // 需要登录信息
+    height: "",
+    imgUrls: [1, 2],
+    current: 0,
+    isShow: false,
+    branchs: [],
+    userInfo: {
+      isNewUser: true
+    },
+    pageFirst: {}
+  };
+  whenAppReadyShow(options) {
+    this.circle();
+
+    this.getPageFirst();
+  }
+  methods = {
+    buy() {
+      wx.navigateTo({
+        url:
+          "/pages/home/buy?branchId=" + this.pageFirst.coachInfo.branchs[0].id
+      });
+    },
+    corse() {
+      wx.navigateTo({
+        url: "/pages/home/appointment"
+      });
+    },
+    leftFun() {
+      if (this.current === 0) this.current = this.imgUrls.length - 1;
+      else this.current--;
+    },
+    rightFun() {
+      if (this.current === this.imgUrls.length - 1) this.current = 0;
+      else this.current++;
+    }
+  };
+  getPageFirst() {
+    var that = this;
+    wx.getLocation({
+      type: "wgs84",
+      success(res) {
+        const latitude = res.latitude;
+        const longitude = res.longitude;
+        wx.showLoading({
+          title: "加载中"
+        });
+        that.getUserInfo(user => {
+          that
+            .fetchDataPromise("page/first.json", {
+              action: user.isNewUser ? "info" : "coach",
+              x: latitude,
+              y: longitude
+            })
+            .then(function(data) {
+              that.pageFirst = data;
+              data.user = user;
+              wx.hideLoading();
+              that.$broadcast("index-broadcast", data);
+            });
+        });
+      }
+    });
+  }
+  getUserInfo(callBack) {
+    var that = this;
+    this.fetchDataPromise("user/userInfo.json", {}).then(function(data) {
+      that.userInfo = data;
+      that.userInfo.isNewUser = true;
+      wx.setStorage({
+        key: "userInfo",
+        data: JSON.stringify(data)
+      });
+      callBack(data);
+      that.$apply();
+    });
+  }
+  run(c, w, h, ctx1) {
+    //c是圆环进度百分比   w，h是圆心的坐标
+    let that = this;
+    var num = 2 * Math.PI / 100 * c - 0.5 * Math.PI;
+    //圆环的绘制
+    ctx1.setLineWidth(6);
+    ctx1.setStrokeStyle("#d2d2d2");
+    ctx1.setLineCap("round");
+    ctx1.stroke();
+    ctx1.draw();
+    ctx1.arc(w, h, w - 8, -0.5 * Math.PI, num); //绘制的动作
+    ctx1.setStrokeStyle("#e02510"); //圆环线条的颜色
+    ctx1.setLineWidth("4"); //圆环的粗细
+    ctx1.setLineCap("butt"); //圆环结束断点的样式  butt为平直边缘 round为圆形线帽  square为正方形线帽
+    ctx1.stroke();
+    ctx1.draw();
+  }
+  canvasTap(start, w, h, ctx1) {
+    this.run(50, w, h, ctx1);
+  }
+  circle() {
+    var that = this;
+    const ctx1 = wx.createCanvasContext("runCanvas");
+    wx
+      .createSelectorQuery()
+      .select("#runCanvas")
+      .boundingClientRect(function(rect) {
+        //监听canvas的宽高
+        console.log(rect, "111");
+        var w = parseInt(rect.width / 2); //获取canvas宽的的一半
+        var h = parseInt(rect.height / 2); //获取canvas高的一半，
+        that.canvasTap(0, w, h, ctx1);
+      })
+      .exec();
+  }
+  onShow() {
+    wx.getSystemInfo({
+      success: res => {
+        this.height = res.statusBarHeight;
+      }
+    });
+    var that = this;
+    wx.getStorage({
+      key: "home",
+      success(res) {
+        that.isShow = true;
+      }
+    });
+  }
+}
+</script>

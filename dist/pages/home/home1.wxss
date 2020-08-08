@@ -1,0 +1,335 @@
+@import "./../../components/common.wxss";
+page {
+  background: #111111;
+}
+.header {
+  font-size: 30rpx;
+  color: #fff;
+  width: 100%;
+  position: fixed;
+  background: #111111;
+  z-index: 222;
+}
+.header text {
+  position: absolute;
+  left: 15rpx;
+}
+.common {
+  margin-top: 165rpx;
+}
+.content {
+  width: 100%;
+  height: 331rpx;
+  position: relative;
+}
+.content .icon11 {
+  width: 100%;
+  height: 300rpx;
+  position: absolute;
+  top: 15rpx;
+  left: 0;
+}
+.content .icon12 {
+  width: 359rpx;
+  height: 180rpx;
+  right: 87rpx;
+  bottom: 85rpx;
+  z-index: 2;
+  position: absolute;
+}
+.content .icon13 {
+  width: 200rpx;
+  height: 50rpx;
+  bottom: 67rpx;
+  right: 0;
+  position: absolute;
+  z-index: 3;
+}
+.swiper {
+  width: 100%;
+  height: 251rpx;
+}
+.swiper swiper-item {
+  position: relative;
+}
+.swiper swiper-item image {
+  width: 246rpx;
+  height: 251rpx;
+}
+.swiper swiper-item image:nth-of-type(2) {
+  margin: 0 9rpx;
+}
+.swiper swiper-item .icon17 {
+  width: 33rpx;
+  height: 62rpx;
+  position: absolute;
+  left: 200rpx;
+  top: 95rpx;
+  z-index: 3;
+}
+.swiper swiper-item .icon17-1 {
+  width: 33rpx;
+  height: 62rpx;
+  position: absolute;
+  right: 200rpx;
+  top: 95rpx;
+  z-index: 3;
+  transform: rotate(180deg);
+}
+.swiper swiper-item .act {
+  position: absolute;
+  width: 100%;
+  height: 251rpx;
+  text-align: center;
+  line-height: 251rpx;
+  font-size: 41rpx;
+  font-weight: bold;
+  top: 0;
+  left: 0;
+  color: #fff;
+}
+.swiper swiper-item .tips {
+  position: absolute;
+  width: 100%;
+  height: 251rpx;
+  text-align: center;
+  line-height: 337rpx;
+  font-size: 20rpx;
+  top: 0;
+  left: 0;
+  color: #e02510;
+}
+.has-info {
+  width: 100%;
+  height: 426rpx;
+  position: relative;
+}
+.has-info .icon27 {
+  width: 190rpx;
+  height: 50rpx;
+  position: absolute;
+  left: 0;
+  top: 182rpx;
+}
+.has-info .icon30 {
+  position: absolute;
+  right: 0;
+  top: 182rpx;
+  width: 189rpx;
+  height: 50rpx;
+}
+.has-info .canvas {
+  width: 333rpx;
+  height: 333rpx;
+  position: absolute;
+  top: 50rpx;
+  left: 219rpx;
+  z-index: 2222;
+}
+.has-info .content-cavas {
+  width: 296rpx;
+  height: 296rpx;
+  text-align: center;
+  color: #fff;
+  font-size: 24rpx;
+  position: absolute;
+  top: 65rpx;
+  left: 235rpx;
+  z-index: 2223;
+  color: #acacac;
+  border: 4rpx solid #acacac;
+  border-radius: 50%;
+  z-index: 0;
+}
+.has-info .content-cavas .b {
+  font-weight: bold;
+  font-size: 128rpx;
+  color: #fff;
+  margin: -20rpx 0;
+}
+.info-bottom {
+  width: 100%;
+  height: 150rpx;
+  position: relative;
+}
+.info-bottom image {
+  width: 100%;
+  height: 150rpx;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+.info-bottom view {
+  width: 100%;
+  height: 150rpx;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 2;
+  text-align: center;
+  color: #fff;
+}
+.info-bottom view .text-top {
+  font-size: 30rpx;
+  margin-top: 33rpx;
+  width: 100%;
+  font-weight: bold;
+  display: block;
+}
+.info-bottom view view {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 33rpx;
+}
+.info-bottom view .text-left {
+  font-size: 24rpx;
+  float: left;
+}
+.info-bottom view .text-right {
+  float: left;
+  margin-left: 107rpx;
+  font-size: 24rpx;
+}
+.none {
+  display: none;
+}
+.block {
+  display: block;
+}
+.myList {
+  padding-bottom: 50rpx;
+}
+.myList .item1 .tit {
+  margin: 0 63rpx;
+  display: flex;
+  align-items: center;
+  width: 624rpx;
+  position: relative;
+}
+.myList .item1 .tit text {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #e02510;
+}
+.myList .item1 .tit .icon60 {
+  width: 49rpx;
+  height: 56rpx;
+  margin-left: 20rpx;
+}
+.myList .item1 .tit .icon58 {
+  width: 44rpx;
+  height: 43rpx;
+}
+.myList .item1 .tit .icon59 {
+  width: 49rpx;
+  height: 54rpx;
+}
+.myList .item1 .tit .icon57 {
+  position: absolute;
+  right: 0;
+  width: 158rpx;
+  height: 33rpx;
+}
+.myList .item1 .icon26 {
+  width: 100%;
+  height: 4rpx;
+  margin-top: 10rpx;
+  display: block;
+  margin-top: 20rpx;
+  margin-bottom: 20rpx;
+}
+.myList .item1 .myList-content {
+  height: 51rpx;
+  display: flex;
+  margin: 0 63rpx;
+  width: 624rpx;
+  align-items: center;
+  justify-content: center;
+}
+.myList .item1 .myList-content view {
+  width: 33%;
+  text-align: center;
+  height: 51rpx;
+  border-right: 1rpx solid #e02510;
+  color: #fff;
+  font-size: 26rpx;
+}
+.myList .item1 .myList-content .last {
+  border-right: 0;
+}
+.myList .item1 .plan-content {
+  width: 700rpx;
+  margin: 15rpx 25rpx;
+  background: #2d2d2d;
+  padding-top: 35rpx;
+  clear: both;
+  overflow: hidden;
+  border-radius: 10rpx;
+}
+.myList .item1 .plan-content > view {
+  width: 654rpx;
+  display: flex;
+  align-items: center;
+  margin: 0 23rpx;
+  color: #e02510;
+  font-weight: bold;
+  margin-bottom: 33rpx;
+}
+.myList .item1 .plan-content > view text {
+  text-align: center;
+  margin-right: 11rpx;
+  width: 144rpx;
+}
+.myList .item1 .plan-content > view .text1 {
+  width: 132rpx;
+}
+.myList .item1 .plan-content > view .text2 {
+  width: 200rpx;
+}
+.myList .item1 .plan-content > view .text3 {
+  width: 141rpx;
+}
+.myList .item1 .plan-content > view .text4 {
+  width: 141rpx;
+}
+.myList .item1 .plan-content > view .bg {
+  background: #e02510;
+  color: #fff;
+  text-align: left;
+  border-radius: 10rpx;
+  padding-left: 14rpx;
+  width: 116rpx;
+  font-size: 26rpx;
+  height: 52rpx;
+  margin-right: 11rpx;
+  line-height: 52rpx;
+}
+.myList .item1 .plan-content > view picker {
+  margin-right: 11rpx;
+  height: 52rpx;
+  border: 1rpx solid #acacac;
+  position: relative;
+}
+.myList .item1 .plan-content > view picker .picker {
+  color: #fff;
+  font-size: 26rpx;
+  line-height: 52rpx;
+  padding-left: 10rpx;
+}
+.myList .item1 .plan-content > view picker .right {
+  position: absolute;
+  right: -1rpx;
+  top: -1rpx;
+  width: 51rpx;
+  height: 54rpx;
+  bottom: 0;
+  background: #e02510;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.myList .item1 .plan-content > view picker .right image {
+  width: 30rpx;
+  height: 30rpx;
+}

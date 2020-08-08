@@ -1,0 +1,292 @@
+<style lang="less">
+.icon18 {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.info-top {
+  margin-top: 165rpx;
+  position: relative;
+  z-index: 333;
+  height: 200rpx;
+  width: 100%;
+  color: #fff;
+  image {
+    width: 100%;
+    height: 200rpx;
+  }
+  .view {
+    font-size: 59rpx;
+    font-weight: bold;
+    width: 100%;
+    position: absolute;
+    text-align: center;
+    top: 20rpx;
+  }
+  .view1 {
+    font-size: 59rpx;
+    font-weight: bold;
+    width: 100%;
+    position: absolute;
+    text-align: center;
+    bottom: 23rpx;
+  }
+}
+.info {
+  margin-top: 125rpx;
+  position: relative;
+  .info-item {
+    .icon26 {
+      width: 100%;
+      height: 3rpx;
+      position: absolute;
+      z-index: 666;
+    }
+    .item {
+      display: flex;
+      align-items: center;
+      position: relative;
+      padding: 38rpx 0;
+      .icon21 {
+        width: 62rpx;
+        height: 25rpx;
+        margin-right: 30rpx;
+        margin-left: 77rpx;
+      }
+      .icon22 {
+        width: 46rpx;
+        height: 48rpx;
+        margin-right: 46rpx;
+        margin-left: 77rpx;
+      }
+      .icon23 {
+        width: 76rpx;
+        height: 43rpx;
+        margin-right: 16rpx;
+        margin-left: 77rpx;
+      }
+      .icon24 {
+        width: 53rpx;
+        height: 58rpx;
+        margin-right: 39rpx;
+        margin-left: 77rpx;
+      }
+      .icon25 {
+        width: 61rpx;
+        height: 38rpx;
+        margin-right: 29rpx;
+        margin-left: 77rpx;
+      }
+      text {
+        font-size: 30rpx;
+        color: #fff;
+      }
+      .icon19,
+      picker {
+        position: absolute;
+        right: 0;
+        width: 56rpx;
+        height: 56rpx;
+        margin-right: 88rpx;
+        color: #fff;
+        font-size: 30rpx;
+      }
+      input {
+        text-align: right;
+        position: absolute;
+        right: 0;
+        width: 256rpx;
+        height: 56rpx;
+        margin-right: 88rpx;
+        color: #fff;
+        font-size: 30rpx;
+      }
+    }
+  }
+}
+.btn {
+  width: 500rpx;
+  height: 70rpx;
+  border-radius: 40rpx;
+  background: #e02510;
+  color: #fff;
+  text-align: center;
+  line-height: 70rpx;
+  font-size: 32rpx;
+  font-weight: bold;
+  position: relative;
+  z-index: 7777;
+  margin-left: 125rpx;
+  margin-top: 85rpx;
+}
+</style>
+
+<template lang="wxml">
+  <view class="top">
+    <image src="https://cdn.sunjoypai.com/images/5838/1239/4271/632cdc626038c929e4f2af8ca727266b_0_0.png" class="icon18"/>
+    <header /> 
+    <view class="info-top">
+      <view class="view"> 输入信息</view>
+      <view class="view1">获得专属私教体验</view>
+    </view>
+
+    <view class="info">
+      <view class="info-item">
+        <image src="../../images/icon26.png" class="icon26"/>
+        <view class="item">
+          <image src="../../images/icon21.png" class="icon21"/>
+          <text>您的身高</text>
+          <input value="{{formData.height}}" bindblur="getHeight" bindconfirm="getHeight"  focus="{{isHeight}}" type="text" placeholder='请输入您的身高' wx:if="{{isHeight}}"/>
+          <image wx:if="{{!isHeight}}" src="../../images/icon19.png" class="icon19" @tap='heightTrue'/>
+        </view>
+      </view>
+      <view class="info-item">
+        <image src="../../images/icon26.png" class="icon26"/>
+        <view class="item">
+          <image src="../../images/icon22.png" class="icon22"/>
+          <text>您的体重</text>
+          <input value="{{formData.weight}}" bindblur="getWeight" bindconfirm="getWeight" focus="{{isWeight}}" type="text" placeholder='请输入您的体重' wx:if="{{isWeight}}"/>
+          <image wx:if="{{!isWeight}}" src="../../images/icon19.png" class="icon19"  @tap='weightTrue'/>
+          <!-- <view class="icon19">111</view> -->
+        </view>
+      </view>
+      <view class="info-item">
+        <image src="../../images/icon26.png" class="icon26"/>
+        <view class="item">
+          <image src="../../images/icon23.png" class="icon23"/>
+          <text>您的性别</text>
+          <picker range="{{sex}}" bindchange="sexFun">
+            <image style="margin-right:0" wx:if="{{!formData.gender}}" src="../../images/icon19.png" class="icon19"/>
+            <text wx:else>{{formData.gender}}</text>
+          </picker>
+        </view>
+      </view>
+
+      <view class="info-item">
+        <image src="../../images/icon26.png" class="icon26"/>
+        <view class="item">
+          <image src="../../images/icon24.png" class="icon24"/>
+          <text>您的健身需求</text>
+          <input value="{{formData.requirement}}"  bindblur="getRequirement" bindconfirm="getRequirement" focus="{{xuqiu}}" type="text" placeholder='请输入您的健身需求' wx:if="{{xuqiu}}"/>
+          <image wx:if="{{!xuqiu}}" src="../../images/icon19.png" class="icon19" @tap='xuqiuTrue'/>
+        </view>
+      </view>
+
+      <view class="info-item">
+        <image src="../../images/icon26.png" class="icon26"/>
+        <view class="item">
+          <image src="../../images/icon25.png" class="icon25"/>
+          <text>您是否有训练基础</text>
+
+          <picker range="{{xuqiuArray}}" bindchange="xuqiuFun">
+            <image wx:if="{{!formData.fitBase}}" style="margin-right:0" src="../../images/icon19.png" class="icon19"/>
+            <text wx:else>{{formData.fitBase}}</text>
+          </picker>
+          
+        </view>
+        <image src="../../images/icon26.png" class="icon26"/>
+      </view>
+    </view>
+
+    <view class="btn" @tap="submit">点击提交</view>
+  </view>
+</template>
+
+<script>
+/* global wx */
+import wepy from "wepy";
+import header from "../../components/headers";
+import PageMixin from "../../mixins/page";
+export default class Course extends wepy.page {
+  mixins = [PageMixin];
+  config = {
+    navigationBarBackgroundColor: "#fff"
+  };
+  components = {
+    header
+  };
+  data = {
+    sex: ["男", "女"],
+    xuqiuArray: ["是", "否"],
+    isHeight: false,
+    isWeight: false,
+    xuqiu: false,
+    height: "",
+    formData: {
+      gender: null,
+      fitBase: null,
+      height: null
+    }
+  };
+  methods = {
+    getHeight(e) {
+      this.formData.height = e.detail.value;
+    },
+    getWeight(e) {
+      this.formData.weight = e.detail.value;
+    },
+    getRequirement(e) {
+      this.formData.requirement = e.detail.value;
+    },
+    xuqiuTrue() {
+      this.xuqiu = true;
+    },
+    heightTrue() {
+      this.isHeight = true;
+    },
+    weightTrue() {
+      this.isWeight = true;
+    },
+    sexFun(e) {
+      this.formData.gender = e.detail.value === "0" ? "男" : "女";
+    },
+    xuqiuFun(e) {
+      this.formData.fitBase = e.detail.value === "0" ? "是" : "否";
+    },
+    submit() {
+      if (!this.formData.height) {
+        wx.showModal({
+          title: "提示",
+          content: "请输入身高",
+          showCancel: false
+        });
+      } else if (!this.formData.weight) {
+        wx.showModal({
+          title: "提示",
+          content: "请输入身高",
+          showCancel: false
+        });
+      }
+      var that = this;
+      that.formData.action = "update";
+      that
+        .fetchDataPromise("page/first.json", that.formData)
+        .then(function(data) {
+          wx.showToast({
+            title: "提交成功",
+            icon: "success",
+            duration: 2000
+          });
+          setTimeout(() => {
+            wx.switchTab({
+              url: "/pages/home/home1"
+            });
+          }, 2000);
+        });
+    }
+  };
+  onShow() {
+    wx.getSystemInfo({
+      success: res => {
+        this.height = res.statusBarHeight;
+        this.$broadcast("index-broadcast", {
+          height: this.height,
+          text: "OneFit健身"
+        });
+      }
+    });
+  }
+}
+</script>

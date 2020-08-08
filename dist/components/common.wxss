@@ -1,0 +1,95 @@
+.teacher {
+  margin-top: 75rpx;
+  position: relative;
+}
+.teacher .icon8 {
+  position: absolute;
+  width: 100%;
+  height: 466rpx;
+  left: 0;
+  top: 0;
+}
+.teacher .icon10 {
+  position: absolute;
+  width: 294rpx;
+  height: 466rpx;
+  left: 0;
+  top: 0;
+}
+.teacher .teacher-name {
+  position: relative;
+  right: 0;
+  top: 0;
+  width: 100%;
+  height: 466rpx;
+  font-size: 20rpx;
+  color: #fff;
+  line-height: 62rpx;
+  text-align: right;
+}
+.teacher .teacher-name image {
+  width: 300rpx;
+  height: 62rpx;
+  right: 57rpx;
+  bottom: 130rpx;
+  position: absolute;
+  transform: rotate(180deg);
+}
+.teacher .teacher-name view {
+  position: absolute;
+  height: 62rpx;
+  right: 57rpx;
+  bottom: 130rpx;
+  z-index: 2;
+}
+.teacher .teacher-name text {
+  margin-right: 10rpx;
+  font-weight: bold;
+  text-align: right;
+  line-height: 62rpx;
+}
+.teacher .teacher-name .name {
+  font-size: 24rpx;
+}
+.teacher .teacher-name2 {
+  position: absolute;
+}
+.teacher .teacher-name2 image {
+  bottom: 45rpx;
+}
+.teacher .teacher-name2 view {
+  bottom: 45rpx;
+}
+.teacher .center {
+  position: absolute;
+  z-index: 2;
+  right: 57rpx;
+  top: 55rpx;
+  width: 153rpx;
+  height: 153rpx;
+}
+.teacher .center text {
+  position: absolute;
+  right: 174rpx;
+  height: 153rpx;
+  line-height: 153rpx;
+  color: #fff;
+  margin-top: 15rpx;
+  font-size: 26rpx;
+  font-weight: bold;
+  width: 300rpx;
+  text-align: right;
+}
+.teacher .center .icon2 {
+  width: 153rpx;
+  height: 153rpx;
+  position: absolute;
+}
+.teacher .center .icon3 {
+  width: 111rpx;
+  height: 111rpx;
+  position: absolute;
+  margin-left: 21rpx;
+  margin-top: 21rpx;
+  border-radius: 50%;
+}

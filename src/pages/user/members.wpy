@@ -1,0 +1,175 @@
+<style lang="less">
+page {
+  background: #111111;
+}
+.search {
+  width: 526rpx;
+  height: 80rpx;
+  background: #fff;
+  border-radius: 50rpx;
+  margin-left: 54rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  input {
+    width: 526rpx;
+    height: 80rpx;
+    outline: none;
+    font-size: #333;
+    margin-left: 47rpx;
+    font-size: 36rpx;
+  }
+  image {
+    width: 57rpx;
+    height: 44rpx;
+    margin-right: 40rpx;
+  }
+}
+.tit {
+  width: 100%;
+  height: 60rpx;
+  line-height: 60rpx;
+  font-size: 26rpx;
+  color: #fff;
+  margin-top: 31rpx;
+  background: #2d2d2d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  view {
+    width: 33.33%;
+    text-align: center;
+    height: 60rpx;
+    line-height: 60rpx;
+    position: relative;
+    image {
+      width: 33rpx;
+      height: 26rpx;
+      position: absolute;
+      bottom: -8rpx;
+      left: 120rpx;
+    }
+  }
+  .hover {
+    color: rgba(224, 37, 16, 1);
+  }
+}
+.item-list {
+  margin-top: 55rpx;
+  .list {
+    height: 184rpx;
+    display: flex;
+    align-items: center;
+    position: relative;
+    image {
+      width: 142rpx;
+      height: 142rpx;
+      margin: 0 43rpx;
+      border-radius: 50%;
+    }
+    text {
+      font-size: 30rpx;
+      color: #fff;
+    }
+    .icon26 {
+      width: 100%;
+      bottom: 0;
+      left: 0;
+      height: 4rpx;
+      position: absolute;
+    }
+    .details {
+      width: 164rpx;
+      height: 42rpx;
+      border-radius: 30rpx;
+      position: absolute;
+      right: 43rpx;
+      bottom: 75rpx;
+      font-size: 24rpx;
+      text-align: center;
+      background: #e02510;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+    }
+  }
+}
+</style>
+
+<template lang="wxml">
+  <view class="top">
+    <header />
+    <view class='members'  style="margin-top:{{(height*2 + 25)}}px">
+      <view class="search">
+        <input type='text' placeholder="搜索会员">
+        <image src="../../images/icon56.png">
+      </view>
+
+      <view class="tit">
+        <view wx:for="{{tit}}" @tap="tabFun" wx:for-index="idx" data-index="{{idx}}" class="tit-1 {{ currentIndex ===  idx ? 'hover' : ''}}" >
+          {{item}}
+          <image wx:if="{{currentIndex ===  idx}}" src="../../images/icon55.png">
+        </view>
+      </view>
+
+      <view class="item-list">
+        <view class="list">
+          <image src="../../images/icon15.png" class="icon15" />
+          <text>OneFit王伟</text>
+          <view class="details">查看详情</view>
+          <image src="../../images/icon26.png" class="icon26" />
+        </view>
+
+        <view class="list">
+          <image src="../../images/icon15.png" class="icon15" />
+          <text>OneFit王伟</text>
+          <view class="details" @tap="detailsFun">查看详情</view>
+          <image src="../../images/icon26.png" class="icon26" />
+        </view>
+      </view>
+    </view>
+  </view>
+</template>
+
+<script>
+/* global wx */
+import wepy from "wepy";
+import PageMixin from "../../mixins/page";
+import header from "../../components/headers";
+export default class Course extends wepy.page {
+  mixins = [PageMixin];
+  config = {
+    navigationBarBackgroundColor: "#fff"
+  };
+  components = {
+    header
+  };
+  data = {
+    currentIndex: 0,
+    height: null,
+    tit: ["所有会员", "一周未出勤", "一月未出勤"]
+  };
+  methods = {
+    tabFun(e) {
+      this.currentIndex = e.currentTarget.dataset.index;
+    },
+    detailsFun() {
+      wx.navigateTo({
+        url: "/pages/user/membersNext"
+      });
+    }
+  };
+  onShow() {
+    wx.getSystemInfo({
+      success: res => {
+        this.height = res.statusBarHeight;
+        this.$broadcast("index-broadcast", {
+          height: this.height,
+          text: "我的会员"
+        });
+      }
+    });
+  }
+}
+</script>

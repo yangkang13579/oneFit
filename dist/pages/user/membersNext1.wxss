@@ -1,0 +1,160 @@
+@import "./../../components/headers.wxss";
+page {
+  background: #111111;
+}
+.data {
+  width: 700rpx;
+  padding: 35rpx 0;
+  background: #2d2d2d;
+  margin: 0 25rpx;
+  border-radius: 10rpx;
+  margin-top: 20rpx;
+  margin-bottom: 70rpx;
+}
+.data .data-top {
+  padding: 0 21rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 36rpx;
+  color: #e02510;
+}
+.data .data-top image {
+  width: 158rpx;
+  height: 33rpx;
+}
+.headers {
+  height: 160rpx;
+  width: 700rpx;
+  margin-left: 25rpx;
+  background: #2d2d2d;
+  border-radius: 10rpx;
+  display: flex;
+  align-items: center;
+}
+.headers image {
+  width: 142rpx;
+  height: 142rpx;
+  border-radius: 50%;
+  margin: 0 64rpx 0 22rpx;
+}
+.headers .headers-top {
+  text-align: center;
+}
+.headers .headers-top .tit {
+  font-size: 36rpx;
+  color: #e02510;
+  font-weight: bold;
+  margin-bottom: 16rpx;
+}
+.icon26 {
+  width: 100%;
+  height: 4rpx;
+  margin-top: 39rpx;
+}
+.inputs {
+  margin-top: 39rpx;
+  padding: 0 21rpx;
+  clear: both;
+  overflow: hidden;
+}
+.inputs .inputs-left {
+  float: left;
+  font-size: 26rpx;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20rpx;
+}
+.inputs .inputs-left text {
+  width: 85rpx;
+  text-align: left;
+  margin-left: 20rpx;
+}
+.inputs .inputs-left input {
+  width: 220rpx;
+  height: 50rpx;
+  border: 1rpx solid #acacac;
+  border-radius: 10rpx;
+}
+.inputs .inputs-last {
+  margin-bottom: 0;
+}
+.inputs .inputs-last text {
+  width: 122rpx;
+}
+.inputs .inputs-last input {
+  width: 504rpx;
+}
+.items {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 25rpx;
+}
+.items .item {
+  margin-left: 20rpx;
+  width: 210rpx;
+  font-size: 30rpx;
+  color: #fff;
+  text-align: center;
+  font-weight: bold;
+}
+.items .item image {
+  width: 210rpx;
+  height: 280rpx;
+  margin-bottom: 16rpx;
+}
+.ticeTime {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 65rpx;
+  color: #fff;
+  font-size: 30rpx;
+  font-weight: bold;
+}
+.ticeTime picker {
+  margin-right: 11rpx;
+  width: 293rpx;
+  height: 52rpx;
+  border: 1rpx solid #acacac;
+  position: relative;
+}
+.ticeTime picker .picker {
+  color: #fff;
+  font-size: 26rpx;
+  line-height: 52rpx;
+  padding-left: 10rpx;
+}
+.ticeTime picker .right {
+  position: absolute;
+  right: -1rpx;
+  top: -1rpx;
+  width: 51rpx;
+  height: 54rpx;
+  bottom: 0;
+  background: #e02510;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.ticeTime picker .right image {
+  width: 30rpx;
+  height: 30rpx;
+}
+.btn {
+  width: 500rpx;
+  height: 71rpx;
+  margin-left: 125rpx;
+  background: #e02510;
+  font-size: 32rpx;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 40rpx;
+  margin-top: 46rpx;
+  margin-bottom: 67rpx;
+}

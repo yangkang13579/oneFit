@@ -2,18 +2,6 @@
 page {
   background: #111111;
 }
-.header {
-  font-size: 30rpx;
-  color: #fff;
-  width: 100%;
-  position: fixed;
-  z-index: 1;
-  text {
-    position: absolute;
-    bottom: 5rpx;
-    left: 15rpx;
-  }
-}
 .times {
   height: 130rpx;
   background: #010101;
@@ -89,12 +77,19 @@ page {
   .block {
     display: inline-block;
     view {
-      padding: 0 10rpx;
       color: #acacac;
+      width: 91rpx;
+      text-align: center;
       height: 41rpx;
       margin-top: 19rpx;
       font-size: 26rpx;
       line-height: 41rpx;
+      margin-right: 40rpx;
+    }
+    .hover {
+      background: #e02510;
+      color: #fff;
+      border-radius: 30rpx;
     }
   }
 }
@@ -213,9 +208,7 @@ page {
 
 <template lang="wxml">
   <view class="top">
-    <view class="header" style='height: {{height*2 + 20}}px;'>
-      <text>OneFit健身</text>
-    </view>
+    <header />
     <view class='times' style="margin-top:{{height*2 + 20}}px">
       <scroll-view scroll-x="true" scroll-into-view="id_{{currentIndex}}" class="time">
         <view class="block" wx:for="{{date}}" wx:for-item="item" wx:for-index="idx" data-index="{{idx}}" id="id_{{idx}}" bindtap='getDate'>
@@ -233,63 +226,39 @@ page {
 
     <view class="point">
       <scroll-view scroll-x="true" class="point-time">
-        <view class="block" wx:for="{{leftData}}" wx:for-item="item" wx:for-index="idx" data-index="{{idx}}" id="id_{{idx}}" bindtap='getDate'>
-          <view>{{item.name}}</view>
+        <view class="block" wx:for="{{leftData}}" wx:for-item="item" wx:for-index="idx" data-item="{{item}}" id="id_{{idx}}" bindtap='getTime'>
+          <view class="{{formDatatime === item.id ? 'hover' : ''}}">{{item.name}}</view>
         </view>
       </scroll-view>
     </view>
 
-    <!-- <view class="btn">
-      <view class="btn-left">立即约课</view>
-      <view class="btn-right">预约其他教练</view>
-    </view> -->
-    <view class="item-list">
-      <view class="item">
-        <image src="../../images/icon10.png" class="logo"/>
+    <view class="btn" wx:if="{{tabIndex == 0}}">
+      <view class="btn-left" @tap="tabFun">立即约课</view>
+      <view class="btn-right"  @tap="tabFuns">预约其他教练</view>
+    </view>
+    <view class="item-list" wx:if="{{tabIndex !== 0}}">
+      <view class="item" wx:for="{{datas.items}}">
+        <image src="{{item.images[0]}}" class="logo"/>
         <view class="name">
-          <view class="name-tips">陈蕴 Jordan</view>
+          <view class="name-tips">{{item.name}}</view>
           <view class="tips">
-            <text>塑性</text>
+            <text>{{item.introduce}}</text>
           </view>
         </view>
-        <image src="../../images/icon29.png" class="icon29">
-      </view>
-      <view class="item">
-        <image src="../../images/icon10.png" class="logo"/>
-        <view class="name">
-          <view class="name-tips">陈蕴 Jordan</view>
-          <view class="tips">
-            <text>塑性</text>
-          </view>
-        </view>
-        <image src="../../images/icon29.png" class="icon29">
-      </view>
-      <view class="item">
-        <image src="../../images/icon10.png" class="logo"/>
-        <view class="name">
-          <view class="name-tips">陈蕴 Jordan</view>
-          <view class="tips">
-            <text>塑性</text>
-          </view>
-        </view>
-        <image src="../../images/icon29.png" class="icon29">
+        <image src="../../images/icon29.png" data-id="{{item.id}}" class="icon29" @tap="yuyueFun">
       </view>
     </view>
-    <!-- <view class="teacher">
+    <view class="teacher" wx:else>
       <image src="../../images/icon8.png" class="icon8"/>
-      <image src="../../images/icon10.png" class="icon10">
+      <image src="{{datas.current.images[0]}}" class="icon10">
       <view class="teacher-name">
         <image src="../../images/icon9.png" class="icon9" />
-        <text>陈蕴 Jordan</text>
+        <text>{{datas.current.name}}</text>
       </view>
       <view class="introduce">
-          OneFit创始人
-          UNDERARMOUR中国首位品牌大使
-          alandv运动营养品牌大使
-          JOINFIT品牌顾问
-          AQ护具品牌顾问
+         {{datas.current.introduce}}
       </view>
-    </view> -->
+    </view>
   </view>
 </template>
 
@@ -297,14 +266,20 @@ page {
 /* global wx */
 import wepy from "wepy";
 import dayjs from "dayjs";
+import header from "../../components/headers";
 import PageMixin from "../../mixins/page";
 export default class Course extends wepy.page {
   mixins = [PageMixin];
   config = {
     navigationBarBackgroundColor: "#fff"
   };
-  components = {};
+  components = {
+    header
+  };
   data = {
+    tabIndex: 0,
+    datas: [],
+    branchId: null,
     loadUser: true, // 需要登录信息
     height: "",
     current: null,
@@ -313,15 +288,50 @@ export default class Course extends wepy.page {
     date: [],
     currentIndex: null,
     timeIndex: null,
-    leftData: [
-      { name: "00:00-09:00", id: 1 },
-      { name: "09:00-15:00", id: 2 },
-      { name: "15:00-18:00", id: 3 },
-      { name: "18:00-21:00", id: 4 },
-      { name: "21:00-24:00", id: 5 }
-    ]
+    leftData: [],
+    formDatatime: null,
+    formDate: null
   };
+  checkFun(e) {
+    if (!this.formDatatime) {
+      wx.showToast({
+        icon: "none",
+        title: "请选择预约时间段"
+      });
+      return;
+    }
+    this.fetchDataPromise("calendar.json", {
+      coachId:
+        this.tabIndex === 0
+          ? this.datas.current.id
+          : e.currentTarget.dataset.id,
+      branchId: this.branchId,
+      time: this.formDatatime,
+      date: this.formDate.dates,
+      action: "reserve"
+    }).then(data => {
+      if (data.ret) {
+        wx.showToast({
+          title: "预约成功"
+        });
+      }
+      this.$apply();
+    });
+  }
   methods = {
+    getTime(e) {
+      this.formDatatime = e.currentTarget.dataset.item.id;
+    },
+    yuyueFun(e) {
+      this.checkFun(e);
+    },
+    // 立即约课
+    tabFun() {
+      this.checkFun();
+    },
+    tabFuns() {
+      this.tabIndex = 1;
+    },
     // 确认选择
     sureFun() {
       if (this.current === "1") {
@@ -410,30 +420,9 @@ export default class Course extends wepy.page {
       this.isShow = !this.isShow;
       this.$apply();
     },
-    // 顶部导航栏切换
-    tabs() {
-      console.log("this.tab", this.tab);
-      if (this.tab == 1) {
-        this.tab = 2;
-      } else {
-        this.tab = 1;
-      }
-      this.getCourse("reserve");
-      this.$apply();
-    },
     getDate(e) {
       this.currentIndex = e.currentTarget.dataset.index;
-      console.log(this.date[this.currentIndex]);
-      if (this.tab === 2) {
-        this.fetchDataPromise("page/calendar.json", {
-          date: this.date[this.currentIndex].dates,
-          action: "info"
-        }).then(res => {
-          this.$apply();
-        });
-      } else {
-        this.getCourse("info");
-      }
+      this.formDate = this.date[this.currentIndex];
     }
   };
   // 查询教练和课程
@@ -481,11 +470,32 @@ export default class Course extends wepy.page {
     });
   }
   onReachBottom() {}
-  whenAppReadyShow() {}
+  whenAppReadyShow() {
+    for (let i = 9; i <= 22; i++) {
+      this.leftData.push({
+        name: i + ":00",
+        id: i
+      });
+    }
+    this.fetchDataPromise("page/calendar.json", {
+      action: "coachs",
+      branchId: this.branchId
+    }).then(data => {
+      this.datas = data;
+      this.$apply();
+    });
+  }
+  onLoad(options) {
+    this.branchId = options.branchId;
+  }
   onShow() {
     wx.getSystemInfo({
       success: res => {
         this.height = res.statusBarHeight;
+        this.$broadcast("index-broadcast", {
+          height: this.height,
+          text: "OneFit健身"
+        });
       }
     });
     this.date = [];
@@ -576,6 +586,7 @@ export default class Course extends wepy.page {
         )
       ) {
         this.currentIndex = this.date.length - 1;
+        this.formDate = this.date[this.currentIndex];
       }
     }
   }

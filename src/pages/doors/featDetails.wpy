@@ -57,7 +57,7 @@ page {
      <view class="tit">教练视频展示</view>
      <video />
     </view>
-    <view class="bottom">购买TA的私教课</view>
+    <view class="bottom" @tap="buy">购买TA的私教课</view>
   </view>
 </template>
 
@@ -78,9 +78,42 @@ export default class Course extends wepy.page {
   };
   data = {
     height: "",
-    datas: [1, 2, 3, 4]
+    datas: [1, 2, 3, 4],
+    details: null,
+    coachId: null,
+    branchId: null
   };
-  methods = {};
+  onLoad(options) {
+    this.branchId = options.branchId;
+    this.coachId = options.coachId;
+  }
+  methods = {
+    buy() {
+      wx.navigateTo({
+        url: "/pages/home/buy?branchId=" + this.branchId
+      });
+    }
+  };
+  whenAppReadyShow() {
+    var that = this;
+    this.fetchDataPromise("page/branch.json", {
+      action: "coach",
+      branchId: this.branchId,
+      coachId: this.coachId
+    }).then(data => {
+      this.details = data;
+      wx.getStorage({
+        key: "userInfo",
+        success(res) {
+          that.$broadcast("index-broadcast", {
+            coachInfo: data,
+            user: JSON.parse(res.data)
+          });
+        }
+      });
+      this.$apply();
+    });
+  }
   onShow() {
     wx.getSystemInfo({
       success: res => {

@@ -20,17 +20,10 @@
       </view>
 
       <view class="item-list">
-        <view class="list">
-          <image src="../../images/icon15.png" class="icon15"/>
-          <text>OneFit王伟</text>
-          <view class="details">查看详情</view>
-          <image src="../../images/icon26.png" class="icon26"/>
-        </view>
-
-        <view class="list">
-          <image src="../../images/icon15.png" class="icon15"/>
-          <text>OneFit王伟</text>
-          <view class="details" bindtap="detailsFun">查看详情</view>
+        <view class="list"  wx:for="{{items}}">
+          <image src="{{item.avatar}}"/>
+          <text>{{item.nickName}}</text>
+          <view class="details" data-id="{{item.id}}" bindtap="detailsFun">查看详情</view>
           <image src="../../images/icon26.png" class="icon26"/>
         </view>
       </view>

@@ -234,43 +234,43 @@ page {
 
     <view class="address">
       <view class="tit">门店地址</view>
-      <view class="size">上海上海上海上海上海上海上海上海</view>
+      <view class="size">{{details.location}}</view>
     </view>
 
-    <view class="express">
+    <view class="express"  wx:if="{{details.coachs.length !== 0}}">
       <image src="../../images/icon50.png" />
     </view>
 
-    <image src="../../images/icon33.png" class="icon33"/>
+    <image src="../../images/icon33.png" class="icon33"  wx:if="{{details.coachs.length !== 0}}"/>
 
-    <view class="banner">
+    <view class="banner" wx:if="{{details.coachs.length !== 0}}">
       <image src="../../images/icon17.png" class="icon17"/>
       <swiper
       current="{{currentIndex}}"
       @change="change"
       circular="true"
       >
-        <block wx:for="{{datas}}" wx:for-index="idx"  wx:key="">
+        <block wx:for="{{details.coachs}}" wx:for-index="idx"  wx:key="">
           <swiper-item>
-            <image  @tap="buyFeat" src="../../images/icon10.png" class="slide-image" />
-            <view  @tap="buyFeat" class="opacity {{currentIndex2 !== idx ? 'hover' : ''}}" />
+            <image data-item="{{item}}"  @tap="buyFeat" src="{{item.images[0]}}" class="slide-image" />
+            <view  data-item="{{item}}" @tap="buyFeat" class="opacity {{currentIndex2 !== idx ? 'hover' : ''}}" />
           </swiper-item>
         </block>
       </swiper>
       <image src="../../images/icon17.png" class="icon17 icon18"/>
     </view>
 
-    <view class="express">
+    <view class="express" wx:if="{{details.courses.length !== 0}}">
       <image src="../../images/icon48.png" />
     </view>
 
-    <image src="../../images/icon33.png" class="icon33"/>
+    <image src="../../images/icon33.png" class="icon33" wx:if="{{details.courses.length !== 0}}"/>
 
-    <view class="items-list">
-      <view class="list"  @tap="buyCorse">
-         <image src="https://cdn.sunjoypai.com/images/5838/1239/4271/632cdc626038c929e4f2af8ca727266b_0_0.png" class="icon11" />
+    <view class="items-list" wx:if="{{details.courses.length !== 0}}">
+      <view class="list"  wx:for="{{details.courses}}" data-item="{{item}}"  @tap="buyCorse">
+         <image src="../../images/icon61.png" class="icon11" />
          <image src="../../images/icon51.png" class="icon27"/>
-         <view class="text">减脂私教</view>
+         <view class="text">{{item.name}}</view>
          <image src="../../images/icon47.png" class="icon13"/>
       </view>
     </view>
@@ -294,7 +294,9 @@ export default class Course extends wepy.page {
     height: "",
     datas: [1, 2, 3, 4],
     currentIndex: 0,
-    currentIndex2: 1
+    currentIndex2: 1,
+    details: null,
+    branchId: null
   };
   methods = {
     change(e) {
@@ -302,17 +304,38 @@ export default class Course extends wepy.page {
         e.detail.current + 1 === this.datas.length ? 0 : e.detail.current + 1;
       console.log(this.currentIndex2);
     },
-    buyFeat() {
+    buyFeat(e) {
       wx.navigateTo({
-        url: "/pages/doors/featDetails"
+        url:
+          "/pages/doors/featDetails?coachId=" +
+          e.currentTarget.dataset.item.id +
+          "&branchId=" +
+          this.branchId
       });
     },
-    buyCorse() {
+    buyCorse(e) {
       wx.navigateTo({
-        url: "/pages/doors/corseDetails"
+        url:
+          "/pages/doors/corseDetails?courseId=" +
+          e.currentTarget.dataset.item.id +
+          "&branchId=" +
+          this.branchId
       });
     }
   };
+  onLoad(options) {
+    this.branchId = options.id;
+  }
+  whenAppReadyShow() {
+    var that = this;
+    this.fetchDataPromise("page/branch.json", {
+      action: "detail",
+      branchId: this.branchId
+    }).then(data => {
+      this.details = data;
+      this.$apply();
+    });
+  }
   onShow() {
     wx.getSystemInfo({
       success: res => {

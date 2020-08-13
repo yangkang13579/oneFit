@@ -9,6 +9,13 @@ page {
 }
 .item {
   margin-top: 20rpx;
+  font-size: 32rpx;
+}
+.item .empty {
+  margin-top: 100rpx;
+  width: 100%;
+  text-align: center;
+  color: #fff;
 }
 .item .list {
   width: 700rpx;

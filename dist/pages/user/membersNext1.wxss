@@ -73,7 +73,8 @@ page {
   margin-left: 20rpx;
 }
 .inputs .inputs-left input {
-  width: 220rpx;
+  width: 200rpx;
+  padding-left: 20rpx;
   height: 50rpx;
   border: 1rpx solid #acacac;
   border-radius: 10rpx;

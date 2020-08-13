@@ -34,39 +34,39 @@
 
     <view class="address">
       <view class="tit">门店地址</view>
-      <view class="size">上海上海上海上海上海上海上海上海</view>
+      <view class="size">{{details.location}}</view>
     </view>
 
-    <view class="express">
+    <view class="express"  wx:if="{{details.coachs.length !== 0}}">
       <image src="../../images/icon50.png"/>
     </view>
 
-    <image src="../../images/icon33.png" class="icon33"/>
+    <image src="../../images/icon33.png" class="icon33" wx:if="{{details.coachs.length !== 0}}"/>
 
-    <view class="banner">
+    <view class="banner" wx:if="{{details.coachs.length !== 0}}">
       <image src="../../images/icon17.png" class="icon17"/>
       <swiper current="{{currentIndex}}" bindchange="change" circular="true">
-        <block  wx:for="{{datas}}" wx:for-index="idx" wx:key="">
+        <block wx:for="{{details.coachs}}" wx:for-index="idx" wx:key="">
           <swiper-item>
-            <image bindtap="buyFeat" src="../../images/icon10.png" class="slide-image"/>
-            <view bindtap="buyFeat" class="opacity {{currentIndex2 !== idx ? 'hover' : ''}}"/>
+            <image data-item="{{item}}" bindtap="buyFeat" src="{{item.images[0]}}" class="slide-image"/>
+            <view data-item="{{item}}" bindtap="buyFeat" class="opacity {{currentIndex2 !== idx ? 'hover' : ''}}"/>
           </swiper-item>
         </block>
       </swiper>
       <image src="../../images/icon17.png" class="icon17 icon18"/>
     </view>
 
-    <view class="express">
+    <view class="express" wx:if="{{details.courses.length !== 0}}">
       <image src="../../images/icon48.png"/>
     </view>
 
-    <image src="../../images/icon33.png" class="icon33"/>
+    <image src="../../images/icon33.png" class="icon33" wx:if="{{details.courses.length !== 0}}"/>
 
-    <view class="items-list">
-      <view class="list" bindtap="buyCorse">
-         <image src="https://cdn.sunjoypai.com/images/5838/1239/4271/632cdc626038c929e4f2af8ca727266b_0_0.png" class="icon11"/>
+    <view class="items-list" wx:if="{{details.courses.length !== 0}}">
+      <view class="list" wx:for="{{details.courses}}" data-item="{{item}}" bindtap="buyCorse">
+         <image src="../../images/icon61.png" class="icon11"/>
          <image src="../../images/icon51.png" class="icon27"/>
-         <view class="text">减脂私教</view>
+         <view class="text">{{item.name}}</view>
          <image src="../../images/icon47.png" class="icon13"/>
       </view>
     </view>

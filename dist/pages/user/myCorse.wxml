@@ -11,18 +11,18 @@
       <text>我的课程</text> -->
     <view class="center" style="margin-top:{{(height*2 + 25)}}px">
       <image src="../../images/icon2.png" class="icon2"/>
-      <image src="../../images/icon3.png" class="icon3"/>
+      <image src="{{userInfo.avatar}}" class="icon3"/>
     </view>
-    <view class="name">OneFit王伟</view>
+    <view class="name">{{userInfo.nickName}}</view>
 
     <view class="item">
       <view class="left">
         <view class="text">累计训练时长(min)</view>
-        <view>158</view>
+        <view>{{items.hour}}</view>
       </view>
       <view class="right">
         <view class="text">累计训练课时（hour）</view>
-        <view>158</view>
+        <view>{{items.course}}</view>
       </view>
     </view>
     <view class="item item2">
@@ -36,15 +36,15 @@
       <view class="times">
         <view>
           <view class="times-text">训练次数</view>
-          <view class="times-num">8</view>
+          <view class="times-num">0</view>
         </view>
         <view>
           <view class="times-text">训练时长</view>
-          <view class="times-num">8</view>
+          <view class="times-num">0</view>
         </view>
         <view>
           <view class="times-text">训练天数</view>
-          <view class="times-num">8</view>
+          <view class="times-num">0</view>
         </view>
       </view>
     </view>

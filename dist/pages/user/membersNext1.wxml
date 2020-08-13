@@ -7,9 +7,9 @@
 </view>
 
     <view class="headers" style="margin-top:{{(height*2 + 25)}}px">
-      <image src="../../images/icon15.png"/>
+      <image src="{{avatar}}"/>
       <view class="headers-top">
-        <view class="tit">OneFit王伟</view>
+        <view class="tit">{{nickName}}</view>
       </view>
     </view>
     <view class="data">
@@ -18,47 +18,45 @@
       <view class="inputs">
         <view class="inputs-left">
           <text>体脂率</text>
-          <input/>
+          <input bindblur="gettiz" bindconfirm="gettiz" value="{{formData.tiz}}"/>
         </view>
 
         <view class="inputs-left">
           <text>身高</text>
-          <input/>
+          <input bindblur="getsg" bindconfirm="getsg" value="{{formData.sg}}"/>
         </view>
 
         <view class="inputs-left">
           <text>肌肉</text>
-          <input/>
+          <input bindblur="getjr" bindconfirm="getjr" value="{{formData.jr}}"/>
         </view>
 
         <view class="inputs-left">
           <text>体重</text>
-          <input/>
+          <input bindblur="gettz" bindconfirm="gettz" value="{{formData.tz}}"/>
         </view>
 
         <view class="inputs-left">
           <text>脂肪</text>
-          <input/>
+          <input bindblur="getzf" bindconfirm="getzf" value="{{formData.zf}}"/>
         </view>
 
         <view class="inputs-left">
           <text>腰围</text>
-          <input/>
+          <input bindblur="getyw" bindconfirm="getyw" value="{{formData.yw}}"/>
         </view>
-
         <view class="inputs-left">
-          <text>腰围</text>
-          <input/>
+          <text>胸围</text>
+          <input value="{{formData.xw}}"/>
         </view>
-
         <view class="inputs-left">
           <text>臂围</text>
-          <input/>
+          <input bindblur="gettw" bindconfirm="gettw" value="{{formData.tw}}"/>
         </view>
 
         <view class="inputs-left inputs-last">
           <text>基础代谢</text>
-          <input/>
+          <input bindblur="getdx" bindconfirm="getdx" value="{{formData.dx}}"/>
         </view>
       </view>
       <image src="../../images/icon26.png" class="icon26"/>
@@ -79,9 +77,9 @@
       </view>
 
       <view class="ticeTime">体测时间：
-        <picker class="text3" bindchange="bindPickerChange" range="{{array}}">
+        <picker class="text3" bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
           <view class="picker">
-            111
+            {{array[index]}}
           </view>
           <view class="right">
             <image src="../../images/icon45.png" class="icon45"/>
@@ -89,5 +87,5 @@
         </picker>
       </view>
     </view>
-    <view class="btn">下一步</view>
+    <view class="btn" bindtap="upload">上传</view>
   </view>

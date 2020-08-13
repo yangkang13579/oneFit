@@ -1,0 +1,85 @@
+<style lang="less">
+.tabBar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 98rpx;
+  background: #2d2d2d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  view {
+    width: 33%;
+    text-align: center;
+    font-size: 20rpx;
+    color: rgba(255, 255, 255, 1);
+    image {
+      width: 40rpx;
+      margin-top: 8rpx;
+      height: 40rpx;
+    }
+    view {
+      width: 100%;
+      text-align: center;
+      color: RGBA(79, 79, 79, 1);
+    }
+    .hover {
+      color: #fff;
+    }
+  }
+}
+</style>
+<template>
+<view class="tabBar">
+  <view class='tabBar-List'  style="{{isCoach ? 'width:50%' : ''}}" wx:for="{{list}}" wx:for-index="idx" data-index="{{idx}}" @tap="tabFun">
+    <image wx:if="{{isCoach}}" src="{{current === idx + 1 ?  '../../images/himages' + (idx + 1) + '.png' : '../../images/images' + (idx + 1) + '.png'}}" />
+    <image wx:else src="{{current === idx ?  '../../images/himages' + idx + '.png' : '../../images/images' + idx + '.png'}}" />
+    <view wx:if="{{isCoach}}" class="{{current === idx + 1 ? 'hover' : ''}}">{{item}}</view>
+     <view wx:else class="{{current === idx ? 'hover' : ''}}">{{item}}</view>
+  </view>
+</view>
+</template>
+<script>
+import wepy from "wepy";
+export default class common extends wepy.component {
+  props = {};
+  data = {
+    height: "",
+    text: "",
+    list: [],
+    current: null,
+    userInfo: {},
+    isCoach: null
+  };
+  watch = {};
+  events = {
+    tab: (...args) => {
+      this.current = +args[0].current;
+      this.isCoach = args[0].userInfo.isCoach;
+      if (args[0].userInfo.isCoach) {
+        this.list = ["门店", "我的"];
+      } else {
+        this.list = ["私教", "门店", "我的"];
+      }
+    }
+  };
+  methods = {
+    tabFun(e) {
+      const index = e.currentTarget.dataset.index;
+      if (this.isCoach) {
+        wx.switchTab({
+          url: index === 0 ? "/pages/doors/doors" : "/pages/user/user"
+        });
+      } else {
+        wx.switchTab({
+          url:
+            index === 0
+              ? "/pages/home/home1"
+              : index === 1 ? "/pages/doors/doors" : "/pages/user/user"
+        });
+      }
+    }
+  };
+}
+</script>

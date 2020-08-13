@@ -130,19 +130,19 @@ page {
   <view class="top">
     <header />
     <view class="headers"  style="margin-top:{{(height*2 + 25)}}px">
-      <image src="../../images/icon15.png" />
+      <image src="{{details.avatar}}" />
       <view class="headers-top">
-        <view class="tit">OneFit王伟</view>
+        <view class="tit">{{details.nickName}}</view>
       </view>
     </view>
     <view class="item">
       <view class="left">
         <view class="text">累计训练时长(min)</view>
-        <view>158</view>
+        <view>{{details.stat.hour}}</view>
       </view>
       <view class="right">
         <view class="text">累计训练课时（hour）</view>
-        <view>158</view>
+        <view>{{details.stat.course}}</view>
       </view>
     </view>
     <view class="item item2">
@@ -156,21 +156,21 @@ page {
       <view class="times">
         <view>
           <view class="times-text">训练次数</view>
-          <view class="times-num">8</view>
+          <view class="times-num">0</view>
         </view>
         <view>
           <view class="times-text">训练时长</view>
-          <view class="times-num">8</view>
+          <view class="times-num">0</view>
         </view>
         <view>
           <view class="times-text">训练天数</view>
-          <view class="times-num">8</view>
+          <view class="times-num">0</view>
         </view>
       </view>
       
     </view>
     <view class="btn">
-      <view @tap="ticeData">上传体侧数据</view>
+      <view @tap="ticeData">上传体测数据</view>
       <view @tap="memberImage">上传会员照片</view>
       <view @tap="expressPlan">查看训练计划</view>
       <view @tap="eatPlan">查看饮食计划</view>
@@ -194,15 +194,36 @@ export default class Course extends wepy.page {
   data = {
     height: "",
     value: null,
-    months: []
+    months: [],
+    id: null,
+    details: null
   };
+  onLoad(options) {
+    this.id = options.id;
+  }
+  whenAppReadyShow() {
+    var that = this;
+    this.fetchDataPromise("page/coach.json", {
+      action: "userFit",
+      userId: this.id
+    }).then(function(data) {
+      that.details = data;
+      that.$apply();
+    });
+  }
   methods = {
     goBack() {
       wx.navigateBack();
     },
     ticeData() {
       wx.navigateTo({
-        url: "/pages/user/membersNext1"
+        url:
+          "/pages/user/membersNext1?id=" +
+          this.id +
+          "&nickName=" +
+          this.details.nickName +
+          "&avatar=" +
+          this.details.avatar
       });
     },
     memberImage() {

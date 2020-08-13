@@ -1,8 +1,11 @@
 
   <view class="top">
-    <view class="header" style="height: {{height*2 + 20}}px;">
-      <text>OneFit健身</text>
-    </view>
+    
+<view class="header" style="height: {{$header$height*2 + 20}}px;line-height:{{($header$height*2 + 44)}}px">
+  <image bindtap="$header$goBack" src="../../images/icon44.png" class="icon44" style="margin-top:{{($header$height*2 + 26)/2}}px"/>
+  <text>{{$header$text}}</text>
+</view>
+
     <view class="times" style="margin-top:{{height*2 + 20}}px">
       <scroll-view scroll-x="true" scroll-into-view="id_{{currentIndex}}" class="time">
         <view class="block"  wx:for="{{date}}" wx:for-item="item" wx:for-index="idx" data-index="{{idx}}" id="id_{{idx}}" bindtap="getDate">
@@ -20,61 +23,37 @@
 
     <view class="point">
       <scroll-view scroll-x="true" class="point-time">
-        <view class="block"  wx:for="{{leftData}}" wx:for-item="item" wx:for-index="idx" data-index="{{idx}}" id="id_{{idx}}" bindtap="getDate">
-          <view>{{item.name}}</view>
+        <view class="block"  wx:for="{{leftData}}" wx:for-item="item" wx:for-index="idx" data-item="{{item}}" id="id_{{idx}}" bindtap="getTime">
+          <view class="{{formDatatime === item.id ? 'hover' : ''}}">{{item.name}}</view>
         </view>
       </scroll-view>
     </view>
 
-    <!-- <view class="btn">
-      <view class="btn-left">立即约课</view>
-      <view class="btn-right">预约其他教练</view>
-    </view> -->
-    <view class="item-list">
-      <view class="item">
-        <image src="../../images/icon10.png" class="logo"/>
+    <view class="btn" wx:if="{{tabIndex == 0}}">
+      <view class="btn-left" bindtap="tabFun">立即约课</view>
+      <view class="btn-right" bindtap="tabFuns">预约其他教练</view>
+    </view>
+    <view class="item-list" wx:if="{{tabIndex !== 0}}">
+      <view class="item" wx:for="{{datas.items}}">
+        <image src="{{item.images[0]}}" class="logo"/>
         <view class="name">
-          <view class="name-tips">陈蕴 Jordan</view>
+          <view class="name-tips">{{item.name}}</view>
           <view class="tips">
-            <text>塑性</text>
+            <text>{{item.introduce}}</text>
           </view>
         </view>
-        <image src="../../images/icon29.png" class="icon29"/>
-      </view>
-      <view class="item">
-        <image src="../../images/icon10.png" class="logo"/>
-        <view class="name">
-          <view class="name-tips">陈蕴 Jordan</view>
-          <view class="tips">
-            <text>塑性</text>
-          </view>
-        </view>
-        <image src="../../images/icon29.png" class="icon29"/>
-      </view>
-      <view class="item">
-        <image src="../../images/icon10.png" class="logo"/>
-        <view class="name">
-          <view class="name-tips">陈蕴 Jordan</view>
-          <view class="tips">
-            <text>塑性</text>
-          </view>
-        </view>
-        <image src="../../images/icon29.png" class="icon29"/>
+        <image src="../../images/icon29.png" data-id="{{item.id}}" class="icon29" bindtap="yuyueFun"/>
       </view>
     </view>
-    <!-- <view class="teacher">
+    <view class="teacher" wx:else>
       <image src="../../images/icon8.png" class="icon8"/>
-      <image src="../../images/icon10.png" class="icon10">
+      <image src="{{datas.current.images[0]}}" class="icon10"/>
       <view class="teacher-name">
-        <image src="../../images/icon9.png" class="icon9" />
-        <text>陈蕴 Jordan</text>
+        <image src="../../images/icon9.png" class="icon9"/>
+        <text>{{datas.current.name}}</text>
       </view>
       <view class="introduce">
-          OneFit创始人
-          UNDERARMOUR中国首位品牌大使
-          alandv运动营养品牌大使
-          JOINFIT品牌顾问
-          AQ护具品牌顾问
+         {{datas.current.introduce}}
       </view>
-    </view> -->
+    </view>
   </view>

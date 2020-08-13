@@ -51,11 +51,18 @@ page {
         margin-bottom: 20rpx;
       }
       .bottom {
-        color: rgba(255, 255, 255, 1);
-        border: 1rpx solid rgba(224, 37, 16, 1);
+        // color: rgba(255, 255, 255, 1);
+        // border: 1rpx solid rgba(224, 37, 16, 1);
+        // border-radius: 25rpx;
+        // font-size: 24rpx;
+        // padding: 0 5rpx;
+        color: #ffffff;
+        border: 1rpx solid #e02510;
         border-radius: 25rpx;
         font-size: 24rpx;
         padding: 0 5rpx;
+        width: 97rpx;
+        text-align: center;
       }
     }
     .cancle {
@@ -80,39 +87,17 @@ page {
     <header />
     <view class="content" style="margin-top:{{(height*2 + 25)}}px">
       <view class="item">
-        <view class="tit">2020-06-08 今日约课6节
-          <image src="../../images/icon29.png" />
-        </view>
+        <!-- <view class="tit">2020-06-08 今日约课6节
+          <image src="../../images/icon57.png" />
+        </view> -->
         <view class="item-list">
-          <view class="item">
-            <image src="../../images/icon14.png" class="icon14"/>
+          <view class="item" wx:for="{{list}}">
+            <image src="{{item.user.avatar}}" class="icon14"/>
             <view class="center">
-              <view class="top">11:00-12:00</view>
-              <view class="bottom">确认并编写训练计划/饮食计划</view>
+              <view class="top">{{item.day}}</view>
+              <view class="bottom">{{item.time}}:00</view>
             </view>
-            <view class="cancle">取消</view>
-
-            <image src="../../images/icon26.png" class="icon26"/>
-          </view>
-
-          <view class="item">
-            <image src="../../images/icon14.png" class="icon14"/>
-            <view class="center">
-              <view class="top">11:00-12:00</view>
-              <view class="bottom">确认并编写训练计划/饮食计划</view>
-            </view>
-            <view class="cancle">取消</view>
-
-            <image src="../../images/icon26.png" class="icon26"/>
-          </view>
-
-          <view class="item">
-            <image src="../../images/icon14.png" class="icon14"/>
-            <view class="center">
-              <view class="top">11:00-12:00</view>
-              <view class="bottom">确认并编写训练计划/饮食计划</view>
-            </view>
-            <view class="cancle">取消</view>
+            <view class="cancle" data-id="{{item.id}}" @tap="details">查看</view>
 
             <image src="../../images/icon26.png" class="icon26"/>
           </view>
@@ -137,16 +122,26 @@ export default class Course extends wepy.page {
   };
   data = {
     currentIndex: null,
-    height: null
+    height: null,
+    list: []
   };
   methods = {
     details(e) {
-      this.currentIndex = e.currentTarget.dataset.index;
+      const id = e.currentTarget.dataset.id;
       wx.navigateTo({
-        url: "/pages/user/teceData"
+        url: "/pages/user/yuekeNext?id=" + id
       });
     }
   };
+  whenAppReadyShow() {
+    var that = this;
+    this.fetchDataPromise("page/coach.json", {
+      action: "userReserve"
+    }).then(function(data) {
+      that.list = data.items;
+      that.$apply();
+    });
+  }
   onShow() {
     wx.getSystemInfo({
       success: res => {

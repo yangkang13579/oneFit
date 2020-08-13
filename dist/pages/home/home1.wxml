@@ -13,19 +13,19 @@
       <image src="{{$common$branch.user.avatar}}" class="icon3"/>
     </view>
     <image src="../../images/icon8.png" class="icon8"/>
-    <image src="../../images/icon10.png" class="icon10"/>
+    <image src="{{$common$branch.coachInfo.images[0]}}" class="icon10"/>
     <view class="teacher-name">
       <image src="../../images/icon9.png" class="icon9"/>
       <view>
         <text>您的专属教练：</text>
-        <text class="name">{{$common$branch.name}}</text>
+        <text class="name">{{$common$branch.coachInfo.name}}</text>
       </view>
     </view>
     <view class="teacher-name teacher-name2">
       <image src="../../images/icon9.png" class="icon9"/>
       <view>
         <text/>
-        <text class="name">{{$common$branch.branchs[0].name}}</text>
+        <text class="name">{{$common$branch.coachInfo.branchs[0].name}}</text>
       </view>
     </view>
   </view>
@@ -52,32 +52,32 @@
     </swiper>
 
     <view class="has-info display:{{userInfo.isNewUser ? 'block' : 'none'}}">
-      <image src="../../images/icon27.png" class="icon27"/>
+      <image src="../../images/icon27.png" class="icon27" bindtap="buys"/>
       <view class="cavas">
         <canvas canvas-id="runCanvas" id="runCanvas" class="canvas"/>
         <view class="content-cavas">
           <view style="margin-top:32rpx;">剩余课时</view>
-          <view class="b">158</view>
-          <view>
+          <view class="b">{{pageFirst.cardInfo.balance}}</view>
+          <!-- <view>
             购买课时量：200
-          </view>
+          </view> -->
         </view>
       </view>
-      <image src="../../images/icon30.png" class="icon30" bindtap="buy"/>
+      <image  wx:if="{{pageFirst.cardInfo.balance > 0}}" src="../../images/icon30.png" class="icon30" bindtap="buy"/>
     </view>
 
-    <!-- <view class="info-bottom {{userInfo.isNewUser ? 'block' : 'none'}}">
-      <image src="../../images/icon28.png" />
+    <view wx:if="{{pageFirst.cardInfo.balance !== 0}}" class="info-bottom {{userInfo.isNewUser ? 'block' : 'none'}}">
+      <image src="../../images/icon28.png"/>
       <view>
         <text class="text-top">您已成功预约私教体验课，我们将尽快与您联系</text>
         <view>
-          <text class="text-left">门店：OneFit杨浦店</text>
-          <text class="text-right">教练：陈蕴 Jordan</text>
+          <text class="text-left">门店：{{pageFirst.coachInfo.branchs[0].name}}</text>
+          <text class="text-right">教练：{{pageFirst.coachInfo.name}}</text>
         </view>
       </view>
-    </view> -->
+    </view>
 
-    <view class="myList">
+    <view class="myList" wx:else>
       <view class="item1">
         <view class="tit">
           <text>我的预约</text>
@@ -283,4 +283,14 @@
         </view>
       </view>
     </view>
+    
+<view class="tabBar">
+  <view class="tabBar-List" style="{{$tabBar$isCoach ? 'width:50%' : ''}}"  wx:for="{{$tabBar$list}}" wx:for-index="idx" data-index="{{idx}}" bindtap="$tabBar$tabFun">
+    <image wx:if="{{$tabBar$isCoach}}" src="{{$tabBar$current === idx + 1 ?  '../../images/himages' + (idx + 1) + '.png' : '../../images/images' + (idx + 1) + '.png'}}"/>
+    <image wx:else src="{{$tabBar$current === idx ?  '../../images/himages' + idx + '.png' : '../../images/images' + idx + '.png'}}"/>
+    <view wx:if="{{$tabBar$isCoach}}" class="{{$tabBar$current === idx + 1 ? 'hover' : ''}}">{{item}}</view>
+     <view wx:else class="{{$tabBar$current === idx ? 'hover' : ''}}">{{item}}</view>
+  </view>
+</view>
+
   </view>

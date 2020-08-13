@@ -1,0 +1,35 @@
+<template lang="wxml">
+  <view>
+    <header />
+    <view  style="margin-top:{{(height*2 + 25)}}px" />
+  </view>
+</template>
+<script>
+/* global wx */
+import wepy from "wepy";
+import PageMixin from "../../mixins/page";
+import header from "../../components/headers";
+export default class Course extends wepy.page {
+  mixins = [PageMixin];
+  config = {
+    navigationBarBackgroundColor: "#fff"
+  };
+  data = {
+    height: ""
+  };
+  components = {
+    header
+  };
+  onShow() {
+    wx.getSystemInfo({
+      success: res => {
+        this.height = res.statusBarHeight;
+        this.$broadcast("index-broadcast", {
+          height: this.height,
+          text: "OneFit健身"
+        });
+      }
+    });
+  }
+}
+</script>

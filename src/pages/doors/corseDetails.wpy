@@ -96,8 +96,8 @@ page {
     </view>
 
     <view class="item">
-      <text>减脂私教</text>
-      <view>¥450/节</view>
+      <text>{{details.name}}</text>
+      <view>¥{{details.price}}/节</view>
     </view>
 
     <view class="video">
@@ -105,12 +105,10 @@ page {
       <image src="../../images/icon46.png" class="icon46"/>
       <video />
       <view class="text">
-        是非成败转头空，青山依旧在，惯看秋月春风。一壶浊酒喜相逢，古今多少事，滚滚长江东逝水，浪花淘尽英雄。 几度夕阳红。白发渔樵江渚上，都付笑谈中。
-        滚滚长江东逝水，浪花淘尽英雄。是非成败转头空，青山依旧在，几度夕阳红。白发渔樵江渚上，惯看秋月春风。一壶浊酒喜相逢，古今多少事，都付笑谈中。
-        是非成败转头空，青山依旧在，惯看秋月春风。一壶浊酒喜相逢，古今多少事，滚滚长江东逝水，浪花淘尽英                       
+        {{details.introduce}}             
       </view>
     </view>
-    <view class="bottom">点击购课</view>
+    <view class="bottom" @tap="buy">点击购课</view>
   </view>
 </template>
 
@@ -129,9 +127,33 @@ export default class Course extends wepy.page {
   };
   data = {
     height: "",
-    datas: [1, 2, 3, 4]
+    datas: [1, 2, 3, 4],
+    courseId: null,
+    branchId: null,
+    details: null
   };
-  methods = {};
+  onLoad(options) {
+    this.branchId = options.branchId;
+    this.courseId = options.courseId;
+  }
+  methods = {
+    buy() {
+      wx.navigateTo({
+        url: "/pages/home/buy?branchId=" + this.branchId
+      });
+    }
+  };
+  whenAppReadyShow() {
+    var that = this;
+    this.fetchDataPromise("page/branch.json", {
+      action: "course",
+      branchId: this.branchId,
+      courseId: this.courseId
+    }).then(data => {
+      this.details = data;
+      this.$apply();
+    });
+  }
   onShow() {
     wx.getSystemInfo({
       success: res => {

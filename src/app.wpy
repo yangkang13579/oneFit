@@ -8,12 +8,13 @@
 import wepy from "wepy";
 import app from "./lib/app";
 import "wepy-async-function";
-
 export default class extends wepy.app {
   config = {
     pages: [
+      "pages/loading",
       "pages/home/home1",
       "pages/home/home",
+      "pages/home/buyMoney",
       "pages/user/user",
       "pages/user/membersNext4",
       "pages/user/membersNext3",
@@ -35,11 +36,11 @@ export default class extends wepy.app {
       "pages/user/teceData",
       "pages/user/myGroup",
       "pages/user/card",
-      "pages/home/buyMoney",
       "pages/home/buyNext",
       "pages/home/buy",
       "pages/home/appointment",
-      "pages/login"
+      "pages/login",
+      "pages/home/text"
     ],
     window: {
       backgroundColor: "#fefefe",
@@ -56,21 +57,15 @@ export default class extends wepy.app {
       list: [
         {
           pagePath: "pages/home/home1",
-          text: "首页",
-          iconPath: "images/icon43.png",
-          selectedIconPath: "images/icon4.png"
+          text: "首页"
         },
         {
           pagePath: "pages/doors/doors",
-          text: "课程",
-          iconPath: "images/icon5.png",
-          selectedIconPath: "images/icon54.png"
+          text: "门店"
         },
         {
           pagePath: "pages/user/user",
-          text: "我的",
-          iconPath: "images/icon6.png",
-          selectedIconPath: "images/icon31.png"
+          text: "我的"
         }
       ]
     },

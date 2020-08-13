@@ -160,6 +160,7 @@ page {
       </view>
     </view>
   </view>
+  <tabBar />
 </view>
 </template>
 
@@ -167,12 +168,15 @@ page {
 /* global wx */
 import wepy from "wepy";
 import PageMixin from "../../mixins/page";
+import tabBar from "../../components/tabBar";
 export default class User extends wepy.page {
   mixins = [PageMixin];
   config = {
     navigationBarTitleText: "我的"
   };
-  components = {};
+  components = {
+    tabBar
+  };
   data = {
     height: "",
     userInfo: {}
@@ -219,12 +223,19 @@ export default class User extends wepy.page {
       });
     }
   };
+  onShow() {
+    wx.hideTabBar();
+  }
   onLoad() {
     var that = this;
     wx.getStorage({
       key: "userInfo",
       success(res) {
         that.userInfo = JSON.parse(res.data);
+        that.$broadcast("tab", {
+          current: 2,
+          userInfo: that.userInfo
+        });
       }
     });
     wx.getSystemInfo({

@@ -14,6 +14,10 @@ var _page = require('./../../mixins/page.js');
 
 var _page2 = _interopRequireDefault(_page);
 
+var _tabBar = require('./../../components/tabBar.js');
+
+var _tabBar2 = _interopRequireDefault(_tabBar);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -40,18 +44,37 @@ var User = function (_wepy$page) {
 
     return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = User.__proto__ || Object.getPrototypeOf(User)).call.apply(_ref, [this].concat(args))), _this), _this.mixins = [_page2.default], _this.config = {
       navigationBarTitleText: "OneFit健身"
-    }, _this.components = {}, _this.data = {
-      height: ""
+    }, _this.components = {
+      tabBar: _tabBar2.default
+    }, _this.data = {
+      height: "",
+      list: []
     }, _this.methods = {
-      goDoor: function goDoor() {
+      goDoor: function goDoor(e) {
         wx.navigateTo({
-          url: "/pages/doors/doorsDetails"
+          url: "/pages/doors/doorsDetails?id=" + e.currentTarget.dataset.item.id
         });
       }
     }, _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(User, [{
+    key: "onShow",
+    value: function onShow() {
+      wx.hideTabBar();
+      var that = this;
+      wx.getStorage({
+        key: "userInfo",
+        success: function success(res) {
+          that.userInfo = JSON.parse(res.data);
+          that.$broadcast("tab", {
+            current: 1,
+            userInfo: that.userInfo
+          });
+        }
+      });
+    }
+  }, {
     key: "onLoad",
     value: function onLoad() {
       var _this2 = this;
@@ -64,7 +87,15 @@ var User = function (_wepy$page) {
     }
   }, {
     key: "whenAppReadyShow",
-    value: function whenAppReadyShow() {}
+    value: function whenAppReadyShow() {
+      var _this3 = this;
+
+      var that = this;
+      this.fetchDataPromise("page/branch.json", {}).then(function (data) {
+        _this3.list = data.branchs;
+        _this3.$apply();
+      });
+    }
   }, {
     key: "onShareAppMessage",
     value: function onShareAppMessage(res) {}
@@ -85,4 +116,4 @@ var User = function (_wepy$page) {
 
 Page(require('./../../npm/wepy/lib/wepy.js').default.$createPage(User , 'pages/doors/doors'));
 
-//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImRvb3JzLmpzIl0sIm5hbWVzIjpbIlVzZXIiLCJtaXhpbnMiLCJQYWdlTWl4aW4iLCJjb25maWciLCJuYXZpZ2F0aW9uQmFyVGl0bGVUZXh0IiwiY29tcG9uZW50cyIsImRhdGEiLCJoZWlnaHQiLCJtZXRob2RzIiwiZ29Eb29yIiwid3giLCJuYXZpZ2F0ZVRvIiwidXJsIiwiZ2V0U3lzdGVtSW5mbyIsInN1Y2Nlc3MiLCJyZXMiLCJzdGF0dXNCYXJIZWlnaHQiLCJlIiwid2VweSIsInBhZ2UiXSwibWFwcGluZ3MiOiI7Ozs7Ozs7O0FBRUE7Ozs7QUFDQTs7Ozs7Ozs7Ozs7QUFGQTs7O0lBR3FCQSxJOzs7Ozs7Ozs7Ozs7OztrTEFDbkJDLE0sR0FBUyxDQUFDQyxjQUFELEMsUUFDVEMsTSxHQUFTO0FBQ1BDLDhCQUF3QjtBQURqQixLLFFBR1RDLFUsR0FBYSxFLFFBQ2JDLEksR0FBTztBQUNMQyxjQUFRO0FBREgsSyxRQUdQQyxPLEdBQVU7QUFDUkMsWUFEUSxvQkFDQztBQUNQQyxXQUFHQyxVQUFILENBQWM7QUFDWkMsZUFBSztBQURPLFNBQWQ7QUFHRDtBQUxPLEs7Ozs7OzZCQU9EO0FBQUE7O0FBQ1BGLFNBQUdHLGFBQUgsQ0FBaUI7QUFDZkMsaUJBQVMsc0JBQU87QUFDZCxpQkFBS1AsTUFBTCxHQUFjUSxJQUFJQyxlQUFsQjtBQUNEO0FBSGMsT0FBakI7QUFLRDs7O3VDQUNrQixDQUFFOzs7c0NBQ0hELEcsRUFBSyxDQUFFOzs7aUNBQ1pFLEMsRUFBRyxDQUFFOzs7OEJBQ1JBLEMsRUFBRyxDQUFFOzs7K0JBQ0pBLEMsRUFBRyxDQUFFOzs7O0VBM0JnQkMsZUFBS0MsSTs7a0JBQWxCbkIsSSIsImZpbGUiOiJkb29ycy5qcyIsInNvdXJjZXNDb250ZW50IjpbIlxuLyogZ2xvYmFsIHd4ICovXG5pbXBvcnQgd2VweSBmcm9tIFwid2VweVwiO1xuaW1wb3J0IFBhZ2VNaXhpbiBmcm9tIFwiLi4vLi4vbWl4aW5zL3BhZ2VcIjtcbmV4cG9ydCBkZWZhdWx0IGNsYXNzIFVzZXIgZXh0ZW5kcyB3ZXB5LnBhZ2Uge1xuICBtaXhpbnMgPSBbUGFnZU1peGluXTtcbiAgY29uZmlnID0ge1xuICAgIG5hdmlnYXRpb25CYXJUaXRsZVRleHQ6IFwiT25lRml05YGl6LqrXCJcbiAgfTtcbiAgY29tcG9uZW50cyA9IHt9O1xuICBkYXRhID0ge1xuICAgIGhlaWdodDogXCJcIlxuICB9O1xuICBtZXRob2RzID0ge1xuICAgIGdvRG9vcigpIHtcbiAgICAgIHd4Lm5hdmlnYXRlVG8oe1xuICAgICAgICB1cmw6IFwiL3BhZ2VzL2Rvb3JzL2Rvb3JzRGV0YWlsc1wiXG4gICAgICB9KTtcbiAgICB9XG4gIH07XG4gIG9uTG9hZCgpIHtcbiAgICB3eC5nZXRTeXN0ZW1JbmZvKHtcbiAgICAgIHN1Y2Nlc3M6IHJlcyA9PiB7XG4gICAgICAgIHRoaXMuaGVpZ2h0ID0gcmVzLnN0YXR1c0JhckhlaWdodDtcbiAgICAgIH1cbiAgICB9KTtcbiAgfVxuICB3aGVuQXBwUmVhZHlTaG93KCkge31cbiAgb25TaGFyZUFwcE1lc3NhZ2UocmVzKSB7fVxuICByZWdpb25jaGFuZ2UoZSkge31cbiAgbWFya2VydGFwKGUpIHt9XG4gIGNvbnRyb2x0YXAoZSkge31cbn1cbiJdfQ==
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImRvb3JzLmpzIl0sIm5hbWVzIjpbIlVzZXIiLCJtaXhpbnMiLCJQYWdlTWl4aW4iLCJjb25maWciLCJuYXZpZ2F0aW9uQmFyVGl0bGVUZXh0IiwiY29tcG9uZW50cyIsInRhYkJhciIsImRhdGEiLCJoZWlnaHQiLCJsaXN0IiwibWV0aG9kcyIsImdvRG9vciIsImUiLCJ3eCIsIm5hdmlnYXRlVG8iLCJ1cmwiLCJjdXJyZW50VGFyZ2V0IiwiZGF0YXNldCIsIml0ZW0iLCJpZCIsImhpZGVUYWJCYXIiLCJ0aGF0IiwiZ2V0U3RvcmFnZSIsImtleSIsInN1Y2Nlc3MiLCJyZXMiLCJ1c2VySW5mbyIsIkpTT04iLCJwYXJzZSIsIiRicm9hZGNhc3QiLCJjdXJyZW50IiwiZ2V0U3lzdGVtSW5mbyIsInN0YXR1c0JhckhlaWdodCIsImZldGNoRGF0YVByb21pc2UiLCJ0aGVuIiwiYnJhbmNocyIsIiRhcHBseSIsIndlcHkiLCJwYWdlIl0sIm1hcHBpbmdzIjoiOzs7Ozs7OztBQUVBOzs7O0FBQ0E7Ozs7QUFDQTs7Ozs7Ozs7Ozs7QUFIQTs7O0lBSXFCQSxJOzs7Ozs7Ozs7Ozs7OztrTEFDbkJDLE0sR0FBUyxDQUFDQyxjQUFELEMsUUFDVEMsTSxHQUFTO0FBQ1BDLDhCQUF3QjtBQURqQixLLFFBR1RDLFUsR0FBYTtBQUNYQztBQURXLEssUUFHYkMsSSxHQUFPO0FBQ0xDLGNBQVEsRUFESDtBQUVMQyxZQUFNO0FBRkQsSyxRQUlQQyxPLEdBQVU7QUFDUkMsWUFEUSxrQkFDREMsQ0FEQyxFQUNFO0FBQ1JDLFdBQUdDLFVBQUgsQ0FBYztBQUNaQyxlQUFLLGtDQUFrQ0gsRUFBRUksYUFBRixDQUFnQkMsT0FBaEIsQ0FBd0JDLElBQXhCLENBQTZCQztBQUR4RCxTQUFkO0FBR0Q7QUFMTyxLOzs7Ozs2QkFPRDtBQUNQTixTQUFHTyxVQUFIO0FBQ0EsVUFBSUMsT0FBTyxJQUFYO0FBQ0FSLFNBQUdTLFVBQUgsQ0FBYztBQUNaQyxhQUFLLFVBRE87QUFFWkMsZUFGWSxtQkFFSkMsR0FGSSxFQUVDO0FBQ1hKLGVBQUtLLFFBQUwsR0FBZ0JDLEtBQUtDLEtBQUwsQ0FBV0gsSUFBSWxCLElBQWYsQ0FBaEI7QUFDQWMsZUFBS1EsVUFBTCxDQUFnQixLQUFoQixFQUF1QjtBQUNyQkMscUJBQVMsQ0FEWTtBQUVyQkosc0JBQVVMLEtBQUtLO0FBRk0sV0FBdkI7QUFJRDtBQVJXLE9BQWQ7QUFVRDs7OzZCQUNRO0FBQUE7O0FBQ1BiLFNBQUdrQixhQUFILENBQWlCO0FBQ2ZQLGlCQUFTLHNCQUFPO0FBQ2QsaUJBQUtoQixNQUFMLEdBQWNpQixJQUFJTyxlQUFsQjtBQUNEO0FBSGMsT0FBakI7QUFLRDs7O3VDQUNrQjtBQUFBOztBQUNqQixVQUFJWCxPQUFPLElBQVg7QUFDQSxXQUFLWSxnQkFBTCxDQUFzQixrQkFBdEIsRUFBMEMsRUFBMUMsRUFBOENDLElBQTlDLENBQW1ELGdCQUFRO0FBQ3pELGVBQUt6QixJQUFMLEdBQVlGLEtBQUs0QixPQUFqQjtBQUNBLGVBQUtDLE1BQUw7QUFDRCxPQUhEO0FBSUQ7OztzQ0FDaUJYLEcsRUFBSyxDQUFFOzs7aUNBQ1piLEMsRUFBRyxDQUFFOzs7OEJBQ1JBLEMsRUFBRyxDQUFFOzs7K0JBQ0pBLEMsRUFBRyxDQUFFOzs7O0VBbERnQnlCLGVBQUtDLEk7O2tCQUFsQnRDLEkiLCJmaWxlIjoiZG9vcnMuanMiLCJzb3VyY2VzQ29udGVudCI6WyJcbi8qIGdsb2JhbCB3eCAqL1xuaW1wb3J0IHdlcHkgZnJvbSBcIndlcHlcIjtcbmltcG9ydCBQYWdlTWl4aW4gZnJvbSBcIi4uLy4uL21peGlucy9wYWdlXCI7XG5pbXBvcnQgdGFiQmFyIGZyb20gXCIuLi8uLi9jb21wb25lbnRzL3RhYkJhclwiO1xuZXhwb3J0IGRlZmF1bHQgY2xhc3MgVXNlciBleHRlbmRzIHdlcHkucGFnZSB7XG4gIG1peGlucyA9IFtQYWdlTWl4aW5dO1xuICBjb25maWcgPSB7XG4gICAgbmF2aWdhdGlvbkJhclRpdGxlVGV4dDogXCJPbmVGaXTlgaXouqtcIlxuICB9O1xuICBjb21wb25lbnRzID0ge1xuICAgIHRhYkJhclxuICB9O1xuICBkYXRhID0ge1xuICAgIGhlaWdodDogXCJcIixcbiAgICBsaXN0OiBbXVxuICB9O1xuICBtZXRob2RzID0ge1xuICAgIGdvRG9vcihlKSB7XG4gICAgICB3eC5uYXZpZ2F0ZVRvKHtcbiAgICAgICAgdXJsOiBcIi9wYWdlcy9kb29ycy9kb29yc0RldGFpbHM/aWQ9XCIgKyBlLmN1cnJlbnRUYXJnZXQuZGF0YXNldC5pdGVtLmlkXG4gICAgICB9KTtcbiAgICB9XG4gIH07XG4gIG9uU2hvdygpIHtcbiAgICB3eC5oaWRlVGFiQmFyKCk7XG4gICAgdmFyIHRoYXQgPSB0aGlzO1xuICAgIHd4LmdldFN0b3JhZ2Uoe1xuICAgICAga2V5OiBcInVzZXJJbmZvXCIsXG4gICAgICBzdWNjZXNzKHJlcykge1xuICAgICAgICB0aGF0LnVzZXJJbmZvID0gSlNPTi5wYXJzZShyZXMuZGF0YSk7XG4gICAgICAgIHRoYXQuJGJyb2FkY2FzdChcInRhYlwiLCB7XG4gICAgICAgICAgY3VycmVudDogMSxcbiAgICAgICAgICB1c2VySW5mbzogdGhhdC51c2VySW5mb1xuICAgICAgICB9KTtcbiAgICAgIH1cbiAgICB9KTtcbiAgfVxuICBvbkxvYWQoKSB7XG4gICAgd3guZ2V0U3lzdGVtSW5mbyh7XG4gICAgICBzdWNjZXNzOiByZXMgPT4ge1xuICAgICAgICB0aGlzLmhlaWdodCA9IHJlcy5zdGF0dXNCYXJIZWlnaHQ7XG4gICAgICB9XG4gICAgfSk7XG4gIH1cbiAgd2hlbkFwcFJlYWR5U2hvdygpIHtcbiAgICB2YXIgdGhhdCA9IHRoaXM7XG4gICAgdGhpcy5mZXRjaERhdGFQcm9taXNlKFwicGFnZS9icmFuY2guanNvblwiLCB7fSkudGhlbihkYXRhID0+IHtcbiAgICAgIHRoaXMubGlzdCA9IGRhdGEuYnJhbmNocztcbiAgICAgIHRoaXMuJGFwcGx5KCk7XG4gICAgfSk7XG4gIH1cbiAgb25TaGFyZUFwcE1lc3NhZ2UocmVzKSB7fVxuICByZWdpb25jaGFuZ2UoZSkge31cbiAgbWFya2VydGFwKGUpIHt9XG4gIGNvbnRyb2x0YXAoZSkge31cbn1cbiJdfQ==

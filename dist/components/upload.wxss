@@ -1,0 +1,76 @@
+.weui-cell,
+.weui-cells {
+  border-radius: 10rpx;
+  background: 0;
+}
+.weui-cells {
+  margin-top: 0 !important;
+  margin-bottom: 16rpx;
+}
+.weui-cell {
+  width: 210rpx;
+  height: 280rpx;
+  padding: 0 !important;
+  background: #fff;
+}
+.container {
+  position: relative;
+}
+.weui-uploader__file {
+  position: relative;
+  margin-left: 20rpx;
+}
+/** 遮罩 */
+.weui-uploader__file-content1 {
+  position: absolute;
+  width: 20rpx;
+  height: 20rpx;
+  right: 40%;
+  background: 0;
+  opacity: 1;
+}
+.weui-uploader__file-content1 image {
+  width: 40rpx;
+  height: 40rpx;
+  position: absolute;
+}
+.weui-uploader__input-box {
+  width: 92rpx;
+  height: 92rpx;
+  border: 0;
+}
+.weui-uploader__input-box image {
+  width: 92rpx;
+  height: 92rpx;
+  margin-left: 20rpx;
+}
+.weui-cells:before {
+  border-top: 0;
+}
+.weui-uploader__input {
+  position: relative;
+  opacity: 1;
+}
+.weui-cells:after {
+  border-bottom: 0;
+}
+.weui-uploader__img {
+  width: 92rpx;
+  height: 92rpx;
+}
+.weui-uploader__input-box:before,
+.weui-uploader__input-box:after {
+  background: #fff !important;
+}
+.weui-uploader__file-content {
+  position: absolute;
+  width: 100%;
+  height: 92rpx;
+  right: 0;
+  top: 47rpx;
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  font-size: 30rpx;
+  text-align: center;
+  line-height: 92rpx;
+}

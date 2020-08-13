@@ -6,34 +6,16 @@
   <text>{{$header$text}}</text>
 </view>
 
-    <view class="items" style="margin-top:{{(height*2 + 25)}}px">
-      <view class="item-list">
-        <image src="../../images/icon15.png"/>
+    <view class="items"  wx:if="{{images.length !== 0}}" style="margin-top:{{(height*2 + 25)}}px">
+      <view class="item-list" wx:for="{{images}}">
+        <image src="{{item.url}}"/>
         <view>
           <text>2020-08-30</text>
-          <text>OneFit杨浦店</text>
+          <text>{{item.name}}</text>
         </view>
-      </view>
-      <view class="item-list">
-        <image src="../../images/icon15.png"/>
-        <view>
-          <text>2020-08-30</text>
-          <text>OneFit杨浦店</text>
-        </view>
-      </view>
-      <view class="item-list">
-        <image src="../../images/icon15.png"/>
-        <view>
-          <text>2020-08-30</text>
-          <text>OneFit杨浦店</text>
-        </view>
-      </view>
-      <view class="item-list">
-        <image src="../../images/icon15.png"/>
-        <view>
-          <text>2020-08-30</text>
-          <text>OneFit杨浦店</text>
-        </view>
-      </view>
       </view>
     </view>
+    <view class="items"  wx:else style="margin-top:{{(height*2 + 25)}}px">
+      <view class="empty">暂无数据</view>
+    </view>
+  </view>

@@ -1,29 +1,35 @@
-<view class="top">
-  <image src="../../images/icon34.png" class="icon34" />
 
-  <view class="header" style="height: {{$header$height*2 + 20}}px;line-height:{{($header$height*2 + 44)}}px">
-    <image bindtap="$header$goBack" src="../../images/icon44.png" class="icon44" style="margin-top:{{($header$height*2 + 26)/2}}px"
-    />
-    <text>{{$header$text}}</text>
-  </view>
-
-  <view class="info-top">
-    <image src="../../images/icon36.png" class="icon35" />
-  </view>
-  <image src="../../images/icon33.png" class="icon33" />
-  <view class="content">
-    <view class="left">{{content.name}}私教</view>
-    <view>{{content.price}}元</view>
-  </view>
-  <view class="checkBox">
-    <view class="left">
-      <image src="../../images/icon37.png" />
-      <text>阅读免责声明，同意以上条款。</text>
-    </view>
-    <view class="right">
-      合计：{{content.totalPrice}}元
-    </view>
-  </view>
-  <view class="btn" wx:if="{{content.offinePay}}" bindtap="payInt">授权支付</view>
-  <view class="btn btn2" wx:if="{{content.offinePay}}" bindtap="payOut">线下支付</view>
+  <view>
+    
+    
+<view class="header" style="height: {{$header$height*2 + 20}}px;line-height:{{($header$height*2 + 44)}}px">
+  <image bindtap="$header$goBack" src="../../images/icon44.png" class="icon44" style="margin-top:{{($header$height*2 + 26)/2}}px"/>
+  <text>{{$header$text}}</text>
 </view>
+ 
+    
+    <view class="info-top" style="margin-top:{{(height*2 + 25)}}px">
+      <image src="../../images/icon34.png" class="icon34"/>
+      <image src="../../images/icon36.png" class="icon35"/>
+    </view>
+    <image src="../../images/icon33.png" class="icon33"/>
+    <view class="content">
+      <view class="left">{{content.name}}私教</view>
+      <view>{{content.price}}元</view>
+    </view>
+    <view class="checkBox">
+      <view class="left">
+        <image bindtap="checkFun" src="{{isCheck ? '../../images/icon38.png' : '../../images/icon37.png'}}"/>
+        <text bindtap="goText">阅读免责声明，同意以上条款。</text>
+      </view>
+      <view class="right">
+        合计：{{content.totalPrice}}元
+      </view>
+    </view>
+    <view class="btn"  wx:if="{{content.offinePay}}" bindtap="payInt">授权支付</view>
+    <view class="btn btn2"  wx:if="{{content.offinePay}}" bindtap="payOut">线下支付</view>
+
+    <view class="mask" wx:if="{{paying}}">
+      <view>等待确认...</view>
+    </view>
+  </view>

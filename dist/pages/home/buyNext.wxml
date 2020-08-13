@@ -1,19 +1,20 @@
 
   <view class="top">
-    <image src="../../images/icon34.png" class="icon34"/>
+    
     
 <view class="header" style="height: {{$header$height*2 + 20}}px;line-height:{{($header$height*2 + 44)}}px">
   <image bindtap="$header$goBack" src="../../images/icon44.png" class="icon44" style="margin-top:{{($header$height*2 + 26)/2}}px"/>
   <text>{{$header$text}}</text>
 </view>
  
-    <view class="info-top">
+    <view class="info-top" style="margin-top:{{(height*2 + 25)}}px">
+      <image src="../../images/icon34.png" class="icon34"/>
       <image src="../../images/icon35.png" class="icon35"/>
     </view>
     <image src="../../images/icon33.png" class="icon33"/>
     <view class="item-list">
       <view class="item"  wx:for="{{list.items}}" wx:for-index="idx" data-index="{{idx}}" bindtap="currentFun">
-        <image src="../../images/icon10.png" class="logo"/>
+        <image src="{{item.images[0]}}" class="logo"/>
         <view class="name hover">
           <view class="name-tips">{{item.name}}</view>
           <view class="tips">

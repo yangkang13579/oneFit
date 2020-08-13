@@ -1,0 +1,10 @@
+
+  <view>
+    
+<view class="header" style="height: {{$header$height*2 + 20}}px;line-height:{{($header$height*2 + 44)}}px">
+  <image bindtap="$header$goBack" src="../../images/icon44.png" class="icon44" style="margin-top:{{($header$height*2 + 26)/2}}px"/>
+  <text>{{$header$text}}</text>
+</view>
+
+    <view style="margin-top:{{(height*2 + 25)}}px"/>
+  </view>

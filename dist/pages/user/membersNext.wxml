@@ -7,19 +7,19 @@
 </view>
 
     <view class="headers" style="margin-top:{{(height*2 + 25)}}px">
-      <image src="../../images/icon15.png"/>
+      <image src="{{details.avatar}}"/>
       <view class="headers-top">
-        <view class="tit">OneFit王伟</view>
+        <view class="tit">{{details.nickName}}</view>
       </view>
     </view>
     <view class="item">
       <view class="left">
         <view class="text">累计训练时长(min)</view>
-        <view>158</view>
+        <view>{{details.stat.hour}}</view>
       </view>
       <view class="right">
         <view class="text">累计训练课时（hour）</view>
-        <view>158</view>
+        <view>{{details.stat.course}}</view>
       </view>
     </view>
     <view class="item item2">
@@ -33,21 +33,21 @@
       <view class="times">
         <view>
           <view class="times-text">训练次数</view>
-          <view class="times-num">8</view>
+          <view class="times-num">0</view>
         </view>
         <view>
           <view class="times-text">训练时长</view>
-          <view class="times-num">8</view>
+          <view class="times-num">0</view>
         </view>
         <view>
           <view class="times-text">训练天数</view>
-          <view class="times-num">8</view>
+          <view class="times-num">0</view>
         </view>
       </view>
       
     </view>
     <view class="btn">
-      <view bindtap="ticeData">上传体侧数据</view>
+      <view bindtap="ticeData">上传体测数据</view>
       <view bindtap="memberImage">上传会员照片</view>
       <view bindtap="expressPlan">查看训练计划</view>
       <view bindtap="eatPlan">查看饮食计划</view>

@@ -32,7 +32,9 @@ export default class PageMixin extends wepy.mixin {
                 console.log('app data:', data);
                 if (data.passportData) {
                     this.user = data.passportData.user;
-                    this.passport = data.passportData.session.id;
+
+                    // this.passport = data.passportData.session.id;
+                    this.passport = 'rdbbpj4lvzhcbrqqre0asz3cftc45piu'
                     //
                     // 检查是否绑定了手机
                     var mobile = null;
@@ -85,7 +87,7 @@ export default class PageMixin extends wepy.mixin {
                 showCancel: false,
                 confirmText: '去设置',
                 confirmColor: '#037ad8',
-                complete: function(res) {
+                complete: function (res) {
                     wx.openSetting({
                         success: res => {
                             // 会重新调用onShow()
@@ -102,7 +104,7 @@ export default class PageMixin extends wepy.mixin {
                 cancelText: '取消',
                 confirmText: '好的',
                 confirmColor: '#037ad8',
-                complete: function(res) {
+                complete: function (res) {
                     self.wxLogin();
                 }
             });
@@ -115,7 +117,7 @@ export default class PageMixin extends wepy.mixin {
                 showCancel: false,
                 confirmText: '重试',
                 confirmColor: '#037ad8',
-                success: function(res) {
+                success: function (res) {
                     wx.navigateBack();
                 }
             });
@@ -127,7 +129,7 @@ export default class PageMixin extends wepy.mixin {
             showCancel: false,
             confirmText: '重试',
             confirmColor: '#037ad8',
-            success: function(res) {
+            success: function (res) {
                 // wx.navigateBack();
                 wx.hideLoading();
             }
@@ -169,7 +171,7 @@ export default class PageMixin extends wepy.mixin {
     /** 当页面发起转发 */
     whenAppShare(options) {
         // 需要微信带上tickets信息
-        wx.updateShareMenu({ withShareTicket: true, success() {} });
+        wx.updateShareMenu({ withShareTicket: true, success() { } });
         var self = this;
         var pages = getCurrentPages(); // 获取加载的页面
         var currentPage = pages[pages.length - 1]; // 获取当前页面的对象
@@ -189,7 +191,7 @@ export default class PageMixin extends wepy.mixin {
         return {
             title: options.title || '',
             path: url,
-            success: function(res) {
+            success: function (res) {
                 // 转发成功
                 self.whenShared(
                     {
@@ -199,7 +201,7 @@ export default class PageMixin extends wepy.mixin {
                     true
                 );
             },
-            fail: function(res) {
+            fail: function (res) {
                 // 转发失败
                 self.whenShared(
                     {
@@ -221,10 +223,10 @@ export default class PageMixin extends wepy.mixin {
         this.fetchDataPromise('restankReferer.do', referer, {
             showLoading: false
         })
-            .then(function(data) {
+            .then(function (data) {
                 console.log('referer:', data);
             })
-            .catch(function(error) {
+            .catch(function (error) {
                 console.log('referer error:', error);
             });
     }
@@ -337,7 +339,7 @@ export default class PageMixin extends wepy.mixin {
         }
     }
     formatNumber(n) {
-        return n.toFixed(0).replace(/./g, function(c, i, a) {
+        return n.toFixed(0).replace(/./g, function (c, i, a) {
             return i > 0 && c !== '.' && (a.length - i) % 3 === 0 ? ',' + c : c;
         });
     }

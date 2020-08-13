@@ -1,0 +1,55 @@
+<style lang="less">
+.icon62 {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+</style>
+
+<template lang="wxml">
+  <view class="top">
+    <image src="../images/icon62.png" class="icon62"/>
+  </view>
+</template>
+
+<script>
+/* global wx */
+import wepy from "wepy";
+import PageMixin from "../mixins/page";
+export default class Course extends wepy.page {
+  mixins = [PageMixin];
+  config = {
+    navigationBarBackgroundColor: "#fff"
+  };
+  components = {};
+  data = {
+    loadUser: true // 需要登录信息
+  };
+  getUserInfo(callBack) {
+    var that = this;
+    this.fetchDataPromise("user/userInfo.json", {}).then(function(data) {
+      wx.setStorage({
+        key: "userInfo",
+        data: JSON.stringify(data)
+      });
+      setTimeout(() => {
+        if (data.isCoach) {
+          wx.switchTab({
+            url: "/pages/doors/doors"
+          });
+        } else {
+          wx.switchTab({
+            url: "/pages/home/home1"
+          });
+        }
+      }, 1000);
+    });
+  }
+  methods = {};
+  whenAppReadyShow() {
+    this.getUserInfo();
+  }
+}
+</script>

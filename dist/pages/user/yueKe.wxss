@@ -59,6 +59,8 @@ page {
   border-radius: 25rpx;
   font-size: 24rpx;
   padding: 0 5rpx;
+  width: 97rpx;
+  text-align: center;
 }
 .content .item-list .cancle {
   padding: 3rpx 40rpx;

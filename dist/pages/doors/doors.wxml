@@ -10,12 +10,21 @@
   </view>
   <image src="../../images/icon26.png" class="icon26"/>
 
-  <view class="items" bindtap="goDoor">
-    <image src="https://cdn.sunjoypai.com/images/5838/1239/4271/632cdc626038c929e4f2af8ca727266b_0_0.png" class="icon11"/>
+  <view class="items"  wx:for="{{list}}" data-item="{{item}}" bindtap="goDoor">
+    <image src="{{item.images[0]}}" class="icon11"/>
     <view class="text">
-      <view>ONEFIT 华东（上海）培训基地</view>
-      <text>上海杨浦区长阳路1687号7号楼7110（星巴克旁）</text>
+      <view>{{item.name}}</view>
+      <text>{{item.location}}</text>
     </view>
   </view>
   
+<view class="tabBar">
+  <view class="tabBar-List" style="{{$tabBar$isCoach ? 'width:50%' : ''}}"  wx:for="{{$tabBar$list}}" wx:for-index="idx" data-index="{{idx}}" bindtap="$tabBar$tabFun">
+    <image wx:if="{{$tabBar$isCoach}}" src="{{$tabBar$current === idx + 1 ?  '../../images/himages' + (idx + 1) + '.png' : '../../images/images' + (idx + 1) + '.png'}}"/>
+    <image wx:else src="{{$tabBar$current === idx ?  '../../images/himages' + idx + '.png' : '../../images/images' + idx + '.png'}}"/>
+    <view wx:if="{{$tabBar$isCoach}}" class="{{$tabBar$current === idx + 1 ? 'hover' : ''}}">{{item}}</view>
+     <view wx:else class="{{$tabBar$current === idx ? 'hover' : ''}}">{{item}}</view>
+  </view>
+</view>
+
 </view>

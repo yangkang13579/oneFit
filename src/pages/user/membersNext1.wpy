@@ -71,7 +71,8 @@ page {
       margin-left: 20rpx;
     }
     input {
-      width: 220rpx;
+      width: 200rpx;
+      padding-left: 20rpx;
       height: 50rpx;
       border: 1rpx solid #acacac;
       border-radius: 10rpx;
@@ -165,9 +166,9 @@ page {
   <view class="top">
     <header />
     <view class="headers"  style="margin-top:{{(height*2 + 25)}}px">
-      <image src="../../images/icon15.png" />
+      <image src="{{avatar}}" />
       <view class="headers-top">
-        <view class="tit">OneFit王伟</view>
+        <view class="tit">{{nickName}}</view>
       </view>
     </view>
     <view class="data">
@@ -176,47 +177,45 @@ page {
       <view class="inputs">
         <view class="inputs-left">
           <text>体脂率</text>
-          <input />
+          <input bindblur="gettiz" bindconfirm="gettiz" value="{{formData.tiz}}"/>
         </view>
 
         <view class="inputs-left">
           <text>身高</text>
-          <input />
+          <input bindblur="getsg" bindconfirm="getsg" value="{{formData.sg}}"/>
         </view>
 
         <view class="inputs-left">
           <text>肌肉</text>
-          <input />
+          <input bindblur="getjr" bindconfirm="getjr" value="{{formData.jr}}"/>
         </view>
 
         <view class="inputs-left">
           <text>体重</text>
-          <input />
+          <input bindblur="gettz" bindconfirm="gettz" value="{{formData.tz}}"/>
         </view>
 
         <view class="inputs-left">
           <text>脂肪</text>
-          <input />
+          <input bindblur="getzf" bindconfirm="getzf" value="{{formData.zf}}"/>
         </view>
 
         <view class="inputs-left">
           <text>腰围</text>
-          <input />
+          <input bindblur="getyw" bindconfirm="getyw" value="{{formData.yw}}"/>
         </view>
-
         <view class="inputs-left">
-          <text>腰围</text>
-          <input />
+          <text>胸围</text>
+          <input value="{{formData.xw}}"/>
         </view>
-
         <view class="inputs-left">
           <text>臂围</text>
-          <input />
+          <input bindblur="gettw" bindconfirm="gettw" value="{{formData.tw}}"/>
         </view>
 
         <view class="inputs-left inputs-last">
           <text>基础代谢</text>
-          <input />
+          <input bindblur="getdx" bindconfirm="getdx" value="{{formData.dx}}"/>
         </view>
       </view>
       <image src="../../images/icon26.png" class="icon26">
@@ -237,9 +236,9 @@ page {
       </view>
 
       <view class="ticeTime">体测时间：
-        <picker class="text3" bindchange="bindPickerChange" range="{{array}}">
+        <picker class="text3" bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
           <view class="picker">
-            111
+            {{array[index]}}
           </view>
           <view class="right">
             <image src="../../images/icon45.png" class="icon45" />
@@ -247,7 +246,7 @@ page {
         </picker>
       </view>
     </view>
-    <view class="btn">下一步</view>
+    <view class="btn" @tap="upload">上传</view>
   </view>
 </template>
 
@@ -265,9 +264,139 @@ export default class Course extends wepy.page {
     header
   };
   data = {
-    height: ""
+    height: "",
+    details: {},
+    id: null,
+    calendarId: null,
+    index: null,
+    array: [],
+    formData: {},
+    nickName: null,
+    avatar: null
   };
-  methods = {};
+  onLoad(options) {
+    this.id = options.id;
+    this.nickName = options.nickName;
+    this.avatar = options.avatar;
+  }
+  methods = {
+    gettiz(e) {
+      this.formData.tiz = e.detail.value;
+    },
+    gettz(e) {
+      this.formData.tz = e.detail.value;
+    },
+    getsg(e) {
+      this.formData.sg = e.detail.value;
+    },
+    gettw(e) {
+      this.formData.tw = e.detail.value;
+    },
+    getxw(e) {
+      this.formData.xw = e.detail.value;
+    },
+    getyw(e) {
+      this.formData.yw = e.detail.value;
+    },
+    getdx(e) {
+      this.formData.dx = e.detail.value;
+    },
+    getzf(e) {
+      this.formData.zf = e.detail.value;
+    },
+    bindPickerChange(e) {
+      this.index = e.detail.value;
+      this.getVal();
+    },
+    // 上传
+    upload() {
+      const data = {};
+      for (const key in this.formData) {
+        if (key === "tiz") {
+          data["体脂率"] = this.formData[key];
+        } else if (key === "tz") {
+          data["体重"] = this.formData[key];
+        } else if (key === "jr") {
+          data["肌肉"] = this.formData[key];
+        } else if (key === "xw") {
+          data["胸围"] = this.formData[key];
+        } else if (key === "tw") {
+          data["臀围"] = this.formData[key];
+        } else if (key === "sg") {
+          data["身高"] = this.formData[key];
+        } else if (key === "zf") {
+          data["脂肪"] = this.formData[key];
+        } else if (key === "yw") {
+          data["腰围"] = this.formData[key];
+        }
+      }
+      var that = this;
+      this.fetchDataPromise("page/coach.json", {
+        action: "userTraning",
+        userId: this.id,
+        calendarId: this.details.items[this.index].id,
+        data: JSON.stringify(data)
+      }).then(function(data) {
+        that.details = data;
+        wx.showToast({
+          title: "上传成功"
+        });
+        that.$apply();
+        that.getFormData();
+      });
+    }
+  };
+  getVal() {
+    this.fetchDataPromise("page/coach.json", {
+      action: "userTraning",
+      userId: this.id,
+      calendarId: this.details.items[this.index].id
+    }).then(function(data) {
+      that.details = data;
+      that.$apply();
+      that.getFormData();
+    });
+  }
+  getFormData() {
+    for (const key in this.details.value) {
+      if (key === "体脂率") {
+        this.formData.tiz = this.details.value[key];
+      } else if (key === "体重") {
+        this.formData.tz = this.details.value[key];
+      } else if (key === "肌肉") {
+        this.formData.jr = this.details.value[key];
+      } else if (key === "胸围") {
+        this.formData.xw = this.details.value[key];
+      } else if (key === "臀围") {
+        this.formData.tw = this.details.value[key];
+      } else if (key === "身高") {
+        this.formData.sg = this.details.value[key];
+      } else if (key === "脂肪") {
+        this.formData.zf = this.details.value[key];
+      } else if (key === "腰围") {
+        this.formData.yw = this.details.value[key];
+      }
+    }
+    this.$apply();
+  }
+  whenAppReadyShow() {
+    var that = this;
+    this.fetchDataPromise("page/coach.json", {
+      action: "userTraning",
+      userId: this.id
+    }).then(function(data) {
+      that.details = data;
+      that.array = that.details.items.map((item, index) => {
+        if (that.details.calendarId === item.id) {
+          that.index = index;
+        }
+        return item.day;
+      });
+      that.getFormData();
+      console.log(that.index);
+      that.$apply();
+    });
+  }
   onShow() {
     wx.getSystemInfo({
       success: res => {

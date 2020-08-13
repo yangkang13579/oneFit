@@ -1,0 +1,334 @@
+<style lang="less">
+page {
+  background: #111111;
+}
+.info-top {
+  width: 100%;
+  height: 150rpx;
+  display: flex;
+  position: relative;
+  .icon34 {
+    width: 100%;
+    height: 150rpx;
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+  .icon35 {
+    width: 491rpx;
+    height: 59rpx;
+    position: absolute;
+    left: 128rpx;
+    top: 47rpx;
+  }
+}
+.icon33 {
+  width: 53rpx;
+  height: 27rpx;
+  margin-top: 13rpx;
+  margin-left: 349rpx;
+}
+.content {
+  width: 700rpx;
+  height: 160rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 25rpx;
+  background: #2d2d2d;
+  view {
+    width: 50%;
+    height: 80rpx;
+    text-align: center;
+    font-size: 36rpx;
+    color: #fff;
+    font-weight: bold;
+    line-height: 80rpx;
+  }
+  .left {
+    border-right: 1rpx solid #e02510;
+  }
+}
+.checkBox {
+  margin-top: 30rpx;
+  margin-left: 25rpx;
+  font-size: 28rpx;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  image {
+    width: 30rpx;
+    height: 30rpx;
+    margin-right: 10rpx;
+  }
+  .left {
+    display: flex;
+    align-items: center;
+  }
+  .right {
+    font-size: 30rpx;
+    color: #e02510;
+    margin-right: 25rpx;
+  }
+}
+.btn {
+  width: 500rpx;
+  height: 70rpx;
+  margin-top: 125rpx;
+  margin-left: 125rpx;
+  background: #e02510;
+  border-radius: 50rpx;
+  font-size: 32rpx;
+  font-weight: bold;
+  text-align: center;
+  line-height: 70rpx;
+  color: #fff;
+}
+.btn2 {
+  margin-top: 30rpx;
+  background: 0;
+  color: #fff;
+  border: 1px solid #e02510;
+}
+.mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #fff;
+}
+</style>
+<template lang="wxml">
+  <view>
+    
+    <header /> 
+    
+    <view class="info-top"  style="margin-top:{{(height*2 + 25)}}px">
+      <image src="../../images/icon34.png" class="icon34"/>
+      <image src="../../images/icon36.png" class="icon35" />
+    </view>
+    <image src="../../images/icon33.png" class="icon33" />
+    <view class="content">
+      <view class="left">{{content.name}}私教</view>
+      <view>{{content.price}}元</view>
+    </view>
+    <view class="checkBox">
+      <view class="left">
+        <image @tap="checkFun" src="{{isCheck ? '../../images/icon38.png' : '../../images/icon37.png'}}" />
+        <text @tap="goText">阅读免责声明，同意以上条款。</text>
+      </view>
+      <view class="right">
+        合计：{{content.totalPrice}}元
+      </view>
+    </view>
+    <view class="btn" wx:if="{{content.offinePay}}" bindtap="payInt">授权支付</view>
+    <view class="btn btn2" wx:if="{{content.offinePay}}" bindtap="payOut">线下支付</view>
+
+    <view class="mask" wx:if="{{paying}}">
+      <view>等待确认...</view>
+    </view>
+  </view>
+</template>
+<script>
+/* global wx */
+import wepy from "wepy";
+import PageMixin from "../../mixins/page";
+import header from "../../components/headers";
+export default class Course extends wepy.page {
+  mixins = [PageMixin];
+  config = {
+    navigationBarBackgroundColor: "#fff"
+  };
+  components = {
+    header
+  };
+  data = {
+    height: "",
+    branchId: null,
+    cardId: null,
+    coachId: null,
+    content: {},
+    isCheck: false,
+    paying: false
+  };
+  wxPay(data) {
+    //拉起微信支付
+    var self = this;
+    // var data = res.data.messages.data;
+    wx.requestPayment({
+      timeStamp: data.timestamp,
+      nonceStr: data.nonceStr,
+      package: data.package,
+      signType: data.signType,
+      paySign: data.paySign,
+      success: function(res) {
+        //支付成功
+        self.checkOrder({
+          out_trade_no: data.out_trade_no,
+          orderId: data.orderId,
+          type: "wx_html"
+        });
+      },
+      fail: function(res) {
+        //支付失败
+        wx.switchTab({
+          url: "user"
+        });
+        console.log(res);
+      }
+    });
+  }
+  methods = {
+    goText() {
+      wx.navigateTo({
+        url: "/pages/home/text"
+      });
+    },
+    checkFun() {
+      this.isCheck = !this.isCheck;
+    },
+    payOut() {
+      if (!this.isCheck) {
+        wx.showToast({
+          title: "请勾选免责声明",
+          icon: "none"
+        });
+        return;
+      }
+      var that = this;
+      this.paying = true;
+      console.log(this.$parent.globalData.wxId);
+      this.fetchDataPromise("pay/wxPay.json", {
+        action: "check",
+        type: "offline",
+        payId: this.content.payId
+      }).then(function(data) {
+        setInterval(() => {
+          that.time();
+        }, 1000);
+      });
+    },
+    // 授权支付
+    payInt() {
+      if (!this.isCheck) {
+        wx.showToast({
+          title: "请勾选免责声明",
+          icon: "none"
+        });
+        return;
+      }
+      var self = this;
+      console.log(this.$parent.globalData.wxId);
+      this.fetchDataPromise("pay/wxPay.json", {
+        action: "create",
+        payId: self.content.payId,
+        type: "wx_html"
+      })
+        .then(function(data) {
+          console.log("支付支付 ", data);
+          if (data.wxPay) {
+            //拉起微信支付
+            console.log("支付支付44444444444444 ", data);
+            self.wxPay(data);
+          } else {
+            //无须拉取微信支付
+            self.checkOrder({
+              out_trade_no: data.out_trade_no,
+              orderId: data.orderId,
+              type: "wx_html"
+            });
+          }
+        })
+        .catch(function(error) {});
+    }
+  };
+  checkOrder(option) {
+    console.log("optionoption", option);
+    var self = this;
+    this.fetchDataPromise("pay/wxPay.json", {
+      action: "check",
+      wxId: this.$parent.globalData.wxId,
+      id: option.orderId
+    })
+      .then(function(data) {
+        console.log("checkcheck ", data);
+        if (data.paid) {
+          console.log("支付成功");
+          wx.showToast({
+            title: "支付成功",
+            icon: "success",
+            duration: 3000
+          });
+          setTimeout(() => {
+            wx.switchTab({
+              url: "../user/user"
+            });
+          }, 3000);
+          //跳转首页
+        } else if (data.waiting) {
+          self.checkOrder({
+            out_trade_no: option.out_trade_no,
+            orderId: option.orderId,
+            type: "wx_html"
+          });
+        } else if (!data.paid) {
+          wx.showModal({
+            title: "提示",
+            content: "支付失败,请联系客服",
+            showCancel: false
+          });
+        }
+        self.$apply();
+      })
+      .catch(function(error) {});
+  }
+  time() {
+    this.fetchDataPromise("pay/wxPay.json", {
+      action: "check",
+      payId: this.content.payId
+    }).then(data => {
+      if (data.paid) {
+        this.paying = false;
+      }
+    });
+  }
+  onLoad(options) {
+    this.branchId = options.branchId;
+    this.cardId = options.cardId;
+    this.coachId = options.coachId;
+  }
+  whenAppReadyShow(options) {
+    var that = this;
+    this.fetchDataPromise("user/userFit.json", {
+      action: "pay",
+      branchId: this.branchId,
+      cardId: this.cardId,
+      coachId: this.coachId
+    }).then(function(data) {
+      that.content = data;
+      that.content.totalPrice = data.price * data.validCount;
+      that.$apply();
+    });
+  }
+  onShow() {
+    wx.getSystemInfo({
+      success: res => {
+        this.height = res.statusBarHeight;
+        this.$broadcast("index-broadcast", {
+          height: this.height,
+          text: "OneFit健身"
+        });
+      }
+    });
+  }
+}
+</script>

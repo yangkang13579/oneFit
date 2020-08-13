@@ -114,17 +114,10 @@ page {
       </view>
 
       <view class="item-list">
-        <view class="list">
-          <image src="../../images/icon15.png" class="icon15" />
-          <text>OneFit王伟</text>
-          <view class="details">查看详情</view>
-          <image src="../../images/icon26.png" class="icon26" />
-        </view>
-
-        <view class="list">
-          <image src="../../images/icon15.png" class="icon15" />
-          <text>OneFit王伟</text>
-          <view class="details" @tap="detailsFun">查看详情</view>
+        <view class="list" wx:for="{{items}}">
+          <image src="{{item.avatar}}" />
+          <text>{{item.nickName}}</text>
+          <view class="details" data-id="{{item.id}}" @tap="detailsFun">查看详情</view>
           <image src="../../images/icon26.png" class="icon26" />
         </view>
       </view>
@@ -148,18 +141,31 @@ export default class Course extends wepy.page {
   data = {
     currentIndex: 0,
     height: null,
-    tit: ["所有会员", "一周未出勤", "一月未出勤"]
+    tit: ["所有会员", "一周未出勤", "一月未出勤"],
+    items: []
   };
   methods = {
     tabFun(e) {
       this.currentIndex = e.currentTarget.dataset.index;
     },
-    detailsFun() {
+    detailsFun(e) {
       wx.navigateTo({
-        url: "/pages/user/membersNext"
+        url: "/pages/user/membersNext?id=" + e.currentTarget.dataset.id
       });
     }
   };
+  whenAppReadyShow() {
+    this.getCoach();
+  }
+  getCoach() {
+    var that = this;
+    this.fetchDataPromise("page/coach.json", { action: "user" }).then(function(
+      data
+    ) {
+      that.items = data.items;
+      that.$apply();
+    });
+  }
   onShow() {
     wx.getSystemInfo({
       success: res => {

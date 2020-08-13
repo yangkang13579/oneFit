@@ -105,19 +105,19 @@
       <image src="{{branch.user.avatar}}" class="icon3">
     </view>
     <image src="../images/icon8.png" class="icon8"/>
-    <image src="../images/icon10.png" class="icon10">
+    <image src="{{branch.coachInfo.images[0]}}" class="icon10">
     <view class="teacher-name">
       <image src="../images/icon9.png" class="icon9" />
       <view>
         <text>您的专属教练：</text>
-        <text class="name">{{branch.name}}</text>
+        <text class="name">{{branch.coachInfo.name}}</text>
       </view>
     </view>
     <view class="teacher-name teacher-name2">
       <image src="../images/icon9.png" class="icon9" />
       <view>
         <text></text>
-        <text class="name">{{branch.branchs[0].name}}</text>
+        <text class="name">{{branch.coachInfo.branchs[0].name}}</text>
       </view>
     </view>
   </view>

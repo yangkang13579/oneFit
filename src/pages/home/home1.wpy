@@ -365,32 +365,32 @@ page {
     </swiper>
 
     <view  class="has-info display:{{userInfo.isNewUser ? 'block' : 'none'}}">
-      <image src="../../images/icon27.png" class="icon27" />
+      <image src="../../images/icon27.png" class="icon27" @tap="buys"/>
       <view class="cavas">
         <canvas canvas-id="runCanvas" id="runCanvas" class='canvas'></canvas>
         <view class="content-cavas">
           <view style="margin-top:32rpx;">剩余课时</view>
-          <view class="b">158</view>
-          <view>
+          <view class="b">{{pageFirst.cardInfo.balance}}</view>
+          <!-- <view>
             购买课时量：200
-          </view>
+          </view> -->
         </view>
       </view>
-      <image src="../../images/icon30.png" class="icon30" @tap="buy"/>
+      <image wx:if="{{pageFirst.cardInfo.balance > 0}}" src="../../images/icon30.png" class="icon30" @tap="buy"/>
     </view>
 
-    <!-- <view class="info-bottom {{userInfo.isNewUser ? 'block' : 'none'}}">
+    <view wx:if="{{pageFirst.cardInfo.balance !== 0}}"  class="info-bottom {{userInfo.isNewUser ? 'block' : 'none'}}">
       <image src="../../images/icon28.png" />
       <view>
         <text class="text-top">您已成功预约私教体验课，我们将尽快与您联系</text>
         <view>
-          <text class="text-left">门店：OneFit杨浦店</text>
-          <text class="text-right">教练：陈蕴 Jordan</text>
+          <text class="text-left">门店：{{pageFirst.coachInfo.branchs[0].name}}</text>
+          <text class="text-right">教练：{{pageFirst.coachInfo.name}}</text>
         </view>
       </view>
-    </view> -->
+    </view>
 
-    <view class="myList">
+    <view class="myList" wx:else>
       <view class="item1">
         <view class="tit">
           <text>我的预约</text>
@@ -596,6 +596,7 @@ page {
         </view>
       </view>
     </view>
+    <tabBar />
   </view>
 </template>
 
@@ -604,13 +605,15 @@ page {
 import wepy from "wepy";
 import PageMixin from "../../mixins/page";
 import common from "../../components/common";
+import tabBar from "../../components/tabBar";
 export default class Course extends wepy.page {
   mixins = [PageMixin];
   config = {
     navigationBarBackgroundColor: "#fff"
   };
   components = {
-    common
+    common,
+    tabBar
   };
   data = {
     loadUser: true, // 需要登录信息
@@ -626,14 +629,19 @@ export default class Course extends wepy.page {
   };
   whenAppReadyShow(options) {
     this.circle();
-
     this.getPageFirst();
   }
   methods = {
-    buy() {
+    buys() {
       wx.navigateTo({
         url:
           "/pages/home/buy?branchId=" + this.pageFirst.coachInfo.branchs[0].id
+      });
+    },
+    buy() {
+      wx.navigateTo({
+        url:
+          "/pages/home/home?branchId=" + this.pageFirst.coachInfo.branchs[0].id
       });
     },
     corse() {
@@ -672,6 +680,7 @@ export default class Course extends wepy.page {
               data.user = user;
               wx.hideLoading();
               that.$broadcast("index-broadcast", data);
+              that.$apply();
             });
         });
       }
@@ -679,15 +688,17 @@ export default class Course extends wepy.page {
   }
   getUserInfo(callBack) {
     var that = this;
-    this.fetchDataPromise("user/userInfo.json", {}).then(function(data) {
-      that.userInfo = data;
-      that.userInfo.isNewUser = true;
-      wx.setStorage({
-        key: "userInfo",
-        data: JSON.stringify(data)
-      });
-      callBack(data);
-      that.$apply();
+    wx.getStorage({
+      key: "userInfo",
+      success(res) {
+        that.userInfo = JSON.parse(res.data);
+        that.$broadcast("tab", {
+          current: 0,
+          userInfo: that.userInfo
+        });
+        that.userInfo.isNewUser = true;
+        callBack(that.userInfo);
+      }
     });
   }
   run(c, w, h, ctx1) {
@@ -726,6 +737,7 @@ export default class Course extends wepy.page {
       .exec();
   }
   onShow() {
+    wx.hideTabBar();
     wx.getSystemInfo({
       success: res => {
         this.height = res.statusBarHeight;

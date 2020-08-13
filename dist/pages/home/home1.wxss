@@ -1,3 +1,4 @@
+@import "./../../components/tabBar.wxss";
 @import "./../../components/common.wxss";
 page {
   background: #111111;

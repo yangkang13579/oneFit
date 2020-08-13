@@ -2,27 +2,25 @@
 page {
   background: #111111;
 }
-.icon34 {
-  position: fixed;
-  top: 165rpx;
-  left: 0;
-  width: 100%;
-  height: 151rpx;
-}
 .info-top {
-  margin-top: 165rpx;
-  position: relative;
-  z-index: 333;
-  height: 151rpx;
   width: 100%;
+  height: 150rpx;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #fff;
+  position: relative;
+}
+.info-top .icon34 {
+  width: 100%;
+  height: 150rpx;
+  position: absolute;
+  left: 0;
+  top: 0;
 }
 .info-top .icon35 {
-  width: 492rpx;
-  height: 52rpx;
+  width: 491rpx;
+  height: 59rpx;
+  position: absolute;
+  left: 128rpx;
+  top: 47rpx;
 }
 .btn {
   width: 500rpx;

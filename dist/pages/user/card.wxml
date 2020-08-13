@@ -7,13 +7,13 @@
 </view>
 
     <image src="../../images/icon41.png" class="icon8" style="margin-top:{{(height*2 + 25)}}px"/>
-    <view class="item">
-      <view class="list">
+    <view class="item"  wx:if="{{items.length !== 0}}">
+      <view class="list" wx:for="{{items}}">
         <image src="../../images/icon40.png"/>
         <view class="content">
           <view class="left">
-            <text class="text">私教体验券</text>
-            <view class="weight">¥100</view>
+            <text class="text">{{item.title}}</text>
+            <view class="weight">¥{{item.amount}}</view>
             <text class="grey">有效期至：2020-08-30（剩余30天）</text>
           </view>
           <view class="right">
@@ -23,20 +23,8 @@
           </view>
         </view>
       </view>
-      <view class="list">
-        <image src="../../images/icon40.png"/>
-        <view class="content">
-          <view class="left">
-            <text class="text">私教体验券</text>
-            <view class="weight">¥100</view>
-            <text class="grey">有效期至：2020-08-30（剩余30天）</text>
-          </view>
-          <view class="right">
-            <view>去使用</view>
-            <text>查看使用范围
-            </text>
-          </view>
-        </view>
-      </view>
+    </view>
+    <view class="item"  wx:else>
+      <view class="empty">暂无数据</view>
     </view>
   </view>

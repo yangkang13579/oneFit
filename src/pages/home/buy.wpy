@@ -106,7 +106,7 @@ page {
 <template lang="wxml">
   <view class="top">
     <header /> 
-    <view class="center">
+    <view class="center" style="margin-top:{{(height*2 + 25)}}px">
       <image src="../../images/icon2.png" class="icon2"/>
       <image src="{{userInfo.avatar}}" class="icon3">
     </view>

@@ -1,17 +1,6 @@
+@import "./../../components/headers.wxss";
 page {
   background: #111111;
-}
-.header {
-  font-size: 30rpx;
-  color: #fff;
-  width: 100%;
-  position: fixed;
-  z-index: 1;
-}
-.header text {
-  position: absolute;
-  bottom: 5rpx;
-  left: 15rpx;
 }
 .times {
   height: 130rpx;
@@ -87,12 +76,19 @@ page {
   display: inline-block;
 }
 .point .block view {
-  padding: 0 10rpx;
   color: #acacac;
+  width: 91rpx;
+  text-align: center;
   height: 41rpx;
   margin-top: 19rpx;
   font-size: 26rpx;
   line-height: 41rpx;
+  margin-right: 40rpx;
+}
+.point .block .hover {
+  background: #e02510;
+  color: #fff;
+  border-radius: 30rpx;
 }
 .btn {
   margin-top: 69rpx;

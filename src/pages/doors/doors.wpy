@@ -85,14 +85,14 @@ page {
   </view>
   <image src="../../images/icon26.png" class="icon26"/>
 
-  <view class="items" @tap="goDoor">
-    <image src="https://cdn.sunjoypai.com/images/5838/1239/4271/632cdc626038c929e4f2af8ca727266b_0_0.png" class="icon11"/>
+  <view class="items" wx:for="{{list}}" data-item="{{item}}" @tap="goDoor">
+    <image src="{{item.images[0]}}" class="icon11"/>
     <view class="text">
-      <view>ONEFIT 华东（上海）培训基地</view>
-      <text>上海杨浦区长阳路1687号7号楼7110（星巴克旁）</text>
+      <view>{{item.name}}</view>
+      <text>{{item.location}}</text>
     </view>
   </view>
-  
+  <tabBar />
 </view>
 </template>
 
@@ -100,22 +100,40 @@ page {
 /* global wx */
 import wepy from "wepy";
 import PageMixin from "../../mixins/page";
+import tabBar from "../../components/tabBar";
 export default class User extends wepy.page {
   mixins = [PageMixin];
   config = {
     navigationBarTitleText: "OneFit健身"
   };
-  components = {};
+  components = {
+    tabBar
+  };
   data = {
-    height: ""
+    height: "",
+    list: []
   };
   methods = {
-    goDoor() {
+    goDoor(e) {
       wx.navigateTo({
-        url: "/pages/doors/doorsDetails"
+        url: "/pages/doors/doorsDetails?id=" + e.currentTarget.dataset.item.id
       });
     }
   };
+  onShow() {
+    wx.hideTabBar();
+    var that = this;
+    wx.getStorage({
+      key: "userInfo",
+      success(res) {
+        that.userInfo = JSON.parse(res.data);
+        that.$broadcast("tab", {
+          current: 1,
+          userInfo: that.userInfo
+        });
+      }
+    });
+  }
   onLoad() {
     wx.getSystemInfo({
       success: res => {
@@ -123,7 +141,13 @@ export default class User extends wepy.page {
       }
     });
   }
-  whenAppReadyShow() {}
+  whenAppReadyShow() {
+    var that = this;
+    this.fetchDataPromise("page/branch.json", {}).then(data => {
+      this.list = data.branchs;
+      this.$apply();
+    });
+  }
   onShareAppMessage(res) {}
   regionchange(e) {}
   markertap(e) {}
